@@ -248,6 +248,24 @@ So the paper's claim becomes: *"a finite-sample guarantee on unsupported recomme
 
 yui chose Beauty ("let's do beauty"). NeurIPS 2027 main track and the no-annotator label design (§11) are unchanged. This section replaces the Appliances / Home & Kitchen / Tools scope everywhere in the plan.
 
+### 12.0 Why Beauty: the thesis builds on BLaIR
+yui's reason for choosing Beauty (17 Oct): the thesis builds on **BLaIR** (Hou, Li, Fu, He, Yan, Chen & McAuley, *Bridging Language and Items for Retrieval and Recommendation*, ACL 2026; arXiv:2403.03952, 2024), the paper that released Amazon Reviews 2023.
+
+**What BLaIR does.** It pretrains RoBERTa-based sentence encoders (BLaIR-base 123M, BLaIR-large 354M, released) with a contrastive loss that pairs each review with its item's metadata, so a user's language and an item's listing text land in one embedding space. It evaluates on sequential recommendation (the arXiv text names **All Beauty**, Video Games and Office Products as domains, though its tables report Beauty, Games and Baby, so check which split to reuse), conventional product search (ESCI), and a new task, *complex product search*, with **Amazon-C4**: 21,223 queries written by ChatGPT from 5-star reviews of at least 100 characters, each paired with the reviewed item as ground truth, over a 1.06M-item pool. The ACL 2026 version adds a benchmark of 11 LLMs as semantic encoders. It doesn't study new-item cold start, evidence support or abstention.
+
+**How the thesis extends it.** BLaIR asks *"does the embedding retrieve the item this user liked?"* The thesis asks *"does this listing actually **support** this customer's need, and can the system abstain and bound the rate at which it doesn't?"* Three concrete extensions:
+1. **From similarity to support.** BLaIR scores a need–listing pair by cosine similarity, which rises with topical overlap even when the deciding attribute (fragrance-free, oily skin) is missing or contradicted. That is the prior-licensing failure RQ1 measures.
+2. **From the reviewed item to the evidenced item.** Amazon-C4 treats the item the reviewer bought as the correct answer. The thesis labels support from the hidden `details` field instead (§11), so a match is correct only if the listing states the evidence.
+3. **From ranking to a decision with a guarantee.** BLaIR always returns a ranked list. The thesis adds recommend / reject / abstain and the URR ≤ α guarantee.
+
+**How BLaIR is used in the experiments.**
+- **Baseline:** BLaIR-base/large as a zero-shot dense retriever over listing text (it embeds new items from metadata alone, so it applies at launch), with a similarity threshold for a "recommend" decision. Add a conformal threshold on BLaIR similarity as a second baseline, so the comparison isolates *support* vs *confidence*.
+- **RQ1 probe:** run the evidence ablations (remove, blur, edit, brand-swap) on BLaIR scores as well as on LLMs. If BLaIR's similarity barely moves when the deciding attribute is removed, that is direct evidence for the diagnosis.
+- **Need source:** reuse Amazon-C4's review-to-query recipe for Beauty, keeping only queries with at least one checkable constraint (§12.1), and compare against C4's original "reviewed item" labels. Check at G0 whether C4's item pool already covers Beauty.
+- **Comparability:** use BLaIR's All_Beauty split and preprocessing where possible, so reviewers can match numbers to a published paper.
+
+**Does this strengthen the case for Beauty against the costs in §12.4?** Partly. It adds a published, well-known starting point (an ACL 2026 paper from the dataset's own lab), released models as ready baselines, and an existing Beauty split. Reviewers will read the paper as a clear next step on a familiar benchmark. It doesn't fix sparse listing evidence or noisy labels, because BLaIR never needed checkable attributes. The G0 thresholds and the fallback (§12.5) stay. One caution: BLaIR is a representation-learning paper and this is a guarantee paper, so the paper should say "builds on BLaIR's data and models", not "extends BLaIR's method". The novelty claim stays the support guarantee.
+
 ### 12.1 What a "checkable need" is in Beauty
 A need is still a conjunction of constraints, but every constraint must come from this list. Anything else is out of scope and the matcher should abstain on it.
 
@@ -291,7 +309,7 @@ On the full Beauty_and_Personal_Care metadata, count:
 | **Health-adjacent claims** (SPF, acne, sensitive skin) | Ethics and broader-impact questions from reviewers | Treat SPF and "for sensitive skin" as listing claims being checked, not medical advice; say so in limitations |
 | **One more download and a large file** | More preprocessing time in October | Stream the files; subcategory splits reduce working size |
 
-**What the switch gains:** RQ1 should show a bigger effect, because beauty is brand-driven, heavily marketed and well known to LLMs, so prior licensing has more room to show. The strategic-seller angle (§9A) fits better, since beauty listings are written to persuade. The thesis, the hackathon demo and Paper B now share one category and one data pipeline, and the entrepreneurship story (indie beauty brands against famous ones) is easy for readers to follow.
+**What the switch gains:** it puts the thesis directly on BLaIR's data, Beauty split and released models (§12.0). RQ1 should also show a bigger effect, because beauty is brand-driven, heavily marketed and well known to LLMs, so prior licensing has more room to show. The strategic-seller angle (§9A) fits better, since beauty listings are written to persuade. The thesis, the hackathon demo and Paper B now share one category and one data pipeline, and the entrepreneurship story (indie beauty brands against famous ones) is easy for readers to follow.
 
 ### 12.5 Fallback
 If G0 fails (too few products with agreeing attributes, or almost no checkable needs in early reviews), keep Beauty for RQ1 (the diagnosis) and the hackathon, and move the benchmark and guarantee (RQ2) to Home & Kitchen, the previous main category. Decide this at G0, before the pilot, so the November go/no-go still tests the final setup.
