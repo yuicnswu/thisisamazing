@@ -2,5 +2,47 @@
 
 *Stage 2 of [WORKFLOW.md](../WORKFLOW.md). One row per file in `wiki/`; add a row every time a wiki file is added.*
 
-| File | First author | Year | Venue | Keywords |
-|---|---|---|---|---|
+**40 papers** (updated 2026-10-17): 10 recent peer-reviewed conference papers, 20 papers with more than 100 verified citations (14 AI, 6 marketing), and 10 surveys. Citation counts are lower bounds from Liner (an undated Semantic Scholar snapshot), IDEAS/RePEc CitEc or Scopus, because Google Scholar and the Semantic Scholar API refused automated access.
+
+| File | First author | Year | Venue | Set | Field | Citations | Keywords |
+|---|---|---|---|---|---|---|---|
+| [filandrianos-2025-cognitive-biases-llm-product-recommendations](wiki/filandrianos-2025-cognitive-biases-llm-product-recommendations.md) | Filandrianos | 2025 | Proceedings of EMNLP 2025 | Conference | AI | not required | cognitive biases llm product recommendations |
+| [hou-2026-blair-amazon-reviews-2023](wiki/hou-2026-blair-amazon-reviews-2023.md) | Hou | 2026 | Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics | Conference | AI | not required | blair amazon reviews 2023 |
+| [mohri-2024-conformal-factuality-guarantees](wiki/mohri-2024-conformal-factuality-guarantees.md) | Mohri | 2024 | Proceedings of the 41st International Conference on Machine Learning | Conference | AI | 56 | conformal factuality guarantees |
+| [nestaas-2025-adversarial-seo-llms](wiki/nestaas-2025-adversarial-seo-llms.md) | Nestaas | 2025 | International Conference on Learning Representations | Conference | AI | not required | adversarial seo llms |
+| [rubin-toles-2025-conformal-reasoning-coherent-factuality](wiki/rubin-toles-2025-conformal-reasoning-coherent-factuality.md) | Rubin-Toles | 2025 | International Conference on Learning Representations | Conference | AI | not required | conformal reasoning coherent factuality |
+| [sanner-2023-llm-near-cold-start-recommenders](wiki/sanner-2023-llm-near-cold-start-recommenders.md) | Sanner | 2023 | Proceedings of the 17th ACM Conference on Recommender Systems | Conference | AI | not required | llm near cold start recommenders |
+| [shi-2024-context-aware-decoding](wiki/shi-2024-context-aware-decoding.md) | Shi | 2024 | Proceedings of NAACL 2024 | Conference | AI | not required | context aware decoding |
+| [si-2026-canoe-contextual-faithfulness-rl](wiki/si-2026-canoe-contextual-faithfulness-rl.md) | Si | 2026 | Proceedings of the AAAI Conference on Artificial Intelligence | Conference | AI | not required | canoe contextual faithfulness rl |
+| [xie-2024-knowledge-conflicts-chameleon-sloth](wiki/xie-2024-knowledge-conflicts-chameleon-sloth.md) | Xie | 2024 | International Conference on Learning Representations | Conference | AI | not required | knowledge conflicts chameleon sloth |
+| [zhou-2025-active-reasoning-ar-bench](wiki/zhou-2025-active-reasoning-ar-bench.md) | Zhou | 2025 | Proceedings of the 42nd International Conference on Machine Learning | Conference | AI | not required | active reasoning ar bench |
+| [angelopoulos-2024-conformal-risk-control](wiki/angelopoulos-2024-conformal-risk-control.md) | Angelopoulos | 2024 | International Conference on Learning Representations | Highly cited | AI | 151 | conformal risk control |
+| [archak-2011-pricing-power-product-features-reviews](wiki/archak-2011-pricing-power-product-features-reviews.md) | Archak | 2011 | Management Science | Highly cited | AI | 221 | pricing power product features reviews |
+| [fleder-2009-recommender-systems-sales-diversity](wiki/fleder-2009-recommender-systems-sales-diversity.md) | Fleder | 2009 | Management Science | Highly cited | AI | 135 | recommender systems sales diversity |
+| [gao-2023-alce-citations-text-generation](wiki/gao-2023-alce-citations-text-generation.md) | Gao | 2023 | Proceedings of EMNLP 2023 | Highly cited | AI | 395 | alce citations text generation |
+| [geifman-2017-selective-classification](wiki/geifman-2017-selective-classification.md) | Geifman | 2017 | Advances in Neural Information Processing Systems 30 | Highly cited | AI | 543 | selective classification |
+| [geng-2022-p5-recommendation-language-processing](wiki/geng-2022-p5-recommendation-language-processing.md) | Geng | 2022 | Proceedings of the 16th ACM Conference on Recommender Systems | Highly cited | AI | 545 | p5 recommendation language processing |
+| [hou-2022-unisrec-universal-sequence-representation](wiki/hou-2022-unisrec-universal-sequence-representation.md) | Hou | 2022 | Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining | Highly cited | AI | 242 | unisrec universal sequence representation |
+| [kaushik-2020-counterfactually-augmented-data](wiki/kaushik-2020-counterfactually-augmented-data.md) | Kaushik | 2020 | International Conference on Learning Representations | Highly cited | AI | 581 | counterfactually augmented data |
+| [longpre-2021-entity-based-knowledge-conflicts](wiki/longpre-2021-entity-based-knowledge-conflicts.md) | Longpre | 2021 | Proceedings of EMNLP 2021 | Highly cited | AI | 278 | entity based knowledge conflicts |
+| [ma-2019-eddi-active-feature-acquisition](wiki/ma-2019-eddi-active-feature-acquisition.md) | Ma | 2019 | Proceedings of the 36th International Conference on Machine Learning | Highly cited | AI | 136 | eddi active feature acquisition |
+| [petroni-2019-language-models-knowledge-bases](wiki/petroni-2019-language-models-knowledge-bases.md) | Petroni | 2019 | Proceedings of EMNLP-IJCNLP 2019 | Highly cited | AI | 2,753 | language models knowledge bases |
+| [rajpurkar-2018-unanswerable-questions-squad](wiki/rajpurkar-2018-unanswerable-questions-squad.md) | Rajpurkar | 2018 | Proceedings of ACL 2018 | Highly cited | AI | 2,913 | unanswerable questions squad |
+| [rajput-2023-generative-retrieval-tiger](wiki/rajput-2023-generative-retrieval-tiger.md) | Rajput | 2023 | Advances in Neural Information Processing Systems 36 | Highly cited | AI | 107 | generative retrieval tiger |
+| [yao-2023-react-reasoning-acting](wiki/yao-2023-react-reasoning-acting.md) | Yao | 2023 | International Conference on Learning Representations | Highly cited | AI | 3,479 | react reasoning acting |
+| [bass-1969-new-product-growth-model](wiki/bass-1969-new-product-growth-model.md) | Bass | 1969 | Management Science | Highly cited | Marketing | 1,529 | new product growth model |
+| [godes-2012-sequential-temporal-dynamics-online-opinion](wiki/godes-2012-sequential-temporal-dynamics-online-opinion.md) | Godes | 2012 | Marketing Science | Highly cited | Marketing | 103 | sequential temporal dynamics online opinion |
+| [hong-2014-product-fit-uncertainty](wiki/hong-2014-product-fit-uncertainty.md) | Hong | 2014 | Information Systems Research | Highly cited | Marketing | 104 | product fit uncertainty |
+| [li-2008-self-selection-online-reviews](wiki/li-2008-self-selection-online-reviews.md) | Li | 2008 | Information Systems Research | Highly cited | Marketing | 291 | self selection online reviews |
+| [muchnik-2013-social-influence-bias](wiki/muchnik-2013-social-influence-bias.md) | Muchnik | 2013 | Science | Highly cited | Marketing | 736 | social influence bias |
+| [timoshenko-2019-customer-needs-user-generated-content](wiki/timoshenko-2019-customer-needs-user-generated-content.md) | Timoshenko | 2019 | Marketing Science | Highly cited | Marketing | 111 | customer needs user generated content |
+| [campos-2024-conformal-prediction-nlp-survey](wiki/campos-2024-conformal-prediction-nlp-survey.md) | Campos | 2024 | Transactions of the Association for Computational Linguistics | Survey | AI | survey set | conformal prediction nlp survey |
+| [wang-2026-trustworthy-recommendation-llm-survey](wiki/wang-2026-trustworthy-recommendation-llm-survey.md) | Wang | 2026 | arXiv preprint arXiv:2606.00540 | Survey | AI | survey set | trustworthy recommendation llm survey |
+| [wen-2025-abstention-llm-survey](wiki/wen-2025-abstention-llm-survey.md) | Wen | 2025 | Transactions of the Association for Computational Linguistics | Survey | AI | survey set | abstention llm survey |
+| [wu-2024-llm-recommendation-survey](wiki/wu-2024-llm-recommendation-survey.md) | Wu | 2024 | World Wide Web | Survey | AI | survey set | llm recommendation survey |
+| [xu-2024-knowledge-conflicts-survey](wiki/xu-2024-knowledge-conflicts-survey.md) | Xu | 2024 | Proceedings of EMNLP 2024 | Survey | AI | survey set | knowledge conflicts survey |
+| [zhang-2025-cold-start-recommendation-llm-survey](wiki/zhang-2025-cold-start-recommendation-llm-survey.md) | Zhang | 2025 | arXiv preprint arXiv:2501.01945 | Survey | AI | survey set | cold start recommendation llm survey |
+| [zhang-2025-hallucination-llm-survey-sirens-song](wiki/zhang-2025-hallucination-llm-survey-sirens-song.md) | Zhang | 2025 | Computational Linguistics | Survey | AI | survey set | hallucination llm survey sirens song |
+| [zhao-2024-recommender-systems-llm-era-survey](wiki/zhao-2024-recommender-systems-llm-era-survey.md) | Zhao | 2024 | IEEE Transactions on Knowledge and Data Engineering | Survey | AI | survey set | recommender systems llm era survey |
+| [babic-rosario-2016-ewom-sales-meta-analysis](wiki/babic-rosario-2016-ewom-sales-meta-analysis.md) | Rosario | 2016 | Journal of Marketing Research | Survey | Marketing | survey set | ewom sales meta analysis |
+| [haenlein-2017-seeding-referral-recommendation](wiki/haenlein-2017-seeding-referral-recommendation.md) | Haenlein | 2017 | California Management Review | Survey | Marketing | survey set | seeding referral recommendation |
