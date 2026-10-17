@@ -1,6 +1,13 @@
 import os
 
-out_dir = "/Users/cattleya.c/.gemini/antigravity/scratch/all_beauty/eda_outputs"
+import argparse
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--out-dir", default=os.path.join(REPO_ROOT, "eda_outputs"), help="EDA output directory")
+args = parser.parse_args()
+
+out_dir = args.out_dir
 os.makedirs(out_dir, exist_ok=True)
 html_path = os.path.join(out_dir, "eda_report.html")
 

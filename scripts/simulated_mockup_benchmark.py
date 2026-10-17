@@ -1,3 +1,11 @@
+"""SIMULATED MOCK-UP of the RQ1-RQ3 benchmark tables. NOT AN EXPERIMENT.
+
+No model is run. Baseline decisions are hard-coded random draws, and the
+"proposed" matcher reads the variant name (RQ1) or the ground-truth label
+`is_supported` (RQ2, RQ3). No Learn-then-Test calibration is performed.
+Outputs must not be cited as results; they only fix the table layouts for
+the real RQ1 pilot (refined-thesis-plan.md section 10.5).
+"""
 import csv
 import json
 import math
@@ -6,10 +14,18 @@ import random
 import re
 from collections import Counter, defaultdict
 
+import argparse
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--input", default=os.path.join(REPO_ROOT, "hackathon_beauty_gmv_dedup.csv"), help="deduplicated cohort CSV")
+parser.add_argument("--out-dir", default=os.path.join(REPO_ROOT, "benchmark_outputs/simulated_mockup"), help="output directory")
+args = parser.parse_args()
+
 random.seed(42)
 
-input_csv = "/Users/cattleya.c/.gemini/antigravity/scratch/all_beauty/hackathon_beauty_gmv_dedup.csv"
-out_dir = "/Users/cattleya.c/.gemini/antigravity/scratch/all_beauty/benchmark_outputs"
+input_csv = args.input
+out_dir = args.out_dir
 os.makedirs(out_dir, exist_ok=True)
 
 with open(input_csv, "r", encoding="utf-8") as f:
@@ -377,7 +393,7 @@ print("\n--- RQ3 Post-Launch Satisfaction & GMV Impact Table ---")
 for r in rq3_results:
     print(f"{r['Targeting Strategy']:28s} | Sat: {r['Satisfaction Rate (>=4*)']:6s} | Regret: {r['Regret Rate (<=2*)']:6s} | GMV: {r['Matched GMV ($)']:11s} | Sat GMV: {r['Satisfied GMV Captured ($)']:11s} | Regret Prev: {r['Regret GMV Prevented ($)']:11s}")
 
-with open(os.path.join(out_dir, "rq3_post_launch_gmv_validation.csv"), "w", newline="", encoding="utf-8") as f:
+with open(os.path.join(out_dir, "rq3_post_launch_rating_weighted_price.csv"), "w", newline="", encoding="utf-8") as f:
     w = csv.DictWriter(f, fieldnames=list(rq3_results[0].keys()))
     w.writeheader()
     w.writerows(rq3_results)
@@ -402,7 +418,9 @@ sem_rq3 = rq3_by_model.get("Holistic Semantic Baseline", rq3_results[1])
 reg_rq3 = rq3_by_model.get("Regex Rule Baseline", rq3_results[2])
 prop_rq3 = rq3_by_model.get("Proposed Evidence Agent", rq3_results[3])
 
-md_report = f"""# Empirical Benchmark Results: RQ1, RQ2, and RQ3
+md_report = f"""> **SIMULATED MOCK-UP. NOT EXPERIMENTAL RESULTS. DO NOT CITE.** See the docstring of scripts/simulated_mockup_benchmark.py.
+
+# Simulated mock-up of the RQ1–RQ3 benchmark tables (not results)
 
 These experiments execute the master evaluation pipeline on `hackathon_beauty_gmv_dedup.csv` (N = 15,606 deduplicated repeat-buyer cohort) following `refined-thesis-plan.md`.
 
@@ -459,7 +477,7 @@ Evaluated on actual verified buyers (`verified_purchase = True`):
 2. **H5 Actionable Seller Loop:** By notifying sellers to restore missing specs on abstained products (*"Add missing spec to unlock sales"*), merchants can unlock an additional **{prop_rq3['H5 Seller Fix GMV Unlocked ($)']}** in verified GMV!
 """
 
-with open(os.path.join(out_dir, "BENCHMARK_RESULTS.md"), "w", encoding="utf-8") as f:
+with open(os.path.join(out_dir, "SIMULATED_MOCKUP_NOT_RESULTS.md"), "w", encoding="utf-8") as f:
     f.write(md_report)
 
 print(f"\nAll benchmark outputs and summary written to {out_dir}")

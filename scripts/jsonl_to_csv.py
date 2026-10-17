@@ -3,9 +3,18 @@ import json
 import os
 import sys
 
-src_path = "/Users/cattleya.c/Downloads/All_Beauty.jsonl"
-full_csv_path = "/Users/cattleya.c/Downloads/All_Beauty.csv"
-sample_dir = "/Users/cattleya.c/.gemini/antigravity/scratch/all_beauty"
+import argparse
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--reviews", default=os.path.join(REPO_ROOT, "data/raw/All_Beauty.jsonl"), help="raw reviews JSONL")
+parser.add_argument("--out-csv", default=os.path.join(REPO_ROOT, "data/raw/All_Beauty.csv"), help="full reviews CSV to write")
+parser.add_argument("--sample-dir", default=os.path.join(REPO_ROOT, "."), help="directory for the 1,000-row sample")
+args = parser.parse_args()
+
+src_path = args.reviews
+full_csv_path = args.out_csv
+sample_dir = args.sample_dir
 os.makedirs(sample_dir, exist_ok=True)
 sample_csv_path = os.path.join(sample_dir, "All_Beauty_sample_1000.csv")
 
