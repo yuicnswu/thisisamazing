@@ -49,8 +49,27 @@ def dense_decisions(items, pred):
             for k, v in pred.items()}, tau
 
 
+def audited_out() -> set[str]:
+    """Items where the independent quote judge disagrees with the construction / parser label (§11.3)."""
+    p = os.path.join(OUT, "label_audit.json")
+    if not os.path.exists(p):
+        return set()
+    return {r["item_id"] for r in json.load(open(p))["rows"] if not r["agree"]}
+
+
 def main():
     items, preds = load()
+    full = analyse(items, preds)
+    drop = audited_out()
+    clean = analyse([i for i in items if i["item_id"] not in drop], preds)
+    clean["dropped_items"] = len(drop)
+    json.dump({"all": full, "audited": clean}, open(os.path.join(OUT, "results.json"), "w"), indent=1)
+    md = "## All items\n\n" + to_md(full) + f"\n## Audited items (construction label and quote judge agree; {len(drop)} items dropped)\n\n" + to_md(clean)
+    open(os.path.join(OUT, "results.md"), "w").write(md)
+    print(md)
+
+
+def analyse(items, preds):
     res = {"n_items": len(items), "n_products": len({i["asin"] for i in items}),
            "variants": {v: sum(i["variant"] == v for i in items) for v in VARIANTS}, "matchers": {}}
     for name, pred in preds.items():
@@ -90,9 +109,7 @@ def main():
         r["ltt"] = {str(a): summarize(evaluate(scores, uns, groups, a, delta=0.1, n_splits=50), a) for a in ALPHAS}
         r["risk_coverage"] = risk_coverage(scores, uns)
         res["matchers"][name] = r
-    json.dump(res, open(os.path.join(OUT, "results.json"), "w"), indent=1)
-    open(os.path.join(OUT, "results.md"), "w").write(to_md(res))
-    print(to_md(res))
+    return res
 
 
 def _p(t):
