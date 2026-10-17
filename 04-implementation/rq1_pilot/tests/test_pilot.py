@@ -153,3 +153,11 @@ def test_ltt_validity_on_noisy_scores():
     s = summarize(rows, 0.1)
     assert s["violation_rate"] <= 0.15
     assert s["coverage"][0] > 0
+
+
+def test_prompt_hides_variant_label_and_details():
+    from matchers import _case
+    it = Item("A1:skin_type:dry:contradict", "A1", "contradict", Need("skin_type", "dry"), "contradicted", _listing())
+    shown = _case(it)
+    for leak in ("contradict", "contradicted", "A1", "skin_type", "Skin Type"):
+        assert leak not in shown

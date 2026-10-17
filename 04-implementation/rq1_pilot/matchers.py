@@ -6,6 +6,7 @@ higher score means "more willing to recommend". Learn-then-Test thresholds the s
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import random
 import re
@@ -38,8 +39,13 @@ Reply with only a JSON array, one object per listing, in the same order:
 [{"id": "<listing id>", "skin_types": [], "hair_types": [], "scent": null, "item_forms": [], "free_from": [], "contains": []}]"""
 
 
+def opaque_id(item_id: str) -> str:
+    """Ids shown to models carry no product, attribute or variant information."""
+    return "C" + hashlib.sha1(item_id.encode()).hexdigest()[:8]
+
+
 def _case(item) -> str:
-    return f"### Case {item.item_id}\nShopper's need: {item.need.text()}\nProduct listing:\n{item.listing.render()}\n"
+    return f"### Case {opaque_id(item.item_id)}\nShopper's need: {item.need.text()}\nProduct listing:\n{item.listing.render()}\n"
 
 
 def _batches(items, size, seed):
@@ -48,7 +54,8 @@ def _batches(items, size, seed):
     return [order[i:i + size] for i in range(0, len(order), size)]
 
 
-def _run_batched(items, system, backend, model, size, workers, seed, render=_case, key="item_id"):
+def _run_batched(items, system, backend, model, size, workers, seed, render=_case, key="item_id", shown=opaque_id):
+    """Run batched prompts; `shown` maps an item's key to the id the model sees and must echo back."""
     batches = _batches(items, size, seed)
 
     def one(batch):
@@ -61,9 +68,9 @@ def _run_batched(items, system, backend, model, size, workers, seed, render=_cas
                 got.update({str(r.get("id")): r for r in rows if isinstance(r, dict)})
             except ValueError:
                 continue
-            if all(getattr(it, key) in got for it in batch):
+            if all(shown(getattr(it, key)) in got for it in batch):
                 break
-        return {getattr(it, key): got.get(getattr(it, key)) for it in batch}
+        return {getattr(it, key): got.get(shown(getattr(it, key))) for it in batch}
 
     out = {}
     with ThreadPoolExecutor(workers) as ex:
@@ -106,7 +113,7 @@ def llm_extract_then_rule(items, backend, model, size=10, workers=6, seed=0):
         txt = it.listing.render()
         uniq.setdefault(txt, _L(f"L{len(uniq)}", txt))
     raw = _run_batched(list(uniq.values()), EXTRACT_SYS, backend, model, size, workers, seed,
-                       render=lambda l: f"### Listing {l.lid}\n{l.text}\n", key="lid")
+                       render=lambda l: f"### Listing {l.lid}\n{l.text}\n", key="lid", shown=str)
     out = {}
     for it in items:
         ex = raw.get(uniq[it.listing.render()].lid) or {}

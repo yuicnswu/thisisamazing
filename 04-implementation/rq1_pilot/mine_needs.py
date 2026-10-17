@@ -82,9 +82,9 @@ def main(n: int = 600):
     listings = {l.asin: l for l in load_listings()}
     reviews = sample_reviews(set(listings), n)
     render = lambda r: f"### Review {r.rid}\n{r.text}\n"
-    a = _run_batched(reviews, MINE_SYS, "claude", "claude-haiku-5-5", 20, 6, 0, render=render, key="rid")
+    a = _run_batched(reviews, MINE_SYS, "claude", "claude-haiku-5-5", 20, 6, 0, render=render, key="rid", shown=str)
     sub = reviews[: min(200, len(reviews))]
-    b = _run_batched(sub, MINE_SYS, "claude", "claude-sonnet-5-5", 20, 6, 0, render=render, key="rid")
+    b = _run_batched(sub, MINE_SYS, "claude", "claude-sonnet-5-5", 20, 6, 0, render=render, key="rid", shown=str)
 
     stats = Counter()
     pairs = []
