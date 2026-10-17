@@ -63,10 +63,48 @@ def main():
     drop = audited_out()
     clean = analyse([i for i in items if i["item_id"] not in drop], preds)
     clean["dropped_items"] = len(drop)
-    json.dump({"all": full, "audited": clean}, open(os.path.join(OUT, "results.json"), "w"), indent=1)
-    md = "## All items\n\n" + to_md(full) + f"\n## Audited items (construction label and quote judge agree; {len(drop)} items dropped)\n\n" + to_md(clean)
+    disagree = disagreement_table(items, preds)
+    json.dump({"all": full, "audited": clean, "disagreement": disagree}, open(os.path.join(OUT, "results.json"), "w"), indent=1)
+    md = "## All items\n\n" + to_md(full) + f"\n## Audited items (construction label and quote judge agree; {len(drop)} items dropped)\n\n" + to_md(clean) + disagree_md(disagree)
     open(os.path.join(OUT, "results.md"), "w").write(md)
     print(md)
+
+
+def disagreement_table(items, preds):
+    """On items where the quote judge and the construction label disagree, who matches the judge?
+
+    parser_missed: judge quotes verbatim support, construction label says unresolved/contradicted
+                   (residual evidence the rule parser does not recognise).
+    parser_false:  construction label says entailed, judge finds no verbatim support.
+    """
+    p = os.path.join(OUT, "label_audit.json")
+    if not os.path.exists(p):
+        return {}
+    judge = {r["item_id"]: r["judge"] for r in json.load(open(p))["rows"]}
+    groups = {"parser_missed": [i for i in items if judge.get(i["item_id"]) == "entailed" and i["label"] != "entailed"],
+              "parser_false": [i for i in items if i["label"] == "entailed" and judge.get(i["item_id"]) not in (None, "entailed")]}
+    out = {}
+    for g, sub in groups.items():
+        out[g] = {"n": len(sub)}
+        for name, pred in preds.items():
+            if name.startswith("dense"):
+                continue
+            out[g][name] = float(np.mean([pred[i["item_id"]]["decision"] == "recommend" for i in sub])) if sub else None
+    return out
+
+
+def disagree_md(d):
+    if not d:
+        return ""
+    names = [k for k in d["parser_missed"] if k != "n"]
+    L = ["", "## Where the rule parser and the quote judge disagree", "",
+         "Recommend rate. On *parser missed* the judge quotes verbatim support, so recommending is right; on "
+         "*parser false positive* the judge finds none, so abstaining is right.", "",
+         "| Matcher | parser missed (n=%d) | parser false positive (n=%d) |" % (d["parser_missed"]["n"], d["parser_false"]["n"]),
+         "|---|---|---|"]
+    for n in names:
+        L.append(f"| {n} | {_p(d['parser_missed'][n])} | {_p(d['parser_false'][n])} |")
+    return "\n".join(L) + "\n"
 
 
 def analyse(items, preds):

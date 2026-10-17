@@ -47,31 +47,31 @@ Items: 1356 from 399 products. Variants: {'original': 250, 'remove': 250, 'vague
 | strict__claude-sonnet-5-5 | 0.1 | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% | 100% |
 | strict__claude-sonnet-5-5 | 0.2 | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% | 100% |
 
-## Audited items (parser and quote judge agree; 47 products dropped)
+## Audited items (construction label and quote judge agree; 267 items dropped)
 
-Items: 1201 from 352 products. Variants: {'original': 223, 'remove': 223, 'vague': 223, 'remove_prior': 223, 'contradict': 179, 'natural_missing': 130}
+Items: 1089 from 381 products. Variants: {'original': 221, 'remove': 212, 'vague': 201, 'remove_prior': 214, 'contradict': 109, 'natural_missing': 132}
 
 **Recommend rate by variant** (product-cluster bootstrap 95% CI). Correct behaviour: original high, every other column 0.
 
 | Matcher | original | remove | vague | remove_prior | contradict | natural_missing | native URR |
 |---|---|---|---|---|---|---|---|
-| extract__claude-haiku-5-5 | 94% [91%, 97%] | 14% [10%, 19%] | 16% [11%, 21%] | 13% [9%, 17%] | 6% [3%, 9%] | 10% [5%, 16%] | 36% [29%, 42%] |
-| keyword__none | 89% [84%, 93%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] |
-| naive__claude-haiku-5-5 | 81% [76%, 86%] | 38% [30%, 44%] | 45% [38%, 52%] | 39% [33%, 46%] | 17% [12%, 22%] | 29% [22%, 37%] | 65% [62%, 68%] |
-| naive__claude-sonnet-5-5 | 77% [71%, 82%] | 34% [28%, 40%] | 38% [31%, 44%] | 33% [27%, 39%] | 20% [14%, 25%] | 27% [19%, 35%] | 64% [60%, 67%] |
-| strict__claude-haiku-5-5 | 87% [83%, 91%] | 12% [8%, 16%] | 13% [9%, 18%] | 10% [7%, 14%] | 8% [4%, 13%] | 5% [2%, 9%] | 34% [27%, 40%] |
-| strict__claude-sonnet-5-5 | 80% [74%, 85%] | 11% [7%, 15%] | 14% [9%, 18%] | 11% [7%, 15%] | 10% [5%, 14%] | 3% [1%, 6%] | 36% [28%, 43%] |
+| extract__claude-haiku-5-5 | 95% [91%, 97%] | 3% [1%, 6%] | 4% [1%, 7%] | 3% [1%, 5%] | 1% [0%, 3%] | 11% [6%, 17%] | 15% [10%, 20%] |
+| keyword__none | 89% [85%, 93%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] |
+| naive__claude-haiku-5-5 | 82% [77%, 87%] | 30% [24%, 36%] | 33% [27%, 40%] | 33% [27%, 39%] | 3% [0%, 6%] | 31% [23%, 39%] | 57% [53%, 61%] |
+| naive__claude-sonnet-5-5 | 77% [71%, 82%] | 26% [20%, 33%] | 27% [21%, 34%] | 24% [19%, 30%] | 6% [2%, 9%] | 27% [20%, 35%] | 54% [50%, 59%] |
+| strict__claude-haiku-5-5 | 90% [86%, 94%] | 1% [0%, 3%] | 1% [0%, 3%] | 0% [0%, 1%] | 0% [0%, 0%] | 2% [0%, 5%] | 5% [2%, 8%] |
+| strict__claude-sonnet-5-5 | 80% [75%, 85%] | 2% [0%, 5%] | 3% [1%, 5%] | 2% [0%, 4%] | 0% [0%, 0%] | 2% [0%, 5%] | 10% [5%, 15%] |
 
 **Prior effect** (same product: evidence removed, then famous brand + hype added)
 
 | Matcher | pairs | abstain→recommend | recommend→abstain |
 |---|---|---|---|
-| extract__claude-haiku-5-5 | 223 | 3 | 6 |
-| keyword__none | 223 | 0 | 0 |
-| naive__claude-haiku-5-5 | 223 | 19 | 15 |
-| naive__claude-sonnet-5-5 | 223 | 18 | 21 |
-| strict__claude-haiku-5-5 | 223 | 5 | 8 |
-| strict__claude-sonnet-5-5 | 222 | 5 | 5 |
+| extract__claude-haiku-5-5 | 210 | 2 | 3 |
+| keyword__none | 210 | 0 | 0 |
+| naive__claude-haiku-5-5 | 210 | 20 | 16 |
+| naive__claude-sonnet-5-5 | 210 | 18 | 23 |
+| strict__claude-haiku-5-5 | 210 | 0 | 2 |
+| strict__claude-sonnet-5-5 | 208 | 1 | 2 |
 
 **Learn-then-Test** (50 product splits, 50/50 calibration/test, δ = 0.1). URR and coverage on test, mean [2.5%, 97.5%] across splits; 'viol.' = share of splits with test URR > α.
 
@@ -79,10 +79,10 @@ Items: 1201 from 352 products. Variants: {'original': 223, 'remove': 223, 'vague
 |---|---|---|---|---|---|---|
 | extract__claude-haiku-5-5 | 0.05 | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% | 100% |
 | extract__claude-haiku-5-5 | 0.1 | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% | 100% |
-| extract__claude-haiku-5-5 | 0.2 | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% | 100% |
-| keyword__none | 0.05 | 0% [0%, 0%] | 17% [16%, 17%] | 89% [85%, 93%] | 0% | 0% |
-| keyword__none | 0.1 | 0% [0%, 0%] | 17% [16%, 17%] | 89% [85%, 93%] | 0% | 0% |
-| keyword__none | 0.2 | 0% [0%, 0%] | 17% [16%, 17%] | 89% [85%, 93%] | 0% | 0% |
+| extract__claude-haiku-5-5 | 0.2 | 5% [0%, 19%] | 6% [0%, 24%] | 24% [0%, 96%] | 0% | 74% |
+| keyword__none | 0.05 | 0% [0%, 0%] | 18% [17%, 19%] | 89% [86%, 94%] | 0% | 0% |
+| keyword__none | 0.1 | 0% [0%, 0%] | 18% [17%, 19%] | 89% [86%, 94%] | 0% | 0% |
+| keyword__none | 0.2 | 0% [0%, 0%] | 18% [17%, 19%] | 89% [86%, 94%] | 0% | 0% |
 | naive__claude-haiku-5-5 | 0.05 | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% | 100% |
 | naive__claude-haiku-5-5 | 0.1 | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% | 100% |
 | naive__claude-haiku-5-5 | 0.2 | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% | 100% |
@@ -90,8 +90,21 @@ Items: 1201 from 352 products. Variants: {'original': 223, 'remove': 223, 'vague
 | naive__claude-sonnet-5-5 | 0.1 | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% | 100% |
 | naive__claude-sonnet-5-5 | 0.2 | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% | 100% |
 | strict__claude-haiku-5-5 | 0.05 | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% | 100% |
-| strict__claude-haiku-5-5 | 0.1 | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% | 100% |
-| strict__claude-haiku-5-5 | 0.2 | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% | 100% |
+| strict__claude-haiku-5-5 | 0.1 | 1% [0%, 6%] | 2% [0%, 18%] | 11% [0%, 79%] | 0% | 80% |
+| strict__claude-haiku-5-5 | 0.2 | 7% [2%, 12%] | 20% [16%, 21%] | 89% [77%, 95%] | 0% | 0% |
 | strict__claude-sonnet-5-5 | 0.05 | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% | 100% |
-| strict__claude-sonnet-5-5 | 0.1 | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% | 100% |
-| strict__claude-sonnet-5-5 | 0.2 | 0% [0%, 0%] | 0% [0%, 0%] | 0% [0%, 0%] | 0% | 100% |
+| strict__claude-sonnet-5-5 | 0.1 | 1% [0%, 9%] | 11% [10%, 16%] | 56% [49%, 74%] | 0% | 0% |
+| strict__claude-sonnet-5-5 | 0.2 | 6% [2%, 16%] | 16% [14%, 19%] | 74% [70%, 84%] | 2% | 0% |
+
+## Where the rule parser and the quote judge disagree
+
+Recommend rate. On *parser missed* the judge quotes verbatim support, so recommending is right; on *parser false positive* the judge finds none, so abstaining is right.
+
+| Matcher | parser missed (n=162) | parser false positive (n=29) |
+|---|---|---|
+| extract__claude-haiku-5-5 | 60% | 45% |
+| keyword__none | 0% | 79% |
+| naive__claude-haiku-5-5 | 80% | 34% |
+| naive__claude-sonnet-5-5 | 80% | 45% |
+| strict__claude-haiku-5-5 | 61% | 17% |
+| strict__claude-sonnet-5-5 | 57% | 17% |
