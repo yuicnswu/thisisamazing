@@ -3,16 +3,27 @@ import json
 import os
 from collections import defaultdict
 
-reviews_path = "/Users/cattleya.c/Downloads/All_Beauty.jsonl"
-meta_path = "/Users/cattleya.c/Downloads/meta_All_Beauty.jsonl"
+import argparse
 
-meta_full_csv = "/Users/cattleya.c/Downloads/meta_All_Beauty.csv"
-scratch_dir = "/Users/cattleya.c/.gemini/antigravity/scratch/all_beauty"
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--reviews", default=os.path.join(REPO_ROOT, "data/raw/All_Beauty.jsonl"), help="raw reviews JSONL")
+parser.add_argument("--meta", default=os.path.join(REPO_ROOT, "data/raw/meta_All_Beauty.jsonl"), help="raw metadata JSONL")
+parser.add_argument("--meta-csv", default=os.path.join(REPO_ROOT, "data/raw/meta_All_Beauty.csv"), help="full metadata CSV to write")
+parser.add_argument("--out-dir", default=os.path.join(REPO_ROOT, "."), help="directory for the cohort CSVs")
+parser.add_argument("--cohort-copy", default=os.path.join(REPO_ROOT, "data/hackathon_beauty_gmv.csv"), help="second copy of the cohort CSV")
+args = parser.parse_args()
+
+reviews_path = args.reviews
+meta_path = args.meta
+
+meta_full_csv = args.meta_csv
+scratch_dir = args.out_dir
 os.makedirs(scratch_dir, exist_ok=True)
 meta_sample_csv = os.path.join(scratch_dir, "meta_All_Beauty_sample_1000.csv")
 hackathon_csv_scratch = os.path.join(scratch_dir, "hackathon_beauty_gmv.csv")
 hackathon_sample_csv = os.path.join(scratch_dir, "hackathon_beauty_gmv_sample_500.csv")
-hackathon_csv_downloads = "/Users/cattleya.c/Downloads/hackathon_beauty_gmv.csv"
+hackathon_csv_downloads = args.cohort_copy
 
 meta_fields = [
     "parent_asin",

@@ -2,7 +2,15 @@ import csv
 import re
 from collections import Counter
 
-clean_csv = "/Users/cattleya.c/.gemini/antigravity/scratch/all_beauty/hackathon_beauty_gmv_dedup.csv"
+import argparse
+import os
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--input", default=os.path.join(REPO_ROOT, "hackathon_beauty_gmv_dedup.csv"), help="deduplicated cohort CSV")
+args = parser.parse_args()
+
+clean_csv = args.input
 with open(clean_csv, "r", encoding="utf-8") as f:
     rows = list(csv.DictReader(f))
 

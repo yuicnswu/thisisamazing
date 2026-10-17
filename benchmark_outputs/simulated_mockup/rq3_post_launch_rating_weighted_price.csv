@@ -1,4 +1,5 @@
-Targeting Strategy,Matched Purchases (n),Satisfaction Rate (>=4*),Regret Rate (<=2*),Matched GMV ($),Satisfied GMV Captured ($),Regret GMV Suffered ($),Regret GMV Prevented ($),H5 Seller Fix GMV Unlocked ($)
+# SIMULATED MOCK-UP - NOT RESULTS - see SIMULATED_MOCKUP_NOT_RESULTS.md
+Targeting Strategy,Matched Purchases (n),Satisfaction Rate (>=4*),Regret Rate (<=2*),Matched list price ($),Satisfied rating-weighted price ($),Regret rating-weighted price ($),Regret-rated price among abstained ($),Simulated seller-fix price ($)
 Popularity Prior Baseline,4005,75.6%,16.0%,"$77,527.81","$58,922.83","$11,704.02",-,-
 Holistic Semantic Baseline,2681,76.7%,15.8%,"$58,513.53","$46,324.87","$7,764.62",-,-
 Regex Rule Baseline,1423,78.2%,14.1%,"$32,105.71","$25,214.04","$4,033.78",-,-
