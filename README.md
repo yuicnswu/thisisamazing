@@ -4,6 +4,8 @@ Working files for yui's IS (independent study) research project, **Before the Fi
 
 ## Contents
 
+- `WORKFLOW.md`: the 5-stage research-to-production workflow every collaborator follows (`01-brainstorm` → `02-literature-review` → `03-solution-design` → `04-implementation` → `05-report`)
+- `01-brainstorm/` … `05-report/`: the living documents for each stage
 - `is-topic/research_proposal.md`: the current research proposal
 - `is-topic/`: topic comparison, literature review, project plan, refined thesis plan, and a mock NeurIPS review
 - `.agents/`: role briefs (researcher, PI, data scientist, paper writer, and so on) used to guide the AI collaborators, plus the NeurIPS 2026 standard
