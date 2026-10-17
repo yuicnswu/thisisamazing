@@ -1,0 +1,35 @@
+column,missing_count,missing_pct,unique_count,most_frequent_sample
+user_id,0,0.0,13868,AG73BVBKUOH22USSFJA5ZWL7AKXA
+parent_asin,0,0.0,5585,B0BM4GX6TT
+asin,0,0.0,6406,B00EEN2HCS
+timestamp,0,0.0,15663,1643563631330
+user_total_reviews,0,0.0,62,2
+user_prior_reviews_count,0,0.0,104,1
+user_prior_avg_rating,0,0.0,175,5.0
+user_prior_history_text,0,0.0,16074,"[5.0* on Mineral Sheer Tint Foundation Spf 20, New"
+product_launch_timestamp,0,0.0,5585,1421286369000
+product_prior_reviews_at_purchase,0,0.0,970,0
+is_cold_start_launch,0,0.0,2,False
+store_brand,606,3.77,3217,Bargz
+price_usd,0,0.0,1648,9.99
+meta_average_rating,0,0.0,37,4.5
+meta_rating_number,0,0.0,916,3
+product_title,0,0.0,5548,"Godefroy Tint Kit for Spot Coloring, Dark Brown"
+features_text,6799,42.25,2344,"20 application kit can be used on beards, mustache"
+description_text,9392,58.36,2188,Godefroy Professional Hair Color Tint Kit is ideal
+item_form,8410,52.26,208,Liquid
+skin_type,13576,84.36,59,All
+hair_type,13288,82.57,165,All
+scent,13441,83.52,397,Unscented
+product_benefits,14076,87.47,285,Hydrating
+material_type_free,15437,95.92,79,Alcohol Free
+active_ingredients,15705,97.59,99,Sugar
+details_json,0,0.0,5483,"{""Color"": ""Dark Brown"", ""Brand"": ""Godefroy"", ""Item"
+rating,0,0.0,5,5.0
+verified_purchase,0,0.0,2,True
+helpful_vote,0,0.0,62,0
+review_title,0,0.0,11644,Five Stars
+review_text,4,0.02,15125,Good
+order_gmv,0,0.0,1648,9.99
+satisfied_gmv,0,0.0,1468,0.0
+regret_gmv,0,0.0,661,0.0

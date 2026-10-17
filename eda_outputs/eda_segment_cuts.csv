@@ -1,0 +1,25 @@
+dimension,segment,n_purchases,share_purchases_pct,mean_price_usd,total_gmv_usd,share_gmv_pct,mean_rating,satisfaction_rate_pct,regret_rate_pct,satisfied_gmv_usd,satisfied_gmv_share_pct,regret_gmv_usd,regret_gmv_share_pct
+Launch Stage (Cold-Start vs Established),1. Day-1 Launch (0 prior reviews),1919,11.9,25.94,49775.81,14.2,4.2,77.7,14.4,40272.04,80.9,6040.98,12.1
+Launch Stage (Cold-Start vs Established),2. Early Launch (1-4 prior reviews),3194,19.8,24.74,79029.6,22.6,4.18,77.7,14.1,63420.86,80.2,10038.0,12.7
+Launch Stage (Cold-Start vs Established),3. Cold-Start Window (5-9 prior reviews),1996,12.4,22.73,45365.54,13.0,4.17,77.8,13.7,35487.91,78.2,5645.5,12.4
+Launch Stage (Cold-Start vs Established),4. Growth Stage (10-49 prior reviews),4429,27.5,20.34,90091.25,25.7,4.12,75.3,16.0,67421.71,74.8,14332.81,15.9
+Launch Stage (Cold-Start vs Established),5. Established (50+ prior reviews),4555,28.3,18.86,85911.06,24.5,4.14,75.8,16.2,64785.99,75.4,13706.81,16.0
+Listing Evidence Tier (RQ2),1. Zero Structured Evidence & No Bullets,1663,10.3,23.96,39837.89,11.4,4.17,77.5,15.3,30814.24,77.3,5953.87,14.9
+Listing Evidence Tier (RQ2),"2. Low Evidence (1-2 specs, no bullets)",4172,25.9,22.5,93874.24,26.8,4.13,75.5,16.7,72774.41,77.5,13987.89,14.9
+Listing Evidence Tier (RQ2),3. Moderate Evidence (1-2 specs + bullets),8005,49.7,20.81,166595.63,47.6,4.16,76.4,14.7,128893.77,77.4,23045.57,13.8
+Listing Evidence Tier (RQ2),"4. Rich Specs Only (3+ specs, no bullets)",964,6.0,24.3,23424.45,6.7,4.15,76.1,15.6,18111.02,77.3,3474.54,14.8
+Listing Evidence Tier (RQ2),5. High Verifiable Evidence (3+ specs + bullets),1289,8.0,20.51,26441.05,7.6,4.2,79.1,13.0,20795.07,78.6,3302.23,12.5
+Customer Prior Need Support in Listing (RQ2 -> RQ3),All Stated Needs Supported in Listing,1241,7.7,21.39,26543.79,7.6,4.26,80.2,11.6,21300.99,80.2,2666.99,10.0
+Customer Prior Need Support in Listing (RQ2 -> RQ3),Partially Supported in Listing,637,4.0,22.58,14381.71,4.1,4.16,78.5,12.6,11178.09,77.7,1821.53,12.7
+Customer Prior Need Support in Listing (RQ2 -> RQ3),Missing Evidence for Stated Needs,3320,20.6,23.17,76919.12,22.0,4.15,76.8,14.3,60866.62,79.1,9305.42,12.1
+Customer Prior Need Support in Listing (RQ2 -> RQ3),No Explicit Keyword Need in Prior,10895,67.7,21.32,232328.64,66.3,4.14,75.9,16.0,178042.81,76.6,35970.16,15.5
+Popularity Prior x Evidence Quadrant (RQ1),1. New/Niche Product + High Listing Evidence,1413,8.8,24.82,35067.37,10.0,4.15,76.8,13.2,27498.13,78.4,4170.46,11.9
+Popularity Prior x Evidence Quadrant (RQ1),2. New/Niche Product + Low/Missing Evidence,4627,28.8,25.67,118767.24,33.9,4.15,76.6,15.2,93954.93,79.1,15992.99,13.5
+Popularity Prior x Evidence Quadrant (RQ1),3. Popular Product + High Listing Evidence,2207,13.7,20.63,45526.83,13.0,4.19,78.1,14.9,34557.14,75.9,7466.88,16.4
+Popularity Prior x Evidence Quadrant (RQ1),4. Popular Product + Low/Missing Evidence,7846,48.8,19.22,150811.82,43.1,4.15,76.0,15.6,115378.31,76.5,22133.77,14.7
+Price / GMV Tier,1. Budget (<$10),5003,31.1,7.48,37403.25,10.7,4.06,73.8,17.9,27836.78,74.4,6543.05,17.5
+Price / GMV Tier,2. Mid-Low ($10-$19.99),5702,35.4,15.11,86140.51,24.6,4.18,77.5,14.8,66545.59,77.3,12787.87,14.8
+Price / GMV Tier,3. Mid-High ($20-$39.99),3922,24.4,27.84,109185.07,31.2,4.22,78.4,12.8,85868.58,78.6,13937.64,12.8
+Price / GMV Tier,4. Premium ($40+),1466,9.1,80.11,117444.43,33.5,4.18,76.9,14.0,91137.56,77.6,16495.54,14.0
+Verified Purchase Status (Selection Bias Check),Unverified / Vine / Free Sample (False),2733,17.0,25.99,71034.87,20.3,4.26,81.6,9.2,57616.16,81.1,6797.05,9.6
+Verified Purchase Status (Selection Bias Check),Verified Purchase (True),13360,83.0,20.89,279138.39,79.7,4.13,75.5,16.4,213772.35,76.6,42967.05,15.4
