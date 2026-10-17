@@ -1,0 +1,5 @@
+Targeting Strategy,Matched Purchases (n),Satisfaction Rate (>=4*),Regret Rate (<=2*),Matched GMV ($),Satisfied GMV Captured ($),Regret GMV Suffered ($),Regret GMV Prevented ($),H5 Seller Fix GMV Unlocked ($)
+Popularity Prior Baseline,4005,75.6%,16.0%,"$77,527.81","$58,922.83","$11,704.02",-,-
+Holistic Semantic Baseline,2681,76.7%,15.8%,"$58,513.53","$46,324.87","$7,764.62",-,-
+Regex Rule Baseline,1423,78.2%,14.1%,"$32,105.71","$25,214.04","$4,033.78",-,-
+Proposed Evidence Agent,445,80.7%,12.8%,"$10,980.11","$8,985.57","$1,163.10","$16,579.70","$1,290.83"

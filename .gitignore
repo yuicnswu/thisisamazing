@@ -1,0 +1,8 @@
+# Large raw pre-deduplicated file
+hackathon_beauty_gmv.csv
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.DS_Store

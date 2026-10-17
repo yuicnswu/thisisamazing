@@ -215,10 +215,10 @@ The proposal's human gold set (500–1,000 pairs, 2–3 annotators) is **dropped
 
 ### 11.2 What the guarantee then covers (state this in the paper)
 - **On constructed items (L1):** URR ≤ α holds exactly, with the usual finite-sample conformal / Learn-then-Test guarantee, for test items drawn from the same construction process. Assumption: calibration and test items are exchangeable.
-- **On natural listings (L2):** the bound holds against parser labels. If the parser's labels are wrong on a fraction ε of items, then the **true URR ≤ α + ε** (a simple worst-case bound: each mislabelled item can turn at most one supported decision into an unsupported one). State this as a corollary of Theorem 4, and report URR for several values of ε.
+- **On natural listings (L2):** the bound holds against parser labels. Because URR is a selective conditional risk, if parser errors occur at marginal rate ε, the **true URR is bounded by α + ε_rec(λ) ≤ α + ε / P(recommend)** (or bounded directly by evaluating ε on the selected/recommended subset). State this as a corollary of Theorem 4, report URR across values of ε, and condition calibration on minimum selection counts N_rec(λ) ≥ n_min to prevent coverage collapse.
 - **On post-launch outcomes (L3):** no guarantee; these give correlational evidence only.
 
-So the paper's claim becomes: *"a finite-sample guarantee on unsupported recommendations for constructed evidence variants, which transfers to natural listings up to the measured label-error rate ε."* That's honest and still a real guarantee.
+So the paper's claim becomes: *"a finite-sample guarantee on unsupported recommendations for constructed evidence variants, which transfers to natural listings up to the measured selective label-error rate ε_rec."* That's honest, mathematically sound, and addresses the selective-risk critique directly.
 
 ### 11.3 Making ε small and measurable without humans
 - **Agreement filter:** keep a natural item only if (a) the parser finds the value in the visible text, (b) it matches `details` within tolerance, and (c) units are consistent. Drop the rest.

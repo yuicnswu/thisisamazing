@@ -1,0 +1,5 @@
+Model,URR (<=5.0% Guaranteed),Coverage (%),Exposure Gap (Cold vs Est)
+Popularity Prior Matcher,93.74% +/- 0.23,62.75% +/- 0.66,52.86% +/- 1.00
+Holistic Semantic Matcher,84.75% +/- 0.60,43.64% +/- 0.66,0.81% +/- 0.69
+Regex Rule Baseline,72.60% +/- 1.13,21.65% +/- 0.29,4.29% +/- 0.47
+Proposed Calibrated Matcher (LTT),10.75% +/- 0.96,6.65% +/- 0.31,0.36% +/- 0.20
