@@ -13,5 +13,8 @@
 | `rq1_pilot/llm.py` | Unit test: cache hit on second call (no second backend call) | Pass | 2026-10-17 |
 | `rq1_pilot/ltt.py` | Unit tests: binomial p-value edge cases; separable scores give a threshold in the gap; 50%-risk scores give no threshold; validity simulation (200 splits) has violation rate ≤ 0.15 at δ = 0.1 | Pass | 2026-10-17 |
 | `rq1_pilot/mine_needs.py` | Automatic checks on 600 real reviews: 43/43 quotes verbatim, 43/43 in vocabulary, 24/43 lexical match; second model on 200 reviews: 98.5% review-level agreement, precision 0.80 / recall 0.86 vs the second model | Pass | 2026-10-17 |
+| `rq1_pilot/matchers.py` (`nesy_verifier`) | Unit test: certificate is (grounded, typed) for a verbatim quote naming the value, (grounded, untyped) for an unrelated verbatim quote, ungrounded for a paraphrase; "fragrance" is never a contradiction term for unscented; tier ordering beats confidence | Pass | 2026-10-18 |
+| `rq1_pilot/conformal.py` | Unit tests: reject precedence; fixed-sequence stops at the first failing λ even if a later one would pass; Clopper-Pearson (0/29 → 11.9%); Algorithm 1 on 1,500 synthetic products certifies and keeps URR > α in ≤ 20% of 60 splits (200-split check: 5.5% at δ = 10%) | Pass | 2026-10-18 |
+| `rq1_pilot/edits.py` (`build_calpool`) | One item per product, none overlapping the pilot's 399 products; label check as in `build_items`; quote judge agrees on 85% | Pass; 1,783 items | 2026-10-18 |
 
-Run: `cd 04-implementation/rq1_pilot && python -m pytest -q tests` → 32 passed.
+Run: `cd 04-implementation/rq1_pilot && python -m pytest -q tests` → 37 passed.

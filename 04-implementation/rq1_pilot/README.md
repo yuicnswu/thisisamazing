@@ -12,6 +12,8 @@ Real models on real All_Beauty listings. Replaces the simulated `scripts/run_rq1
 | `mine_needs.py` | LLM-mined checkable needs from early verified reviews, with automatic checks and a second-model agreement check |
 | `matchers.py` | LLM naive prompt, LLM strict "only if stated" prompt, LLM extract-then-rule, keyword rule, dense similarity (BLaIR) |
 | `llm.py` | Claude (via the Claude Code CLI) and Ollama backends, cached in `outputs/llm_cache.jsonl` |
+| `matchers.nesy_verifier` | Neuro-symbolic verifier: LLM proposes verbatim support / contradiction quotes; a symbolic certificate checks each is verbatim and names the value |
+| `conformal.py`, `analyze_conformal.py` | Algorithm 1 of `03-solution-design/theory.md`: fixed-sequence LTT on (λ, τ) for URR and URJ, one item per product, consensus labels |
 | `ltt.py` | Learn-then-Test threshold for URR ≤ α on a calibration split, evaluated on held-out products |
 | `run_pilot.py`, `analyze.py` | Build items, run matchers, write `outputs/results.{json,md}` |
 
@@ -24,7 +26,11 @@ python run_pilot.py run strict claude claude-sonnet-5-5
 python run_pilot.py run naive ollama qwen3:8b   # open-weight, needs a local Ollama
 python run_pilot.py run dense hyp1231/blair-roberta-base   # needs torch + transformers + Hugging Face access
 python run_pilot.py run keyword
+python run_pilot.py run nesy claude claude-sonnet-5-5
+POOL=cal LLM_CACHE=outputs/llm_cache_cal.jsonl python run_pilot.py build   # 1,783 more products, one item each
+POOL=cal LLM_CACHE=outputs/llm_cache_cal.jsonl python audit_labels.py      # (then `run ...` as above)
 python analyze.py
+python analyze_conformal.py
 ```
 
 Matchers see the item only through `Listing.render()` (title, brand, bullets, description). They never see the
