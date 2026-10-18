@@ -101,6 +101,85 @@ def llm_strict(items, backend, model, size=10, workers=6, seed=0):
     return out
 
 
+# ---- neuro-symbolic verifier: neural evidence proposer + symbolic certificate --------------------
+NESY_SYS = """For each case, read the product listing and the shopper's requirement, and find the evidence.
+"support_quote": copy, word for word, the shortest passage of the listing that explicitly states the requirement is met (a statement that the product suits all skin or all hair types counts for any single type). Use "" if nothing states it explicitly; implied or typical is not enough.
+"support_confidence": 0-100, how sure you are that the listing explicitly states the requirement is met.
+"contradict_quote": copy, word for word, a passage that explicitly states the opposite of the requirement, or "".
+"contradict_confidence": 0-100, how sure you are that the listing explicitly contradicts the requirement.
+Reply with only a JSON array, one object per case, in the same order:
+[{"id": "<case id>", "support_quote": "...", "support_confidence": 0, "contradict_quote": "...", "contradict_confidence": 0}]"""
+
+
+def _norm_text(s: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"[^\w\s]", " ", str(s).lower())).strip()
+
+
+def support_terms(need: Need) -> list[str]:
+    """Surface forms that name the needed value. Deliberately independent of the label parser's patterns."""
+    t = _KW[need.attr](need.value)
+    if need.attr in ("skin_type", "hair_type"):
+        t = t + [f"all {need.attr.split('_')[0]}"]
+    if need.attr == "free_from":
+        t = t + [f"without {need.value}", f"{need.value}s free", f"zero {need.value}"]
+    return t
+
+
+def contradict_terms(need: Need) -> list[str]:
+    """Surface forms of the opposite value, from the attribute ontology (OPPOSITES)."""
+    from attributes import OPPOSITES
+    if need.attr == "free_from":
+        return [f"contains {need.value}", f"{need.value} based", f"with {need.value}"] + (
+            ["fragranced", "scented"] if need.value == "fragrance" else [])
+    if need.attr == "scent" and need.value == "unscented":
+        return ["scented", "fragranced", "perfumed"] + sorted(OPPOSITES["scent"]["unscented"])
+    opp = sorted(OPPOSITES.get(need.attr, {}).get(need.value, set()))
+    noun = {"skin_type": " skin", "hair_type": " hair"}.get(need.attr, "")
+    return [f"{o}{noun}" for o in opp]
+
+
+def _has(terms, quote_norm):
+    return any(re.search(rf"\b{re.escape(_norm_text(t))}\b", quote_norm) for t in terms)
+
+
+def certificate(quote: str, listing_norm: str, terms) -> tuple[bool, bool]:
+    """Symbolic check of a neural quote: (grounded = occurs verbatim in the listing, typed = it names the value)."""
+    q = _norm_text(quote)
+    grounded = bool(q) and q in listing_norm
+    return grounded, grounded and _has(terms, q)
+
+
+def tiered(conf: float, grounded: bool, typed: bool) -> float:
+    """Score in [0, 1], ordered lexicographically by symbolic certificate, then neural confidence:
+    grounded+typed in [0.75, 1], grounded only in [0.25, 0.5], ungrounded in [0, 0.25]."""
+    return (2 * typed + grounded + conf) / 4
+
+
+def nesy_verifier(items, backend, model, size=10, workers=6, seed=0):
+    """Per item: entailment score e and contradiction score c (theory.md §1). The neural part proposes a quote
+    and a confidence; the symbolic part checks the quote is verbatim and names the needed (or opposite) value.
+    `e_neural` / `c_neural` keep the uncertified neural scores for the ablation."""
+    raw = _run_batched(items, NESY_SYS, backend, model, size, workers, seed)
+    out = {}
+    for it in items:
+        r = raw.get(it.item_id)
+        if not r:
+            out[it.item_id] = {"decision": "abstain", "score": None, "e": None, "c": None}
+            continue
+        page = _norm_text(it.listing.render())
+        sq, cq = str(r.get("support_quote") or ""), str(r.get("contradict_quote") or "")
+        sc = (float(r.get("support_confidence") or 0) / 100) if sq else 0.0
+        cc = (float(r.get("contradict_confidence") or 0) / 100) if cq else 0.0
+        sg, st = certificate(sq, page, support_terms(it.need))
+        cg, ct = certificate(cq, page, contradict_terms(it.need))
+        e, c = tiered(sc, sg, st), tiered(cc, cg, ct)
+        dec = "reject" if c >= 0.75 else "recommend" if e >= 0.75 else "abstain"
+        out[it.item_id] = {"decision": dec, "score": e, "e": e, "c": c, "e_neural": sc, "c_neural": cc,
+                           "support_grounded": sg, "support_typed": st, "contra_grounded": cg, "contra_typed": ct,
+                           "support_quote": sq, "contradict_quote": cq}
+    return out
+
+
 # ---- LLM extract, then rule ------------------------------------------------------------------
 class _L:  # one listing to extract from
     def __init__(self, lid, text):

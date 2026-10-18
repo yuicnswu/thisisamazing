@@ -4,6 +4,43 @@
 
 ---
 
+## 2026-10-18 · Neuro-symbolic selective matcher with a certified URR (Algorithm 1 of theory.md)
+
+Code: `rq1_pilot/matchers.py` (`nesy_verifier`), `rq1_pilot/conformal.py` (Algorithm 1), `rq1_pilot/analyze_conformal.py`. Raw tables: `rq1_pilot/outputs/conformal.md`. The calibration follows `03-solution-design/theory.md` (PR #7) exactly: Theorem 1's fixed-sequence test with p = max(p_rec, p_rej), assumption A1 (one item per product), the 20% tune split that fixes the path start, and Theorem 3's consensus labels.
+
+### Method
+
+1. **Neural evidence proposer.** For each (listing, need) the LLM returns a verbatim support quote, a verbatim contradiction quote, and a confidence for each. It sees only the rendered listing, like every other matcher.
+2. **Symbolic certificate.** Deterministic checks on each quote: *grounded* (it occurs verbatim in the listing) and *typed* (it names the needed value, or its opposite from the attribute ontology, e.g. "all skin" for any skin type; "fragrance-free" can never count as a contradiction). The surface-form lists are independent of the label parser's patterns.
+3. **Score.** Entailment score e and contradiction score c are ordered lexicographically: certificate tier first (grounded and typed, then grounded only, then neither), neural confidence within a tier.
+4. **Three-way decision with a guarantee.** Reject if c ≥ τ, recommend if e ≥ λ, otherwise abstain. Learn-then-Test fixed-sequence testing on calibration products certifies (λ, τ) with URR ≤ α and URJ ≤ α' = 0.10 with probability ≥ 1 − δ (δ = 0.10), or certifies nothing and abstains on everything.
+
+**Calibration pool.** The 399 pilot products are far too few under A1, as theory.md §2 predicted: no matcher certifies α = 0.10 on them alone. So I built a second pool of **1,783 new products, one item each** (a random edit of its own listing, or natural missing evidence), labelled by the same parser plus the same independent Opus quote judge (85% agreement, no non-verbatim quotes). Combined: 2,182 products. There were 50 product splits: half for calibration (one item drawn per product, 20% of that tunes the path), half for test (each product weighted equally).
+
+### Results (consensus labels, α = 0.10, δ = 0.10)
+
+| Matcher | splits certified | test URR | coverage | recall of supported | splits with URR > α |
+|---|---|---|---|---|---|
+| **NeSy verifier, Sonnet** | 100% | **4.0%** [1.0, 8.8] | 12.7% | **88%** | 0% |
+| **NeSy verifier, Haiku** | 100% | **4.1%** [1.1, 10.5] | 13.1% | **90%** | 6% |
+| Same LLM outputs, no symbolic certificate (Sonnet / Haiku) | 0% / 0% | – | 0 | 0 | – |
+| Strict "only if stated" prompt (Sonnet / Haiku) | 0% / 0% | – | 0 | 0 | – |
+| Keyword rule | 0% | – | 0 | 0 | – |
+
+Brackets are 2.5–97.5% across splits.
+- **The symbolic certificate is what makes the guarantee reachable.** The neural scores alone, or the strict prompt's support score, put too many unsupported items among their most confident ones, and fixed-sequence testing stops at the first step. Grounded-and-typed quotes separate supported from unsupported items cleanly enough to certify at α = 0.10 with 88–90% recall of supported listings.
+- **At α = 0.20 everyone certifies something, but the gap stays.** Strict Sonnet certifies in only 8% of splits (recall 3%), while the NeSy verifier certifies in 98–100% (recall 90–93%).
+- **The guarantee held empirically.** Test URR exceeded α in 0–6% of splits, under δ = 10%.
+- **Native decisions (calibration pool, consensus labels), without calibration.** The NeSy verifier recommends 0–0.7% of removed, vague, brand-plus-hype and natural-missing listings and 86–89% of originals (URR 3.3–4.8%). The strict prompt recommends 5–10% of them (URR 30%).
+
+### What it costs, and what is still open
+
+- **Paraphrased evidence is the price.** On pilot items where the judge found verbatim support the parser missed ("coily hair" for curly, "Safe for all skin"), the verifier recommends 0–2%, against ~60% for the strict prompt. The typed check wants the value named, so the verifier inherits part of the rule's recall gap. A learned typed check (an NLI model on the quote only) is the obvious next step and keeps the same guarantee.
+- **The guarantee is against labels, not truth.** By Theorem 3 the true URR is at most α plus the rate at which the parser *and* the judge both wrongly say "entailed" on recommended items. The judge (Opus) is the same model family as the verifier, so assumption A2 is weaker than theory.md wants; an open-weight judge from the Mac run would fix that. The observable one-sided disagreement among the verifier's recommendations is 1.8–3.3%.
+- **Not yet tested.** Prop 4 (conjunctions: needs here have one constraint) and Theorem 4 (the new-vs-established coverage gap) are not tested yet. α = 0.05 is also out of reach: it needs about 3,900 independent products at this coverage, and All_Beauty has about 2,200 usable ones.
+
+---
+
 ## 2026-10-17 · RQ1 pilot on real All_Beauty listings (first real run)
 
 Code: [`04-implementation/rq1_pilot`](../04-implementation/rq1_pilot). Module tests: [`04-implementation/qa.md`](../04-implementation/qa.md). Raw tables: `rq1_pilot/outputs/results.md`; every model reply is cached in `outputs/llm_cache.jsonl`, so all numbers below rerun for free with `python analyze.py`.

@@ -17,7 +17,7 @@ import re
 from collections import Counter
 
 from matchers import _run_batched
-from run_pilot import OUT, load_items
+from run_pilot import OUT, POOL, load_items
 
 JUDGE_MODEL = "claude-opus-5-5"
 
@@ -57,7 +57,7 @@ def main():
                          "judge_labels": dict(Counter(x["judge"] for x in sub))}
     res = {"n": n, "judge_model": JUDGE_MODEL, "agreement_rate": sum(x["agree"] for x in rows) / n,
            "by_variant": by_variant, "judge_quotes_not_verbatim": c["unverbatim_quote"], "unparsed": c["unparsed"]}
-    json.dump({"summary": res, "rows": rows}, open(os.path.join(OUT, "label_audit.json"), "w"), indent=1)
+    json.dump({"summary": res, "rows": rows}, open(os.path.join(OUT, "label_audit_cal.json" if POOL == "cal" else "label_audit.json"), "w"), indent=1)
     print(json.dumps(res, indent=2))
     for x in rows[:400]:
         if not x["agree"]:

@@ -197,3 +197,37 @@ def build_items(listings: list[Listing], n_products: int, n_missing: int, seed: 
         items.append(Item(f"{l.asin}:{n.attr}:{n.value}:natural_missing", l.asin, "natural_missing", n,
                           "unresolved", l))
     return items
+
+
+def build_calpool(listings: list[Listing], exclude: set[str], n_missing: int, seed: int = 1) -> list[Item]:
+    """ONE item per product (theory.md assumption A1), from products not used by `build_items`.
+
+    Per product: one need (a non-item-form need when the listing has one), all edits that pass the label check,
+    then one of them drawn uniformly. Plus `n_missing` natural-missing products."""
+    rng = random.Random(seed)
+    items: list[Item] = []
+    used = set(exclude)
+    for l in listings:
+        if l.asin in used:
+            continue
+        needs = candidate_needs(l)
+        if not needs:
+            continue
+        non_form = [n for n in needs if n.attr != "item_form"]
+        n = rng.choice(non_form or needs)
+        variants = {"original": l, "remove": remove(l, n.attr), "vague": vague(l, n.attr, n.value),
+                    "contradict": contradict(l, n.attr, n.value, rng)}
+        variants["remove_prior"] = add_prior(variants["remove"], n.attr) if variants["remove"] else None
+        ok = [(name, lv) for name, lv in variants.items()
+              if lv is not None and lv.title and support_label(n, lv.visible_text()) == LABEL[name]]
+        if not ok:
+            continue
+        name, lv = rng.choice(ok)
+        used.add(l.asin)
+        items.append(Item(f"{l.asin}:{n.attr}:{n.value}:{name}", l.asin, name, n, LABEL[name], lv))
+    miss = [(l, n) for l in listings if l.asin not in used for n in missing_needs(l)[:1]]
+    rng.shuffle(miss)
+    for l, n in miss[:n_missing]:
+        items.append(Item(f"{l.asin}:{n.attr}:{n.value}:natural_missing", l.asin, "natural_missing", n,
+                          "unresolved", l))
+    return items
