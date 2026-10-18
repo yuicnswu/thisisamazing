@@ -161,3 +161,50 @@ def test_prompt_hides_variant_label_and_details():
     shown = _case(it)
     for leak in ("contradict", "contradicted", "A1", "skin_type", "Skin Type"):
         assert leak not in shown
+
+
+# ---- neuro-symbolic verifier and Algorithm 1 --------------------------------------------------
+def test_nesy_certificate_grounds_and_types_quotes():
+    from matchers import _norm_text, certificate, contradict_terms, support_terms, tiered
+    page = _norm_text(_listing().render())
+    dry = Need("skin_type", "dry")
+    assert certificate("Made for dry skin.", page, support_terms(dry)) == (True, True)
+    assert certificate("Absorbs fast.", page, support_terms(dry)) == (True, False)       # verbatim, wrong value
+    assert certificate("Ideal for dry skin", page, support_terms(dry)) == (False, False)  # not in the listing
+    assert certificate("", page, support_terms(dry)) == (False, False)
+    assert "oily skin" in contradict_terms(dry)
+    assert "fragrance" not in contradict_terms(Need("scent", "unscented"))  # "fragrance-free" must not contradict
+    assert tiered(0.0, True, True) > tiered(1.0, True, False) > tiered(1.0, False, False)
+
+
+def test_decide_reject_takes_precedence():
+    from conformal import ABS, REC, REJ, decide
+    assert list(decide([0.9, 0.9, 0.1], [0.9, 0.1, 0.1], lam=0.5, tau=0.8)) == [REJ, REC, ABS]
+
+
+def test_fixed_sequence_stops_at_first_failure():
+    from conformal import fixed_sequence
+    e = np.r_[np.full(60, 0.9), np.full(60, 0.5), np.full(60, 0.1)]
+    unsup = np.r_[np.zeros(60, bool), np.ones(60, bool), np.zeros(60, bool)]
+    cert = fixed_sequence(e, np.zeros(180), unsup, np.ones(180, bool), [0.9, 0.5, 0.1], np.inf, 0.1, 0.1, 0.1)
+    assert [lam for lam, _ in cert] == [0.9]   # 0.5 fails, so 0.1 is never tested even though it would pass
+
+
+def test_clopper_pearson():
+    from conformal import clopper_pearson
+    lo, hi = clopper_pearson(0, 29)
+    assert lo == 0 and abs(hi - 0.1194) < 1e-3
+    assert clopper_pearson(5, 0) == (0.0, 1.0)
+
+
+def test_algorithm1_controls_urr_on_synthetic_products():
+    from conformal import algorithm1, summarize1
+    rng = np.random.default_rng(0)
+    n_prod = 1500
+    groups = np.repeat(np.arange(n_prod), 2)
+    unsup = rng.random(2 * n_prod) < 0.6
+    e = np.clip(np.where(unsup, 0.35, 0.65) + rng.normal(0, 0.15, 2 * n_prod), 0, 1)
+    rows = algorithm1(e, np.zeros_like(e), unsup, np.ones_like(unsup), groups, alpha=0.1, delta=0.1, n_splits=60)
+    s = summarize1(rows, 0.1, 0.1)
+    assert s["no_threshold_rate"] < 0.5 and s["coverage"][0] > 0.05
+    assert s["violation_rate"] <= 0.2   # theory: <= delta (0.1) for the population; test-set noise adds a little
