@@ -1,10 +1,21 @@
-# Evidence-Based Launch Matching & GMV Benchmark (`All_Beauty` + `meta_All_Beauty`)
+# EvidenceGuard: AI-Native Launch Discovery & Evidence-Grounded Commerce Agent
 
-> **Core Question:** *How can a new product find the customers it genuinely serves, before it has reviews, popularity, or an established brand?*
+> **An Autonomous AI Agent Framework for E-Commerce Discovery, Listing Remediation, and Customer Regret Elimination.**
+>
+> *How can an AI agent find the customers a new product genuinely serves before it has reviews, popularity, or an established brand?*
 
-- **RQ1 (Diagnosis):** Do AI recommenders match new products on the evidence in the listing, or on priors such as brand, popularity, and persuasive wording?
-- **RQ2 (Method):** Can an agent match on evidence alone, abstain when evidence is missing, and guarantee a bounded rate of unsupported matches?
-- **RQ3 (Outcome):** Do evidence-based matches made at launch predict which customers were satisfied after launch (and maximize Satisfied GMV while preventing Regret GMV)?
+- **RQ1 (Diagnosis):** Do modern AI recommenders match new products on the evidence in the listing, or on priors such as brand, popularity, and persuasive wording?
+- **RQ2 (AI Method):** Can an autonomous AI agent match on evidence alone, selectively abstain when evidence is missing, and provide a mathematically bounded guarantee on unsupported matches ($\mathrm{URR} \le \alpha$)?
+- **RQ3 (Outcome & Business Impact):** Do evidence-based matches made by the AI agent at launch predict post-launch customer satisfaction, maximize Satisfied GMV, and eliminate return regret?
+
+---
+
+## What Makes This System "AI-Native"?
+
+Rather than treating AI as a superficial add-on (like a generic chatbot bolted onto a store), **EvidenceGuard uses AI to fundamentally shape commerce operations**:
+1. **Agentic Decision Policy:** Instead of passive similarity scores, the AI executes active decisions: `RECOMMEND` (supported), `REJECT` (contradicted), or `ABSTAIN` (missing/vague evidence).
+2. **Autonomous Closed-Loop Remediation:** When the AI abstains due to missing specs, it autonomously generates targeted seller remediation prompts (*"Add Sulfate-Free attribute to unlock 450 customer matches"*), transforming abstentions into net-new verified GMV.
+3. **Statistical AI Safety:** Uses distribution-free Conformal Risk Control to prevent AI hallucinations from causing costly real-world product returns.
 
 ---
 
