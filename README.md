@@ -56,6 +56,69 @@ all_beauty/
 
 ---
 
+## The AI Method: Architecture & Decision Pipeline
+
+`EvidenceGuard` fundamentally transforms e-commerce discovery from passive matrix scoring into an active, verified **AI-Native Reasoning Engine**.
+
+```text
+[ Shopper Query & Extracted Needs ]
+              │
+              ▼
+  ┌─────────────────────────┐
+  │ 1. Constraint Parser    │ ──► C(u) = c_1 ∧ c_2 ∧ ... ∧ c_K
+  └─────────────────────────┘     (e.g., Sensitive Skin ∧ Paraben-Free)
+              │
+              ▼
+  ┌─────────────────────────┐
+  │ 2. Evidence Verifier    │ ──► Inspects visible listing fields (title, bullet points, specs)
+  └─────────────────────────┘     Labels each constraint: {Entailed, Contradicted, Unresolved}
+              │
+              ▼
+  ┌─────────────────────────┐
+  │ 3. Selective Policy     │
+  └─────────────────────────┘
+        │            │             │
+   (All Entailed)  (Any Contradicted) (Any Unresolved / Vague)
+        │            │             │
+        ▼            ▼             ▼
+   [ RECOMMEND ]  [ REJECT ]   [ ABSTAIN ]
+   (Conformal      (Do Not         │
+    Safe Risk)      Target)        ▼
+                           ┌──────────────────────────────────────────────┐
+                           │ 4. H5 Autonomous Seller Remediation Flywheel │
+                           │ "Add 'Sulfate-Free' to listing to unlock     │
+                           │  450 verified buyers ($1,290.83 GMV)"        │
+                           └──────────────────────────────────────────────┘
+```
+
+### 1. Conjunctive Need Representation
+Rather than flattening user requirements into an ambiguous embedding vector, the AI represents human requirements as a conjunction of checkable constraints:
+$$C(u) = \bigwedge_{j=1}^K c_j \quad \text{e.g., } c_1 = (\text{skin\_type} = \text{sensitive}) \;\wedge\; c_2 = (\text{material\_free} = \text{paraben})$$
+
+### 2. Multi-Task Evidence Verification
+The AI verifier inspects visible listing fields (product title, bullet features, description, and structured specification tables). It maps each constraint $c_j$ to an evidence state:
+$$\tau(c_j, \mathcal{E}_i) \in \{\text{Entailed}, \text{Contradicted}, \text{Unresolved}, \text{Conflicting}\}$$
+
+### 3. Agentic 3-Way Selective Decision Policy
+The AI evaluates items under a zero-tolerance support rule:
+$$\pi(u, i) = \begin{cases} 
+\text{RECOMMEND} & \text{if } \forall j, \; \tau(c_j, \mathcal{E}_i) = \text{Entailed} \;\text{ and }\; S(u, i) \ge \hat{\lambda} \\ 
+\text{REJECT} & \text{if } \exists j, \; \tau(c_j, \mathcal{E}_i) = \text{Contradicted} \\ 
+\text{ABSTAIN} & \text{if } \exists j, \; \tau(c_j, \mathcal{E}_i) = \text{Unresolved (Missing / Vague Evidence)}
+\end{cases}$$
+
+### 4. Statistical AI Safety (Conformal Risk Control via Learn-then-Test)
+To prevent AI hallucinations from causing costly real-world customer returns, the agent calibrates an entailment threshold $\hat{\lambda}$ on calibration data using Learn-then-Test (LTT). This mathematically guarantees that the **Unsupported Recommendation Rate (URR)** is bounded below a user-selected tolerance $\alpha$:
+$$\Pr\left(\mathrm{URR} > \alpha\right) \le \delta$$
+Under selective abstention with marginal label noise $\varepsilon_{\text{marginal}}$, the effective selective risk satisfies:
+$$\mathbb{E}[L(Y, d)] \le \alpha + \frac{\varepsilon_{\text{marginal}}}{\Pr(d = \text{recommend})}$$
+
+### 5. Autonomous Seller Remediation Flywheel (H5 Loop)
+Abstention is not a dead end. When the AI abstains due to missing or vague attributes, it automatically triggers a targeted merchant remediation task:
+> *"Actionable Catalog Fix: Listing ASIN B07XXXX is missing the 'Silicone-Free' attribute. Updating your listing will unlock 350 high-intent customer matches and capture \$1,290.83 in verified launch GMV."*
+
+---
+
 ## Empirical Benchmark Findings (RQ1, RQ2, RQ3)
 
 The empirical benchmark was executed on the deduplicated longitudinal cohort (`hackathon_beauty_gmv_dedup.csv`, $N = 15,606$ repeat-buyer purchases, \$338,741.04 GMV).
