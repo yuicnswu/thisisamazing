@@ -56,7 +56,7 @@ def _ollama(model: str, system: str, prompt: str, timeout: int = 900) -> str:
     host = os.environ.get("OLLAMA_HOST", "http://localhost:11434").rstrip("/")
     if not host.startswith("http"):
         host = "http://" + host
-    body = json.dumps({"model": model, "stream": False, "options": {"temperature": 0, "num_ctx": 16384},
+    body = json.dumps({"model": model, "stream": False, "think": False, "options": {"temperature": 0, "num_ctx": 16384},
                        "messages": [{"role": "system", "content": system}, {"role": "user", "content": prompt}]})
     req = urllib.request.Request(host + "/api/chat", body.encode(), {"Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=timeout) as r:
