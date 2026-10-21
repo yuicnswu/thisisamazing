@@ -4,6 +4,40 @@
 
 ---
 
+## 2026-10-21 · Category feasibility evidence that doesn't need the metadata files
+
+Code: `04-implementation/category_check/category_check.py` (tests in `category_check/tests`). Output: `category_check/outputs/category_check.json`.
+
+The G0 listing count for Beauty_and_Personal_Care and Home_and_Kitchen needs their metadata files. Both the cloud container and the Mac's sandboxed shell get HTTP 403 from the UCSD and Hugging Face hosts, so that count is still open (it has to run from the Mac host's own shell). This entry records what could be computed.
+
+**1. Products Algorithm 1 needs** (exact binomial test, δ = 0.10, 90% chance of certifying, the NeSy verifier's pilot coverage of 13%, 40% of products in the certify split):
+
+| Target α | verifier's true URR 2% | 3% | 4% |
+|---|---|---|---|
+| 0.10 | 52 recommended items → 1,000 products | 78 → 1,500 | 116 → 2,231 |
+| 0.05 | 258 → 4,962 | 656 → 12,616 | 2,937 → 56,481 |
+
+The pilot certified α = 0.10 on 2,182 products, consistent with the table. α = 0.05 is only realistic if the verifier's true URR is about 2–3% **and** the category gives 5,000–13,000 usable products.
+
+**2. Early verified reviews that mention a checkable attribute** (first 10 per product, rule proxy; a mention is not a labelled need):
+
+| | All_Beauty | Appliances |
+|---|---|---|
+| Reviews in file | 701,528 | 2,128,605 |
+| Products with a verified review | 106,811 | 90,276 |
+| … with ≥ 10 verified reviews | 11,851 (11%) | 22,283 (25%) |
+| Early verified reviews | 343,706 | 396,393 |
+| Mention a checkable attribute | 17,776 (**5.2%**) | 34,201 (**8.6%**) |
+| By type | hair type 2.7%, scent 1.3%, skin type 1.1%, free-from 0.4% | fit / compatibility with a named model 7.2%, dimensions 0.8%, capacity 0.6%, electrical 0.3% |
+
+Appliances is the only hard-goods review file available here, used as a stand-in for Home & Kitchen, not a substitute for counting it. Its fit/compatibility pattern was tightened after reading samples (the first version counted "fits perfectly", which names no target; that version gave 12.8%).
+
+**3. Disclosure inventory** (from the pilot's 6,503 listings): 2,435 listings (37%) have at least one checkable attribute in the hidden `details` field that their visible text never states; 1,878 (29%) excluding item form. By attribute: skin type 864, item form 830, hair type 784, scent 236, free-from 106. This is the merchant-fix loop's test bed: `details` plays the truthful seller.
+
+**What it means.** Neither category reaches the plan's 10% need-rate bar on a rule proxy, though hard goods do better and are better reviewed. The recommendation in `03-solution-design/project-spec.md` ("Categories") is to count G0 on both Beauty_and_Personal_Care and Home_and_Kitchen from the Mac host and build on both.
+
+---
+
 ## 2026-10-18 · Neuro-symbolic selective matcher with a certified URR (Algorithm 1 of theory.md)
 
 Code: `rq1_pilot/matchers.py` (`nesy_verifier`), `rq1_pilot/conformal.py` (Algorithm 1), `rq1_pilot/analyze_conformal.py`. Raw tables: `rq1_pilot/outputs/conformal.md`. The calibration follows `03-solution-design/theory.md` (PR #7) exactly: Theorem 1's fixed-sequence test with p = max(p_rec, p_rej), assumption A1 (one item per product), the 20% tune split that fixes the path start, and Theorem 3's consensus labels.
