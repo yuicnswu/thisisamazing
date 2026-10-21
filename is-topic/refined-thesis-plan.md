@@ -231,7 +231,7 @@ So the paper's claim becomes: *"a finite-sample guarantee on unsupported recomme
 | Likely reviewer objection | Answer in the paper |
 |---|---|
 | "The guarantee only holds on synthetic variants." | It's exact there **by design**: constructed items are the controlled setting where support is unambiguous. The corollary extends it to natural listings with the measured ε, and RQ3 adds real outcomes. |
-| "The parser labels may be wrong." | ε is estimated with two independent extractors plus consistency checks; results are reported across a range of ε, and the bound α + ε is stated explicitly. |
+| "The parser labels may be wrong." | ε is estimated with two independent extractors plus consistency checks; results are reported across a range of ε, and the bound α + ε / P(recommend) is stated explicitly. |
 | "The constructed variants don't look like real listings." | Variants are minimal edits of *real* listings (one spec removed or changed), not generated from scratch. Report results on natural L2 items separately, so reviewers can see any gap. |
 | "Without human labels, how do you know 'entailed' means what a person would think?" | For checkable attributes from controlled vocabularies (skin type, hair type, scent, item form, free-from claims) and numbers (volume, SPF, count), entailment is a deterministic comparison, not a judgement call. That's exactly why the scope excludes experience attributes like "non-greasy" or "won't break me out". |
 | "Beauty needs are mostly experiential, so the in-scope set is small." | Report the share of real early-review needs that are checkable (§12.3) and present the scope honestly. Abstaining on experiential needs is the intended behaviour, not a failure. |
