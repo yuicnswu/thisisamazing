@@ -8,6 +8,7 @@
 from __future__ import annotations
 
 import json
+import os
 import sys
 from collections import Counter, defaultdict
 
@@ -67,7 +68,8 @@ def main(out_path: str) -> dict:
     res["agreeing_attrs_hist"] = dict(sorted(n_agree.items()))
     res["products_ge1_agree"] = sum(c for k, c in n_agree.items() if k >= 1)
     res["products_ge2_agree"] = sum(c for k, c in n_agree.items() if k >= 2)
-    res["early_reviews"] = early_review_share({l.asin for l in listings})
+    if os.path.exists(REVIEWS_JSONL):
+        res["early_reviews"] = early_review_share({l.asin for l in listings})
     with open(out_path, "w") as f:
         json.dump(res, f, indent=2, default=dict)
     return res

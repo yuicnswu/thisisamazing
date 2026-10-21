@@ -12,6 +12,7 @@ REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 COHORT_CSV = os.path.join(PROJECT, "data", "hackathon_beauty_gmv.csv")
 META_SAMPLE_CSV = os.path.join(REPO, "meta_All_Beauty_sample_1000.csv")
 REVIEWS_JSONL = os.path.join(PROJECT, "All_Beauty.jsonl")
+META_JSONL = os.environ.get("META_JSONL")  # full meta_All_Beauty.jsonl: when set, it replaces the CSV sources
 
 
 @dataclass
@@ -60,6 +61,17 @@ def _jlist(x) -> list[str]:
 def load_listings() -> list[Listing]:
     """Unique listings from the hackathon cohort plus the 1,000-item metadata sample, deduped by parent_asin."""
     out: dict[str, Listing] = {}
+    if META_JSONL:
+        with open(META_JSONL) as f:
+            for line in f:
+                r = json.loads(line)
+                if r.get("parent_asin") in out:
+                    continue
+                out[r["parent_asin"]] = Listing(
+                    r["parent_asin"], _s(r.get("title")), [_s(b) for b in r.get("features") or [] if _s(b)],
+                    [_s(d) for d in r.get("description") or [] if _s(d)], r.get("details") or {}, _s(r.get("store")),
+                    "meta_full", {"rating_number": r.get("rating_number"), "average_rating": r.get("average_rating")})
+        return list(out.values())
     if os.path.exists(COHORT_CSV):
         cols = ["parent_asin", "product_title", "features_text", "description_text", "details_json", "store_brand",
                 "meta_rating_number", "meta_average_rating"]
