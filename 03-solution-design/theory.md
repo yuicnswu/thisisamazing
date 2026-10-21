@@ -20,6 +20,18 @@
 
 **Honest overall rating.** The calibration machinery is not new (LTT, binomial p-values, fixed-sequence testing). What is new is narrower: the formal separation from conformal factuality (Props 4–5), the consensus-label correction (Thm 3), the group form with its levelling-down caveat (Thm 4, Prop 7), and the disclosure threshold under a foolable verifier (Prop 11). That supports a "General" NeurIPS paper with theory as a pillar of rigour, not a theory paper. It moves the guarantee's originality from "moderate, possibly overlapping" to "moderate, clearly distinct". It does not make it "high" on its own.
 
+### Repositioning note (2026-10-21)
+
+The field check and `project-spec.md` move this file's results into supporting roles. What changes:
+
+- **Two more neighbours for §6.** De Toni et al. (2025, RecSys) calibrate a recommender threshold with CRC so the *expected* unwanted share is ≤ α; Einbinder, Ringel and Romano (2024) combine prediction-powered inference with RCPS so that a small labelled set plus many model-imputed labels give finite-sample (α, δ) control whatever the imputation quality. The first makes Theorem 1's object (a recommendation threshold) familiar; the second already contains, for marginal i.i.d. risks, the "true-risk bound from a gold set plus proxy labels" that the team opinion proposed as the main-track theorem.
+- **What a new theorem would have to add (C4 in `project-spec.md`).** (i) A *selective ratio* risk, URR = P(unsupported | recommend), where the denominator is itself estimated on the same calibration draw (Einbinder et al. treat marginal risks and one conditional case by restriction); (ii) one-sided proxy errors (parsers and judges err towards "entailed" on recommended items), which should give a tighter correction than a symmetric PPI rectifier; (iii) launch-time shift between established calibration items and new test items (weighted LTT); (iv) a non-vacuity statement. Theorem 3's consensus-label route stays as the no-gold-set fallback, with its independence assumption flagged as weak while the judge and verifier share a model family.
+- **A result the pilot needs stated (C2).** Why confidence can't be certified while quote-certified scores can:
+
+  **Proposition 13 (certifiability needs a clean top tail).** Fix δ, α and the fixed-sequence path of Algorithm 1, which starts at the strictest threshold λ₀ with at least n_min tune recommendations. Conditional on the tune split (which fixes λ₀), if the score's population URR at λ₀ is ≥ α, then for any certify-split size the probability that Algorithm 1 certifies anything is at most δ. Conversely, if URR(λ₀) ≤ α − γ for some γ > 0, certification probability tends to 1 as the number of certify-split recommendations at λ₀ grows like log(1/δ)/γ².
+  *Sketch.* Fixed-sequence testing stops at the first non-rejected hypothesis; at λ₀ the binomial p-value is super-uniform under H₀: URR(λ₀) ≥ α, so it rejects with probability ≤ δ. The converse is a Chernoff bound on the binomial count.
+  *Reading.* Certifiability is a property of the score's **top tail**, not of its calibration or AUROC. Verbalised confidence saturates near the top for supported and unsupported items alike (Ravikumar, 2026, report 67–86 mean confidence across hit rates of 39–99%), so its top tail inherits the base unsupported rate; a grounded-and-typed quote is a near-deterministic filter on that tail. This is the formal content of "calibrated ≠ certifiable". *Status: written 2026-10-21, not yet independently checked; add a synthetic check to `theory_checks.py`.*
+
 ---
 
 ## 1. Setup and notation

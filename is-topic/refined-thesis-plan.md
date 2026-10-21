@@ -2,6 +2,38 @@
 
 Merges yui's proposal *"Before the First Review: Evidence-Grounded Matching of New Products to the Customers They Genuinely Serve"* (17 Oct 2026) with the earlier project plan (`project-plan.md`) and the literature review (`literature-review.md`). **This file supersedes `project-plan.md`.** **Category switched to Beauty on 17 Oct 2026 (yui: "let's do beauty"); §12 holds the Beauty scope, data and costs, and the sections below are updated to match.** yui's proposal is treated as the main statement of intent; the earlier plan supplies the business and entrepreneurship side.
 
+## 0. Repositioning (21 Oct 2026): read this first
+
+The RQ1 pilot (`05-report/report.md`), a 2025–2026 field check and a role-by-role team review (project files, `team-opinion/`) changed what this thesis can claim. This section overrides the sections below where they disagree; the stage-3 documents (`03-solution-design/project-spec.md`, `implement-spec.md`) hold the full design.
+
+**What happened.**
+- Brand bias in LLM product recommendation was published on skincare by BLaIR's first author (Chu & Hou, arXiv:2606.17443).
+- "URR ≤ α for recommendations" is a known template (De Toni et al., RecSys 2025; Mohri & Hashimoto 2024), and the gold-set-plus-proxy-labels upgrade has a general form already (Einbinder, Ringel & Romano, arXiv:2412.11174).
+- In our own pilot, a strict "only if stated" prompt cut URR from 54–57% to 5–10%, and brand-plus-hype swaps did not move the models.
+- What held up: confidence and strict prompting certify nothing at α = 0.10, while the quote-certified NeSy verifier certifies in 100% of splits (URR ≈ 4%, recall 88–90%). Ravikumar (CIKM 2026) independently finds confidence-based abstention barely helps LLM recommenders.
+
+**New contribution order** (details in `project-spec.md`):
+1. **C1, listing-silent benchmark:** needs with k = 1–3 checkable constraints; evidence stated, paraphrased, missing, vague, contradicted or distractor; abstention scored; ≥ 2 categories. No 2025–2026 shopping benchmark scores abstaining when the listing doesn't say.
+2. **C2, certifiable vs calibrated grounding:** quote-certified verification can be certified at a chosen α, confidence and prompting can't (Proposition 13 in `theory.md` explains why).
+3. **C3, truthful disclosure loop (headline):** abstentions become demand-ranked verification requests to sellers; measured by disclosure yield at fixed risk, the new-vs-established exposure gap, and against GEO rewriting. 37% of 6,503 All_Beauty listings have a checkable attribute in `details` that the shopper-visible text never states.
+4. **C4 (stretch):** a selective, conjunctive risk guarantee for new items under one-sided proxy-label noise, building on Einbinder et al.
+
+**Claims retired:** "AI recommenders are biased by brand"; "first support guarantee"; "regret prevented"; "robust by construction to strategic rewrites"; "LLMs license matches on priors" as the main finding (it becomes a pre-registered hard-split test, §0.1).
+
+**Venue (changes §10.1).** Primary target: **NeurIPS 2027 Evaluations & Datasets track** (the 2026 name of Datasets & Benchmarks), with **RecSys 2027 or SIGIR 2027** as the alternative. The main track is a stretch goal that needs, on top of the E&D paper: C4 proved and independently checked, a gold set of about 300–500 human-labelled items (this reverses the 17 Oct no-annotator decision, so it is yui's call), a non-vacuity result, and NeSy beating NLI-verifier and conformal-filtering baselines on the risk–coverage frontier. Paper B (H1–H3) and the merchant-disclosure story can form a separate IS paper.
+
+**Category (changes §12.3–12.5).** G0 failed on All_Beauty, and an E&D paper needs ≥ 2 categories anyway. Recommendation: count G0 on Beauty_and_Personal_Care **and** Home_and_Kitchen from the Mac host and build on both; Beauty keeps continuity with the pilot, BLaIR and the hackathon. The metadata cannot be downloaded from the cloud or the Mac sandbox (403). From the review files: 5.2% of early verified All_Beauty reviews and 8.6% of Appliances reviews mention a checkable attribute (rule proxy). At the pilot's 13% coverage, α = 0.10 needs about 1,000–2,200 independent products and α = 0.05 about 5,000–12,600 (verifier URR 2–3%).
+
+### 0.1 RQs after the repositioning
+
+| | Question | Contribution |
+|---|---|---|
+| **RQ1 (diagnosis, redesigned)** | Where does evidence-faithful matching break when the prompt is already strict: conjunctions (k ≥ 2), paraphrased evidence, usage-text distractors? And does brand matter in single-listing checks as it does in choice sets (Chu & Hou)? | C1 |
+| **RQ2 (method)** | Which scores can be *certified* to keep URR ≤ α on new products, at what coverage, and why? | C2 (+ C4) |
+| **RQ3 (loop and outcome)** | Does truthful disclosure of the attribute behind an abstention raise certified coverage without raising URR, and does it close the gap between new and established products? Post-launch review validation stays, scoped to checkable needs. | C3 |
+
+Pre-registered reading for RQ1: it claims "strict prompting fails" only if, in some hard cell, strict-prompt URR exceeds 0.10 with its CI above 0.10, or its paraphrase recall is under 50%. Otherwise RQ1 reports that strict prompting suffices on checkable needs, and C1–C3 carry the paper.
+
 ## 1. One-paragraph summary
 
 New products have no reviews, so AI recommenders match them on **priors** (category, brand, memorised products, persuasive wording) rather than on the **evidence in the listing**. Wrong early matches hurt the new product itself: misfit first buyers return it and leave bad first reviews, and first reviews persist (Park, Shin & Xie 2021). The thesis (a) shows that current AI recommenders license matches on priors; (b) builds an evidence-seeking matcher that recommends only when every checkable need is supported by the listing, abstains otherwise, and bounds the unsupported recommendation rate (URR ≤ α); and (c) shows that evidence-supported first buyers predict a healthier review trajectory, especially for small, unknown brands. Every abstention becomes a specific listing fix for the seller.
@@ -40,6 +72,8 @@ Need = conjunction of checkable constraints. Policy inspects listing fields, lab
 **Added for Paper B (light):** for each new product, compute the share of its first *k* reviewers whose mined need is entailed / contradicted by the listing, and regress the 6–12-month rating and volume on it (H1–H3), with brand fixed effects and the sales-event natural experiment from `project-plan.md`.
 
 ## 5. Novelty statement (merged)
+
+*Superseded by §0 (21 Oct 2026). Kept for the record.*
 
 > AI recommenders can place new products near similar known items (UniSRec, Recformer, TIGER), select audiences for new items (Wang et al. 2025), and abstain with a bounded *error* rate (conformal abstention). Marketing research shows first reviews persist (Park et al. 2021) and that targeting well-matched early buyers helps in theory (Fainmesser et al. 2021). No work bounds the rate of recommendations that are not *supported* by listing evidence, shows that current recommenders license new-product matches on priors, or links evidence-supported early matching to the new product's review trajectory and to the liability of newness. This thesis does all three.
 
@@ -80,6 +114,8 @@ Checked against `literature-review.md` and quick web searches (titles and abstra
 
 ## 8. Novelty check per contribution (17 Oct 2026)
 
+*Partly superseded by §0: the field check found C1's brand component and C2's template published, and rates C3 as the most novel part. See `02-literature-review/summary/review.md` §8–9.*
+
 Based on web searches and abstract-level reading. Ratings: low / moderate / high.
 
 | Contribution | Closest prior work (checked) | What's already done | What stays new | Rating |
@@ -99,6 +135,8 @@ Based on web searches and abstract-level reading. Ratings: low / moderate / high
   - Not "AI recommenders are biased by brand", but "AI recommenders recommend new products *without evidence* (prior licensing), which bias-injection studies don't measure."
 
 ## 9. Raising the AI method's novelty to high
+
+*Status 21 Oct 2026: §9A's "robust by construction" does not hold for a learned verifier (`theory.md` Prop 12) and is retired; its disclosure result moves into C3. §9B's two-sided guarantee stays as Theorem 4, untested so far.*
 
 The current method pieces rate moderate (support guarantee) and low-to-moderate (acquisition) because of conformal factuality (Mohri & Hashimoto 2024) and attribute-verifying shopping agents. Two additions would make the method itself high-novelty. Both grow out of the new-product setting, so they don't change the dataset.
 
@@ -128,6 +166,9 @@ Grossman 1981 (*JLE*, disclosure); Milgrom 1981 (*Bell J. Econ.*, "Good news and
 NeurIPS 2026 rules are used as the quality bar. The 2027 call isn't out yet, so re-check the CfP and Handbook when they appear (deadlines, tracks and checklist change every year). The 2026 deadlines were 4 May (abstract) and 6 May (full paper), so plan for **early May 2027**. Meeting this standard raises the paper's rigour; it doesn't guarantee acceptance.
 
 ### 10.1 Track and contribution type
+
+*Changed 21 Oct 2026 (§0): primary target is now the Evaluations & Datasets track or RecSys / SIGIR 2027; the main track is a stretch goal with the bar listed in §0.*
+
 - **Track:** main track. **Contribution type: General.** It's a method with theory and experiments. "Theory" would drop the benchmark's weight, and "Use-Inspired" would shift reviewers to the commerce use case rather than the guarantee. Lock this in by the go/no-go gate (30 Nov); it can't be changed after submission.
 - **Fallback:** Evaluations & Datasets track (that's its 2026 name; the proposal called it "Datasets & Benchmarks"). Use it if the method results are weak but the diagnosis + benchmark are strong. Only one track per paper, so decide at the March gate (§10.5).
 - **Paper B** (seeding, H1–H3) and the business framing are **out of the NeurIPS paper**. They stay as a thesis chapter or a later IS/marketing paper. One sentence of motivation in the intro is enough.

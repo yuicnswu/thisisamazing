@@ -6,15 +6,15 @@
 - **RQ2 (Method):** Can an agent match on evidence alone, abstain when evidence is missing, and guarantee a bounded rate of unsupported matches (URR ≤ α)?
 - **RQ3 (Outcome):** Do evidence-based matches made at launch predict which customers were satisfied after launch?
 
-The plan of record is [`is-topic/refined-thesis-plan.md`](is-topic/refined-thesis-plan.md) (Beauty as main category, §12; no human annotators, §11).
+The plan of record is [`is-topic/refined-thesis-plan.md`](is-topic/refined-thesis-plan.md). **Read its §0 first:** on 21 Oct 2026 the work was repositioned around a listing-silent benchmark, certifiable (not just calibrated) grounding, and a truthful-disclosure loop for sellers, with NeurIPS Evaluations & Datasets or RecSys / SIGIR 2027 as the primary target. The research follows the five stages in [`WORKFLOW.md`](WORKFLOW.md): [`01-brainstorm`](01-brainstorm/brainstorm.md), [`02-literature-review`](02-literature-review/index.md), [`03-solution-design`](03-solution-design/project-spec.md), [`04-implementation`](04-implementation/qa.md), [`05-report`](05-report/report.md).
 
-## Status (17 Oct 2026)
+## Status (21 Oct 2026)
 
 | Part | Status |
 |---|---|
 | Data cohort and EDA (`hackathon_beauty_gmv_dedup.csv`, `EDA_REPORT.md`, `eda_outputs/`) | Real. Data-quality checks (dedup, unverified-review skew at launch, evidence missingness) are reproducible from `scripts/`. |
-| RQ1–RQ3 benchmark | **Not run yet.** The only benchmark in the repo is a simulated mock-up (below). The real pilot is the November go/no-go (plan §10.5). |
-| Theory (URR guarantee, §11.2 selective-risk corollary) | Statements in the plan; proofs not written yet. |
+| RQ1–RQ3 benchmark | **RQ1 pilot run on real All_Beauty listings** with Claude models (`04-implementation/rq1_pilot`, results in `05-report/report.md`), including a certified URR at α = 0.10 and a hard split (two-constraint needs, paraphrased evidence). Open-weight and dense-encoder runs wait on the Mac. The simulated mock-up (below) is not a result. |
+| Theory | [`03-solution-design/theory.md`](03-solution-design/theory.md): Theorems 1–4 and Props 4–13 with proof sketches and numerical checks; not yet independently checked. |
 
 ### About `benchmark_outputs/simulated_mockup/`
 
