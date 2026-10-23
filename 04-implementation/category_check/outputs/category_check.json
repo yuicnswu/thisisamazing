@@ -1,0 +1,70 @@
+{
+  "sample_size": [
+    {
+      "alpha": 0.05,
+      "true_urr": 0.02,
+      "recommended_items_needed": 258,
+      "products_needed": 4962
+    },
+    {
+      "alpha": 0.05,
+      "true_urr": 0.03,
+      "recommended_items_needed": 656,
+      "products_needed": 12616
+    },
+    {
+      "alpha": 0.05,
+      "true_urr": 0.04,
+      "recommended_items_needed": 2937,
+      "products_needed": 56481
+    },
+    {
+      "alpha": 0.1,
+      "true_urr": 0.02,
+      "recommended_items_needed": 52,
+      "products_needed": 1000
+    },
+    {
+      "alpha": 0.1,
+      "true_urr": 0.03,
+      "recommended_items_needed": 78,
+      "products_needed": 1500
+    },
+    {
+      "alpha": 0.1,
+      "true_urr": 0.04,
+      "recommended_items_needed": 116,
+      "products_needed": 2231
+    }
+  ],
+  "all_beauty": {
+    "reviews": 701528,
+    "products_with_verified": 106811,
+    "products_ge10_verified": 11851,
+    "share_products_ge10": 0.1109529917330612,
+    "early_verified_reviews": 343706,
+    "with_checkable_mention": 17776,
+    "share": 0.05171861998335787,
+    "per_type": {
+      "hair_type": 0.026816523424089193,
+      "scent": 0.012888922509353924,
+      "skin_type": 0.011440009775796756,
+      "free_from": 0.003511722227717875
+    }
+  },
+  "appliances": {
+    "reviews": 2128605,
+    "products_with_verified": 90276,
+    "products_ge10_verified": 22283,
+    "share_products_ge10": 0.2468319376135407,
+    "early_verified_reviews": 396393,
+    "with_checkable_mention": 34201,
+    "share": 0.08628053472185432,
+    "per_type": {
+      "fit_compat": 0.07241298408397727,
+      "dimensions": 0.007886113024195684,
+      "capacity": 0.005837640927059761,
+      "electrical": 0.0026110450991818726
+    }
+  }
+}

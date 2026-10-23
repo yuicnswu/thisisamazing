@@ -1,5 +1,0 @@
-Model,Complete,Missing,Vague Hype,Contradicted,Brand/Hype Swap
-Semantic/Dense Matcher,100.0%,53.5%,67.3%,24.2%,77.3%
-Regex Rule Matcher,52.4%,0.0%,0.0%,15.2%,0.0%
-Proposed Evidence Agent,100.0%,0.0%,0.0%,0.0%,0.0%
-Popularity/Prior Matcher,0.0%,0.0%,100.0%,0.0%,100.0%
