@@ -1,0 +1,221 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Sephora integration</title><style>body{font:16px/1.6 system-ui;max-width:1100px;margin:40px auto;padding:0 22px;color:#203044}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:8px;text-align:left;border-bottom:1px solid #ddd}img{width:100%}section{margin:30px 0}pre{white-space:pre-wrap;background:#f3f6fa;padding:20px}</style></head><body><h1>Sephora: products, reviews and existing preference labels</h1><p>All six supplied files integrated. Original files remain unchanged. No new annotation or LLM calls.</p><p><a href="../beauty_research_workflow/report.html">Combined research workflow</a> · <a href="summary.json">Summary JSON</a> · <a href="../../data/sephora_sources.json">Source hashes and schema</a></p><section><h2>Full-file integration audit</h2><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Metric</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>products</td>
+      <td>8494</td>
+    </tr>
+    <tr>
+      <td>raw reviews</td>
+      <td>1094411</td>
+    </tr>
+    <tr>
+      <td>exact duplicate excess</td>
+      <td>224</td>
+    </tr>
+    <tr>
+      <td>deduplicated reviews</td>
+      <td>1094187</td>
+    </tr>
+    <tr>
+      <td>raw matched reviews</td>
+      <td>1094411</td>
+    </tr>
+    <tr>
+      <td>raw unmatched reviews</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>reviewed products</td>
+      <td>2351</td>
+    </tr>
+    <tr>
+      <td>unique reviewers</td>
+      <td>503216</td>
+    </tr>
+    <tr>
+      <td>reviewers one product</td>
+      <td>294111</td>
+    </tr>
+    <tr>
+      <td>reviewers at least 2 products</td>
+      <td>209105</td>
+    </tr>
+    <tr>
+      <td>reviewers at least 5 products</td>
+      <td>40433</td>
+    </tr>
+    <tr>
+      <td>recommendation labels</td>
+      <td>926314</td>
+    </tr>
+    <tr>
+      <td>recommendation missing</td>
+      <td>167873</td>
+    </tr>
+    <tr>
+      <td>recommendation invalid nonmissing</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>recommendation positive</td>
+      <td>778061</td>
+    </tr>
+    <tr>
+      <td>recommendation negative</td>
+      <td>148253</td>
+    </tr>
+    <tr>
+      <td>skin type observed</td>
+      <td>982738</td>
+    </tr>
+    <tr>
+      <td>valid recommendation with skin type</td>
+      <td>907247</td>
+    </tr>
+    <tr>
+      <td>invalid or missing dates</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>invalid or missing ratings</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>missing author ids</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>missing product ids</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>date min</td>
+      <td>2008-08-28 00:00:00+00:00</td>
+    </tr>
+    <tr>
+      <td>date max</td>
+      <td>2023-03-21 00:00:00+00:00</td>
+    </tr>
+    <tr>
+      <td>labeled reviews with strictly earlier history</td>
+      <td>412698</td>
+    </tr>
+    <tr>
+      <td>labeled reviews with strictly earlier other product</td>
+      <td>412406</td>
+    </tr>
+  </tbody>
+</table></section><img src="overview.png" alt="Rating and self-reported skin type distributions"><section><h2>Skin-type coverage and reported recommendations</h2><p>Unadjusted descriptive groups. Differences do not establish that skin type causes satisfaction or that a product suits a new customer.</p><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>skin_type</th>
+      <th>reviews</th>
+      <th>mean_rating</th>
+      <th>recommendation_observed</th>
+      <th>recommendation_mean</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>combination</td>
+      <td>544447</td>
+      <td>4.309345</td>
+      <td>501314</td>
+      <td>0.844792</td>
+    </tr>
+    <tr>
+      <td>dry</td>
+      <td>185913</td>
+      <td>4.291201</td>
+      <td>174169</td>
+      <td>0.836285</td>
+    </tr>
+    <tr>
+      <td>normal</td>
+      <td>131897</td>
+      <td>4.28222</td>
+      <td>122168</td>
+      <td>0.83431</td>
+    </tr>
+    <tr>
+      <td>oily</td>
+      <td>120481</td>
+      <td>4.270831</td>
+      <td>109596</td>
+      <td>0.833762</td>
+    </tr>
+    <tr>
+      <td>&lt;NA&gt;</td>
+      <td>111449</td>
+      <td>4.312538</td>
+      <td>19067</td>
+      <td>0.81801</td>
+    </tr>
+  </tbody>
+</table></section><section><h2>Rating versus recommendation</h2><p>Existing outcomes can disagree; missing recommendation labels remain missing.</p><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>is_recommended</th>
+      <th>0.0</th>
+      <th>1.0</th>
+      <th>&lt;NA&gt;</th>
+    </tr>
+    <tr>
+      <th>rating</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>52082</td>
+      <td>406</td>
+      <td>8730</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>43597</td>
+      <td>1660</td>
+      <td>7770</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>45936</td>
+      <td>25456</td>
+      <td>10421</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5841</td>
+      <td>164332</td>
+      <td>29189</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>797</td>
+      <td>586207</td>
+      <td>111763</td>
+    </tr>
+  </tbody>
+</table></section><section><h2>No-annotation evaluation protocol</h2><pre># Sephora: evaluation without new human annotation
+
+Question: Does customer context improve prediction of an existing reviewer recommendation beyond popularity, history and non-LLM text baselines?
+
+1. Use only observed binary `is_recommended` labels; never impute missing labels from ratings. Report selection and class balance.
+2. Freeze a chronological development/test cutoff after inspecting coverage, with all same-day reviews on the same side. For history, use strictly earlier dates and exclude target-product histories in the stricter condition. Temporal eligibility counts are not final test sizes.
+3. Hide the target review text, title, rating, recommendation and feedback fields. Inputs may include product descriptions and earlier review evidence. Audit prior text duplicates across splits. Current customer profiles may not have been recorded before the target: disclose that limitation or omit them from prospective claims.
+4. Exclude listing aggregate rating/review/loves counts from historical prediction. Price, ingredients and product highlights are undated snapshot attributes: test their removal and avoid asserting fully time-valid evaluation.
+5. Compare training-period majority/popularity, structured customer/product and text-embedding baselines against the same LLM with no profile, observed profile and shuffled profile. Keep labels and target reviews out of prompts.
+6. Report AUROC, PR-AUC with positive-class convention, balanced accuracy, macro-F1, log loss/calibration, customer-cluster bootstrap intervals, cost and latency. Lock thresholds/prompts on development data. Test held-out products separately from chronological known-product evaluation.
+7. Claim prediction of reported recommendations only. Missing exposure sets mean unreviewed products are not negatives. No causal customer-fit, safety, revenue or conversion claim follows from this audit.
+
+No model experiment has been run. Existing reviews and labels supply evaluation outcomes; no human annotation is requested.
+</pre></section><section><h2>Scope and limits</h2><ul><li>Customer attributes are self-reported snapshots, not independently verified or necessarily historical.</li><li>Recommendation labels are retrospective opinions, not purchase/return records or prospective suitability.</li><li>Product snapshot effective dates are unknown; aggregate ratings can leak future outcomes.</li><li>Sephora IDs are not Amazon IDs; sources remain separate.</li><li>Temporal eligibility is a data audit, not a frozen benchmark split.</li><li>No new human annotations or model evaluations were performed.</li></ul><p>Field quality (regenerate locally) · <a href="evaluation_protocol.md">Evaluation protocol</a> · Product review profile (regenerate locally)</p></section></body></html>

@@ -1,0 +1,68 @@
+{
+  "counts": {
+    "rows": 112590,
+    "one_rating": 11677,
+    "five_star": 14519,
+    "five_star_one_rating": 5931,
+    "five_star_under_five_ratings": 12189
+  },
+  "metadata_patterns": {
+    "(False, False, False)": 80031,
+    "(False, True, True)": 8363,
+    "(True, True, True)": 4332,
+    "(True, False, False)": 8715,
+    "(False, True, False)": 3678,
+    "(False, False, True)": 2814,
+    "(True, True, False)": 2789,
+    "(True, False, True)": 1868
+  },
+  "potential_recovery_keys": {
+    "Date First Available": 341,
+    "National Stock Number": 7
+  },
+  "alternate_price_keys": {},
+  "filter_audit": [
+    {
+      "filter": "all_products",
+      "products": 112590,
+      "catalog_pct": 100.0,
+      "median_rating": 4.0,
+      "median_rating_count": 9.0
+    },
+    {
+      "filter": "priced",
+      "products": 17704,
+      "catalog_pct": 15.724309441335821,
+      "median_rating": 4.3,
+      "median_rating_count": 15.0
+    },
+    {
+      "filter": "priced_with_description",
+      "products": 7121,
+      "catalog_pct": 6.324718003375078,
+      "median_rating": 4.3,
+      "median_rating_count": 18.0
+    },
+    {
+      "filter": "priced_description_features",
+      "products": 4332,
+      "catalog_pct": 3.847588595790034,
+      "median_rating": 4.3,
+      "median_rating_count": 20.0
+    },
+    {
+      "filter": "rating_at_least_4_5",
+      "products": 31004,
+      "catalog_pct": 27.53708144595435,
+      "median_rating": 4.8,
+      "median_rating_count": 5.0
+    },
+    {
+      "filter": "rating_at_least_4_5_and_20_ratings",
+      "products": 7472,
+      "catalog_pct": 6.6364686028954605,
+      "median_rating": 4.6,
+      "median_rating_count": 64.0
+    }
+  ]
+}

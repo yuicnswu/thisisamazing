@@ -1,3 +1,11 @@
+# Current research: Beauty customer preferences
+
+The latest Amazon + Sephora EDA, combined key findings, reproducible notebooks, and **evaluation without new human annotation** are in [beauty-research/](beauty-research/README.md).
+
+This update reports dataset audits and research designs. No LLM experiment or commercial-impact validation has been run. The earlier EvidenceGuard material below is retained as historical project content; its guarantees and commercial claims are not established by this dataset audit.
+
+---
+
 # EvidenceGuard: AI-Native Launch Discovery & Evidence-Grounded Commerce Agent
 
 > **An Autonomous AI Agent Framework for E-Commerce Discovery, Listing Remediation, and Customer Regret Elimination.**

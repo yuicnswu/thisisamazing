@@ -1,0 +1,40 @@
+[
+  {
+    "id": "Q1",
+    "working_title": "Distinguishing preference mismatch from product failure",
+    "research_question": "Can an LLM distinguish explicit preference mismatch from product defects and delivery complaints?",
+    "stake": "A merchant needs different actions for unsuitable targeting, a defective product and delivery problems.",
+    "hidden_assumption": "Review text contains enough explicit evidence for humans to distinguish these explanations.",
+    "competing_hypotheses": [
+      "H1: Explicit context and aspect spans improve preference-mismatch classification.",
+      "H2: Sentiment and complaint keywords explain apparent gains without context reasoning.",
+      "H3: Humans cannot reliably separate these causes from available text."
+    ],
+    "discriminating_test": "Compare majority/keyword baselines, text-only LLM and context/aspect-guided LLM under an equal model budget. Use two independent annotators plus adjudication; allow unclear and multiple labels. Split by parent product and remove exact duplicates; exclude listing aggregate ratings and reviewer identifiers. Report macro-F1, per-class recall, span F1, uncertainty coverage, product-cluster bootstrap intervals, cost and latency.",
+    "falsifier": "No reliable human agreement, or no held-out improvement over the strongest baseline after controlling for sentiment and review length. Treat inconclusive intervals as inconclusive.",
+    "two_week_pilot": "Days 1\u20133: refine schema on 50 reviews. Days 4\u20137: independently label 300 additional reviews across rating and completeness strata, including mixed-rating products and controls. Days 8\u201310: freeze schema and product-disjoint split; lock prompts on development data. Days 11\u201314: evaluate baselines and context ablation on untouched test products. Use pilot variance to plan a powered follow-up.",
+    "minimum_resources": "Two annotators, one adjudicator, local review text, annotation budget; model access and cost approval before running LLM experiments.",
+    "strongest_reviewer_objection": "This may be ordinary complaint classification; no independently verified customer fit or demonstrated novelty.",
+    "next_action": "Review the 200-row annotation seed, extend it beyond rating-balanced sampling, and label the first 50 with uncertainty.",
+    "status": "Provisional design; no experiment has been run."
+  },
+  {
+    "id": "Q6",
+    "working_title": "Selection effects from listing completeness",
+    "research_question": "Does evaluation only on complete listings overstate LLM interpretation performance?",
+    "stake": "A shopping assistant evaluated only on complete listings may leave most of a merchant catalog untested.",
+    "hidden_assumption": "Human labels can be sampled across completeness strata.",
+    "competing_hypotheses": [
+      "H1: Restricting to complete listings changes measured LLM performance.",
+      "H2: Differences reflect review length, product type or review volume rather than completeness.",
+      "H3: Performance is stable across completeness strata."
+    ],
+    "discriminating_test": "Sample independently labeled reviews in complete and incomplete product strata. Keep test products disjoint from development. Compare the same frozen model; report within-stratum macro-F1 and catalog-weighted estimates. Match or stratify on observable review length and volume; validate product types manually. Report residual confounding and do not interpret a stratum difference as a causal effect of missingness.",
+    "falsifier": "No meaningful stratum difference, or the difference disappears under observable controls; either result limits the selection-bias claim.",
+    "two_week_pilot": "Week 1: cross-tab eligibility and design a 300-review stratified annotation sample. Week 2: adjudicate, freeze prompts, evaluate a single fixed model and reweight to known catalog proportions. Report uncertainty and strata with insufficient labels.",
+    "minimum_resources": "Same annotators and frozen model as Q1; extra labels may be necessary for sparse strata.",
+    "strongest_reviewer_objection": "Observed groups are confounded, listing timestamps are unknown, and the pilot may be underpowered.",
+    "next_action": "Audit the eligibility table and preregister the strata and estimand before looking at model scores.",
+    "status": "Provisional design; no experiment has been run."
+  }
+]

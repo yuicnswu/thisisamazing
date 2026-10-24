@@ -1,0 +1,92 @@
+[
+  {
+    "id": "E1",
+    "claim": "Products with observed price",
+    "numerator": 17704,
+    "denominator": 112590,
+    "percent": 15.724309441335821,
+    "source": "catalog.has_price",
+    "boundary": "Missing price does not mean unavailable or free.",
+    "status": "observed"
+  },
+  {
+    "id": "E2",
+    "claim": "Products retained by price + description + features filter",
+    "numerator": 4332,
+    "denominator": 112590,
+    "percent": 3.8475885957900346,
+    "source": "catalog.has_*",
+    "boundary": "Eligibility changes are measurable; conversion effects are unknown.",
+    "status": "observed"
+  },
+  {
+    "id": "E3",
+    "claim": "Exact duplicate excess review records",
+    "numerator": 7275,
+    "denominator": 701528,
+    "percent": 1.037022043311172,
+    "source": "reviews.exact_duplicate",
+    "boundary": "Exact records only; repeated short phrases are not evidence of fraud.",
+    "status": "observed"
+  },
+  {
+    "id": "E4",
+    "claim": "Review records matched to catalog",
+    "numerator": 701528,
+    "denominator": 701528,
+    "percent": 100.0,
+    "source": "reviews.catalog_match",
+    "boundary": "Parent-level match does not establish variant-level attribute agreement.",
+    "status": "observed"
+  },
+  {
+    "id": "E5",
+    "claim": "Reviewers with one distinct observed product",
+    "numerator": 589163,
+    "denominator": 631986,
+    "percent": 93.22405876079533,
+    "source": "histories.distinct_products",
+    "boundary": "Category-specific observed reviews are not complete purchase histories.",
+    "status": "observed"
+  },
+  {
+    "id": "E6",
+    "claim": "Reviewers with at least five distinct observed products",
+    "numerator": 1471,
+    "denominator": 631986,
+    "percent": 0.2327583205957094,
+    "source": "histories.distinct_products",
+    "boundary": "Earlier eligible histories after a temporal split will be fewer.",
+    "status": "observed"
+  },
+  {
+    "id": "E7",
+    "claim": "Products with >=20 deduplicated reviews and >=3 low and >=3 high ratings",
+    "numerator": 4712,
+    "denominator": 112565,
+    "percent": 4.186025851730111,
+    "source": "clean reviews grouped by parent_asin",
+    "boundary": "Candidate pool only; neither preference conflicts nor customer fit are validated.",
+    "status": "observed"
+  },
+  {
+    "id": "E8",
+    "claim": "Raw reviews with variant ASIN different from parent ASIN",
+    "numerator": 61188,
+    "denominator": 701528,
+    "percent": 8.722103750669966,
+    "source": "reviews.asin,parent_asin",
+    "boundary": "Identifier difference alone is not a join error.",
+    "status": "observed"
+  },
+  {
+    "id": "E9",
+    "claim": "Five-star products supported by fewer than five catalog ratings",
+    "numerator": 12189,
+    "denominator": 14519,
+    "percent": 83.9520628142434,
+    "source": "catalog.average_rating,rating_number",
+    "boundary": "Catalog ratings and collected reviews have different scopes.",
+    "status": "observed"
+  }
+]

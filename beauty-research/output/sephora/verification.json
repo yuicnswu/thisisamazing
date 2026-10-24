@@ -1,0 +1,11 @@
+{
+  "join_row_count": "passed",
+  "all_review_product_matches": "passed",
+  "source_record_uniqueness": "passed",
+  "label_reconciliation": "passed",
+  "temporal_eligibility_independent_spot_checks": 300,
+  "report_links": "passed",
+  "notebook_schema": "passed",
+  "notebook_executed": false,
+  "runner_executed": true
+}

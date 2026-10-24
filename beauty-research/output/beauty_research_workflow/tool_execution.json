@@ -1,0 +1,26 @@
+{
+  "describe_catalog": {
+    "rows": 112590,
+    "scope": "full population in derived profile"
+  },
+  "describe_reviews": {
+    "rows": 694253,
+    "scope": "full population in derived profile"
+  },
+  "missingness": {
+    "sample_rows": 2000,
+    "seed": 42,
+    "scope": "uniform catalog sample; use ledger for exact counts"
+  },
+  "correlation_funnel": {
+    "sample_rows": 5000,
+    "seed": 42,
+    "target": "price_available=Yes",
+    "interpretation": "Binned Pearson associations; exploratory, no causal inference or significance claim."
+  },
+  "sweetviz": {
+    "sample_rows": 2000,
+    "seed": 42,
+    "target": null
+  }
+}
