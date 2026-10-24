@@ -43,3 +43,11 @@ See [installation and execution](INSTALLATION.md). Runners in `scripts/` generat
 Obtain Amazon Reviews 2023 from https://amazon-reviews-2023.github.io/ and Sephora Products and Skincare Reviews from https://www.kaggle.com/datasets/nadyinky/sephora-products-and-skincare-reviews under their respective terms. Source registries record snapshot hashes and schemas. Review text, reviewer IDs, large derived data tables, raw downloads, virtual environments and credentials are not part of the GitHub publication package. Regenerate full data artifacts locally.
 
 EDA tools originate from [business-science/ai-data-science-team](https://github.com/business-science/ai-data-science-team), pinned in the dependency lock. Research framing uses the locally installed [5 Whys](https://github.com/awesome-skills/5-whys-skill) and [Good Question](https://github.com/Rimagination/good-question) methodologies; these are methodological aids, not autonomous agents executed by the offline scripts.
+
+## Research proposal
+
+[Professor discussion proposal: Agentic AI for Product Development and Go-to-Market Research](proposals/agentic_beauty_market_research.md). Includes the EDA story, bounded research questions, architecture, evaluation without new annotation, business measurement and an eight-week plan.
+
+## Product and business-impact scope
+
+The merchant demo turns a bounded category question into competitor/customer evidence, a proposed product-page clarification and a positioning test. The research tests adaptive control against fixed workflows at comparable budgets. Research-effort reduction and faster launch preparation are hypotheses, not measured benefits. The 30–50% effort target and $27,000 annual capacity scenario are explicitly hypothetical; neither is an observed result. See the [short supervisor brief](proposals/supervisor_brief.md) and [full proposal](proposals/agentic_beauty_market_research.md). No demand/revenue forecasting or commercial uplift has been demonstrated.

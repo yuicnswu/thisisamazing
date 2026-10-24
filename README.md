@@ -1,3 +1,11 @@
+## Updated research proposal
+
+[Full proposal: Agentic AI for Product Development and Go-to-Market Research](beauty-research/proposals/agentic_beauty_market_research.md) · [Short supervisor brief](beauty-research/proposals/supervisor_brief.md)
+
+The proposal consolidates verified Amazon/Sephora EDA, a merchant-action demo, an annotation-free evaluation, and business measurement. Effort-reduction targets and capacity-value scenarios are hypothetical; no LLM or commercial-impact results have been established.
+
+---
+
 # Current research: Beauty customer preferences
 
 The latest Amazon + Sephora EDA, combined key findings, reproducible notebooks, and **evaluation without new human annotation** are in [beauty-research/](beauty-research/README.md).
