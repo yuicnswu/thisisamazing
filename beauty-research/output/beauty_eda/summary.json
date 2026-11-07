@@ -1,0 +1,53 @@
+{
+  "source": "~/Downloads/meta_All_Beauty.jsonl",
+  "source_bytes": 212990142,
+  "sha256": "1cfbdf6d2ccf9c3ac52a4508b15f31f8f340508a245b65c3e3b5f461e06e97ef",
+  "rows": 112590,
+  "blank_lines": 0,
+  "parse_errors": 0,
+  "main_categories": {
+    "All Beauty": 112135,
+    "Premium Beauty": 455
+  },
+  "checks": {
+    "rating_outside_1_5": 0,
+    "nonpositive_rating_number": 0,
+    "noninteger_rating_number": 0,
+    "nonpositive_observed_price": 0,
+    "invalid_parent_asin_format": 0,
+    "blank_titles": 12,
+    "duplicate_id_excess": 0,
+    "exact_duplicate_excess": 0,
+    "duplicate_normalized_title_excess": 2043,
+    "products_sharing_normalized_titles": 3506,
+    "products_with_duplicate_image_entries": 5666,
+    "images_shared_across_products": 33825,
+    "products_with_shared_upc": 1653
+  },
+  "unique_stores_nonempty": 30364,
+  "unique_brands_nonempty": 22412,
+  "brand_store_exact_normalized_match_pct_when_both_present": 99.89699475230022,
+  "price_quantiles": {
+    "0.01": 3.4218,
+    "0.05": 5.88,
+    "0.25": 9.99,
+    "0.5": 16.99,
+    "0.75": 29.9,
+    "0.9": 49.99,
+    "0.95": 75.0,
+    "0.99": 187.48
+  },
+  "rating_count_total_NOT_unique_reviews": 5690450,
+  "top_1pct_products_share_rating_counts": 0.3817641838518922,
+  "top_10pct_products_share_rating_counts": 0.739897196179564,
+  "rating_count_le_1": 11677,
+  "rating_count_le_5": 41438,
+  "rating_count_ge_100": 9329,
+  "five_star_products": 14519,
+  "five_star_products_lt_5_ratings": 12189,
+  "title_only_no_description_or_features": 88746,
+  "ambiguous_heuristic_segment_matches": 11153,
+  "spearman_price_rating": 0.1381995131246992,
+  "spearman_price_rating_count": -0.04399501640259624,
+  "top10_store_share_all_products": 0.028368416378008705
+}

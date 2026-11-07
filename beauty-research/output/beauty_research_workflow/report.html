@@ -1,0 +1,234 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Beauty: evidence to research</title>
+<style>body{font:16px/1.6 system-ui;max-width:1150px;margin:45px auto;padding:0 24px;color:#182b3a;background:#fafbfd}h1,h2{line-height:1.2}section{background:white;padding:25px;margin:22px 0;border:1px solid #dbe3eb;border-radius:12px}table{border-collapse:collapse;width:100%;font-size:13px}td,th{text-align:left;border-bottom:1px solid #dde4ea;padding:9px;vertical-align:top}img{max-width:100%}a{color:#175fc0}.note{background:#eef4fc;padding:16px}code{overflow-wrap:anywhere}</style></head><body>
+<h1>Beauty: from evidence to a testable research question</h1>
+<p>EDA tools → evidence ledger → 5 Whys → provisional Good Question Cards → pilot decision.</p>
+<p><a href="../sephora/report.html">Sephora integration and evaluation without new annotation</a></p>
+<p class="note">Executed locally without LLM/API calls. Statistics are observations; 5 Whys explanations stop at unknowns; proposed model experiments have not been run. Customer fit and commercial uplift remain unmeasured.</p>
+<section><h2>1. EDA and provenance</h2><p>Full-file descriptive summaries; seeded samples for expensive visual tools. No customer demographic or fit labels are inferred from ratings.</p>
+<p><a href="../beauty_eda/report.html">Catalog EDA</a> · <a href="../beauty_reviews/report.html">Review EDA</a> · Sweetviz (regenerate locally) · <a href="tool_execution.json">Tool execution scopes</a> · <a href="provenance.json">Input hashes and versions</a></p>
+<img src="matrix_plot.png" alt="Missingness in a uniform sample of 2000 products"><p>Sample visualization; the ledger below contains exact population counts.</p>
+<img src="availability_funnel.png" alt="Exploratory correlation funnel for price availability"><p>Availability correlations are descriptive and cannot identify why fields are missing.</p></section>
+<section><h2>2. Evidence ledger</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>id</th>
+      <th>claim</th>
+      <th>numerator</th>
+      <th>denominator</th>
+      <th>percent</th>
+      <th>boundary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>E1</td>
+      <td>Products with observed price</td>
+      <td>17704</td>
+      <td>112590</td>
+      <td>15.72%</td>
+      <td>Missing price does not mean unavailable or free.</td>
+    </tr>
+    <tr>
+      <td>E2</td>
+      <td>Products retained by price + description + features filter</td>
+      <td>4332</td>
+      <td>112590</td>
+      <td>3.85%</td>
+      <td>Eligibility changes are measurable; conversion effects are unknown.</td>
+    </tr>
+    <tr>
+      <td>E3</td>
+      <td>Exact duplicate excess review records</td>
+      <td>7275</td>
+      <td>701528</td>
+      <td>1.04%</td>
+      <td>Exact records only; repeated short phrases are not evidence of fraud.</td>
+    </tr>
+    <tr>
+      <td>E4</td>
+      <td>Review records matched to catalog</td>
+      <td>701528</td>
+      <td>701528</td>
+      <td>100.00%</td>
+      <td>Parent-level match does not establish variant-level attribute agreement.</td>
+    </tr>
+    <tr>
+      <td>E5</td>
+      <td>Reviewers with one distinct observed product</td>
+      <td>589163</td>
+      <td>631986</td>
+      <td>93.22%</td>
+      <td>Category-specific observed reviews are not complete purchase histories.</td>
+    </tr>
+    <tr>
+      <td>E6</td>
+      <td>Reviewers with at least five distinct observed products</td>
+      <td>1471</td>
+      <td>631986</td>
+      <td>0.23%</td>
+      <td>Earlier eligible histories after a temporal split will be fewer.</td>
+    </tr>
+    <tr>
+      <td>E7</td>
+      <td>Products with &gt;=20 deduplicated reviews and &gt;=3 low and &gt;=3 high ratings</td>
+      <td>4712</td>
+      <td>112565</td>
+      <td>4.19%</td>
+      <td>Candidate pool only; neither preference conflicts nor customer fit are validated.</td>
+    </tr>
+    <tr>
+      <td>E8</td>
+      <td>Raw reviews with variant ASIN different from parent ASIN</td>
+      <td>61188</td>
+      <td>701528</td>
+      <td>8.72%</td>
+      <td>Identifier difference alone is not a join error.</td>
+    </tr>
+    <tr>
+      <td>E9</td>
+      <td>Five-star products supported by fewer than five catalog ratings</td>
+      <td>12189</td>
+      <td>14519</td>
+      <td>83.95%</td>
+      <td>Catalog ratings and collected reviews have different scopes.</td>
+    </tr>
+  </tbody>
+</table>
+</section><section><h2>3. Evidence-backed 5 Whys</h2>
+<h3>W1: A complete-listing filter excludes most products from a shopping study.</h3><p>Evidence: E1, E2</p><ol>
+<li><b>Why are products excluded?</b> The rule requires observed price, description and features simultaneously. <i>[verified rule consequence]</i></li>
+<li><b>Why are these fields absent?</b> The local snapshot contains missing fields; source omission, extraction, and availability timing are competing explanations. <i>[unknown; stop]</i></li>
+</ol>
+<p><b>Root Cause:</b> Verified exclusion mechanism: conjunction of three availability requirements. Origin of missingness is unresolved.</p>
+<p><b>Countermeasure:</b> Report all-product and eligible-product results separately; audit missing fields against independently obtained source records.</p>
+<p><b>Reverse Check:</b> Removing the filter restores eligibility by construction; improved fit or revenue must be tested separately.</p>
+<p><b>Confidence:</b> High for exclusion mechanism; unknown for upstream origin.</p>
+<h3>W2: Most observed reviewers cannot support a multi-product history experiment.</h3><p>Evidence: E5, E6</p><ol>
+<li><b>Why is multi-product history scarce?</b> Most user IDs have only one distinct reviewed product in this category snapshot. <i>[observed constraint]</i></li>
+<li><b>Why do they have only one?</b> Sparse reviewing, category restrictions and collection scope are possible explanations. Purchases outside the snapshot are unobserved. <i>[unknown; stop]</i></li>
+</ol>
+<p><b>Root Cause:</b> The snapshot lacks enough observed within-user history for most users; its behavioral origin is unresolved.</p>
+<p><b>Countermeasure:</b> Begin with explicit context annotation; report the size and selection of any eligible history subset after temporal splitting.</p>
+<p><b>Reverse Check:</b> More earlier reviews could enlarge eligibility; they would not establish that personalization improves customer fit.</p>
+<p><b>Confidence:</b> High for data limitation; low for behavioral explanations.</p>
+<h3>W3: Opposing ratings cannot by themselves identify customer-specific product fit.</h3><p>Evidence: E7, E8, E9</p><ol>
+<li><b>Why are opposing ratings insufficient?</b> A single score does not identify the aspect, user need, product variant or reason for dissatisfaction. <i>[measurement limitation]</i></li>
+<li><b>What could explain disagreement?</b> Preferences, performance differences, variant mismatch, defects, shipping or authenticity concerns are rival hypotheses. <i>[untested hypotheses]</i></li>
+<li><b>Which explanation is supported?</b> No adjudicated aspect/context labels or prospective shopper outcomes are available in this workflow. <i>[unresolved; stop]</i></li>
+</ol>
+<p><b>Root Cause:</b> The desired construct (customer fit) has not been independently measured; there is no established cause of rating disagreement.</p>
+<p><b>Countermeasure:</b> Annotate context, aspect, preference, defect, logistics and uncertainty with quoted spans; collect real shopper judgments before fit claims.</p>
+<p><b>Reverse Check:</b> Better annotations may distinguish explanations; only held-out validation can show the distinction is reliable.</p>
+<p><b>Confidence:</b> High for measurement gap; causal explanation unresolved.</p>
+</section><section><h2>4. Ranked question candidates</h2><p>Planning scores only: importance, feasibility, falsifiability, evidence leverage and downside learning, each 1–5. Originality is unresolved; these are provisional data-grounded designs.</p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ID</th>
+      <th>Question</th>
+      <th>importance</th>
+      <th>feasibility</th>
+      <th>falsifiability</th>
+      <th>evidence_leverage</th>
+      <th>downside_learning</th>
+      <th>Total /25</th>
+      <th>Decision</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Q1</td>
+      <td>Can an LLM distinguish explicit preference mismatch from product defects and delivery complaints?</td>
+      <td>5</td>
+      <td>4</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>24</td>
+      <td>pilot</td>
+    </tr>
+    <tr>
+      <td>Q6</td>
+      <td>Does evaluation only on complete listings overstate LLM interpretation performance?</td>
+      <td>4</td>
+      <td>4</td>
+      <td>5</td>
+      <td>5</td>
+      <td>4</td>
+      <td>22</td>
+      <td>secondary pilot</td>
+    </tr>
+    <tr>
+      <td>Q3</td>
+      <td>Do LLM conclusions remain stable when irrelevant brand and rating cues are masked?</td>
+      <td>4</td>
+      <td>4</td>
+      <td>5</td>
+      <td>4</td>
+      <td>4</td>
+      <td>21</td>
+      <td>secondary pilot</td>
+    </tr>
+    <tr>
+      <td>Q2</td>
+      <td>Does explicit usage context improve customer–product fit judgments beyond product ratings?</td>
+      <td>5</td>
+      <td>2</td>
+      <td>5</td>
+      <td>3</td>
+      <td>5</td>
+      <td>20</td>
+      <td>park pending shopper labels</td>
+    </tr>
+    <tr>
+      <td>Q4</td>
+      <td>Does variant-aware review retrieval improve aspect interpretation?</td>
+      <td>4</td>
+      <td>2</td>
+      <td>4</td>
+      <td>3</td>
+      <td>4</td>
+      <td>17</td>
+      <td>park pending variant mapping</td>
+    </tr>
+    <tr>
+      <td>Q5</td>
+      <td>Do earlier reviewer histories improve fit judgments over explicit current needs?</td>
+      <td>4</td>
+      <td>1</td>
+      <td>4</td>
+      <td>2</td>
+      <td>4</td>
+      <td>15</td>
+      <td>park pending history audit</td>
+    </tr>
+  </tbody>
+</table>
+</section><section><h2>5. Good Question Cards and two-week pilots</h2>
+<h3>Q1: Distinguishing preference mismatch from product failure</h3>
+<p><b>Research Question:</b> Can an LLM distinguish explicit preference mismatch from product defects and delivery complaints?</p>
+<p><b>Stake:</b> A merchant needs different actions for unsuitable targeting, a defective product and delivery problems.</p>
+<p><b>Hidden Assumption:</b> Review text contains enough explicit evidence for humans to distinguish these explanations.</p>
+<p><b>Competing Hypotheses:</b> <ul><li>H1: Explicit context and aspect spans improve preference-mismatch classification.</li><li>H2: Sentiment and complaint keywords explain apparent gains without context reasoning.</li><li>H3: Humans cannot reliably separate these causes from available text.</li></ul></p>
+<p><b>Discriminating Test:</b> Compare majority/keyword baselines, text-only LLM and context/aspect-guided LLM under an equal model budget. Use two independent annotators plus adjudication; allow unclear and multiple labels. Split by parent product and remove exact duplicates; exclude listing aggregate ratings and reviewer identifiers. Report macro-F1, per-class recall, span F1, uncertainty coverage, product-cluster bootstrap intervals, cost and latency.</p>
+<p><b>Falsifier:</b> No reliable human agreement, or no held-out improvement over the strongest baseline after controlling for sentiment and review length. Treat inconclusive intervals as inconclusive.</p>
+<p><b>Two Week Pilot:</b> Days 1–3: refine schema on 50 reviews. Days 4–7: independently label 300 additional reviews across rating and completeness strata, including mixed-rating products and controls. Days 8–10: freeze schema and product-disjoint split; lock prompts on development data. Days 11–14: evaluate baselines and context ablation on untouched test products. Use pilot variance to plan a powered follow-up.</p>
+<p><b>Minimum Resources:</b> Two annotators, one adjudicator, local review text, annotation budget; model access and cost approval before running LLM experiments.</p>
+<p><b>Strongest Reviewer Objection:</b> This may be ordinary complaint classification; no independently verified customer fit or demonstrated novelty.</p>
+<p><b>Next Action:</b> Review the 200-row annotation seed, extend it beyond rating-balanced sampling, and label the first 50 with uncertainty.</p>
+<p><b>Status:</b> Provisional design; no experiment has been run.</p>
+<h3>Q6: Selection effects from listing completeness</h3>
+<p><b>Research Question:</b> Does evaluation only on complete listings overstate LLM interpretation performance?</p>
+<p><b>Stake:</b> A shopping assistant evaluated only on complete listings may leave most of a merchant catalog untested.</p>
+<p><b>Hidden Assumption:</b> Human labels can be sampled across completeness strata.</p>
+<p><b>Competing Hypotheses:</b> <ul><li>H1: Restricting to complete listings changes measured LLM performance.</li><li>H2: Differences reflect review length, product type or review volume rather than completeness.</li><li>H3: Performance is stable across completeness strata.</li></ul></p>
+<p><b>Discriminating Test:</b> Sample independently labeled reviews in complete and incomplete product strata. Keep test products disjoint from development. Compare the same frozen model; report within-stratum macro-F1 and catalog-weighted estimates. Match or stratify on observable review length and volume; validate product types manually. Report residual confounding and do not interpret a stratum difference as a causal effect of missingness.</p>
+<p><b>Falsifier:</b> No meaningful stratum difference, or the difference disappears under observable controls; either result limits the selection-bias claim.</p>
+<p><b>Two Week Pilot:</b> Week 1: cross-tab eligibility and design a 300-review stratified annotation sample. Week 2: adjudicate, freeze prompts, evaluate a single fixed model and reweight to known catalog proportions. Report uncertainty and strata with insufficient labels.</p>
+<p><b>Minimum Resources:</b> Same annotators and frozen model as Q1; extra labels may be necessary for sparse strata.</p>
+<p><b>Strongest Reviewer Objection:</b> Observed groups are confounded, listing timestamps are unknown, and the pilot may be underpowered.</p>
+<p><b>Next Action:</b> Audit the eligibility table and preregister the strata and estimand before looking at model scores.</p>
+<p><b>Status:</b> Provisional design; no experiment has been run.</p>
+</section><section><h2>6. What is needed next</h2><ol><li>Human annotation and agreement checks for explicit context, aspects, preference mismatch, defects and logistics.</li><li>A literature audit before claiming novelty.</li><li>Prospective shopper needs and independent fit judgments before evaluating customer–product fit.</li><li>Merchant actions and outcomes to measure conversion, margin or service impact.</li></ol><p>A target review must never be both the source of a purported pre-purchase need and independent ground truth for its own prediction. Keep product families, duplicates and development/test data separated. Validate variant mappings and avoid future listing aggregates in historical prediction.</p></section>
+<p>Evidence CSV (regenerate locally) · <a href="five_whys.md">5 Whys Markdown</a> · <a href="research_questions.md">Questions and pilots Markdown</a></p></body></html>

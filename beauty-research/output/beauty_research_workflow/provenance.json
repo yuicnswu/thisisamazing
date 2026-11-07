@@ -1,0 +1,66 @@
+{
+  "catalog": {
+    "path": "./output/beauty_eda/products_profile.csv",
+    "sha256": "33c659b8a4fc9cfd882be346498abbecfeddb83173bd81c4e893c2c11eb8dc0a"
+  },
+  "reviews": {
+    "path": "./output/beauty_reviews/reviews_with_catalog.parquet",
+    "sha256": "50ab34269a060f3d826352efaf786259e7f660e623544610cd483ec0f514018b"
+  },
+  "products": {
+    "path": "./output/beauty_reviews/product_review_profile.csv",
+    "sha256": "aaf7a897c96b4c838d352dcde678bfb3e7303d2a28f36f5376807b54abbc8c11"
+  },
+  "histories": {
+    "path": "./output/beauty_reviews/reviewer_history_profile.parquet",
+    "sha256": "888db612206b6dd961f2ca00d3283bee182051d6152b26b86ef9d08149117778"
+  },
+  "source_manifest": {
+    "name": "Beauty catalog and collected reviews",
+    "sources": [
+      {
+        "role": "product_metadata",
+        "path": "~/Downloads/meta_All_Beauty.jsonl",
+        "sha256": "1cfbdf6d2ccf9c3ac52a4508b15f31f8f340508a245b65c3e3b5f461e06e97ef",
+        "records": 112590
+      },
+      {
+        "role": "customer_reviews",
+        "path": "~/Downloads/All_Beauty.jsonl",
+        "sha256": "36ca7c48440a8247b2dca0174d095238422b506a8a80c114dca722b7715f1c94",
+        "records": 701528
+      }
+    ],
+    "join": {
+      "key": "parent_asin",
+      "cardinality": "many reviews to one parent-level catalog record",
+      "match_pct": 100.0,
+      "variant_id": "asin"
+    },
+    "outputs": {
+      "joined_reviews": "output/beauty_reviews/reviews_with_catalog.parquet",
+      "product_profile": "output/beauty_reviews/product_review_profile.csv",
+      "reviewer_profile": "output/beauty_reviews/reviewer_history_profile.parquet",
+      "human_annotation_seed": "output/beauty_reviews/annotation_seed_200.csv",
+      "report": "output/beauty_reviews/report.html"
+    },
+    "duplicate_policy": "Joined table retains all parsed rows and flags exact duplicates; analysis excludes exact duplicates only.",
+    "timestamps": "Unix milliseconds; parsed as UTC.",
+    "limitations": [
+      "Review text is post-purchase, not an observed pre-purchase need.",
+      "No direct personalized-fit labels or rejected-alternative judgments.",
+      "Listing snapshot dates are not available.",
+      "Parent-level metadata may combine variants.",
+      "Keyword-derived listing segments are not validated categories."
+    ],
+    "reproduce": ".venv/bin/python scripts/add_beauty_reviews.py"
+  },
+  "versions": {
+    "ai-data-science-team": "0.0.0.9017",
+    "pandas": "3.1.0",
+    "pytimetk": "2.5.3",
+    "sweetviz": "2.3.3",
+    "nbformat": "5.11.1"
+  },
+  "scope": "Local catalog/review snapshots; review deduplication uses exact record hashes."
+}

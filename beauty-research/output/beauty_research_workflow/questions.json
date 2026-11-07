@@ -1,0 +1,126 @@
+[
+  {
+    "id": "Q1",
+    "question": "Can an LLM distinguish explicit preference mismatch from product defects and delivery complaints?",
+    "hidden_assumption": "Review text contains enough explicit evidence for humans to distinguish these explanations.",
+    "evidence": [
+      "E7",
+      "E8"
+    ],
+    "why_chain": "W3",
+    "scores": {
+      "importance": 5,
+      "feasibility": 4,
+      "falsifiability": 5,
+      "evidence_leverage": 5,
+      "downside_learning": 5
+    },
+    "planning_total": 24,
+    "originality": null,
+    "originality_status": "[Unresolved Gap] Literature audit required; no novelty or conference-readiness claim.",
+    "decision": "pilot"
+  },
+  {
+    "id": "Q6",
+    "question": "Does evaluation only on complete listings overstate LLM interpretation performance?",
+    "hidden_assumption": "Human labels can be sampled across completeness strata.",
+    "evidence": [
+      "E1",
+      "E2"
+    ],
+    "why_chain": "W1",
+    "scores": {
+      "importance": 4,
+      "feasibility": 4,
+      "falsifiability": 5,
+      "evidence_leverage": 5,
+      "downside_learning": 4
+    },
+    "planning_total": 22,
+    "originality": null,
+    "originality_status": "[Unresolved Gap] Literature audit required; no novelty or conference-readiness claim.",
+    "decision": "secondary pilot"
+  },
+  {
+    "id": "Q3",
+    "question": "Do LLM conclusions remain stable when irrelevant brand and rating cues are masked?",
+    "hidden_assumption": "Human validators can confirm that edits preserve relevant product information.",
+    "evidence": [
+      "E9"
+    ],
+    "why_chain": "W3",
+    "scores": {
+      "importance": 4,
+      "feasibility": 4,
+      "falsifiability": 5,
+      "evidence_leverage": 4,
+      "downside_learning": 4
+    },
+    "planning_total": 21,
+    "originality": null,
+    "originality_status": "[Unresolved Gap] Literature audit required; no novelty or conference-readiness claim.",
+    "decision": "secondary pilot"
+  },
+  {
+    "id": "Q2",
+    "question": "Does explicit usage context improve customer\u2013product fit judgments beyond product ratings?",
+    "hidden_assumption": "Independent shoppers can supply needs and compare plausible products.",
+    "evidence": [
+      "E5",
+      "E7"
+    ],
+    "why_chain": "W2",
+    "scores": {
+      "importance": 5,
+      "feasibility": 2,
+      "falsifiability": 5,
+      "evidence_leverage": 3,
+      "downside_learning": 5
+    },
+    "planning_total": 20,
+    "originality": null,
+    "originality_status": "[Unresolved Gap] Literature audit required; no novelty or conference-readiness claim.",
+    "decision": "park pending shopper labels"
+  },
+  {
+    "id": "Q4",
+    "question": "Does variant-aware review retrieval improve aspect interpretation?",
+    "hidden_assumption": "Variant identity and corresponding listing attributes can be verified independently.",
+    "evidence": [
+      "E8"
+    ],
+    "why_chain": "W3",
+    "scores": {
+      "importance": 4,
+      "feasibility": 2,
+      "falsifiability": 4,
+      "evidence_leverage": 3,
+      "downside_learning": 4
+    },
+    "planning_total": 17,
+    "originality": null,
+    "originality_status": "[Unresolved Gap] Literature audit required; no novelty or conference-readiness claim.",
+    "decision": "park pending variant mapping"
+  },
+  {
+    "id": "Q5",
+    "question": "Do earlier reviewer histories improve fit judgments over explicit current needs?",
+    "hidden_assumption": "Enough time-valid multi-product histories and independent fit labels exist.",
+    "evidence": [
+      "E5",
+      "E6"
+    ],
+    "why_chain": "W2",
+    "scores": {
+      "importance": 4,
+      "feasibility": 1,
+      "falsifiability": 4,
+      "evidence_leverage": 2,
+      "downside_learning": 4
+    },
+    "planning_total": 15,
+    "originality": null,
+    "originality_status": "[Unresolved Gap] Literature audit required; no novelty or conference-readiness claim.",
+    "decision": "park pending history audit"
+  }
+]

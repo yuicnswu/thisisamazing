@@ -1,3 +1,11 @@
+## Current direction: Beauty Market Research Agent (ICIS / HICSS)
+
+[Paper draft: Adaptive or Fixed? An Evidence-Grounded Agent for Beauty Market Research](beauty-research/proposals/agentic_beauty_market_research.md) · [Short supervisor brief](beauty-research/proposals/supervisor_brief.md) · [EDA, notebooks and data audits](beauty-research/README.md)
+
+The agent study has not run any LLM yet. The only real model results in this repository are the EvidenceGuard RQ1 pilot below (`05-report/report.md`). The tables in `benchmark_outputs/simulated_mockup/` are not results.
+
+---
+
 # Before the First Review: evidence-grounded matching of new beauty products
 
 > **Core question:** *How can a new product find the customers it genuinely serves, before it has reviews, popularity, or an established brand?*

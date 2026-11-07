@@ -1,0 +1,20 @@
+.venv/
+vendor/
+.env
+credentials.yml
+**/.ipynb_checkpoints/
+**/__pycache__/
+.jupyter-runtime/
+.DS_Store
+.env.*
+*.pem
+*.key
+# Raw and row-level derived datasets remain local.
+*.parquet
+*.jsonl
+*.jsonl.gz
+output/beauty_eda/*.csv
+output/beauty_reviews/*.csv
+output/sephora/*.csv
+output/**/sweetviz.html
+output/install_smoke/
