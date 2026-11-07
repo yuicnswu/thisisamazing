@@ -22,7 +22,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from analyze import group_ppi, pct  # noqa: E402
 from aspects import ASPECTS  # noqa: E402
-from scale import load_labels  # noqa: E402
+from scale import gold_name, load_labels  # noqa: E402
 
 SEGMENTS = {  # same order and patterns as scripts/beauty_eda.py; first match wins
     "Hair extensions / wigs": r"\b(wig|wigs|weave|weft|extensions|braiding|toupee|hairpiece)\b",
@@ -77,7 +77,7 @@ def main(meta_path):
     df = df.merge(meta, on="product_id", how="left")
     for c in ("has_description", "has_features", "complete_listing"):
         df[c] = df[c].astype(str)
-    ca = load_labels(out, "calib")
+    ca = load_labels(out, "calib", gold_name(out))
     ca = ca.rename(columns={c: "y_" + c for c in ca.columns if c != "review_id"}).merge(df, on="review_id")
     have = [a for a in ASPECTS if f"neg_{a}" in df.columns]
     R = {"products_in_meta": len(meta), "reviews_matched": int(df.segment.notna().sum()), "reviews": len(df)}

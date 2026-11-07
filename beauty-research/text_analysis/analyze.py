@@ -166,7 +166,7 @@ def write_md(R, out, sfx=""):
     w(f"{R['reviews']:,} reviews after cleaning ({p['raw_rows']:,} raw, {p['exact_duplicates_dropped']:,} exact duplicates and "
       f"{p['empty_text_dropped']:,} empty reviews dropped), {p['products']:,} products, {p['date_min'][:10]} to {p['date_max'][:10]}. "
       f"Shares are of all reviews, with 95% PPI++ intervals from a {R['calib_n']:,}-review random calibration sample. "
-      "They estimate what the LLM annotator would say about every review; they are not human-validated.\n")
+      "They estimate what the three-model jury (after the semantic support check) would say about every review; they are not human-validated.\n")
     lab = R["labels"]
     w("## Label quality\n")
     cb = R.get("codebook")

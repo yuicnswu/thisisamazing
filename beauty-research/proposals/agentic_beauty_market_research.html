@@ -953,81 +953,112 @@ reviews (<a href="../text_analysis/README.md">method and code</a>, <a
 href="../text_analysis/outputs/amazon/results.md">results</a>, <a
 href="../text_analysis/outputs/amazon/meta_results.md">metadata
 join</a>, <a
-href="../text_analysis/outputs/amazon/listing_nlp.md">listing NLP</a>)
-gives the baseline the artifact’s analysis layer must reproduce. An LLM
-(Claude Haiku) labelled 3,500 reviews with 16 aspects, a polarity and a
-verbatim quote; 99.7% of its quotes were found word for word, and a
-second model agreed with a median Cohen’s kappa of 0.80. Because no
-human coders are available, label quality is being raised and measured
-without them (<a href="../text_analysis/codebook.py">codebook.py</a>, <a
-href="../text_analysis/entail.py">entail.py</a>): two models label a
-development sample under the same guide, a third, stronger model
-adjudicates every disagreement and turns ambiguities into general rules,
-and the guide is rewritten until agreement stops improving (iterative
-codebook development with model coders; Madaan et al., 2023; Verga et
-al., 2024). The gain is checked on a separate held-out sample, and the
-calibration sample’s gold labels become jury labels. Every gold label is
-then judged for semantic support of its claim by its quote, a check
-validated on a known-answer contrast set of perturbed claims (flipped
-polarity, swapped aspect, wrong quote). An LLM topic model (TopicGPT;
-Pham et al., 2024) audits whether the 16-aspect taxonomy misses frequent
-themes, and a pretrained sentence encoder (BGE; Xiao et al., 2024) is
-compared with TF-IDF as the scaling classifier. <em>These runs are in
-progress; the figures below are from the single-model labels and will be
-replaced.</em> A TF-IDF classifier trained on those labels was applied
-to every review, and shares were estimated by prediction-powered
-inference (PPI++; Angelopoulos et al., 2023) on a separate 1,500-review
-random sample, which keeps them unbiased with valid 95% intervals. The
-shares describe what the annotator would say about every review; they
-are not human-validated.</p>
+href="../text_analysis/outputs/amazon/listing_nlp.md">listing NLP</a>,
+<a href="../text_analysis/outputs/amazon/topicgpt.md">taxonomy
+audit</a>) gives the baseline the artifact’s analysis layer must
+reproduce. It is built to stand without human coders, which this study
+does not have:</p>
+<ol type="1">
+<li><strong>Self-refining labelling guide</strong> (<a
+href="../text_analysis/codebook.py">codebook.py</a>). Claude Haiku and
+Claude Sonnet label a 240-review development sample under one guide (16
+aspects, a polarity and a verbatim quote per aspect, 12 customer-context
+tags). Claude Opus adjudicates every disagreement and turns ambiguities
+into general rules, and the guide is rewritten until agreement stops
+improving. This is iterative codebook development with model coders
+(Madaan et al., 2023; Verga et al., 2024). Two rounds produced 20 rules,
+and macro Cohen’s kappa between the two coders rose from 0.80 to 0.87 on
+the development sample. On a separate 200-review held-out sample it rose
+from 0.81 to 0.83, and exact agreement on the full label set from 55% to
+64%. Context-tag kappa fell on the held-out sample (0.84 to 0.72, few
+positives), so context shares are the least reliable labels.</li>
+<li><strong>Jury gold labels.</strong> On the 1,500-review random
+calibration sample, both coders label every review under the final
+guide, and the 37.5% of reviews where they disagree are adjudicated. The
+cheap coder agrees with the jury at macro kappa 0.91, which is why it is
+used for the 2,000-review training sample.</li>
+<li><strong>Semantic support check</strong> (<a
+href="../text_analysis/entail.py">entail.py</a>). A verbatim quote
+proves the text exists, not that it supports the label. Claude Opus
+judged every gold label against its quote. On a known-answer contrast
+set it accepted 99.0% of original labels and rejected 97.9% of perturbed
+ones: 99.7% with flipped polarity, 100% with a swapped aspect, and 92.7%
+with another label’s quote. It judged 9.4% of verbatim gold labels
+unsupported, most often for texture (21%) and the generic overall
+verdict (14%), and these were dropped.</li>
+<li><strong>Scaling with valid intervals.</strong> A TF-IDF word and
+character n-gram classifier trained on the labels is applied to every
+review. Shares are estimated by prediction-powered inference (PPI++;
+Angelopoulos et al., 2023) against the gold sample, which keeps them
+unbiased with valid 95% intervals for what the jury would say about
+every review. A pretrained sentence encoder (BGE; Xiao et al., 2024) is
+the planned replacement classifier; it must run on a machine with model
+access.</li>
+<li><strong>Taxonomy audit.</strong> An LLM topic model (TopicGPT; Pham
+et al., 2024) generated 29 topics from 400 reviews and assigned them to
+the calibration sample. 36.2% [33.8, 38.7] of reviews discuss at least
+one theme the 16 aspects do not cover, mainly fit and size (9.3%), look
+and style (9.0%), comfort in use (5.8%), portability and storage (4.3%),
+compatibility with other products (3.9%) and residue (2.9%). Many come
+from wigs, tools and devices in the All_Beauty category. These become
+candidate aspects for the next labelling round.</li>
+</ol>
+<p>The guide changed some definitions, so figures differ from the
+single-model version: breakage and build defects now count as quality
+rather than efficacy. Main results:</p>
 <ul>
-<li><p><strong>Most reviews are generic.</strong> 61.7% [59.6, 63.8]
-give an overall verdict. Efficacy is the most discussed specific aspect
-(30.1% [28.3, 31.9]).</p></li>
-<li><p><strong>Low ratings are often not about the product’s
-effect.</strong> Among 1–2★ reviews, 29.8% [25.4, 34.1] criticise
-efficacy, but 27.1% [22.5, 31.6] criticise authenticity or quality (not
-as described, fake, cheap build), 11.7% [8.4, 15.0] packaging and 11.0%
-[7.8, 14.2] delivery or service. A brief that reads low stars as
-product-experience problems would be wrong for a large share of them,
-which is RCA cause B in text form.</p></li>
-<li><p><strong>Customer context is rarely stated.</strong> Repeat
-purchase 4.9% [3.9, 6.0], gift 3.0% [2.2, 3.8], and any skin or hair
-type at most 1.3%. This is why Sephora, with structured skin-type
-fields, is the main context environment.</p></li>
-<li><p><strong>Criticism is not concentrated in a few products.</strong>
-No product accounts for more than 3% of any aspect’s predicted criticism
+<li><strong>Most reviews are generic.</strong> 58.5% [56.3, 60.7] give
+an overall verdict. Efficacy is the most discussed specific aspect
+(27.8% [26.0, 29.6]), followed by quality and authenticity (18.5% [16.9,
+20.0]).</li>
+<li><strong>Low ratings are mostly not about the product’s
+effect.</strong> Among 1–2★ reviews, 24.1% [20.0, 28.2] criticise
+efficacy, but 34.4% [29.9, 39.0] criticise quality or authenticity
+(breaks, fake, not as described), 12.1% [9.0, 15.2] size or quantity,
+7.6% [4.7, 10.5] packaging and 5.7% [3.3, 8.2] delivery or service. A
+brief that reads low stars as product-experience problems would be wrong
+for most of them, which is RCA cause B in text form.</li>
+<li><strong>Customer context is rarely stated.</strong> Repeat purchase
+is stated in 3.4% [2.5, 4.3] of reviews and gift in 3.1% [2.3, 3.9]. No
+skin or hair type exceeds 0.9%. This is why Sephora, with structured
+skin-type fields, is the main context environment.</li>
+<li><strong>Criticism is not concentrated in a few products.</strong> No
+product accounts for more than 3.2% of any aspect’s predicted criticism
 (products with ≥ 20 reviews), so most complaint patterns are
-category-wide, not one-product artefacts. Concentration is a classifier
-estimate without an interval.</p></li>
-<li><p><strong>Criticism has risen over time.</strong> The share of
-reviews with a negative overall verdict rose from 4.2% [1.4, 7.1] in
-reviews up to 2015 to 16.6% [13.6, 19.7] in 2021–23, and price criticism
-from 1.5% [0.0, 3.1] to 7.8% [5.5, 10.0]. Time windows therefore belong
-in the cohort definition (DP4).</p></li>
-<li><p><strong>What gets criticised depends on the segment</strong>
+category-wide. Concentration is a classifier estimate without an
+interval.</li>
+<li><strong>Criticism has risen over time.</strong> The share of reviews
+with a negative overall verdict rose from 7.0% [3.6, 10.4] up to 2015 to
+14.5% [11.6, 17.4] in 2021–23. Price criticism rose from 1.5% [0.0, 3.0]
+to 5.0% [3.1, 6.9]. Time windows therefore belong in the cohort
+definition (DP4).</li>
+<li><strong>What gets criticised depends on the segment</strong>
 (product metadata joined by product id; segments are the EDA’s title
-keyword rules). Authenticity and quality criticism appears in 2.7% [0.5,
-4.8] of skin-care reviews but about 11% of hair-extension, makeup and
-nail reviews, while efficacy criticism is highest for skin care (13.2%
-[8.9, 17.5]) and lowest for hair extensions (3.6% [0.5, 6.8]). Listings
-with no price draw more authenticity criticism (9.3% [7.8, 10.8]) than
-priced ones (4.2–6.1%). A category-level brief must therefore be
-segment-specific.</p></li>
-<li><p><strong>Listing claims make the claimed aspect a target.</strong>
+keyword rules). Quality and authenticity criticism appears in 23.7%
+[17.6, 29.8] of hair-extension and wig reviews, 16.4% [10.7, 22.1] of
+nail and 13.3% [9.2, 17.4] of makeup reviews, but 5.1% [2.3, 7.8] of
+skin-care reviews. Efficacy criticism is highest for grooming and
+removal (13.7% [6.2, 21.2]) and skin care (10.2% [6.3, 14.1]). Listings
+with no price draw more quality criticism (12.6% [11.1, 14.2]) than
+priced ones (4.9–8.6%), and incomplete listings more than complete ones
+(11.7% [10.3, 13.1] vs 4.6% [1.5, 7.7]). A category-level brief must
+therefore be segment-specific.</li>
+<li><strong>Listing claims make the claimed aspect a target.</strong>
 84.6% of listings have no feature bullets and 83.1% no description, so
 most claims sit in the title. Where the listing claims a scent, 9.1%
-[3.4, 14.9] of reviews criticise the scent against 2.5% [1.8, 3.2]
-elsewhere (+6.6 points [+0.9, +12.4]); where it claims hydration,
-hydration criticism is +3.1 points [+0.1, +6.1]. Other claims
-(long-lasting, gentle, natural, multipack, premium) show no difference
-distinguishable from zero. This is descriptive: products that make
-claims differ in other ways.</p></li>
+[3.3, 14.9] of reviews criticise the scent against 2.3% [1.6, 3.0]
+elsewhere (+6.8 points [+1.0, +12.7]). Where it claims hydration,
+hydration criticism is +3.1 points [+0.1, +6.1]. Long-lasting, gentle,
+easy-to-use, multipack and premium claims show no difference
+distinguishable from zero. Ingredient claims could not be tested because
+too few gold labels criticise ingredients. This is descriptive: products
+that make claims differ in other ways.</li>
 </ul>
 <p>These figures feed the task suite: the oracle for “what are low
-ratings about” tasks, and the dominance check, use the same labels and
-the same PPI estimator. The Sephora run uses the same code; its results
-will be added when it finishes.</p>
+ratings about” tasks and the dominance check use the same labels and the
+same PPI estimator. The single-model results are kept in
+<code>outputs/amazon/v0_labels/</code> for comparison. The Sephora run
+uses the same code once the Claude CLI is signed in on the Mac.</p>
 <h3
 id="root-cause-analysis-why-review-based-marketing-decisions-go-wrong">6.3
 Root-cause analysis: why review-based marketing decisions go wrong</h3>
@@ -1406,8 +1437,9 @@ is a primary outcome, not a footnote.</li>
 review-text labels used by the oracles are a three-model jury under a
 self-refined guide, checked for verbatim and semantic support (§6.2).
 They measure model consensus under an explicit guide, not human
-judgement; the guide, every adjudication and every rule are published so
-a human audit can be added.</li>
+judgement. All three models come from one family, so shared biases are
+not removed. The guide, every adjudication and every rule are published
+so a human audit can be added.</li>
 <li><strong>Model dependence.</strong> Results may change with the
 model. The main comparison uses one model, with a replication on a
 second model family if budget allows.</li>
@@ -1436,7 +1468,9 @@ A–E)</td>
 </tr>
 <tr class="odd">
 <td>Review text analysis, aspect-based sentiment (§6.2)</td>
-<td>Done for Amazon (693,547 reviews); Sephora running</td>
+<td>Done for Amazon (693,547 reviews) with jury labels, semantic support
+check and taxonomy audit; Sephora waits on the Mac CLI sign-in; encoder
+classifier waits on the Mac</td>
 </tr>
 <tr class="even">
 <td>Verbatim evidence checker</td>

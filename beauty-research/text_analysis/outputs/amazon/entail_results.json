@@ -1,0 +1,93 @@
+{
+  "judge": "claude-opus-5-5",
+  "contrast_validation": {
+    "orig": {
+      "n": 300,
+      "supported_rate": 0.99
+    },
+    "flip": {
+      "n": 300,
+      "supported_rate": 0.0033
+    },
+    "swap": {
+      "n": 300,
+      "supported_rate": 0.0
+    },
+    "wrong": {
+      "n": 219,
+      "supported_rate": 0.0731
+    },
+    "specificity_all_perturbations": 0.9792,
+    "unparsed": 0
+  },
+  "gold_labels": 3377,
+  "not_supported": 316,
+  "verbatim_but_unsupported_rate": 0.0936,
+  "judge_unparsed_kept": 1,
+  "unsupported_rate_by_aspect": {
+    "authenticity_quality": {
+      "n": 300,
+      "rate": 0.0967
+    },
+    "colour_shade": {
+      "n": 140,
+      "rate": 0.0357
+    },
+    "delivery_service": {
+      "n": 83,
+      "rate": 0.0843
+    },
+    "ease_of_use": {
+      "n": 224,
+      "rate": 0.0223
+    },
+    "efficacy": {
+      "n": 457,
+      "rate": 0.0503
+    },
+    "hair_result": {
+      "n": 129,
+      "rate": 0.0698
+    },
+    "hydration_skin_feel": {
+      "n": 88,
+      "rate": 0.0795
+    },
+    "ingredients": {
+      "n": 28,
+      "rate": 0.0357
+    },
+    "longevity": {
+      "n": 87,
+      "rate": 0.046
+    },
+    "overall": {
+      "n": 1054,
+      "rate": 0.1423
+    },
+    "packaging": {
+      "n": 82,
+      "rate": 0.0488
+    },
+    "price_value": {
+      "n": 152,
+      "rate": 0.0592
+    },
+    "scent": {
+      "n": 130,
+      "rate": 0.0308
+    },
+    "size_quantity": {
+      "n": 212,
+      "rate": 0.0991
+    },
+    "skin_reaction": {
+      "n": 51,
+      "rate": 0.0784
+    },
+    "texture": {
+      "n": 160,
+      "rate": 0.2125
+    }
+  }
+}

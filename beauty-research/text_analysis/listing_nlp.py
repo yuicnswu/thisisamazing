@@ -26,7 +26,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from analyze import pct  # noqa: E402
 from parse import clean_text, tokens  # noqa: E402
-from scale import load_labels, ppi_mean  # noqa: E402
+from scale import gold_name, load_labels, ppi_mean  # noqa: E402
 
 # claim -> (pattern over title + features + description, aspect whose criticism tests it)
 CLAIMS = {
@@ -66,7 +66,7 @@ def main(meta_path):
     lst = load_listings(meta_path)
     df = pd.read_parquet(os.path.join(out, "reviews.parquet"), columns=["review_id", "product_id"])
     df = df.merge(pd.read_parquet(os.path.join(out, "predictions.parquet")), on="review_id").merge(lst, on="product_id", how="left")
-    ca = load_labels(out, "calib")
+    ca = load_labels(out, "calib", gold_name(out))
     ca = ca.rename(columns={c: "y_" + c for c in ca.columns if c != "review_id"}).merge(df, on="review_id")
     words = lst[["title_words", "feature_words", "description_words"]]
     R = {"listings": len(lst),
@@ -75,6 +75,9 @@ def main(meta_path):
          "claims": {}}
     for k, (_, aspect) in CLAIMS.items():
         t, c = f"neg_{aspect}", "claim_" + k
+        if t not in df.columns:              # too few gold positives to train a classifier for this aspect
+            R.setdefault("skipped_claims", []).append(k)
+            continue
         res = {"aspect": aspect, "listings_with_claim": int(lst[c].sum())}
         for v, name in ((True, "with"), (False, "without")):
             ma, mc = df[c] == v, ca[c] == v
