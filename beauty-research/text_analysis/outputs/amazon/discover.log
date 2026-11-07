@@ -1,32 +1,32 @@
-0 0.1129 hair, curly, hair soft, hold, curly hair, hair hair, fine, fine hair, long hair, dry
-1 0.0256 quality, quality price, high quality, poor, poor quality, high, quality hair, price quality, hair quality, better quality
-2 0.1719 better, day, came, years, make, tried, hard, need, face, far
-3 0.0272 price, quality price, worth price, price quality, beat, value price, reasonable, hair price, reasonable price, beat price
-4 0.0352 easy, easy apply, apply, easy clean, clean, easy install, install, soft easy, hair easy, easy remove
-5 0.0347 color, hair color, brown, dark, light, pink, red, match, color hair, picture
-6 0.019 money, waste, waste money, save, total waste, total, value money, save money, waste time, time money
-7 0.0142 expected, exactly expected, smaller expected, smaller, better expected, better, exactly, arrived, bigger expected, bigger
-8 0.0185 smells, soap, feels, smells feels, perfume, lotion, oil, soap smells, hair smells, beard
-9 0.0201 smell, strong, oil, strong smell, soap, smell strong, fragrance, perfume, pleasant, lotion
-10 0.0179 colors, different colors, different, variety, vibrant, variety colors, bright, headbands, colors quality, palette
-11 0.0545 skin, dry, sensitive, face, sensitive skin, feels, dry skin, feel, makes, smooth
-12 0.0167 soft, hair soft, skin soft, makes, brushes, leaves, soft easy, comfortable, feel soft, wig
-13 0.0152 daughter, daughter hair, old, year, year old, old daughter, gift daughter, birthday, christmas, party
-14 0.0157 small, head, way small, little small, way, big, small head, small size, bottle, bit small
-15 0.0347 brush, brushes, bristles, hair brush, handle, brush hair, clean, teeth, set, brushing
-16 0.0069 described, exactly described, exactly, arrived, came, quickly, came described, received, arrived time, items
-17 0.036 long, time, long time, lasting, long lasting, long hair, lasts, lasts long, arrived time, goes
-18 0.0188 gift, christmas, christmas gift, friend, gave, wife, gave gift, liked, set, gift daughter
-19 0.0325 scent, soap, light, favorite, strong, lotion, body, fresh, fragrance, pleasant
-20 0.026 lashes, look, natural, mascara, apply, glue, magnetic, lash, lashes look, eye
-21 0.0099 thank, order, service, seller, received, wife, amazon, pleased, hair thank, thank amazon
-22 0.0291 looks, wig, picture, natural, looks natural, feels, hair looks, real, looks picture, look
-23 0.0165 worth, worth money, money, worth price, penny, worth penny, buying, cheap, worth buying, totally worth
-24 0.0215 fast, shipping, fast shipping, delivery, fast delivery, thanks, came, shipping fast, came fast, service
-25 0.0093 value, value money, value price, money, sturdy, quality value, comfortable, value quality, set, price value
-26 0.0471 little, bit, way, little bit, goes, long way, goes long, little goes, wish, big
-27 0.0361 nails, nail, polish, nail polish, gel, coat, gel polish, set, glue, doing
-28 0.0339 looking, exactly, job, needed, cheap, wanted, exactly looking, advertised, exactly wanted, exactly needed
-29 0.0423 size, fit, travel, big, perfectly, right, head, travel size, fits, right size
-LOW: money, disappointed, waste, don, star, work, cheap, didn, return, did, broke, bad, horrible, broken, terrible, doesn, waste money, poor, doesn work, returned, worst, didn work, awful, wouldn, does work, dried, apart, don buy, picture, opened, buy, don waste, received, fell, did work, stick, stay, unfortunately, stopped, returning
+0 0.114 hair, curly, hair soft, hold, curly hair, hair hair, fine, fine hair, long hair, dry
+1 0.0259 quality, quality price, high quality, poor, poor quality, high, quality hair, hair quality, price quality, cheap
+2 0.1799 better, day, years, came, make, tried, need, hard, looking, face
+3 0.0269 price, quality price, worth price, price quality, beat, value price, reasonable, hair price, reasonable price, beat price
+4 0.0346 easy, easy apply, apply, easy clean, clean, easy install, install, soft easy, hair easy, easy remove
+5 0.0346 color, hair color, brown, dark, light, pink, red, match, color hair, picture
+6 0.0193 money, waste, waste money, save, total waste, total, value money, save money, waste time, time money
+7 0.0146 expected, exactly expected, smaller expected, smaller, exactly, better expected, better, bigger expected, arrived, bigger
+8 0.0182 smells, soap, feels, smells feels, perfume, lotion, soap smells, oil, hair smells, beard
+9 0.0216 smell, strong, oil, smell strong, strong smell, soap, fragrance, perfume, pleasant, lotion
+10 0.0174 colors, different colors, different, variety, vibrant, variety colors, bright, headbands, colors quality, palette
+11 0.0579 skin, dry, sensitive, face, sensitive skin, feels, dry skin, feel, makes, smooth
+12 0.0183 soft, hair soft, skin soft, makes, brushes, leaves, soft easy, comfortable, wig, feel soft
+13 0.0199 small, head, way small, little small, way, big, small head, small size, bottle, bit small
+14 0.0338 brush, brushes, bristles, brush hair, hair brush, handle, clean, teeth, set, brushing
+15 0.0128 daughter, old, year, year old, old daughter, gift daughter, daughter hair, christmas, likes, brushes
+16 0.0124 described, exactly, exactly described, looking, arrived, exactly looking, wanted, needed, exactly wanted, exactly expected
+17 0.0357 long, time, long time, lasting, long lasting, long hair, lasts, lasts long, arrived time, arrived
+18 0.0184 gift, christmas, christmas gift, friend, gave, gave gift, wife, liked, set, gift daughter
+19 0.0301 scent, soap, light, favorite, strong, lotion, body, fresh, fragrance, pleasant
+20 0.0348 lashes, look, natural, mascara, apply, glue, magnetic, lashes look, lash, eye
+21 0.0141 fast, shipping, fast shipping, delivery, fast delivery, thanks, came, shipping fast, came fast, service
+22 0.0259 looks, wig, picture, natural, looks natural, feels, hair looks, real, looks picture, cheap
+23 0.0182 worth, worth money, money, worth price, penny, worth penny, cheap, buying, worth buying, totally worth
+24 0.0102 value, value money, value price, money, sturdy, quality value, comfortable, value quality, set, price value
+25 0.0122 thank, order, service, seller, wife, received, amazon, thank u, looking, u
+26 0.0462 little, bit, way, little bit, goes, long way, goes long, little goes, wish, big
+27 0.0376 nails, nail, polish, nail polish, gel, coat, gel polish, set, glue, doing
+28 0.0163 job, gets, gets job, clean, easy job, cleaning, doing job, brushes, doing, teeth
+29 0.0382 size, fit, travel, big, right, perfectly, head, travel size, right size, fits
+LOW: money, disappointed, waste, don't, star, work, cheap, didn't, return, did, broke, bad, horrible, broken, terrible, doesn't, waste money, poor, doesn't work, returned, worst, didn't work, awful, wouldn't, does work, dried, apart, don't buy, picture, opened, buy, don't waste, received, fell, did work, stick, stay, unfortunately, stopped, returning
 HIGH: great, love, works, easy, perfect, nice, stars, best, good, amazing, soft, price, great product, beautiful, skin, easy use, little, awesome, works great, cute, excellent, highly, value, loved, favorite, wonderful, loves, smooth, exactly, love product, natural, definitely, love love, bit, clean, helps, fast, highly recommend, good quality, great quality

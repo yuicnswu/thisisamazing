@@ -593,7 +593,10 @@ the robustness domain.</p>
 (Amazon All_Beauty)</h3>
 <p>An aspect-based sentiment analysis of all 693,547 cleaned Amazon
 reviews (<a href="../text_analysis/README.md">method and code</a>, <a
-href="../text_analysis/outputs/amazon/results.md">full results</a>)
+href="../text_analysis/outputs/amazon/results.md">results</a>, <a
+href="../text_analysis/outputs/amazon/meta_results.md">metadata
+join</a>, <a
+href="../text_analysis/outputs/amazon/listing_nlp.md">listing NLP</a>)
 gives the baseline the artifact’s analysis layer must reproduce. An LLM
 (Claude Haiku) labelled 3,500 reviews with 16 aspects, a polarity and a
 verbatim quote; 99.7% of its quotes were found word for word, and a
@@ -605,30 +608,48 @@ which keeps them unbiased with valid 95% intervals. The shares describe
 what the annotator would say about every review; they are not
 human-validated.</p>
 <ul>
-<li><strong>Most reviews are generic.</strong> 61.7% [59.6, 63.9] give
-an overall verdict. Efficacy is the most discussed specific aspect
-(30.3% [28.5, 32.2]).</li>
-<li><strong>Low ratings are often not about the product’s
-effect.</strong> Among 1–2★ reviews, 29.8% [25.5, 34.2] criticise
-efficacy, but 27.0% [22.5, 31.6] criticise authenticity or quality (not
-as described, fake, cheap build), 11.7% [8.4, 14.9] packaging and 11.1%
-[7.8, 14.3] delivery or service. A brief that reads low stars as
+<li><p><strong>Most reviews are generic.</strong> 61.7% [59.6, 63.8]
+give an overall verdict. Efficacy is the most discussed specific aspect
+(30.1% [28.3, 31.9]).</p></li>
+<li><p><strong>Low ratings are often not about the product’s
+effect.</strong> Among 1–2★ reviews, 29.8% [25.4, 34.1] criticise
+efficacy, but 27.1% [22.5, 31.6] criticise authenticity or quality (not
+as described, fake, cheap build), 11.7% [8.4, 15.0] packaging and 11.0%
+[7.8, 14.2] delivery or service. A brief that reads low stars as
 product-experience problems would be wrong for a large share of them,
-which is RCA cause B in text form.</li>
-<li><strong>Customer context is rarely stated.</strong> Repeat purchase
-4.9% [3.9, 6.0], gift 3.0% [2.2, 3.8], and any skin or hair type at most
-1.3%. This is why Sephora, with structured skin-type fields, is the main
-context environment.</li>
-<li><strong>Criticism is not concentrated in a few products.</strong> No
-product accounts for more than 3% of any aspect’s predicted criticism
+which is RCA cause B in text form.</p></li>
+<li><p><strong>Customer context is rarely stated.</strong> Repeat
+purchase 4.9% [3.9, 6.0], gift 3.0% [2.2, 3.8], and any skin or hair
+type at most 1.3%. This is why Sephora, with structured skin-type
+fields, is the main context environment.</p></li>
+<li><p><strong>Criticism is not concentrated in a few products.</strong>
+No product accounts for more than 3% of any aspect’s predicted criticism
 (products with ≥ 20 reviews), so most complaint patterns are
 category-wide, not one-product artefacts. Concentration is a classifier
-estimate without an interval.</li>
-<li><strong>Criticism has risen over time.</strong> The share of reviews
-with a negative overall verdict rose from 4.2% [1.4, 7.1] in reviews up
-to 2015 to 16.7% [13.7, 19.7] in 2021–23, and price criticism from 1.5%
-[0.0, 3.1] to 7.8% [5.6, 10.1]. Time windows therefore belong in the
-cohort definition (DP4).</li>
+estimate without an interval.</p></li>
+<li><p><strong>Criticism has risen over time.</strong> The share of
+reviews with a negative overall verdict rose from 4.2% [1.4, 7.1] in
+reviews up to 2015 to 16.6% [13.6, 19.7] in 2021–23, and price criticism
+from 1.5% [0.0, 3.1] to 7.8% [5.5, 10.0]. Time windows therefore belong
+in the cohort definition (DP4).</p></li>
+<li><p><strong>What gets criticised depends on the segment</strong>
+(product metadata joined by product id; segments are the EDA’s title
+keyword rules). Authenticity and quality criticism appears in 2.7% [0.5,
+4.8] of skin-care reviews but about 11% of hair-extension, makeup and
+nail reviews, while efficacy criticism is highest for skin care (13.2%
+[8.9, 17.5]) and lowest for hair extensions (3.6% [0.5, 6.8]). Listings
+with no price draw more authenticity criticism (9.3% [7.8, 10.8]) than
+priced ones (4.2–6.1%). A category-level brief must therefore be
+segment-specific.</p></li>
+<li><p><strong>Listing claims make the claimed aspect a target.</strong>
+84.6% of listings have no feature bullets and 83.1% no description, so
+most claims sit in the title. Where the listing claims a scent, 9.1%
+[3.4, 14.9] of reviews criticise the scent against 2.5% [1.8, 3.2]
+elsewhere (+6.6 points [+0.9, +12.4]); where it claims hydration,
+hydration criticism is +3.1 points [+0.1, +6.1]. Other claims
+(long-lasting, gentle, natural, multipack, premium) show no difference
+distinguishable from zero. This is descriptive: products that make
+claims differ in other ways.</p></li>
 </ul>
 <p>These figures feed the task suite: the oracle for “what are low
 ratings about” tasks, and the dominance check, use the same labels and
@@ -705,14 +726,20 @@ click or purchase</td>
 </tr>
 </tbody>
 </table>
-<p>The RCA establishes no root cause for missing prices, low demand,
-review fraud or poor marketing performance, and the paper claims none.
-Its role is problem identification in the design science sense (Peffers
-et al., 2007): it shows, on the real data, the failure modes that an
-unaided analyst or a summarising LLM would carry into a brief. An
-earlier 5 Whys in this project (<code>FIVE_WHYS_ANALYSIS.md</code>)
-studied cold-start mismatch for the EvidenceGuard study and is not used
-here.</p>
+<p>Two later chains use the review-text evidence of §6.2 (E and F in the
+<a href="../output/beauty_5whys/analysis.md">analysis</a>): low star
+ratings mix product failure with listing-accuracy, packaging and
+delivery problems, so star share is not a product-performance measure
+(supports MR4 and trap type (b)); and claimed aspects draw more
+criticism of that aspect, which a brief may report only as an
+association (supports MR6). The RCA establishes no root cause for
+missing prices, low demand, review fraud or poor marketing performance,
+and the paper claims none. Its role is problem identification in the
+design science sense (Peffers et al., 2007): it shows, on the real data,
+the failure modes that an unaided analyst or a summarising LLM would
+carry into a brief. An earlier 5 Whys in this project
+(<code>FIVE_WHYS_ANALYSIS.md</code>) studied cold-start mismatch for the
+EvidenceGuard study and is not used here.</p>
 <p>Evidence: <a href="../output/beauty_reviews/summary.json">Amazon
 summary</a>, <a
 href="../output/beauty_research_workflow/evidence_ledger.json">Amazon

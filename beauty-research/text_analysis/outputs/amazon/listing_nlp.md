@@ -8,15 +8,15 @@ Share of reviews criticising the matching aspect, on products whose listing make
 
 | Claim | Listings with it | Aspect tested | Criticism, with claim | Without | Difference (pp) |
 |---|---|---|---|---|---|
-| hydrating | 6,836 (6.1%) | hydration_skin_feel | 3.6% [0.6%, 6.5%] (calib 143) | 0.4% [0.1%, 0.8%] | +3.1 [+0.1, +6.1] |
-| long_lasting | 7,968 (7.1%) | longevity | 5.6% [2.2%, 9.0%] (calib 152) | 2.8% [2.0%, 3.7%] | +2.8 [-0.8, +6.3] |
-| gentle_sensitive | 3,391 (3.0%) | skin_reaction | 4.7% [0.4%, 9.1%] (calib 85) | 1.2% [0.7%, 1.8%] | +3.5 [-0.9, +7.9] |
-| natural_organic | 19,770 (17.6%) | ingredients | 0.7% [0.0%, 1.6%] (calib 293) | 0.4% [0.1%, 0.8%] | +0.3 [-0.7, +1.3] |
-| fragrance_free | 806 (0.7%) | scent | 2.8% [0.0%, 6.9%] (calib 26) | 2.9% [2.1%, 3.6%] | -0.0 [-4.2, +4.1] |
-| scented | 5,148 (4.6%) | scent | 9.1% [3.3%, 14.8%] (calib 90) | 2.4% [1.8%, 3.1%] | +6.6 [+0.8, +12.4] |
-| easy_to_use | 2,132 (1.9%) | ease_of_use | 11.8% [4.2%, 19.3%] (calib 56) | 6.5% [5.3%, 7.6%] | +5.3 [-2.3, +12.9] |
-| multipack | 29,700 (26.4%) | size_quantity | 6.5% [4.5%, 8.5%] (calib 368) | 5.4% [4.3%, 6.4%] | +1.1 [-1.2, +3.4] |
-| premium_quality | 10,007 (8.9%) | authenticity_quality | 9.7% [6.3%, 13.1%] (calib 232) | 7.8% [6.5%, 9.1%] | +1.9 [-1.8, +5.5] |
+| hydrating | 6,836 (6.1%) | hydration_skin_feel | 3.5% [0.6%, 6.5%] (calib 143) | 0.4% [0.1%, 0.8%] | +3.1 [+0.1, +6.1] |
+| long_lasting | 7,968 (7.1%) | longevity | 6.0% [2.7%, 9.3%] (calib 152) | 2.8% [2.0%, 3.6%] | +3.2 [-0.2, +6.6] |
+| gentle_sensitive | 3,391 (3.0%) | skin_reaction | 4.7% [0.4%, 9.1%] (calib 85) | 1.3% [0.7%, 1.8%] | +3.5 [-0.9, +7.9] |
+| natural_organic | 19,770 (17.6%) | ingredients | 0.7% [0.0%, 1.6%] (calib 293) | 0.4% [0.1%, 0.8%] | +0.2 [-0.8, +1.2] |
+| fragrance_free | 806 (0.7%) | scent | 3.0% [0.0%, 7.1%] (calib 26) | 2.9% [2.1%, 3.6%] | +0.1 [-4.1, +4.2] |
+| scented | 5,148 (4.6%) | scent | 9.1% [3.4%, 14.9%] (calib 90) | 2.5% [1.8%, 3.2%] | +6.6 [+0.9, +12.4] |
+| easy_to_use | 2,132 (1.9%) | ease_of_use | 11.0% [3.3%, 18.6%] (calib 56) | 6.4% [5.2%, 7.5%] | +4.6 [-3.1, +12.3] |
+| multipack | 29,700 (26.4%) | size_quantity | 6.4% [4.3%, 8.4%] (calib 368) | 5.3% [4.2%, 6.4%] | +1.1 [-1.2, +3.4] |
+| premium_quality | 10,007 (8.9%) | authenticity_quality | 9.7% [6.3%, 13.1%] (calib 232) | 7.8% [6.6%, 9.1%] | +1.8 [-1.8, +5.5] |
 
 ## Most frequent title bigrams
 

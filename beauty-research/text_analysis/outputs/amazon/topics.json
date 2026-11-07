@@ -1,7 +1,7 @@
 [
   {
     "topic": 0,
-    "share_dominant": 0.1129,
+    "share_dominant": 0.114,
     "top_terms": [
       "hair",
       "curly",
@@ -22,7 +22,7 @@
   },
   {
     "topic": 1,
-    "share_dominant": 0.0256,
+    "share_dominant": 0.0259,
     "top_terms": [
       "quality",
       "quality price",
@@ -31,10 +31,10 @@
       "poor quality",
       "high",
       "quality hair",
-      "price quality",
       "hair quality",
-      "better quality",
+      "price quality",
       "cheap",
+      "better quality",
       "cheap quality",
       "quality easy",
       "low quality",
@@ -43,28 +43,28 @@
   },
   {
     "topic": 2,
-    "share_dominant": 0.1719,
+    "share_dominant": 0.1799,
     "top_terms": [
       "better",
       "day",
-      "came",
       "years",
+      "came",
       "make",
       "tried",
-      "hard",
       "need",
+      "hard",
+      "looking",
       "face",
       "far",
       "order",
       "sure",
       "try",
-      "received",
-      "bottle"
+      "received"
     ]
   },
   {
     "topic": 3,
-    "share_dominant": 0.0272,
+    "share_dominant": 0.0269,
     "top_terms": [
       "price",
       "quality price",
@@ -85,7 +85,7 @@
   },
   {
     "topic": 4,
-    "share_dominant": 0.0352,
+    "share_dominant": 0.0346,
     "top_terms": [
       "easy",
       "easy apply",
@@ -106,7 +106,7 @@
   },
   {
     "topic": 5,
-    "share_dominant": 0.0347,
+    "share_dominant": 0.0346,
     "top_terms": [
       "color",
       "hair color",
@@ -120,14 +120,14 @@
       "picture",
       "black",
       "lips",
-      "bright",
+      "orange",
       "lipstick",
-      "orange"
+      "bright"
     ]
   },
   {
     "topic": 6,
-    "share_dominant": 0.019,
+    "share_dominant": 0.0193,
     "top_terms": [
       "money",
       "waste",
@@ -141,35 +141,35 @@
       "time money",
       "complete",
       "complete waste",
-      "cheap",
       "time",
+      "return",
       "dont"
     ]
   },
   {
     "topic": 7,
-    "share_dominant": 0.0142,
+    "share_dominant": 0.0146,
     "top_terms": [
       "expected",
       "exactly expected",
       "smaller expected",
       "smaller",
+      "exactly",
       "better expected",
       "better",
-      "exactly",
-      "arrived",
       "bigger expected",
+      "arrived",
       "bigger",
       "expected price",
       "expected quality",
       "quality expected",
-      "earlier expected",
-      "larger expected"
+      "color expected",
+      "earlier expected"
     ]
   },
   {
     "topic": 8,
-    "share_dominant": 0.0185,
+    "share_dominant": 0.0182,
     "top_terms": [
       "smells",
       "soap",
@@ -177,8 +177,8 @@
       "smells feels",
       "perfume",
       "lotion",
-      "oil",
       "soap smells",
+      "oil",
       "hair smells",
       "beard",
       "soft smells",
@@ -190,14 +190,14 @@
   },
   {
     "topic": 9,
-    "share_dominant": 0.0201,
+    "share_dominant": 0.0216,
     "top_terms": [
       "smell",
       "strong",
       "oil",
+      "smell strong",
       "strong smell",
       "soap",
-      "smell strong",
       "fragrance",
       "perfume",
       "pleasant",
@@ -211,7 +211,7 @@
   },
   {
     "topic": 10,
-    "share_dominant": 0.0179,
+    "share_dominant": 0.0174,
     "top_terms": [
       "colors",
       "different colors",
@@ -225,14 +225,14 @@
       "palette",
       "fun",
       "pigmented",
-      "colors vibrant",
       "colors look",
+      "colors vibrant",
       "look"
     ]
   },
   {
     "topic": 11,
-    "share_dominant": 0.0545,
+    "share_dominant": 0.0579,
     "top_terms": [
       "skin",
       "dry",
@@ -253,7 +253,7 @@
   },
   {
     "topic": 12,
-    "share_dominant": 0.0167,
+    "share_dominant": 0.0183,
     "top_terms": [
       "soft",
       "hair soft",
@@ -263,8 +263,8 @@
       "leaves",
       "soft easy",
       "comfortable",
-      "feel soft",
       "wig",
+      "feel soft",
       "makes hair",
       "soft hair",
       "bristles",
@@ -274,28 +274,7 @@
   },
   {
     "topic": 13,
-    "share_dominant": 0.0152,
-    "top_terms": [
-      "daughter",
-      "daughter hair",
-      "old",
-      "year",
-      "year old",
-      "old daughter",
-      "gift daughter",
-      "birthday",
-      "christmas",
-      "party",
-      "likes",
-      "bows",
-      "grand daughter",
-      "daughter christmas",
-      "brushes"
-    ]
-  },
-  {
-    "topic": 14,
-    "share_dominant": 0.0157,
+    "share_dominant": 0.0199,
     "top_terms": [
       "small",
       "head",
@@ -310,20 +289,20 @@
       "small price",
       "small bottle",
       "small fit",
-      "child",
+      "size small",
       "adult"
     ]
   },
   {
-    "topic": 15,
-    "share_dominant": 0.0347,
+    "topic": 14,
+    "share_dominant": 0.0338,
     "top_terms": [
       "brush",
       "brushes",
       "bristles",
+      "brush hair",
       "hair brush",
       "handle",
-      "brush hair",
       "clean",
       "teeth",
       "set",
@@ -336,29 +315,50 @@
     ]
   },
   {
+    "topic": 15,
+    "share_dominant": 0.0128,
+    "top_terms": [
+      "daughter",
+      "old",
+      "year",
+      "year old",
+      "old daughter",
+      "gift daughter",
+      "daughter hair",
+      "christmas",
+      "likes",
+      "brushes",
+      "bows",
+      "grand daughter",
+      "daughter christmas",
+      "grand",
+      "daughter likes"
+    ]
+  },
+  {
     "topic": 16,
-    "share_dominant": 0.0069,
+    "share_dominant": 0.0124,
     "top_terms": [
       "described",
-      "exactly described",
       "exactly",
+      "exactly described",
+      "looking",
       "arrived",
-      "came",
-      "quickly",
-      "came described",
-      "received",
-      "arrived time",
-      "items",
-      "arrived described",
+      "exactly looking",
+      "wanted",
+      "needed",
+      "exactly wanted",
+      "exactly expected",
+      "exactly needed",
       "pictured",
-      "described fast",
-      "arrived quickly",
-      "time described"
+      "advertised",
+      "quickly",
+      "came"
     ]
   },
   {
     "topic": 17,
-    "share_dominant": 0.036,
+    "share_dominant": 0.0357,
     "top_terms": [
       "long",
       "time",
@@ -369,8 +369,8 @@
       "lasts",
       "lasts long",
       "arrived time",
-      "goes",
       "arrived",
+      "goes",
       "long way",
       "goes long",
       "second time",
@@ -379,15 +379,15 @@
   },
   {
     "topic": 18,
-    "share_dominant": 0.0188,
+    "share_dominant": 0.0184,
     "top_terms": [
       "gift",
       "christmas",
       "christmas gift",
       "friend",
       "gave",
-      "wife",
       "gave gift",
+      "wife",
       "liked",
       "set",
       "gift daughter",
@@ -400,7 +400,7 @@
   },
   {
     "topic": 19,
-    "share_dominant": 0.0325,
+    "share_dominant": 0.0301,
     "top_terms": [
       "scent",
       "soap",
@@ -421,7 +421,7 @@
   },
   {
     "topic": 20,
-    "share_dominant": 0.026,
+    "share_dominant": 0.0348,
     "top_terms": [
       "lashes",
       "look",
@@ -430,8 +430,8 @@
       "apply",
       "glue",
       "magnetic",
-      "lash",
       "lashes look",
+      "lash",
       "eye",
       "eyes",
       "eyeliner",
@@ -442,70 +442,7 @@
   },
   {
     "topic": 21,
-    "share_dominant": 0.0099,
-    "top_terms": [
-      "thank",
-      "order",
-      "service",
-      "seller",
-      "received",
-      "wife",
-      "amazon",
-      "pleased",
-      "hair thank",
-      "thank amazon",
-      "arrived",
-      "satisfied",
-      "price thank",
-      "thank goodness",
-      "delivery"
-    ]
-  },
-  {
-    "topic": 22,
-    "share_dominant": 0.0291,
-    "top_terms": [
-      "looks",
-      "wig",
-      "picture",
-      "natural",
-      "looks natural",
-      "feels",
-      "hair looks",
-      "real",
-      "looks picture",
-      "look",
-      "wear",
-      "wigs",
-      "compliments",
-      "costume",
-      "wig looks"
-    ]
-  },
-  {
-    "topic": 23,
-    "share_dominant": 0.0165,
-    "top_terms": [
-      "worth",
-      "worth money",
-      "money",
-      "worth price",
-      "penny",
-      "worth penny",
-      "buying",
-      "cheap",
-      "worth buying",
-      "totally worth",
-      "totally",
-      "price worth",
-      "hair worth",
-      "money worth",
-      "quality worth"
-    ]
-  },
-  {
-    "topic": 24,
-    "share_dominant": 0.0215,
+    "share_dominant": 0.0141,
     "top_terms": [
       "fast",
       "shipping",
@@ -517,16 +454,58 @@
       "shipping fast",
       "came fast",
       "service",
-      "arrived",
       "price fast",
       "seller",
+      "arrived",
       "quick",
-      "shipped fast"
+      "order"
     ]
   },
   {
-    "topic": 25,
-    "share_dominant": 0.0093,
+    "topic": 22,
+    "share_dominant": 0.0259,
+    "top_terms": [
+      "looks",
+      "wig",
+      "picture",
+      "natural",
+      "looks natural",
+      "feels",
+      "hair looks",
+      "real",
+      "looks picture",
+      "cheap",
+      "look",
+      "wear",
+      "wigs",
+      "compliments",
+      "costume"
+    ]
+  },
+  {
+    "topic": 23,
+    "share_dominant": 0.0182,
+    "top_terms": [
+      "worth",
+      "worth money",
+      "money",
+      "worth price",
+      "penny",
+      "worth penny",
+      "cheap",
+      "buying",
+      "worth buying",
+      "totally worth",
+      "totally",
+      "price worth",
+      "hair worth",
+      "quality worth",
+      "paid"
+    ]
+  },
+  {
+    "topic": 24,
+    "share_dominant": 0.0102,
     "top_terms": [
       "value",
       "value money",
@@ -538,16 +517,37 @@
       "value quality",
       "set",
       "price value",
+      "needed",
       "easy value",
       "pack",
       "variety",
-      "needed",
       "hair value"
     ]
   },
   {
+    "topic": 25,
+    "share_dominant": 0.0122,
+    "top_terms": [
+      "thank",
+      "order",
+      "service",
+      "seller",
+      "wife",
+      "received",
+      "amazon",
+      "thank u",
+      "looking",
+      "u",
+      "pleased",
+      "hair thank",
+      "satisfied",
+      "price thank",
+      "thank amazon"
+    ]
+  },
+  {
     "topic": 26,
-    "share_dominant": 0.0471,
+    "share_dominant": 0.0462,
     "top_terms": [
       "little",
       "bit",
@@ -568,7 +568,7 @@
   },
   {
     "topic": 27,
-    "share_dominant": 0.0361,
+    "share_dominant": 0.0376,
     "top_terms": [
       "nails",
       "nail",
@@ -589,39 +589,39 @@
   },
   {
     "topic": 28,
-    "share_dominant": 0.0339,
+    "share_dominant": 0.0163,
     "top_terms": [
-      "looking",
-      "exactly",
       "job",
-      "needed",
+      "gets",
+      "gets job",
+      "clean",
+      "easy job",
+      "cleaning",
+      "doing job",
+      "brushes",
+      "doing",
+      "teeth",
       "cheap",
-      "wanted",
-      "exactly looking",
-      "advertised",
-      "exactly wanted",
-      "exactly needed",
-      "exactly expected",
-      "natural",
-      "exactly described",
-      "natural looking",
-      "gets job"
+      "better job",
+      "thanks",
+      "job cleaning",
+      "job removing"
     ]
   },
   {
     "topic": 29,
-    "share_dominant": 0.0423,
+    "share_dominant": 0.0382,
     "top_terms": [
       "size",
       "fit",
       "travel",
       "big",
-      "perfectly",
       "right",
+      "perfectly",
       "head",
       "travel size",
-      "fits",
       "right size",
+      "fits",
       "smaller",
       "bag",
       "large",

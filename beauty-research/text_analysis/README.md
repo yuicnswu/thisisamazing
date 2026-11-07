@@ -12,6 +12,10 @@ confidence intervals. The same code runs on Amazon All_Beauty and on Sephora.
 | 3 | `label.py`, `aspects.py` | An LLM (Claude Haiku 5.5) labels each review with aspects, a polarity per aspect and a verbatim quote, plus customer context it states (skin type, hair type, gift, repeat purchase). A label is kept only if its quote occurs word for word in the review. A second model (Claude Sonnet 5.5) labels 400 reviews for agreement | LLM ABSA is the current state of the art for open-domain aspect extraction; the verbatim check is the grounding rule that worked in this project's EvidenceGuard pilot |
 | 4 | `scale.py` | Logistic regression on TF-IDF word and character n-grams, one per target, trained on a rating-stratified 2,000-review sample and applied to every review. Prevalence by prediction-powered inference with power tuning (PPI++; Angelopoulos et al., 2023), using a separate 1,500-review simple random sample | Labelling 0.7–1.1M reviews with an LLM is not affordable; PPI gives unbiased shares and valid 95% intervals from a cheap classifier plus a small labelled sample, and is never worse than the labelled sample alone |
 | 5 | `analyze.py` | Tables T1–T7: aspect prevalence, criticism by star, what low ratings are about, customer context, concentration in top products, groups, and the precision PPI adds | |
+| 6 | `join_meta.py` (Amazon) | Joins product metadata: title-derived segment, price band, listing completeness, store; criticism by group with PPI++ | |
+| 7 | `listing_nlp.py` (Amazon) | Parses listing titles, features and descriptions; extracts 9 claim types; compares criticism of the claimed aspect with and without the claim | Descriptive claim-experience test |
+
+Key findings across EDA, RCA and NLP: [KEY_FINDINGS.md](KEY_FINDINGS.md).
 
 ## Aspect taxonomy and where it came from
 
@@ -30,6 +34,8 @@ python discover.py amazon
 python label.py amazon --workers 6                       # needs the Claude Code CLI (set CLAUDE_BIN if not on PATH); cached in outputs/llm_cache.jsonl
 python scale.py amazon
 python analyze.py amazon                                 # -> outputs/amazon/results.md
+python join_meta.py /path/to/meta_All_Beauty.jsonl.gz    # Amazon only
+python listing_nlp.py /path/to/meta_All_Beauty.jsonl.gz
 python -m pytest tests
 ```
 
