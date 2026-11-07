@@ -183,7 +183,7 @@ def main(source, workers=6, rounds=MAX_ROUNDS):
     out = os.path.join(HERE, "outputs", source)
     cb = os.path.join(out, "codebook")
     os.makedirs(cb, exist_ok=True)
-    df = pd.read_parquet(os.path.join(out, "reviews.parquet"), columns=["review_id", "title", "text", "rating"])
+    df = pd.read_parquet(os.path.join(out, "reviews.parquet"), columns=["review_id", "title", "text", "rating", "author_id", "product_id", "date"])
     spath = os.path.join(out, "label_sample.parquet")
     if not os.path.exists(spath):          # fresh source (e.g. Sephora): draw train and calib as label.py does
         full = pd.read_parquet(os.path.join(out, "reviews.parquet"))

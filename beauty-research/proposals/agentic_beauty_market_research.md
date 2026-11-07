@@ -1,30 +1,32 @@
-# Adaptive or Fixed? Designing an Evidence-Grounded AI Agent for Review-Based Market Research in Beauty Retail
+# Fixed, Adaptive or Orchestrated? Designing a Budget-Aware, Evidence-Grounded Multi-Agent System for Review-Based Market Research in Beauty Retail
 
 **Paper draft (research in progress)** · revised 7 November 2026, replacing the 24 October proposal  
 **Target venues:** ICIS 2027 (short or completed research paper) or HICSS-61. Check the calls for exact deadlines and track names.  
-**Status:** The datasets are integrated and audited, a root-cause analysis has identified the failure modes the artifact must handle, and the evidence checker has been tested on real data. The agent itself, its baselines and the task suite have not run yet. Every number in this draft is either an observed count from the audited files or is labelled as a target or an illustration.
+**Status:** The datasets are integrated and audited, a root-cause analysis has identified the failure modes the artifact must handle, and the evidence checker has been tested on real data. The agent, the orchestrator, their baselines and the task suite have not run yet. The supporting customer-context experiment (RQ3) has run. Every number in this draft is either an observed count from the audited files or is labelled as a target or an illustration.
 
-> **What changed from the 24 October version.** (1) The venue moved from the ISMS Marketing Science Conference to ICIS / HICSS, so the paper is now framed as design science research with meta-requirements, design principles and a staged evaluation. (2) It adds a related-work section built on the 87-paper review and a gap table. (3) The fixed baseline is now strong by design, and a router arm is added, because the literature shows fixed pipelines often match agents once cost is counted. (4) The task suite grows from 40 held-out tasks to 120 held-out instances, and "trap" tasks with known confounds make open-ended findings scorable without human annotation. (5) The verbatim-quote checker becomes a design principle backed by real pilot evidence (§5.3). (6) The 5 Whys root-cause analysis is now the problem evidence behind the meta-requirements (§6.3). (7) A full aspect-based text analysis of the Amazon reviews is reported in §6.2. (8) The illustrative cost scenario moved to an appendix, and a duplicated paragraph was removed.
+> **What changed from the 24 October version.** (1) The venue moved from the ISMS Marketing Science Conference to ICIS / HICSS, so the paper is now framed as design science research with meta-requirements, design principles and a staged evaluation. (2) It adds a related-work section built on the 87-paper review and a gap table. (3) The fixed baseline is now strong by design, and a router arm is added, because the literature shows fixed pipelines often match agents once cost is counted. (4) The task suite grows from 40 held-out tasks to 120 held-out instances, and "trap" tasks with known confounds make open-ended findings scorable without human annotation. (5) The verbatim-quote checker becomes a design principle backed by real pilot evidence (§5.3). (6) The 5 Whys root-cause analysis is now the problem evidence behind the meta-requirements (§6.3). (7) A full aspect-based text analysis of the Amazon reviews is reported in §6.2. (8) The illustrative cost scenario moved to an appendix, and a duplicated paragraph was removed. (9) **Same day, second revision:** the artifact becomes a budget-aware, hierarchical multi-agent orchestrator with bounded, validated self-evolution of its orchestration policy (§5.4), compared against a fixed workflow, a single adaptive agent and the same orchestrator without evolution; the router arm is folded into the orchestrator's delegation decisions. (10) Reviewer-driven method fixes: labels now come from a self-refining three-model jury instead of one model (no human coders are available), every gold label is checked for semantic support, an LLM topic model audits the aspect taxonomy, a transformer encoder is compared with TF-IDF for scaling, and RQ3 is re-run leak-free with first results (§7.3).
 
 ## Abstract
 
-Beauty brands turn customer reviews into product and go-to-market decisions, but the step from thousands of reviews to a defensible research brief is slow, and large language models (LLMs) that shorten it often produce plausible but unsupported claims. Agentic systems promise to investigate rather than summarise: they choose analyses, follow up on surprises and look for contrary evidence. Yet recent evidence shows that fixed pipelines often match autonomous agents once cost is counted. Following the design science paradigm, we derive five design principles for an evidence-grounded market-research agent: compute numbers and never generate them, require verbatim quotes, look for disconfirming evidence, disclose the cohort and its missingness, and escalate to adaptive investigation only when needed. We instantiate them in an artifact that runs over 1.79 million deduplicated Amazon and Sephora beauty reviews. We will evaluate it against a strong fixed workflow, a retrieval-augmented baseline and a router on 120 held-out research tasks with executable oracles, including trap tasks whose confounds are known by construction. Outcomes are task success, atomic-finding precision, unsupported-claim rate and cost, reported as a cost-accuracy frontier. A pilot of the evidence checker on 2,182 real beauty products already shows that a verbatim-quote requirement keeps unsupported recommendations at or below 10% with statistical certification, where prompting alone certifies nothing. The study contributes design knowledge on when adaptive investigation is worth its cost in marketing analytics.
+Beauty brands turn customer reviews into product and go-to-market decisions, but the step from thousands of reviews to a defensible research brief is slow, and large language models (LLMs) that shorten it often produce plausible but unsupported claims. Agentic systems promise to investigate rather than summarise, and multi-agent orchestrators that delegate to specialists and improve their own policies are the current frontier. Yet fixed pipelines often match autonomous agents once cost is counted, multi-agent systems consume several times more tokens, and self-improving systems can overfit the benchmark that judges them. Following the design science paradigm, we derive six design principles for evidence-grounded market-research systems: compute numbers and never generate them, require verbatim quotes, look for disconfirming evidence, disclose the cohort, delegate and escalate only when needed, and evolve only under protected evaluation. We instantiate them in a budget-aware orchestrator whose specialists share an evidence ledger checked deterministically, running over 1.79 million deduplicated Amazon and Sephora beauty reviews. We will compare a strong fixed workflow, a single adaptive agent, the orchestrator with a fixed policy and the orchestrator after bounded self-evolution on 120 held-out research tasks from templates the system never sees, including trap tasks whose confounds are known by construction. Outcomes are verified task success, unsupported-claim rate, cost, latency and consistency, reported as a cost-accuracy frontier that includes the cost of evolution. A pilot of the evidence checker on 2,182 real products keeps unsupported recommendations at or below 10% with statistical certification, where prompting alone certifies nothing, and a leak-free test on 812,000 Sephora reviews shows that a reviewer's own history predicts their next recommendation far better than their stated skin type. The study contributes design knowledge on when added agentic sophistication is worth its cost in marketing analytics.
 
-**Keywords:** design science, agentic AI, market research, online reviews, evidence grounding, beauty retail
+**Keywords:** design science, agentic AI, multi-agent orchestration, self-improving systems, market research, online reviews, evidence grounding, beauty retail
 
 ## 1. Introduction
 
 A product manager at a beauty brand preparing a new lightweight moisturiser needs answers to questions such as: what do buyers of competing products explicitly value, which complaints recur across competitors rather than at one brand, and which positioning claims would the evidence support? Reviews contain this information, and marketing has treated them as a market-research source for fifteen years (Lee & Bradlow, 2011; Netzer et al., 2012; Timoshenko & Hauser, 2019). Turning them into a brief, however, means repeated filtering, counting, comparing and checking. An average star rating does not separate a frequent complaint from a representative need, a preference from a defect, or a product-wide pattern from one driven by a single popular item.
 
-LLMs can now do much of this work. Fine-tuned LLMs formulate customer needs from reviews about as well as professional analysts (Timoshenko et al., 2025), and LLM perceptual maps agree with survey-based maps (Li et al., 2024). Two problems remain. First, fluent LLM reports are often poorly supported by their own citations (Liu et al., 2023), and LLMs' priors differ from customers' preferences (Goli & Singh, 2024). A brief that invents a count or a quotation is worse than no brief. Second, it is unclear whether agentic control, where the model decides which analysis to run next, adds value over a well-designed fixed workflow. A fixed three-step pipeline beat many autonomous software agents at a fraction of the cost (Xia et al., 2025), and simple baselines matched state-of-the-art agents once cost was counted (Kapoor et al., 2025).
+LLMs can now do much of this work. Fine-tuned LLMs formulate customer needs from reviews about as well as professional analysts (Timoshenko et al., 2025), and LLM perceptual maps agree with survey-based maps (Li et al., 2024). Two problems remain. First, fluent LLM reports are often poorly supported by their own citations (Liu et al., 2023), and LLMs' priors differ from customers' preferences (Goli & Singh, 2024). A brief that invents a count or a quotation is worse than no brief. Second, it is unclear whether agentic control, where the model decides which analysis to run next, adds value over a well-designed fixed workflow. A fixed three-step pipeline beat many autonomous software agents at a fraction of the cost (Xia et al., 2025), and simple baselines matched state-of-the-art agents once cost was counted (Kapoor et al., 2025). The question sharpens for the newest designs. Multi-agent research systems that delegate to parallel specialists use several times the tokens of a single agent (Anthropic, 2025) and fail in characteristic ways (Cemri et al., 2025), and systems that search over their own workflows (Hu et al., 2025; Zhang et al., 2025a, 2025b) are judged on the same benchmarks they optimise.
 
 This paper addresses both problems with a design science study (Hevner et al., 2004; Peffers et al., 2007). We ask:
 
-- **RQ1 (adaptive value).** For review-based market-research tasks, does adaptive investigation produce more correct and more completely supported findings than a strong fixed workflow at a matched budget, and on which kinds of tasks?
+- **RQ1 (architecture and cost).** Can a self-evolving, budget-aware multi-agent orchestrator improve the accuracy-cost trade-off of evidence-backed beauty market research?
+  - **RQ1a (control).** At a matched budget, do a single adaptive agent and a fixed-policy multi-agent orchestrator produce more correct and more completely supported findings than a strong fixed workflow, and on which kinds of tasks?
+  - **RQ1b (evolution).** Does bounded, validated self-evolution of the orchestration policy improve held-out performance once the cost of evolving is counted?
 - **RQ2 (grounding).** Which design features keep unsupported claims in a research brief low, and at what cost in coverage?
 - **RQ3 (customer context).** Does evidence about customer context, such as reported skin type and earlier reviews, predict later customer recommendations beyond product popularity? This is a supporting test of whether the context the agent reports is informative.
 
-The expected contribution is design knowledge, not a new interface. Gregor and Hevner (2013) would place it in the *improvement* quadrant: a known problem (market research from reviews) with a new solution class (evidence-grounded agents). We contribute (1) five design principles with their kernel justifications, (2) an instantiated artifact and an open task suite with executable oracles and trap tasks, and (3) a controlled comparison that identifies the conditions under which adaptive investigation is worth its cost. A null result is informative: if the fixed workflow matches the agent, the paper reports where deterministic research automation is enough.
+The expected contribution is design knowledge, not a new interface. Gregor and Hevner (2013) would place it in the *improvement* quadrant: a known problem (market research from reviews) with a new solution class (evidence-grounded agents). We contribute (1) six design principles with their kernel justifications, (2) an instantiated orchestrator, a protected self-evolution protocol and an open task suite with executable oracles and trap tasks, and (3) a controlled comparison that identifies the conditions under which adaptive investigation, multi-agent delegation and self-evolution are each worth their cost. A null result is informative: if the fixed workflow matches the orchestrator, the paper reports where deterministic research automation is enough.
 
 ## 2. Related work
 
@@ -42,7 +44,9 @@ Benchmarks test agents on data questions with exact answers (Hu et al., 2024), o
 
 ### 2.4 Adaptive versus fixed control, and cost
 
-Agentless (Xia et al., 2025) and *AI Agents That Matter* (Kapoor et al., 2025) are the strongest evidence for the "fixed is enough" position. Adaptive routing by question complexity improves the accuracy-efficiency trade-off (Jeong et al., 2024), and model cascades cut cost sharply (Chen, Zaharia & Zou, 2024). Three implications follow for our design: the fixed workflow must be a strong, carefully built baseline; results must be reported as a cost-accuracy frontier, not one accuracy number; and a router that chooses between fixed and adaptive investigation is a natural third arm.
+Agentless (Xia et al., 2025) and *AI Agents That Matter* (Kapoor et al., 2025) are the strongest evidence for the "fixed is enough" position. Adaptive routing by question complexity improves the accuracy-efficiency trade-off (Jeong et al., 2024), and model cascades cut cost sharply (Chen, Zaharia & Zou, 2024). Three implications follow for our design: the fixed workflow must be a strong, carefully built baseline; results must be reported as a cost-accuracy frontier, not one accuracy number; and selective escalation from fixed to adaptive investigation should be part of the design.
+
+**Multi-agent orchestration and self-improving systems.** Orchestrator-worker designs split research into parallel specialist investigations; a production research system reports large quality gains at roughly fifteen times the tokens of a chat interaction (Anthropic, 2025). A failure taxonomy of multi-agent systems finds that many failures come from specification, inter-agent misalignment and weak verification rather than model capability (Cemri et al., 2025), which argues for a shared, checked evidence record. A second line automates design itself: DSPy compiles pipelines by optimising prompts and demonstrations against a metric (Khattab et al., 2024), GPTSwarm optimises agent graphs (Zhuge et al., 2024), ADAS has a meta-agent write new agents in code (Hu et al., 2025), AFlow searches workflows with Monte Carlo tree search (Zhang et al., 2025a), and MaAS samples query-dependent multi-agent architectures under a cost budget (Zhang et al., 2025b). These systems report gains on the benchmarks they search over, usually with the evaluation set also serving as the selection signal, and rarely count the cost of the search. Our contribution is therefore not a new search method but a protected one: evolution over a small, interpretable policy space, promotion by a paired test on development templates, held-out templates the evolution never touches, and evolution cost charged to the frontier.
 
 ### 2.5 Measuring support for claims
 
@@ -55,10 +59,11 @@ Attribution to identified sources defines a supported statement (Rashkin et al.,
 | Real customer reviews as the evidence base | ✓ | partly | – | – | ✓ |
 | Findings with computed counts and verbatim quotes, including contrary quotes | partly | – | partly | – | ✓ |
 | Adaptive vs fixed control at a matched budget | – | – | – | ✓ (software, QA) | ✓ |
+| Multi-agent orchestration and self-evolution with protected held-out evaluation and evolution cost counted | – | – | – | partly (search on the test benchmark) | ✓ |
 | Executable oracles for open-ended findings (trap tasks) | – | – | partly (planted insights) | – | ✓ |
 | Second retailer for robustness | rare | – | – | – | ✓ (Sephora, Amazon) |
 
-No paper we found compares adaptive and fixed investigation for review-based market research on correctness, unsupported claims and cost together, or scores a merchant brief at the level of atomic findings backed by computed counts and quoted reviews.
+No paper we found compares fixed, adaptive and orchestrated investigation for review-based market research on correctness, unsupported claims and cost together, or scores a merchant brief at the level of atomic findings backed by computed counts and quoted reviews.
 
 ## 3. Research approach
 
@@ -76,6 +81,7 @@ Meta-requirements (MR) come from the merchant problem in §1 and the failure mod
 | MR4 | The brief must expose evidence against its own findings, and rival explanations | Klayman & Ha (1987); RCA cause B (§6.3) |
 | MR5 | The cost of producing the brief must be justified by what it adds over simpler automation | Kapoor et al. (2025); Xia et al. (2025) |
 | MR6 | The brief must not claim outcomes the data cannot measure, such as ROI, sales or demand | RCA constraint D (§6.3) |
+| MR7 | Any learned change to the system must be shown to help on tasks it was not tuned on, and its cost must be counted | Kapoor et al. (2025); Hu et al. (2025); Zhang et al. (2025a) |
 
 | | Design principle | Addresses | Justification |
 |---|---|---|---|
@@ -83,9 +89,10 @@ Meta-requirements (MR) come from the merchant problem in §1 and the failure mod
 | DP2 | **Quote verbatim or don't claim.** A finding cites review or listing text that a deterministic check finds word for word in the source. | MR2 | Pilot evidence in §5.3: the verbatim requirement is what made a certified error bound reachable |
 | DP3 | **Seek disconfirming evidence.** Before a finding is kept, the agent retrieves opposing reviews, checks whether one product dominates, and runs a sensitivity cut. | MR4 | Positive-test bias in hypothesis testing (Klayman & Ha, 1987); averages hide thin evidence and disagreement (Finding D; RCA cause B, §6.3) |
 | DP4 | **Disclose the cohort.** Each finding records its filters, numerator, denominator, the share of records excluded for missing fields, and the rule that assigned products to its segment. Claims are typed, and the schema has no field for ROI, sales or demand. | MR3, MR6 | Only 3.85% of Amazon products have complete listings, and a keyword rule put a leather conditioner in Hair care (§6.3) |
-| DP5 | **Escalate only when needed.** The fixed workflow runs first; adaptive investigation is triggered when checks fail or a finding is fragile. | MR5 | Adaptive routing (Jeong et al., 2024); cascades (Chen, Zaharia & Zou, 2024) |
+| DP5 | **Delegate and escalate only when needed.** Simple calculations go straight to tools; specialists are activated only for the parts of a question that need them; investigation continues only while an open question could change the brief, and stops at the budget. | MR5 | Adaptive routing (Jeong et al., 2024); cascades (Chen, Zaharia & Zou, 2024); multi-agent token cost (Anthropic, 2025) |
+| DP6 | **Evolve only under protected evaluation.** Policy changes are proposed between tasks, tested on development templates with a paired test, versioned with rollback, and never see held-out templates, answer keys or the evaluator. | MR7 | Overfitting of self-optimised systems to their selection set; adaptive data analysis (Dwork et al., 2015) |
 
-DP5 is itself a hypothesis: if the router (§5.2) matches the full agent at lower cost, DP5 is supported.
+DP5 and DP6 are themselves hypotheses: if the orchestrator matches the single agent at lower cost, DP5 is supported; if the evolved policy beats the fixed policy on held-out templates after paying for its evolution, DP6 is supported.
 
 ## 5. Artifact
 
@@ -97,19 +104,22 @@ The user gives a category, a focal product or concept, a set of competitors and 
 
 A positioning suggestion is labelled as a hypothesis. The artifact does not publish campaigns, change listings, claim treatment efficacy, or infer sales from reviews. A claimed product attribute must come from the product's own listing, never from customer complaints alone.
 
-### 5.2 Three control arms over one tool set
+### 5.2 Control arms over one tool set
 
-All arms use the same model, tools, data and budget caps. Only the control logic differs, which isolates adaptive control from tool access (H3 in §6.1).
+All arms use the same models, tools, data and budget caps. Only the control logic differs, which isolates control from tool access (H3 in §7.1).
 
 | Arm | Control | Purpose |
 |---|---|---|
 | **F, fixed workflow** | A fixed sequence of the same tools: scope → cohort query → aspect counts → quote retrieval → contrary-quote retrieval → dominance and sensitivity checks → write → check. Tuned on development tasks as carefully as the agent. | Strong baseline, as Agentless demands |
 | **A, adaptive agent** | A single controller (ReAct-style; Yao et al., 2023) that chooses the next tool from the results so far, within the budget cap | The treatment |
-| **R, router** | Runs F; escalates to A only for findings that fail a check or are flagged as fragile (DP5) | Tests whether adaptivity is needed everywhere |
+| **M, orchestrator (fixed policy)** | The budget-aware multi-agent orchestrator of §5.4 with its policy frozen after the development pilot. Includes selective escalation: simple calculations go straight to tools (DP5) | Tests delegation to specialists over one adaptive controller |
+| **M+, orchestrator (evolved policy)** | M after bounded self-evolution of its policy on development templates (§5.4) | Tests whether validated self-evolution pays for itself |
 | **B, retrieval baseline** | Retrieval-augmented LLM synthesis over precomputed tables, without code execution | Shows what DP1–DP4 add |
 | **S, script** | Deterministic SQL template report, no LLM | Floor for cost and correctness |
 
 The tools are: cohort and SQL query, aspect counter, review and listing search, quote fetcher, verbatim checker, dominance check (share of a finding driven by its top product), sensitivity rerun, and schema validator. Review text is treated as untrusted data and never as instructions to the agent.
+
+The arms form a chain of single changes: F → A adds adaptive control, A → M adds delegation to specialists with a shared ledger, and M → M+ adds evolution. B and S are floors.
 
 ### 5.3 Evidence checker: prior evidence from a real pilot
 
@@ -122,6 +132,46 @@ The verbatim checker (DP2) is the one component already tested on real data, in 
 | Strict "only if stated" prompt | 0% / 0% | – | – |
 
 Two lessons carry over. Requiring a verbatim, typed quote is what made a certified error bound reachable, so it is a design principle and not just a filter. Its weak spot is paraphrased evidence: in the same project, recall fell to 0–2% when the listing stated the attribute in other words. In this artifact, a finding that rests only on paraphrase is therefore reported as *interpretation*, separate from *quoted evidence*, and the share of findings in each class is a reported outcome. The pilot concerns listing-need matching, not market-research briefs, so it is supporting evidence for DP2, not a result of this study.
+
+### 5.4 Budget-aware orchestrator with protected self-evolution
+
+The objective is the highest verified research quality within a stated cost and time budget. No configuration can be called the most advanced or most efficient in advance; which one achieves the objective is what Experiment 1 tests.
+
+```mermaid
+flowchart TD
+    A[Merchant question and budget] --> O[Orchestrator: plan and schedule]
+    O --> D[Data tools: cohort, coverage, missingness]
+    D --> O
+    O --> W[Activate relevant specialist agents]
+    W --> C[Competitor analysis]
+    W --> N[Customer needs]
+    W --> H[Hypothesis challenger]
+    C --> E[Shared evidence ledger]
+    N --> E
+    H --> E
+    E --> V[Deterministic verification]
+    V --> R{Next best action?}
+    R -->|Resolve evidence gap| O
+    R -->|Evidence sufficient or budget exhausted| B[Checked research brief]
+    B --> L[Offline evaluation and learning]
+    L --> T[Test candidate policy updates on development templates]
+    T -->|Pass paired test| P[Versioned policy for future tasks]
+    P --> O
+```
+
+**Five orchestration decisions.**
+
+| Decision | How it is made |
+|---|---|
+| Who should work? | Activates only the specialists the question needs; simple calculations go directly to tools |
+| What can run together? | Runs independent investigations in parallel and waits where one depends on another |
+| Where should effort go? | Prioritises open questions most likely to change the brief's conclusions |
+| What needs correction? | Returns a failed claim to the specialist that made it, with the specific verification error |
+| When should work stop? | When evidence requirements are met, the expected gain of further work is small, or the budget runs out |
+
+**Efficiency by design.** Aggregation over millions of records runs in SQL and Python next to the data, and agents receive tables and selected excerpts (DP1). Agents exchange finding records, query ids and source ids from the ledger, not conversation histories. Results are cached by dataset version, cohort and query. Smaller models do bounded extraction and stronger models plan and synthesise, a split the benchmark tests rather than assumes. A failed query or branch is rerun locally without restarting the brief, and execution state is checkpointed so interrupted tasks resume.
+
+**Bounded self-evolution (DP6).** Between tasks, a proposer reads development-run logs (which checks failed, where budget went) and proposes one change to the orchestration policy. The policy space is deliberately small and interpretable: specialist activation rules, the order of checks (for example, running a product-concentration check early for texture questions if those briefs often fail it), concurrency limits, model routing per role and the stopping thresholds. Prompts, tool code, the verifier and the evaluator are outside the space. A candidate is run on all development instances (10 templates × 4 cohorts × 3 runs) and promoted only if a paired comparison with the incumbent shows higher all-checks success, or equal success within the margin at lower cost; at most 10 candidates are tried, with Holm correction across them. Every promoted policy is versioned and can be rolled back. Held-out templates, answer keys and the oracle code are never visible to the proposer or the promotion test. The tokens and time spent on proposals and development runs are the **cost of evolution**, reported in total and as the number of future briefs needed to recover it.
 
 ## 6. Data
 
@@ -152,7 +202,7 @@ All counts come from the supplied files and full-file integration scripts. Revie
 
 ### 6.2 Review text analysis (Amazon All_Beauty)
 
-An aspect-based sentiment analysis of all 693,547 cleaned Amazon reviews ([method and code](../text_analysis/README.md), [results](../text_analysis/outputs/amazon/results.md), [metadata join](../text_analysis/outputs/amazon/meta_results.md), [listing NLP](../text_analysis/outputs/amazon/listing_nlp.md)) gives the baseline the artifact's analysis layer must reproduce. An LLM (Claude Haiku) labelled 3,500 reviews with 16 aspects, a polarity and a verbatim quote; 99.7% of its quotes were found word for word, and a second model agreed with a median Cohen's kappa of 0.80. A TF-IDF classifier trained on those labels was applied to every review, and shares were estimated by prediction-powered inference (PPI++; Angelopoulos et al., 2023) on a separate 1,500-review random sample, which keeps them unbiased with valid 95% intervals. The shares describe what the annotator would say about every review; they are not human-validated.
+An aspect-based sentiment analysis of all 693,547 cleaned Amazon reviews ([method and code](../text_analysis/README.md), [results](../text_analysis/outputs/amazon/results.md), [metadata join](../text_analysis/outputs/amazon/meta_results.md), [listing NLP](../text_analysis/outputs/amazon/listing_nlp.md)) gives the baseline the artifact's analysis layer must reproduce. An LLM (Claude Haiku) labelled 3,500 reviews with 16 aspects, a polarity and a verbatim quote; 99.7% of its quotes were found word for word, and a second model agreed with a median Cohen's kappa of 0.80. Because no human coders are available, label quality is being raised and measured without them ([codebook.py](../text_analysis/codebook.py), [entail.py](../text_analysis/entail.py)): two models label a development sample under the same guide, a third, stronger model adjudicates every disagreement and turns ambiguities into general rules, and the guide is rewritten until agreement stops improving (iterative codebook development with model coders; Madaan et al., 2023; Verga et al., 2024). The gain is checked on a separate held-out sample, and the calibration sample's gold labels become jury labels. Every gold label is then judged for semantic support of its claim by its quote, a check validated on a known-answer contrast set of perturbed claims (flipped polarity, swapped aspect, wrong quote). An LLM topic model (TopicGPT; Pham et al., 2024) audits whether the 16-aspect taxonomy misses frequent themes, and a pretrained sentence encoder (BGE; Xiao et al., 2024) is compared with TF-IDF as the scaling classifier. *These runs are in progress; the figures below are from the single-model labels and will be replaced.* A TF-IDF classifier trained on those labels was applied to every review, and shares were estimated by prediction-powered inference (PPI++; Angelopoulos et al., 2023) on a separate 1,500-review random sample, which keeps them unbiased with valid 95% intervals. The shares describe what the annotator would say about every review; they are not human-validated.
 
 - **Most reviews are generic.** 61.7% [59.6, 63.8] give an overall verdict. Efficacy is the most discussed specific aspect (30.1% [28.3, 31.9]).
 - **Low ratings are often not about the product's effect.** Among 1–2★ reviews, 29.8% [25.4, 34.1] criticise efficacy, but 27.1% [22.5, 31.6] criticise authenticity or quality (not as described, fake, cheap build), 11.7% [8.4, 15.0] packaging and 11.0% [7.8, 14.2] delivery or service. A brief that reads low stars as product-experience problems would be wrong for a large share of them, which is RCA cause B in text form.
@@ -185,17 +235,18 @@ Evidence: [Amazon summary](../output/beauty_reviews/summary.json), [Amazon evide
 ### 7.1 Hypotheses
 
 - **H1 (adaptive value).** A achieves higher all-checks task success than F at a matched budget.
-- **H2 (fixed is enough).** F matches A within a pre-set margin; adaptivity adds cost, not accuracy.
-- **H3 (tools, not control).** Any gain of A over B disappears once F, which has the same tools, is the comparison. The gain then comes from tools and budget, not adaptive control.
-- **H4 (escalation).** R matches A on success at a lower cost (DP5).
-- **H5 (where adaptivity helps).** A's advantage over F, if any, is concentrated in trap tasks (§7.2), where the right next analysis depends on an earlier result.
-- **H6 (context).** In RQ3, customer-context features add predictive value beyond popularity, and the gain disappears under shuffled profiles.
+- **H2 (fixed is enough).** F matches A and M within a pre-set margin; adaptivity and delegation add cost, not accuracy.
+- **H3 (tools, not control).** Any gain of A or M over B disappears once F, which has the same tools, is the comparison.
+- **H4 (orchestration).** M matches or beats A on success at a lower cost per brief, because selective delegation and local repair avoid wasted investigation (DP5).
+- **H5 (where adaptivity helps).** Any advantage of A or M over F is concentrated in trap tasks (§7.2), where the right next analysis depends on an earlier result.
+- **H6 (evolution).** M+ beats M on held-out all-checks success at equal or lower cost per brief, and the cost of evolution is recovered within a stated number of briefs (DP6).
+- **H7 (context).** In RQ3, customer-context features add predictive value beyond popularity, and the gain disappears under shuffled profiles.
 
-H1 and H2 are rival hypotheses, so either outcome answers RQ1.
+H1 and H2 are rival hypotheses, so either outcome answers RQ1a; H6 answers RQ1b.
 
 ### 7.2 Experiment 1 (primary): research tasks with executable oracles
 
-**Task suite.** 40 task templates instantiated on 4 category cohorts each, giving 160 instances: 40 for development (10 templates, all cohorts) and 120 held out (the other 30 templates, all 4 cohorts). Held-out templates are never seen during design. Each instance runs three times per arm. Templates come in four families:
+**Task suite.** 40 task templates instantiated on 4 category cohorts each, giving 160 instances: 40 for development (10 templates, all cohorts) and 120 held out (the other 30 templates, all 4 cohorts). Held-out templates are never seen during design or by the self-evolution loop, so M+ cannot learn their answer keys through shared templates. Each instance runs three times per arm. Templates come in four families:
 
 1. **Cohort and count**, e.g. "For moisturisers with at least 50 reviews, compare the recommendation rate by reported skin type, give the denominators, and say which groups fail the minimum-sample rule."
 2. **Comparison**, e.g. price bands and complaint rates across a focal product and its competitors.
@@ -214,12 +265,14 @@ Oracle queries are written and checked against the full data before any arm runs
 | Contrary-evidence recall | On trap tasks, share of planted confounds the brief reports | Yes |
 | Citation precision and recall | After Liu et al. (2023) | Secondary |
 | Quoted vs interpretation share | §5.3 | Reported |
-| Run-to-run consistency | Agreement of findings across the three runs | Secondary |
+| Run-to-run consistency | Agreement of findings across the three runs | Yes |
+| Latency | Wall-clock time per brief | Yes |
+| Cost of evolution (M+) | Tokens and time for proposals and development runs; briefs needed to recover it | Yes |
 | Cost | Tokens, tool calls, wall-clock time, API cost | Yes, as the frontier axis |
 
 **Budget matching and the frontier.** Each arm runs at three budget caps (tokens and tool calls), and results are reported as a cost-success frontier (Kapoor et al., 2025). The primary comparison is at the middle cap.
 
-**Ablations.** On A: remove replanning (it becomes F), the verbatim check (DP2), contrary-evidence retrieval (DP3), and cohort disclosure (DP4), one at a time.
+**Ablations.** On A and M: remove replanning (it becomes F), the verbatim check (DP2), contrary-evidence retrieval and the hypothesis challenger (DP3), and cohort disclosure (DP4), one at a time. On M: replace model routing by the strong model everywhere, and run specialists sequentially instead of in parallel.
 
 **Analysis.** Mixed-effects logistic regression of task success on arm, with random intercepts for template and cohort, and a template-cluster bootstrap for differences. The equivalence margin for H2 and the power analysis are fixed after the development pilot and before held-out runs, and registered in the repository. LLM judges may score brief readability as an exploratory measure, never a primary one.
 
@@ -229,9 +282,19 @@ Uses only observed Sephora `is_recommended` labels, with a frozen chronological 
 
 Models: majority and popularity, structured customer and history features, text embeddings, and LLM-assisted evidence aggregation. Conditions: no profile, observed profile, shuffled profile. Metrics: macro-F1, balanced accuracy, AUROC, PR-AUC, log loss and calibration, with customer-cluster bootstrap intervals and product-cluster checks. Unreviewed products are not negative outcomes, because exposure is unknown. Amazon ratings provide a separate ordinal robustness analysis, not a pooled replication.
 
+**First result (leak-free core models; [code](../text_analysis/rq3_temporal.py)).** Every feature is computed from reviews submitted on earlier days only, and models are fitted before a global cutoff (8 February 2022) and tested after it: 618,182 training and 193,758 test reviews with a recommendation label. Gradient-boosted trees with three nested feature sets give:
+
+| Model | Features | AUROC, all test reviews | AUROC, returning customers (n = 117,877) |
+|---|---|---|---|
+| M0 popularity | Product's prior recommend rate, review count and mean rating; category rate | 0.684 | 0.695 |
+| M1 + stated context | M0 + skin type and the product's prior rate among same-skin-type reviewers | 0.689 (Δ +0.004, 95% CI +0.004 to +0.005) | 0.698 (Δ +0.003, CI +0.002 to +0.004) |
+| M2 + reviewer history | M1 + the reviewer's earlier reviews: count, recommend rate, mean rating, rate in the same category | 0.754 (Δ +0.070, CI +0.067 to +0.073) | 0.807 (Δ +0.112, CI +0.108 to +0.117) |
+
+Intervals are cluster-bootstrap over reviewers for the difference from M0. Stated skin type carries real but very small information beyond popularity; the reviewer's own history carries much more. For the artifact, this means a brief should weight what returning customers did before over what reviewers say about themselves, and should not present skin-type segments as strong drivers without evidence. The shuffled-profile control, the held-out-product condition and the text-embedding model are still to run, so H7 is not yet tested in full.
+
 ### 7.4 Optional naturalistic evaluation
 
-IS reviewers often expect evidence that the artifact is useful, not only correct. If access allows, three to five beauty marketing or product practitioners would compare briefs from F, A and S on six held-out questions, blind to arm, and rate decision usefulness and trust, and say which findings they would act on. This needs human participants and ethics approval, but no review annotation. Without it, the paper claims correctness and cost only, and lists usefulness as future work.
+IS reviewers often expect evidence that the artifact is useful, not only correct. If access allows, three to five beauty marketing or product practitioners would compare briefs from F, A, M+ and S on six held-out questions, blind to arm, and rate decision usefulness and trust, and say which findings they would act on. This needs human participants and ethics approval, but no review annotation. Without it, the paper claims correctness and cost only, and lists usefulness as future work.
 
 ### 7.5 What the evaluation cannot show
 
@@ -239,12 +302,13 @@ Executable checks establish mechanical correctness and bounded task performance.
 
 ## 8. Expected contributions
 
-1. **Design principles DP1–DP5** for evidence-grounded research agents, each tied to a meta-requirement and to empirical evidence (Gregor & Hevner, 2013, improvement).
+1. **Design principles DP1–DP6** for evidence-grounded research agents and orchestrators, each tied to a meta-requirement and to empirical evidence (Gregor & Hevner, 2013, improvement).
 2. **An open artifact and task suite**: 160 task instances with executable oracles over two real beauty retailers, including trap tasks, which make open-ended research findings scorable without human annotation.
 3. **A controlled answer to "adaptive or fixed?"** for marketing analytics, reported as a cost-accuracy frontier, with the task families where adaptivity pays off, if any.
-4. **Evidence on customer context** (RQ3): whether self-reported context and earlier reviews carry predictive information beyond popularity.
+4. **A protected self-evolution protocol** (DP6): a bounded policy space, paired promotion on development templates, locked held-out templates and the cost of evolution charged to the frontier, reusable for any self-improving agent evaluation.
+5. **Evidence on customer context** (RQ3): first results show reviewer history, far more than stated skin type, predicts later recommendations beyond popularity.
 
-**Falsifiers.** If F matches A within the margin on every task family, the paper reports H2 and narrows its claim to DP1–DP4 and the task suite. If context gains in RQ3 vanish under shuffled profiles or popularity controls, the paper drops the customer-context claim.
+**Falsifiers.** If F matches A and M within the margin on every task family, the paper reports H2 and narrows its claim to DP1–DP4 and the task suite. If M+ does not beat M on held-out templates, or needs more briefs to recover its evolution cost than a merchant would run, the paper reports that self-evolution did not pay. If context gains in RQ3 vanish under shuffled profiles or popularity controls, the paper drops the customer-context claim.
 
 ## 9. Threats to validity
 
@@ -252,6 +316,9 @@ Executable checks establish mechanical correctness and bounded task performance.
 - **Internal.** Prompt tuning effort could favour one arm. Both F and A get the same development budget and the same development tasks, and the tuning log is published.
 - **External.** Two retailers, one category family, old snapshots and self-selected reviewers. No population-demand or causal claim follows.
 - **Statistical.** Templates, not instances, are the unit of generalisation. Clustering by template addresses this, and 30 held-out templates is the main limit on power.
+- **Evolution overfitting.** With 10 development templates, a promoted policy may fit them by chance. The paired test, the cap of 10 candidates with Holm correction and the template-disjoint held-out set bound this, and the held-out set is used once.
+- **Multi-agent cost.** Orchestration can multiply tokens. All comparisons are at matched budget caps, and cost per brief is a primary outcome, not a footnote.
+- **Label validity without human coders.** The review-text labels used by the oracles are a three-model jury under a self-refined guide, checked for verbatim and semantic support (§6.2). They measure model consensus under an explicit guide, not human judgement; the guide, every adjudication and every rule are published so a human audit can be added.
 - **Model dependence.** Results may change with the model. The main comparison uses one model, with a replication on a second model family if budget allows.
 
 ## 10. Status and plan
@@ -264,12 +331,13 @@ Executable checks establish mechanical correctness and bounded task performance.
 | Verbatim evidence checker | Tested on 2,182 real products in the earlier study (§5.3) |
 | Related work (87 papers) | Done, in PR #10 |
 | Task templates and oracle queries | To build |
-| Arms F, A, R, B, S | To build; no LLM run yet |
-| Experiments 1 and 2 | Not run; no results exist |
+| Arms F, A, M, M+, B, S and the self-evolution loop | To build; no LLM run yet |
+| Experiment 1 | Not run; no results exist |
+| Experiment 2 core models (leak-free time split) | Done on Sephora (§7.3); shuffled-profile and held-out-product conditions to run |
 
-**Eight-week plan.** Week 1: write 40 templates and oracle queries; select trap cohorts for the five RCA-derived trap types. Week 2: development pilot of F and A on 10 templates; freeze the record schema. Weeks 3–4: build R, B and S; freeze budgets, margins and the analysis plan. Weeks 5–6: held-out runs and ablations. Week 7: Experiment 2. Week 8: analysis and writing. Model choice and an API budget must be agreed before paid runs.
+**Ten-week plan.** Week 1: write 40 templates and oracle queries; select trap cohorts for the five RCA-derived trap types. Week 2: development pilot of F and A on 10 templates; freeze the record schema. Weeks 3–4: build M (orchestrator, specialists, ledger), B and S; freeze M's initial policy, budgets, margins and the analysis plan. Week 5: self-evolution on development templates only (at most 10 candidates), producing M+. Weeks 6–7: held-out runs of all arms and ablations. Week 8: remaining Experiment 2 conditions. Weeks 9–10: analysis and writing. Model choice and an API budget must be agreed before paid runs; on today's evidence the subscription CLI's usage limit is a binding constraint, so held-out runs need API access.
 
-**Venue choice.** HICSS takes research in progress and suits a first submission with Experiment 1 alone. ICIS completed research needs both experiments and ideally §7.4. A short paper to ICIS with the design principles and pilot results is the middle option.
+**Venue choice.** HICSS takes research in progress and suits a first submission with Experiment 1 (F, A, M) alone, with M+ as planned work. ICIS completed research needs both experiments and ideally §7.4. A short paper to ICIS with the design principles and pilot results is the middle option.
 
 ## Appendix A: illustrative business case (not a result)
 
@@ -287,12 +355,16 @@ Assume 10 briefs a month, 12 staff hours per brief without the artifact and 6 wi
 
 - Angelopoulos, A. N., Bates, S., Fannjiang, C., Jordan, M. I., & Zrnic, T. (2023). Prediction-powered inference. *Science, 382*(6671), 669–674.
 - Angelopoulos, A. N., Bates, S., Fisch, A., Lei, L., & Schuster, T. (2024). Conformal risk control. *ICLR*.
+- Anthropic. (2025). *How we built our multi-agent research system* [Engineering blog]. https://www.anthropic.com/engineering/multi-agent-research-system
 - Archak, N., Ghose, A., & Ipeirotis, P. G. (2011). Deriving the pricing power of product features by mining consumer reviews. *Management Science, 57*(8), 1485–1509.
 - Arora, N., Chakraborty, I., & Nishimura, Y. (2025). AI-human hybrids for marketing research. *Journal of Marketing, 89*(2), 43–70.
 - Berger, J., Humphreys, A., Ludwig, S., Moe, W. W., Netzer, O., & Schweidel, D. A. (2020). Uniting the tribes: Using text for marketing insight. *Journal of Marketing, 84*(1), 1–25.
 - Brand, J., Israeli, A., & Ngwe, D. (2023). *Using LLMs for market research* (HBS Working Paper 23-062).
+- Campos, P. G., Díez, F., & Cantador, I. (2014). Time-aware recommender systems: A comprehensive survey and analysis of existing evaluation protocols. *User Modeling and User-Adapted Interaction, 24*(1–2), 67–119.
+- Cemri, M., Pan, M. Z., Yang, S., et al. (2025). *Why do multi-agent LLM systems fail?* (arXiv:2503.13657).
 - Chen, L., Zaharia, M., & Zou, J. (2024). FrugalGPT. *Transactions on Machine Learning Research*.
 - Du, M., Xu, B., Zhu, C., Wang, X., & Mao, Z. (2026). DeepResearch Bench. *ICLR*.
+- Dwork, C., Feldman, V., Hardt, M., Pitassi, T., Reingold, O., & Roth, A. (2015). The reusable holdout: Preserving validity in adaptive data analysis. *Science, 349*(6248), 636–638.
 - Gao, T., Yen, H., Yu, J., & Chen, D. (2023). Enabling large language models to generate text with citations. *EMNLP*.
 - Goli, A., & Singh, A. (2024). Frontiers: Can large language models capture human preferences? *Marketing Science, 43*(4), 709–722.
 - Gregor, S., & Hevner, A. R. (2013). Positioning and presenting design science research for maximum impact. *MIS Quarterly, 37*(2), 337–355.
@@ -302,18 +374,23 @@ Assume 10 briefs a month, 12 staff hours per brief without the artifact and 6 wi
 - Hong, S., et al. (2025). Data Interpreter: An LLM agent for data science. *Findings of ACL*.
 - Hong, Y., & Pavlou, P. A. (2014). Product fit uncertainty in online markets. *Information Systems Research, 25*(2), 328–344.
 - Hu, M., & Liu, B. (2004). Mining and summarizing customer reviews. *KDD*, 168–177.
+- Hu, S., Lu, C., & Clune, J. (2025). Automated design of agentic systems. *ICLR*.
 - Hu, X., et al. (2024). InfiAgent-DABench: Evaluating agents on data analysis tasks. *ICML*.
 - Jeong, S., Baek, J., Cho, S., Hwang, S. J., & Park, J. C. (2024). Adaptive-RAG. *NAACL*, 7036–7050.
+- Ji, Y., Sun, A., Zhang, J., & Li, C. (2023). A critical study on data leakage in recommender system offline evaluation. *ACM Transactions on Information Systems, 41*(3), 1–27.
 - Kapoor, S., Stroebl, B., Siegel, Z. S., Nadgir, N., & Narayanan, A. (2025). AI agents that matter. *Transactions on Machine Learning Research*.
+- Khattab, O., et al. (2024). DSPy: Compiling declarative language model calls into self-improving pipelines. *ICLR*.
 - Klayman, J., & Ha, Y.-W. (1987). Confirmation, disconfirmation, and information in hypothesis testing. *Psychological Review, 94*(2), 211–228.
 - Lee, T. Y., & Bradlow, E. T. (2011). Automated marketing research using online customer reviews. *Journal of Marketing Research, 48*(5), 881–894.
 - Li, P., Castelo, N., Katona, Z., & Sarvary, M. (2024). Frontiers: Determining the validity of large language models for automated perceptual analysis. *Marketing Science, 43*(2), 254–266.
 - Li, X., & Hitt, L. M. (2008). Self-selection and information role of online product reviews. *Information Systems Research, 19*(4), 456–474.
 - Liu, N. F., Zhang, T., & Liang, P. (2023). Evaluating verifiability in generative search engines. *Findings of EMNLP*, 7001–7025.
+- Madaan, A., et al. (2023). Self-Refine: Iterative refinement with self-feedback. *NeurIPS*.
 - Majumder, B. P., et al. (2025). DiscoveryBench. *ICLR*.
 - Min, S., et al. (2023). FActScore. *EMNLP*, 12076–12100.
 - Netzer, O., Feldman, R., Goldenberg, J., & Fresko, M. (2012). Mine your own business. *Marketing Science, 31*(3), 521–543.
 - Peffers, K., Tuunanen, T., Rothenberger, M. A., & Chatterjee, S. (2007). A design science research methodology for information systems research. *Journal of Management Information Systems, 24*(3), 45–77.
+- Pham, C. M., Hoyle, A., Sun, S., Resnik, P., & Iyyer, M. (2024). TopicGPT: A prompt-based topic modeling framework. *NAACL*.
 - Rashkin, H., et al. (2023). Measuring attribution in natural language generation models. *Computational Linguistics, 49*(4), 777–840.
 - Sahu, G., et al. (2025). InsightBench: Evaluating business analytics agents through multi-step insight generation. *ICLR*.
 - Sarstedt, M., Adler, S. J., Rau, L., & Schmitt, B. (2024). Using large language models to generate silicon samples in consumer and marketing research. *Psychology & Marketing, 41*(6), 1254–1270.
@@ -322,8 +399,14 @@ Assume 10 briefs a month, 12 staff hours per brief without the artifact and 6 wi
 - Timoshenko, A., & Hauser, J. R. (2019). Identifying customer needs from user-generated content. *Marketing Science, 38*(1), 1–20.
 - Timoshenko, A., Mao, C., & Hauser, J. R. (2025). *Transforming the voice of the customer: Large language models for identifying customer needs* (arXiv:2503.01870).
 - Tirunillai, S., & Tellis, G. J. (2014). Mining marketing meaning from online chatter. *Journal of Marketing Research, 51*(4), 463–479.
+- Tunstall, L., et al. (2022). *Efficient few-shot learning without prompts* (SetFit; arXiv:2209.11055).
 - Venable, J., Pries-Heje, J., & Baskerville, R. (2016). FEDS: A framework for evaluation in design science research. *European Journal of Information Systems, 25*(1), 77–89.
+- Verga, P., et al. (2024). *Replacing judges with juries: Evaluating LLM generations with a panel of diverse models* (arXiv:2404.18796).
 - Xia, C. S., Deng, Y., Dunn, S., & Zhang, L. (2025). Agentless: Demystifying LLM-based software engineering agents. *Proceedings of the ACM on Software Engineering, 2*(FSE).
+- Xiao, S., Liu, Z., Zhang, P., & Muennighoff, N. (2024). C-Pack: Packed resources for general Chinese embeddings (BGE). *SIGIR*.
 - Yao, S., et al. (2023). ReAct: Synergizing reasoning and acting in language models. *ICLR*.
+- Zhang, G., Niu, L., Fang, J., Wang, K., Bai, L., & Wang, X. (2025b). Multi-agent architecture search via agentic supernet (MaAS). *ICML*.
+- Zhang, J., Xiang, J., Yu, Z., et al. (2025a). AFlow: Automating agentic workflow generation. *ICLR*.
 - Zheng, L., et al. (2023). Judging LLM-as-a-judge with MT-Bench and Chatbot Arena. *NeurIPS Datasets and Benchmarks*.
+- Zhuge, M., Wang, W., Kirsch, L., Faccio, F., Khizbullin, D., & Schmidhuber, J. (2024). GPTSwarm: Language agents as optimizable graphs. *ICML*.
 - Data: [Amazon Reviews 2023](https://amazon-reviews-2023.github.io/); [Sephora Products and Skincare Reviews](https://www.kaggle.com/datasets/nadyinky/sephora-products-and-skincare-reviews).

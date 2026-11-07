@@ -38,11 +38,38 @@ def encode(texts, model_name, batch):
     return m.encode(texts, batch_size=batch, show_progress_bar=True, normalize_embeddings=True, convert_to_numpy=True).astype(np.float32)
 
 
+KEY = ["author_id", "product_id", "date"]
+
+
+def embed_keyed(source, model_name="BAAI/bge-small-en-v1.5", batch=256):
+    """Encode on another machine and save with natural keys, so the embeddings can be joined to a
+    reviews.parquet whose review_ids were numbered by a different parse run."""
+    out = os.path.join(HERE, "outputs", source)
+    df = pd.read_parquet(os.path.join(out, "reviews.parquet"), columns=KEY + ["title", "text"])
+    E = encode((df.title.fillna("") + " . " + df.text).tolist(), model_name, batch)
+    np.save(os.path.join(out, "embeddings_keyed.npy"), E.astype(np.float16))
+    df[KEY].to_parquet(os.path.join(out, "embedding_keys.parquet"), index=False)
+
+
+def load_keyed(out, df):
+    E = np.load(os.path.join(out, "embeddings_keyed.npy")).astype(np.float32)
+    k = pd.read_parquet(os.path.join(out, "embedding_keys.parquet")).assign(_row=np.arange(len(E)))
+    k = k.drop_duplicates(KEY)
+    m = df[KEY].merge(k, on=KEY, how="left")
+    hit = m._row.notna().values
+    X = np.zeros((len(df), E.shape[1]), np.float32)
+    X[hit] = E[m._row[hit].astype(int).values]
+    print(f"joined embeddings for {hit.mean():.4%} of reviews", flush=True)
+    return X
+
+
 def main(source, model_name="BAAI/bge-small-en-v1.5", batch=256, encoder=None):
     out = os.path.join(HERE, "outputs", source)
-    df = pd.read_parquet(os.path.join(out, "reviews.parquet"), columns=["review_id", "title", "text"])
+    df = pd.read_parquet(os.path.join(out, "reviews.parquet"), columns=["review_id", "title", "text"] + KEY)
     epath = os.path.join(out, "embeddings.npy")
-    if os.path.exists(epath):
+    if os.path.exists(os.path.join(out, "embeddings_keyed.npy")):
+        E = load_keyed(out, df)
+    elif os.path.exists(epath):
         E = np.load(epath)
     else:
         texts = (df.title.fillna("") + " . " + df.text).tolist()
@@ -92,6 +119,10 @@ def main(source, model_name="BAAI/bge-small-en-v1.5", batch=256, encoder=None):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("source"); ap.add_argument("--model", default="BAAI/bge-small-en-v1.5"); ap.add_argument("--batch", type=int, default=256)
+    ap.add_argument("--encode-only", action="store_true", help="only write embeddings_keyed.npy + embedding_keys.parquet")
     a = ap.parse_args()
+    if a.encode_only:
+        embed_keyed(a.source, a.model, a.batch)
+        raise SystemExit
     r = main(a.source, a.model, a.batch)
     print(json.dumps({k: v for k, v in r.items() if k != "per_target"}, indent=2))

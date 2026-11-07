@@ -15,7 +15,7 @@ These findings favor Sephora for customer-context experiments and Amazon as a se
 
 ## Research contribution
 
-When does adaptive investigation of customer context and contradictory evidence improve research conclusions beyond aggregate ratings, retrieval and fixed analytical workflows? Compare a strong fixed workflow, the adaptive agent and a router that escalates only when checks fail, with the same model and tools at matched budgets, on 120 held-out tasks including trap tasks with known confounds. The verbatim-quote evidence check is already tested on 2,182 real products (certified unsupported rate ≤ 10%, 88–90% recall). Use executable analytical task oracles and held-out recommendation outcomes without creating new human review annotations.
+Can a self-evolving, budget-aware multi-agent orchestrator improve the accuracy-cost trade-off of evidence-backed beauty market research? Compare a strong fixed workflow, a single adaptive agent, a fixed-policy multi-agent orchestrator and the same orchestrator after bounded self-evolution on development templates only, with the same model and tools at matched budgets, on 120 held-out tasks including trap tasks with known confounds. The verbatim-quote evidence check is already tested on 2,182 real products (certified unsupported rate ≤ 10%, 88–90% recall). Use executable analytical task oracles and held-out recommendation outcomes without creating new human review annotations.
 
 ## Business value and limits
 

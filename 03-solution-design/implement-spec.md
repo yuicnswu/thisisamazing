@@ -82,3 +82,20 @@ LLM calls go through one cached backend (`llm.py`: Claude via the Claude Code CL
 5. M9 → M10 → M11 → M1: abstentions become requests; simulated sellers edit listings; edited listings re-enter the pipeline and are scored with the **same** certified thresholds, so yield is measured at fixed risk.
 6. M4 → M10: mined needs weight requests by demand; they never enter calibration.
 7. Everything → M12 → `05-report/report.md`, with the run date.
+
+## Beauty market-research orchestrator modules (added 2026-11-07)
+
+**System diagram.** See §5.4 of `beauty-research/proposals/agentic_beauty_market_research.md`. The flow is: question and budget → orchestrator → data tools → specialists → evidence ledger → verification → next best action. The loop either goes back to the orchestrator or ends with a checked brief. Offline, policy candidates are tested on development templates and promoted as a new versioned policy.
+
+| Module | Input | Process | Output |
+|---|---|---|---|
+| Orchestrator | Question, budget, policy version | Plans subquestions; activates specialists; schedules parallel and dependent steps; decides the next best action; stops at sufficiency or budget | Task graph, final brief |
+| Data tools | Cohort spec, query parameters | SQL/Python aggregation over the audited Amazon and Sephora tables (`beauty-research/scripts`, `text_analysis`) | Tables with query_id, counts, denominators, missingness |
+| Specialists (competitor, needs, challenger) | Subquestion, tables, excerpts | Draft findings; the challenger retrieves contrary quotes and rival explanations | Finding records |
+| Evidence ledger | Finding records | Stores claims by reference (claim, query_id, source_ids, quotes, contrary quotes, limitations) | Shared state for all agents |
+| Verifier | Ledger entries | Verbatim check (`label.quote_ok`), number recomputation from query_id, schema and claim-type checks, semantic support judge (`text_analysis/entail.py`) | Pass/fail with a specific error, sent back to the owning specialist |
+| Cache and checkpoints | (dataset version, cohort, query) keys | Reuses results; persists task state | Faster reruns; resumable tasks |
+| Policy evolver (offline) | Development-run logs, current policy | Proposes one bounded policy change; runs development instances; paired test against the incumbent; Holm correction over at most 10 candidates | Promoted or rejected policy version, with its cost |
+| Evaluator (protected) | Brief, oracle queries | All-checks success, unsupported-claim rate, contrary-evidence recall, cost, latency | Scores; never visible to the evolver for held-out templates |
+
+**Data flow.** Agents receive tables and excerpts, never raw corpora. Every number in a brief traces to a query_id in the ledger. The evolver reads only development logs, while held-out oracles live in a separate directory that agents and the evolver cannot read.

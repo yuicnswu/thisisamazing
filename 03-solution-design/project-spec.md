@@ -122,3 +122,25 @@ What those runs must now measure, in priority order:
 3. **Dense encoders.** BLaIR-base / large, Qwen3-Embedding (largest that fits), BM25: similarity on original vs remove / vague / contradict / paraphrase of the same need; AUROC supported vs not; LTT certifiability of a similarity threshold at α = 0.10 / 0.20.
 4. **Quote-only NLI typed check.** A small NLI model judging (quote, constraint) on the NeSy quotes; recall on the 162 parser-missed items and the paraphrase cell; re-certify.
 5. **G0 on Beauty_and_Personal_Care and Home_and_Kitchen** with `g0_count.py` (`META_JSONL=...`), from the Mac host's own shell.
+
+## Beauty market-research orchestrator (added 2026-11-07, current direction)
+
+**Positioning.** The system is an evidence-grounded research system for beauty brands. It answers a merchant question within a cost and time budget and returns a checked brief: every number is computed, every quote is verbatim, contrary evidence is included and the cohort is disclosed. The full design is in §4–§5 of `beauty-research/proposals/agentic_beauty_market_research.md`.
+
+**Features.**
+1. Orchestrator that plans and schedules within a budget, and makes five decisions: who works, what runs in parallel, where effort goes, what needs correction, and when to stop.
+2. Data tools: cohort query, coverage, missingness, aspect counts, dominance check, sensitivity rerun.
+3. Specialists: competitor analysis, customer needs, and a hypothesis challenger.
+4. Shared evidence ledger of finding records, exchanged by reference.
+5. Deterministic verification: verbatim quotes, recomputed numbers, schema checks.
+6. Local repair of failed claims, a cache keyed by dataset version, cohort and query, and checkpointing.
+7. Model routing: a small model for extraction and a strong model for planning and synthesis.
+8. Bounded self-evolution of the orchestration policy between tasks, with versioning and rollback.
+
+**Scope.** Not in scope: publishing campaigns, changing listings, efficacy claims, sales or ROI inference. Evolution may change activation rules, check order, concurrency, model routing and stopping thresholds. It may not change prompts, tool code, the verifier or the evaluator.
+
+**Evaluation criteria.**
+- Arms F, A, M, M+, B and S.
+- 120 held-out task instances from 30 templates, none of which the evolution loop sees.
+- Outcomes: all-checks task success, unsupported-claim rate, contrary-evidence recall, cost, latency, run-to-run consistency, and the cost of evolution with its break-even number of briefs.
+- Comparisons are at three budget caps and reported as a cost-accuracy frontier.
