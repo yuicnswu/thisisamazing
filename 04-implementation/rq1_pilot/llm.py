@@ -41,7 +41,7 @@ def _load():
 
 
 def _claude(model: str, system: str, prompt: str, timeout: int = 600) -> str:
-    cmd = ["claude", "-p", "--model", model, "--system-prompt", system, "--tools", "", "--no-session-persistence",
+    cmd = [os.environ.get("CLAUDE_BIN", "claude"), "-p", "--model", model, "--system-prompt", system, "--tools", "", "--no-session-persistence",
            "--setting-sources", "", "--output-format", "json"]
     p = subprocess.run(cmd, input=prompt, capture_output=True, text=True, timeout=timeout, cwd="/tmp")
     if p.returncode != 0:

@@ -27,7 +27,7 @@ Shares estimate what the LLM annotator would say if it read every review. They a
 pip install scikit-learn pandas pyarrow scipy
 python parse.py amazon /path/to/All_Beauty.jsonl        # or: python parse.py sephora ~/Downloads/archive
 python discover.py amazon
-python label.py amazon --workers 6                       # needs the Claude Code CLI; cached in outputs/llm_cache.jsonl
+python label.py amazon --workers 6                       # needs the Claude Code CLI (set CLAUDE_BIN if not on PATH); cached in outputs/llm_cache.jsonl
 python scale.py amazon
 python analyze.py amazon                                 # -> outputs/amazon/results.md
 python -m pytest tests
