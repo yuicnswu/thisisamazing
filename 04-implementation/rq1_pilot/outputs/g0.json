@@ -1,0 +1,65 @@
+{
+  "listings": 6503,
+  "by_source": {
+    "cohort": 5585,
+    "meta_sample": 918
+  },
+  "per_attr": {
+    "skin_type": {
+      "none": 5243,
+      "disagree": 34,
+      "details_only": 864,
+      "agree": 136,
+      "text_only": 226
+    },
+    "hair_type": {
+      "none": 5395,
+      "details_only": 784,
+      "disagree": 57,
+      "text_only": 112,
+      "agree": 155
+    },
+    "scent": {
+      "none": 5381,
+      "agree": 284,
+      "text_only": 585,
+      "details_only": 236,
+      "disagree": 17
+    },
+    "item_form": {
+      "none": 2932,
+      "agree": 1523,
+      "details_only": 830,
+      "disagree": 212,
+      "text_only": 1006
+    },
+    "free_from": {
+      "none": 5807,
+      "text_only": 533,
+      "agree": 41,
+      "details_only": 106,
+      "disagree": 16
+    }
+  },
+  "agreeing_attrs_hist": {
+    "0": 4628,
+    "1": 1632,
+    "2": 223,
+    "3": 19,
+    "4": 1
+  },
+  "products_ge1_agree": 1875,
+  "products_ge2_agree": 243,
+  "early_reviews": {
+    "products": 6272,
+    "early_verified_reviews": 36992,
+    "with_checkable_mention": 2114,
+    "share": 0.05714749134948097,
+    "per_attr": {
+      "scent": 686,
+      "hair_type": 815,
+      "free_from": 186,
+      "skin_type": 572
+    }
+  }
+}

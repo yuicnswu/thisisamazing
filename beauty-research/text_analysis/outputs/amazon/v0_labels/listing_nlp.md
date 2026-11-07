@@ -1,0 +1,23 @@
+# Listing text NLP linked to review criticism: amazon
+
+112,590 listings. Median words: title 17, features 0, description 0. Listings with no feature text: 84.6%; no description: 83.1%.
+
+## Claim vs experience
+
+Share of reviews criticising the matching aspect, on products whose listing makes the claim vs products whose listing doesn't. PPI++ estimates with 95% intervals; the difference interval assumes the two estimates are independent. Descriptive, not causal.
+
+| Claim | Listings with it | Aspect tested | Criticism, with claim | Without | Difference (pp) |
+|---|---|---|---|---|---|
+| hydrating | 6,836 (6.1%) | hydration_skin_feel | 3.5% [0.6%, 6.5%] (calib 143) | 0.4% [0.1%, 0.8%] | +3.1 [+0.1, +6.1] |
+| long_lasting | 7,968 (7.1%) | longevity | 6.0% [2.7%, 9.3%] (calib 152) | 2.8% [2.0%, 3.6%] | +3.2 [-0.2, +6.6] |
+| gentle_sensitive | 3,391 (3.0%) | skin_reaction | 4.7% [0.4%, 9.1%] (calib 85) | 1.3% [0.7%, 1.8%] | +3.5 [-0.9, +7.9] |
+| natural_organic | 19,770 (17.6%) | ingredients | 0.7% [0.0%, 1.6%] (calib 293) | 0.4% [0.1%, 0.8%] | +0.2 [-0.8, +1.2] |
+| fragrance_free | 806 (0.7%) | scent | 3.0% [0.0%, 7.1%] (calib 26) | 2.9% [2.1%, 3.6%] | +0.1 [-4.1, +4.2] |
+| scented | 5,148 (4.6%) | scent | 9.1% [3.4%, 14.9%] (calib 90) | 2.5% [1.8%, 3.2%] | +6.6 [+0.9, +12.4] |
+| easy_to_use | 2,132 (1.9%) | ease_of_use | 11.0% [3.3%, 18.6%] (calib 56) | 6.4% [5.2%, 7.5%] | +4.6 [-3.1, +12.3] |
+| multipack | 29,700 (26.4%) | size_quantity | 6.4% [4.3%, 8.4%] (calib 368) | 5.3% [4.2%, 6.4%] | +1.1 [-1.2, +3.4] |
+| premium_quality | 10,007 (8.9%) | authenticity_quality | 9.7% [6.3%, 13.1%] (calib 232) | 7.8% [6.6%, 9.1%] | +1.8 [-1.8, +5.5] |
+
+## Most frequent title bigrams
+
+human hair (15,619), for women (14,890), hair extensions (9,449), pack of (4,735), hair bundles (4,560), nail art (3,938), body wave (3,771), lace front (3,662), fl oz (3,587), wigs for (3,351), clip in (3,090), for black (2,748), nail polish (2,741), black women (2,643), for men (2,566), braiding hair (2,450), hair accessories (2,428), women girls (2,407), long lasting (2,404), virgin hair (2,344), brazilian virgin (2,338), bundles with (2,298), natural color (2,170), natural black (2,158), in hair (2,118), women and (2,071), crochet hair (2,004), oz pack (1,956), front wigs (1,931), hair wigs (1,925)

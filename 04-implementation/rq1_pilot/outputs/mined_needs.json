@@ -1,0 +1,380 @@
+{
+ "summary": {
+  "stats": {
+   "reviews": 600,
+   "parsed": 600,
+   "reviews_with_need": 36,
+   "needs": 43,
+   "grounded": 43,
+   "in_vocab": 43,
+   "lexical": 24
+  },
+  "share_reviews_with_checkable_need": 0.06,
+  "per_attr": {
+   "hair_type": 18,
+   "scent": 3,
+   "skin_type": 20,
+   "item_form": 1,
+   "free_from": 1
+  },
+  "listing_label_of_buyer_need": {
+   "unresolved": 36,
+   "entailed": 7
+  },
+  "extractor_agreement": {
+   "subsample": 200,
+   "matched_needs": 12,
+   "only_haiku": 3,
+   "only_sonnet": 2,
+   "precision_vs_sonnet": 0.8,
+   "recall_vs_sonnet": 0.8571428571428571,
+   "review_level_agreement": 0.985
+  }
+ },
+ "pairs": [
+  {
+   "rid": "R9",
+   "asin": "B0941YDPSW",
+   "attr": "hair_type",
+   "value": "fine",
+   "quote": "My daughter has fine hair",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R24",
+   "asin": "B00HCQ9HNG",
+   "attr": "scent",
+   "value": "coconut",
+   "quote": "as much coconut scent as I was hoping for",
+   "listing_label": "entailed"
+  },
+  {
+   "rid": "R49",
+   "asin": "B079NV9PBG",
+   "attr": "skin_type",
+   "value": "sensitive",
+   "quote": "I have such sensitive skin",
+   "listing_label": "entailed"
+  },
+  {
+   "rid": "R58",
+   "asin": "B077DWJ4H5",
+   "attr": "skin_type",
+   "value": "acne_prone",
+   "quote": "I have spots because of acne",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R58",
+   "asin": "B077DWJ4H5",
+   "attr": "skin_type",
+   "value": "sensitive",
+   "quote": "I have rosasea and fair delicate skin",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R74",
+   "asin": "B08P3QYSZR",
+   "attr": "hair_type",
+   "value": "fine",
+   "quote": "I have fine thin hair",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R81",
+   "asin": "B081RDJ8BD",
+   "attr": "item_form",
+   "value": "oil",
+   "quote": "AMBER WHITE OIL",
+   "listing_label": "entailed"
+  },
+  {
+   "rid": "R81",
+   "asin": "B081RDJ8BD",
+   "attr": "scent",
+   "value": "amber_white",
+   "quote": "Amber WHITE FRAGRANCE",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R92",
+   "asin": "B00YZ3AB66",
+   "attr": "skin_type",
+   "value": "dry",
+   "quote": "I have had flaky dry skin beard",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R96",
+   "asin": "B00P7MXJMW",
+   "attr": "hair_type",
+   "value": "fine",
+   "quote": "I have thinner hair",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R96",
+   "asin": "B00P7MXJMW",
+   "attr": "hair_type",
+   "value": "straight",
+   "quote": "I use these for when I wear my hair straight",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R127",
+   "asin": "B07DM64VNT",
+   "attr": "skin_type",
+   "value": "dry",
+   "quote": "Dry and cracked.",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R132",
+   "asin": "B07MMWXPLJ",
+   "attr": "skin_type",
+   "value": "dry",
+   "quote": "my really horrible dry cracked heals",
+   "listing_label": "entailed"
+  },
+  {
+   "rid": "R135",
+   "asin": "B01N20M2XY",
+   "attr": "free_from",
+   "value": "vegan",
+   "quote": "Love that it is vegan",
+   "listing_label": "entailed"
+  },
+  {
+   "rid": "R192",
+   "asin": "B087J6PP9X",
+   "attr": "skin_type",
+   "value": "oily",
+   "quote": "unbelievably oily skin",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R281",
+   "asin": "B000K7IVAE",
+   "attr": "skin_type",
+   "value": "sensitive",
+   "quote": "My skin is so sensitive",
+   "listing_label": "entailed"
+  },
+  {
+   "rid": "R296",
+   "asin": "B074PXYH2R",
+   "attr": "hair_type",
+   "value": "fine",
+   "quote": "Best shampoo for thin hair.",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R351",
+   "asin": "B08TT9Z1RB",
+   "attr": "skin_type",
+   "value": "dry",
+   "quote": "especially if you have dry skin",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R359",
+   "asin": "B00NFUD2MK",
+   "attr": "hair_type",
+   "value": "fine",
+   "quote": "my baby fine, thinning hair",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R370",
+   "asin": "B078TWJWPS",
+   "attr": "skin_type",
+   "value": "sensitive",
+   "quote": "I have sensitive skin",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R376",
+   "asin": "B0734639YS",
+   "attr": "hair_type",
+   "value": "curly",
+   "quote": "I have 4C hair",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R381",
+   "asin": "B071GFCK5Q",
+   "attr": "skin_type",
+   "value": "oily",
+   "quote": "esp if you are oily",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R383",
+   "asin": "B00U7U3B68",
+   "attr": "hair_type",
+   "value": "dry",
+   "quote": "something to use on dry hair",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R383",
+   "asin": "B00U7U3B68",
+   "attr": "hair_type",
+   "value": "wavy",
+   "quote": "I have wavy hair",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R391",
+   "asin": "B07Y5G5JYL",
+   "attr": "skin_type",
+   "value": "oily",
+   "quote": "I have very oily eyelids",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R394",
+   "asin": "B01M1OFZOG",
+   "attr": "hair_type",
+   "value": "wavy",
+   "quote": "Awesome for touching up a natural wavy",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R426",
+   "asin": "B0071J9PVS",
+   "attr": "skin_type",
+   "value": "sensitive",
+   "quote": "Skincare for sensitive skin.",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R445",
+   "asin": "B083QP6MX4",
+   "attr": "skin_type",
+   "value": "sensitive",
+   "quote": "my sensitive skin",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R448",
+   "asin": "B00YLGZC7K",
+   "attr": "hair_type",
+   "value": "wavy",
+   "quote": "I have long, wavy hair",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R451",
+   "asin": "B0773J7CZS",
+   "attr": "hair_type",
+   "value": "thick",
+   "quote": "sturdy for thick hair",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R459",
+   "asin": "B01NAZHOW8",
+   "attr": "hair_type",
+   "value": "straight",
+   "quote": "My hair is shiny and straight.",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R468",
+   "asin": "B08SK31GWL",
+   "attr": "hair_type",
+   "value": "thick",
+   "quote": "for a thick head",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R505",
+   "asin": "B07F3RH7DD",
+   "attr": "scent",
+   "value": "max_factor_wild_musk",
+   "quote": "not the smell I was looking for which was Max Factor wild musk",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R508",
+   "asin": "B01ETV11XU",
+   "attr": "hair_type",
+   "value": "curly",
+   "quote": "I have 4c hair",
+   "listing_label": "entailed"
+  },
+  {
+   "rid": "R523",
+   "asin": "B01ARKFAAC",
+   "attr": "skin_type",
+   "value": "sensitive",
+   "quote": "Awesome for my sensitive skin!",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R523",
+   "asin": "B01ARKFAAC",
+   "attr": "skin_type",
+   "value": "combination",
+   "quote": "I have sensitive, combination skin",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R531",
+   "asin": "B00VINQMIC",
+   "attr": "skin_type",
+   "value": "sensitive",
+   "quote": "my sensitive skin",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R531",
+   "asin": "B00VINQMIC",
+   "attr": "skin_type",
+   "value": "combination",
+   "quote": "more combo/oily",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R531",
+   "asin": "B00VINQMIC",
+   "attr": "skin_type",
+   "value": "oily",
+   "quote": "from oily",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R551",
+   "asin": "B01MT3CBB6",
+   "attr": "skin_type",
+   "value": "dry",
+   "quote": "extremely dry skin",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R571",
+   "asin": "B00CH9JCTM",
+   "attr": "hair_type",
+   "value": "thick",
+   "quote": "I have very thick hair",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R575",
+   "asin": "B07N4L482N",
+   "attr": "hair_type",
+   "value": "curly",
+   "quote": "I have type 4a/3c curly hair.",
+   "listing_label": "unresolved"
+  },
+  {
+   "rid": "R588",
+   "asin": "B07NXSXK9P",
+   "attr": "hair_type",
+   "value": "curly",
+   "quote": "I was able to set my curls",
+   "listing_label": "unresolved"
+  }
+ ]
+}

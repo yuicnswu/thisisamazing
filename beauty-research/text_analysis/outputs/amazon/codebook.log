@@ -1,0 +1,60 @@
+round {'round': 0, 'n_rules': 0, 'n': 240, 'macro_kappa': 0.7987, 'macro_kappa_mention': 0.8081, 'macro_kappa_neg': 0.7765, 'macro_kappa_ctx': 0.8374, 'exact_agreement': 0.4667}
+round {'round': 1, 'n_rules': 20, 'n': 217, 'macro_kappa': 0.8635, 'macro_kappa_mention': 0.8609, 'macro_kappa_neg': 0.8591, 'macro_kappa_ctx': 0.8895, 'exact_agreement': 0.6221}
+round {'round': 2, 'n_rules': 20, 'n': 240, 'macro_kappa': 0.8718, 'macro_kappa_mention': 0.8777, 'macro_kappa_neg': 0.8539, 'macro_kappa_ctx': 0.9167, 'exact_agreement': 0.6417}
+{
+  "models": {
+    "A": "claude-haiku-5-5",
+    "B": "claude-sonnet-5-5",
+    "judge": "claude-opus-5-5"
+  },
+  "history": [
+    {
+      "round": 0,
+      "n_rules": 0,
+      "n": 240,
+      "macro_kappa": 0.7987,
+      "macro_kappa_mention": 0.8081,
+      "macro_kappa_neg": 0.7765,
+      "macro_kappa_ctx": 0.8374,
+      "exact_agreement": 0.4667,
+      "disagreeing_reviews": 128,
+      "candidate_rules": 121
+    },
+    {
+      "round": 1,
+      "n_rules": 20,
+      "n": 217,
+      "macro_kappa": 0.8635,
+      "macro_kappa_mention": 0.8609,
+      "macro_kappa_neg": 0.8591,
+      "macro_kappa_ctx": 0.8895,
+      "exact_agreement": 0.6221,
+      "disagreeing_reviews": 105,
+      "candidate_rules": 78
+    },
+    {
+      "round": 2,
+      "n_rules": 20,
+      "n": 240,
+      "macro_kappa": 0.8718,
+      "macro_kappa_mention": 0.8777,
+      "macro_kappa_neg": 0.8539,
+      "macro_kappa_ctx": 0.9167,
+      "exact_agreement": 0.6417
+    }
+  ],
+  "selected_round": 2,
+  "rules": [
+    "Label and quote only the review body. Never quote the title, and never use it as the sole support for an aspect, polarity or context label.",
+    "Tag overall for any general verdict or disappointment naming no aspect ('don't bother', 'disappointed', 'piece of junk'), even when the review also has aspect labels.",
+    "Stated intent to rebuy or not rebuy, abandoning the product, or preferring an alternative product or method is overall. A vague comparison naming no aspect is also overall.",
+    "If a comparison says another product is better on a named aspect, label that aspect negative for the reviewed product.",
+    "A device that breaks, malfunctions, won't turn on or deteriorates over time is authenticity_quality (build quality). A working product that performs poorly is efficacy.",
+    "authenticity_quality covers fake, used or expired items, build and material defects, and items not matching the listing or photos. It never covers performance.",
+    "Longevity covers only how long an effect or wear lasts after application. Supply duration is size_quantity, fragrance lingering is scent, and drying or setting time is efficacy.",
+    "An accessory or adhesive product that fails to hold at all is efficacy. One that shifts, lifts or loosens during wear is longevity.",
+    "For wigs and hairpieces, material, construction, shedding and durability through bleaching, colouring or weeks of wear are authenticity_quality. How the hair styles, curls or frizzes is hair_result.",
+    "On hair, use hair_result when a specific outcome is named (frizz, shine, softness, hold, volume). Generic 'works' or 'doesn't work' is efficacy.",
+    "A damaged shipping box, wrong item or delivery issue is delivery_service. Leaking or faulty containers, caps, pumps and dispensers are packaging.",
+    "Packaging covers only the container or dispenser. The look of the product itself, and features matching no listed aspect, go to overall.",
+    "Fit problems, pack or unit counts, unit size and needing l

@@ -1,6 +1,38 @@
 # Refined thesis plan: Before the First Review
 
-Merges yui's proposal *"Before the First Review: Evidence-Grounded Matching of New Products to the Customers They Genuinely Serve"* (17 Oct 2026) with the earlier project plan (`project-plan.md`) and the literature review (`literature-review.md`). **This file supersedes `project-plan.md`.** yui's proposal is treated as the main statement of intent; the earlier plan supplies the business and entrepreneurship side.
+Merges yui's proposal *"Before the First Review: Evidence-Grounded Matching of New Products to the Customers They Genuinely Serve"* (17 Oct 2026) with the earlier project plan (`project-plan.md`) and the literature review (`literature-review.md`). **This file supersedes `project-plan.md`.** **Category switched to Beauty on 17 Oct 2026 (yui: "let's do beauty"); §12 holds the Beauty scope, data and costs, and the sections below are updated to match.** yui's proposal is treated as the main statement of intent; the earlier plan supplies the business and entrepreneurship side.
+
+## 0. Repositioning (21 Oct 2026): read this first
+
+The RQ1 pilot (`05-report/report.md`), a 2025–2026 field check and a role-by-role team review (project files, `team-opinion/`) changed what this thesis can claim. This section overrides the sections below where they disagree; the stage-3 documents (`03-solution-design/project-spec.md`, `implement-spec.md`) hold the full design.
+
+**What happened.**
+- Brand bias in LLM product recommendation was published on skincare by BLaIR's first author (Chu & Hou, arXiv:2606.17443).
+- "URR ≤ α for recommendations" is a known template (De Toni et al., RecSys 2025; Mohri & Hashimoto 2024), and the gold-set-plus-proxy-labels upgrade has a general form already (Einbinder, Ringel & Romano, arXiv:2412.11174).
+- In our own pilot, a strict "only if stated" prompt cut URR from 54–57% to 5–10%, and brand-plus-hype swaps did not move the models.
+- What held up: confidence and strict prompting certify nothing at α = 0.10, while the quote-certified NeSy verifier certifies in 100% of splits (URR ≈ 4%, recall 88–90%). Ravikumar (CIKM 2026) independently finds confidence-based abstention barely helps LLM recommenders.
+
+**New contribution order** (details in `project-spec.md`):
+1. **C1, listing-silent benchmark:** needs with k = 1–3 checkable constraints; evidence stated, paraphrased, missing, vague, contradicted or distractor; abstention scored; ≥ 2 categories. No 2025–2026 shopping benchmark scores abstaining when the listing doesn't say.
+2. **C2, certifiable vs calibrated grounding:** quote-certified verification can be certified at a chosen α, confidence and prompting can't (Proposition 13 in `theory.md` explains why).
+3. **C3, truthful disclosure loop (headline):** abstentions become demand-ranked verification requests to sellers; measured by disclosure yield at fixed risk, the new-vs-established exposure gap, and against GEO rewriting. 37% of 6,503 All_Beauty listings have a checkable attribute in `details` that the shopper-visible text never states.
+4. **C4 (stretch):** a selective, conjunctive risk guarantee for new items under one-sided proxy-label noise, building on Einbinder et al.
+
+**Claims retired:** "AI recommenders are biased by brand"; "first support guarantee"; "regret prevented"; "robust by construction to strategic rewrites"; "LLMs license matches on priors" as the main finding (it becomes a pre-registered hard-split test, §0.1).
+
+**Venue (changes §10.1).** Primary target: **NeurIPS 2027 Evaluations & Datasets track** (the 2026 name of Datasets & Benchmarks), with **RecSys 2027 or SIGIR 2027** as the alternative. The main track is a stretch goal that needs, on top of the E&D paper: C4 proved and independently checked, a gold set of about 300–500 human-labelled items (this reverses the 17 Oct no-annotator decision, so it is yui's call), a non-vacuity result, and NeSy beating NLI-verifier and conformal-filtering baselines on the risk–coverage frontier. Paper B (H1–H3) and the merchant-disclosure story can form a separate IS paper.
+
+**Category (changes §12.3–12.5).** G0 failed on All_Beauty, and an E&D paper needs ≥ 2 categories anyway. Recommendation: count G0 on Beauty_and_Personal_Care **and** Home_and_Kitchen from the Mac host and build on both; Beauty keeps continuity with the pilot, BLaIR and the hackathon. The metadata cannot be downloaded from the cloud or the Mac sandbox (403). From the review files: 5.2% of early verified All_Beauty reviews and 8.6% of Appliances reviews mention a checkable attribute (rule proxy). At the pilot's 13% coverage, α = 0.10 needs about 1,000–2,200 independent products and α = 0.05 about 5,000–12,600 (verifier URR 2–3%).
+
+### 0.1 RQs after the repositioning
+
+| | Question | Contribution |
+|---|---|---|
+| **RQ1 (diagnosis, redesigned)** | Where does evidence-faithful matching break when the prompt is already strict: conjunctions (k ≥ 2), paraphrased evidence, usage-text distractors? And does brand matter in single-listing checks as it does in choice sets (Chu & Hou)? | C1 |
+| **RQ2 (method)** | Which scores can be *certified* to keep URR ≤ α on new products, at what coverage, and why? | C2 (+ C4) |
+| **RQ3 (loop and outcome)** | Does truthful disclosure of the attribute behind an abstention raise certified coverage without raising URR, and does it close the gap between new and established products? Post-launch review validation stays, scoped to checkable needs. | C3 |
+
+Pre-registered reading for RQ1: it claims "strict prompting fails" only if, in some hard cell, strict-prompt URR exceeds 0.10 with its CI above 0.10, or its paraphrase recall is under 50%. Otherwise RQ1 reports that strict prompting suffices on checkable needs, and C1–C3 carry the paper.
 
 ## 1. One-paragraph summary
 
@@ -11,7 +43,7 @@ New products have no reviews, so AI recommenders match them on **priors** (categ
 | Question | Earlier plan | yui's proposal | **Decision** | Why |
 |---|---|---|---|---|
 | Core contribution | Fit-first seeding of first buyers (business-led) | Evidence-grounded matching with abstention and a URR guarantee (AI method) | **yui's method is the core.** Fit-first seeding becomes the business and entrepreneurship outcome built on top of it. | The method gives a sharper, testable novelty claim (*support, not accuracy*) that the literature review didn't cover; seeding alone overlaps with Fainmesser et al. 2021 and Wang et al. 2025. |
-| Category | Skincare (Beauty_and_Personal_Care) | Appliances (dev), Home & Kitchen, Tools & Home Improvement | **yui's categories.** Skincare is an optional transfer test (ingredients and "fragrance-free" are checkable). | The method needs checkable specs (dimensions, material, capacity, colour) to define "supported". Skincare needs are mostly experiential, which the proposal scopes out. Misfit statements like "too wide for my space" also make the seeding outcome measurable. |
+| Category | Skincare (Beauty_and_Personal_Care) | Appliances (dev), Home & Kitchen, Tools & Home Improvement | **Beauty is the main category** (yui, 17 Oct: "let's do beauty"; this reverses the earlier choice of yui's proposal categories). Dev: All_Beauty. Main: Beauty_and_Personal_Care, skin care. Held-out: Beauty_and_Personal_Care, hair care. Appliances is an optional cross-domain transfer test. See §12. | Beauty is where yui's data, the hackathon brief and the business case already are, and it is the category where prior licensing should be strongest (heavily marketed, brand-driven, well known to LLMs). The method still needs checkable constraints, so **scope is limited to attributes a listing can state and a parser can check**: skin type, hair type, scent / fragrance-free, item form, "free-from" claims, volume, SPF, count, and ingredient presence when an ingredient list exists. Experiential needs ("won't break me out", "feels light") stay out of scope. The cost is sparser evidence and noisier labels (§12.4). |
 | Venue | PACIS / HICSS (IS) | NeurIPS 2027 main track | **NeurIPS 2027 main track is the primary target for the whole thesis** (updated 17 Oct, yui: "aim at NeurIPS track"). Fallback: NeurIPS Evaluations & Datasets track. Paper B (business outcome) is an optional follow-up after submission. See §10. | yui's explicit choice. The IS thesis document is built around the NeurIPS paper, with Paper B as an extra chapter if time allows. |
 | Commercial action (Reinvent Commerce brief) | Target list, message, promotion, do-not-target | Recommend / reject / abstain with cited evidence; seller feedback | **Both, in one loop:** supported matches → launch target list; contradicted → do-not-target; abstain → "add this spec" fix for the seller. | This meets the brief's "useful commercial action" and "measurable effect" criteria without changing the method. |
 | Forecasting rule (brief: no LLM-only prediction) | LLM extracts, logistic regression predicts | LLM verifier + conformal calibration | **Keep yui's design.** The decision rule is a logical conjunction over verified support labels, calibrated with conformal risk control; the trajectory analysis (H1–H3) uses regression. | Neither part is "LLM-only forecasting". State this explicitly in the brief write-up. |
@@ -25,13 +57,13 @@ New products have no reviews, so AI recommenders match them on **priors** (categ
 | **RQ1 (diagnosis)** | Do AI recommenders match new products on listing evidence or on priors, brands and persuasive wording? | A |
 | **RQ2 (method)** | Can an agent match on evidence alone, abstain when evidence is missing, and guarantee URR ≤ α? | A |
 | **RQ3 (validation)** | Do evidence-based matches at launch predict which customers were satisfied after launch? | A |
-| **H1 (marketing)** | Products whose early buyers' needs were evidence-supported by the listing have higher average ratings and review volume 6–12 months after launch, controlling for price, category, specs and brand size. | B |
-| **H2 (marketing)** | Misfit statements in the first reviews ("too wide", "smaller than listed") predict lower later ratings, more strongly than general negative sentiment (first-review persistence, Park et al. 2021). | B |
+| **H1 (marketing)** | Beauty products whose early verified buyers' checkable needs (skin type, hair type, scent, form, free-from, size) were evidence-supported by the listing have higher average ratings and verified review volume 6–12 months after launch, controlling for price, subcategory, listed attributes and brand size. Tested on the full Beauty_and_Personal_Care files, not the hackathon cohort (§12.2). | B |
+| **H2 (marketing)** | Attribute-misfit statements in the first verified reviews ("too oily for my combination skin", "says unscented but smells strong", "smaller bottle than I expected", "not for curly hair") predict lower later ratings, more strongly than general negative sentiment (first-review persistence, Park et al. 2021). | B |
 | **H3 (entrepreneurship)** | The H1 association is stronger for small or new brands (liability of newness). | B |
 | **H4 (AI / IS)** | At the same contact budget, evidence-grounded targeting reaches more post-launch-satisfied buyers and fewer misfit buyers than popularity or prior-based (LLM / Recformer) targeting. | A (RQ3) + B |
 | **H5 (AI-native operations)** | Turning abstentions into seller listing fixes raises coverage (more matchable customers) without raising URR. Simulate it by restoring hidden specs. | A |
 
-H1–H5 replace the skincare versions in `literature-review.md` §5.3. The theory anchors are unchanged: Li & Hitt 2008, Godes & Silva 2012, Muchnik et al. 2013, Park et al. 2021, Stinchcombe 1965, Zimmerman & Zeitz 2002.
+H1–H5 replace the earlier skincare versions in `literature-review.md` §5.3; after the 17 Oct switch they are Beauty hypotheses again, now limited to checkable attributes (the literature review itself is maintained in its own thread). The theory anchors are unchanged: Li & Hitt 2008, Godes & Silva 2012, Muchnik et al. 2013, Park et al. 2021, Stinchcombe 1965, Zimmerman & Zeitz 2002.
 
 ## 4. Method (from yui's proposal, unchanged)
 
@@ -40,6 +72,8 @@ Need = conjunction of checkable constraints. Policy inspects listing fields, lab
 **Added for Paper B (light):** for each new product, compute the share of its first *k* reviewers whose mined need is entailed / contradicted by the listing, and regress the 6–12-month rating and volume on it (H1–H3), with brand fixed effects and the sales-event natural experiment from `project-plan.md`.
 
 ## 5. Novelty statement (merged)
+
+*Superseded by §0 (21 Oct 2026). Kept for the record.*
 
 > AI recommenders can place new products near similar known items (UniSRec, Recformer, TIGER), select audiences for new items (Wang et al. 2025), and abstain with a bounded *error* rate (conformal abstention). Marketing research shows first reviews persist (Park et al. 2021) and that targeting well-matched early buyers helps in theory (Fainmesser et al. 2021). No work bounds the rate of recommendations that are not *supported* by listing evidence, shows that current recommenders license new-product matches on priors, or links evidence-supported early matching to the new product's review trajectory and to the liability of newness. This thesis does all three.
 
@@ -80,6 +114,8 @@ Checked against `literature-review.md` and quick web searches (titles and abstra
 
 ## 8. Novelty check per contribution (17 Oct 2026)
 
+*Partly superseded by §0: the field check found C1's brand component and C2's template published, and rates C3 as the most novel part. See `02-literature-review/summary/review.md` §8–9.*
+
 Based on web searches and abstract-level reading. Ratings: low / moderate / high.
 
 | Contribution | Closest prior work (checked) | What's already done | What stays new | Rating |
@@ -99,6 +135,8 @@ Based on web searches and abstract-level reading. Ratings: low / moderate / high
   - Not "AI recommenders are biased by brand", but "AI recommenders recommend new products *without evidence* (prior licensing), which bias-injection studies don't measure."
 
 ## 9. Raising the AI method's novelty to high
+
+*Status 21 Oct 2026: §9A's "robust by construction" does not hold for a learned verifier (`theory.md` Prop 12) and is retired; its disclosure result moves into C3. §9B's two-sided guarantee stays as Theorem 4, untested so far.*
 
 The current method pieces rate moderate (support guarantee) and low-to-moderate (acquisition) because of conformal factuality (Mohri & Hashimoto 2024) and attribute-verifying shopping agents. Two additions would make the method itself high-novelty. Both grow out of the new-product setting, so they don't change the dataset.
 
@@ -128,6 +166,9 @@ Grossman 1981 (*JLE*, disclosure); Milgrom 1981 (*Bell J. Econ.*, "Good news and
 NeurIPS 2026 rules are used as the quality bar. The 2027 call isn't out yet, so re-check the CfP and Handbook when they appear (deadlines, tracks and checklist change every year). The 2026 deadlines were 4 May (abstract) and 6 May (full paper), so plan for **early May 2027**. Meeting this standard raises the paper's rigour; it doesn't guarantee acceptance.
 
 ### 10.1 Track and contribution type
+
+*Changed 21 Oct 2026 (§0): primary target is now the Evaluations & Datasets track or RecSys / SIGIR 2027; the main track is a stretch goal with the bar listed in §0.*
+
 - **Track:** main track. **Contribution type: General.** It's a method with theory and experiments. "Theory" would drop the benchmark's weight, and "Use-Inspired" would shift reviewers to the commerce use case rather than the guarantee. Lock this in by the go/no-go gate (30 Nov); it can't be changed after submission.
 - **Fallback:** Evaluations & Datasets track (that's its 2026 name; the proposal called it "Datasets & Benchmarks"). Use it if the method results are weak but the diagnosis + benchmark are strong. Only one track per paper, so decide at the March gate (§10.5).
 - **Paper B** (seeding, H1–H3) and the business framing are **out of the NeurIPS paper**. They stay as a thesis chapter or a later IS/marketing paper. One sentence of motivation in the intro is enough.
@@ -135,7 +176,7 @@ NeurIPS 2026 rules are used as the quality bar. The 2027 call isn't out yet, so 
 ### 10.2 What goes in the 9 pages
 | Section | Content | Pages |
 |---|---|---|
-| Intro + running example | Prior licensing; "cannot tell yet: add a width" | 1.0 |
+| Intro + running example | Prior licensing on a famous-brand moisturiser vs an unknown one; "cannot tell yet: state whether it is fragrance-free" | 1.0 |
 | Problem setup | Conjunctive needs, support status, URR, two-sided objective | 1.0 |
 | Diagnosis (RQ1) | Evidence ablations and counterfactual edits on frontier + open models; memorisation probe | 1.5 |
 | Method | Verifier (counterfactual + invariance training), acquisition (fixed-order fallback allowed), decision rule, two-risk calibration | 1.5 |
@@ -150,7 +191,7 @@ NeurIPS 2026 rules are used as the quality bar. The 2027 call isn't out yet, so 
 - **Baselines:** the strongest published (Recformer/UniSRec; conformal abstention; context-aware decoding; CANOE-style faithfulness fine-tune; frontier LLM + ReAct agent) **plus a strong simple non-LLM baseline:** a regex/structured spec parser with rule-based matching. If this simple baseline already reaches low URR, the paper's story changes, so run it in the November pilot. Every baseline gets the **same tuning budget**.
 - **Statistics:** mean ± std over **≥5 seeds** for trained parts; **bootstrap 95% CI** for API-model runs (state why). Use paired tests with multiple-comparison correction, and report effect sizes. Never write "significantly" without a test.
 - **Ablations:** every claimed component (counterfactual loss, invariance loss, acquisition policy, conformal layer, exposure-gap constraint). Run sensitivity to α and β.
-- **Generalisation:** Appliances (dev) → Home & Kitchen (main) → Tools (held-out). Skincare ingredients as an optional transfer test.
+- **Generalisation:** All_Beauty (dev) → Beauty_and_Personal_Care skin care (main) → Beauty_and_Personal_Care hair care (held-out). Appliances as an optional cross-domain transfer test (shows the method is not beauty-specific).
 - **Theory:** all assumptions stated, full proofs, and **an independent proof checker** (not the proof's author).
 - **Failure cases:** a named error analysis (e.g. unit-conversion errors, conflicting title/spec, verifier misreads).
 - **Efficiency:** inspection cost, latency, GPU-hours, API cost on the same setup; total project compute including failed runs.
@@ -169,7 +210,7 @@ NeurIPS 2026 rules are used as the quality bar. The 2027 call isn't out yet, so 
 ### 10.5 Timeline with gates
 | Dates | Work | Gate |
 |---|---|---|
-| 17–31 Oct 2026 | Feasibility count (parseable specs per category), EDA, licence check, choose contribution type | G0: data is feasible |
+| 17–31 Oct 2026 | Beauty feasibility count on the full Beauty_and_Personal_Care metadata (§12.3 thresholds), EDA, licence check, choose contribution type | G0: Beauty data is feasible, or fall back to Home & Kitchen (§12.5) |
 | Nov 2026 | RQ1 pilot (2,000 products, 500 needs; 1 open + 1 frontier model) **including the regex baseline** and the label-noise audit (§11.4) | **G1, 30 Nov: go / no-go** |
 | Nov 2026–Jan 2027 | Theory drafts (Thms 1, 2, 4 + two-risk version); benchmark build; automatic label construction (§11) | G2, 31 Jan: benchmark frozen, theorem statements fixed |
 | Feb–Mar 2027 | Verifier training, calibration, all baselines, ablations | **G3, 31 Mar: main results exist → decide main vs. Evaluations & Datasets track** |
@@ -181,9 +222,9 @@ NeurIPS 2026 rules are used as the quality bar. The 2027 call isn't out yet, so 
 1. Market simulation, images, Boonthavorn data (already out)
 2. The disclosure theorem → future work
 3. RL acquisition → fixed cost-ordered inspection (the guarantee still holds)
-4. Skincare transfer test
+4. Appliances cross-domain transfer test
 5. Thm 3 → appendix sketch only
-6. Tools held-out category → report Appliances + Home & Kitchen only (state this as a limitation)
+6. Hair-care held-out split → report All_Beauty + skin care only (state this as a limitation)
 
 **Never cut:** the diagnosis (RQ1), the URR guarantee with its proof, the regex and conformal baselines, ≥5 seeds/CIs, the constructed-label calibration set with its noise audit (§11), and the post-launch validation. Without these, a main-track submission isn't credible.
 
@@ -205,9 +246,9 @@ The proposal's human gold set (500–1,000 pairs, 2–3 annotators) is **dropped
 ### 11.1 Three label sources, and what each is used for
 | Label source | How it's made | Accuracy | Used for |
 |---|---|---|---|
-| **L1. Constructed labels (exact)** | Each benchmark item is *built* from a complete listing whose true spec comes from the hidden `details` field. The support status is known **by construction**: spec removed → *unresolved*; replaced by "compact" → *unresolved*; value edited to 65 cm against a "< 60 cm" need → *contradicted*; spec inserted with its true value → *entailed* or *contradicted* by numeric comparison; title and spec made to disagree → *conflicting*. | Exact for the item as constructed. No judgement involved. | **Primary calibration set for URR**, plus training and main evaluation |
+| **L1. Constructed labels (exact)** | Each benchmark item is *built* from a complete listing whose true spec comes from the hidden `details` field. The support status is known **by construction**: attribute removed → *unresolved*; "fragrance-free" replaced by "gentle" → *unresolved*; Skin Type edited to "Oily" against a "for dry skin" need → *contradicted*; volume edited to 1.7 fl oz against a "≥ 3 fl oz" need → *contradicted*; attribute inserted with its true value → *entailed* or *contradicted* by controlled-vocabulary or numeric comparison; title says "unscented" while the scent field says "Lavender" → *conflicting*. | Exact for the item as constructed. No judgement involved. | **Primary calibration set for URR**, plus training and main evaluation |
 | **L2. Deterministic spec labels (natural listings)** | On unmodified listings, a rule-based parser reads the visible text (title, bullets, description), normalises units, and compares it with the need. The item is kept only when the visible text and the hidden `details` agree within tolerance, or when the spec is clearly absent from the visible text. Ambiguous items are dropped. | High but not perfect (parser errors). The error rate is estimated in §11.4. | Second calibration set; tests that results carry over from constructed to natural listings |
-| **L3. Post-launch review labels (noisy)** | An LLM extracts fit/misfit statements from later reviews of new products ("too wide for my space", "fits under my sink"). | Noisy and sparse. | **RQ3 validation only, never calibration** |
+| **L3. Post-launch review labels (noisy)** | An LLM extracts attribute fit/misfit statements from later verified reviews of new products ("perfect for my dry skin", "smells strong for an unscented cream"). | Noisy and sparse. | **RQ3 validation only, never calibration** |
 
 **Key rule:** the model being evaluated never produces its own calibration labels. The LLM verifier is the thing being calibrated, so its outputs can't also be the ground truth.
 
@@ -223,22 +264,93 @@ So the paper's claim becomes: *"a finite-sample guarantee on unsupported recomme
 ### 11.3 Making ε small and measurable without humans
 - **Agreement filter:** keep a natural item only if (a) the parser finds the value in the visible text, (b) it matches `details` within tolerance, and (c) units are consistent. Drop the rest.
 - **Two independent extractors:** run the rule-based parser and a separate LLM extractor (a different model family from the verifier). Their disagreement rate on kept items is an **estimate of ε** (and an upper bound if their errors are independent; state that assumption).
-- **Consistency checks:** cross-check the same spec stated in two places (title vs. bullets), and cross-check physical plausibility (e.g. a 3-metre bathroom cabinet is a parse error).
-- **Post-launch check:** for products L2 marks as "entailed: width 55 cm", count how often later reviews say "too wide / bigger than listed". A high rate signals parser or listing errors.
+- **Consistency checks:** cross-check the same spec stated in two places (title vs. bullets), and cross-check physical plausibility (e.g. a 40 fl oz eye cream or SPF 150 is a parse error).
+- **Post-launch check:** for products L2 marks as "entailed: fragrance-free", count how often later verified reviews say "strong smell / scented". A high rate signals parser or listing errors.
 - **Optional author spot-check:** the authors themselves read ~100 random items to sanity-check the parser. This is normal debugging, not human-subjects research, so it needs no IRB. Report it as a sanity check, not as gold labels. Skip it if yui prefers zero manual reading.
 
 ### 11.4 Where reviewers will push back, and the answers
 | Likely reviewer objection | Answer in the paper |
 |---|---|
 | "The guarantee only holds on synthetic variants." | It's exact there **by design**: constructed items are the controlled setting where support is unambiguous. The corollary extends it to natural listings with the measured ε, and RQ3 adds real outcomes. |
-| "The parser labels may be wrong." | ε is estimated with two independent extractors plus consistency checks; results are reported across a range of ε, and the bound α + ε is stated explicitly. |
+| "The parser labels may be wrong." | ε is estimated with two independent extractors plus consistency checks; results are reported across a range of ε, and the bound α + ε / P(recommend) is stated explicitly. |
 | "The constructed variants don't look like real listings." | Variants are minimal edits of *real* listings (one spec removed or changed), not generated from scratch. Report results on natural L2 items separately, so reviewers can see any gap. |
-| "Without human labels, how do you know 'entailed' means what a person would think?" | For checkable numeric and categorical specs (width, capacity, material, colour), entailment is a deterministic comparison, not a judgement call. That's exactly why the scope excludes experience attributes like "sturdy". |
+| "Without human labels, how do you know 'entailed' means what a person would think?" | For checkable attributes from controlled vocabularies (skin type, hair type, scent, item form, free-from claims) and numbers (volume, SPF, count), entailment is a deterministic comparison, not a judgement call. That's exactly why the scope excludes experience attributes like "non-greasy" or "won't break me out". |
+| "Beauty needs are mostly experiential, so the in-scope set is small." | Report the share of real early-review needs that are checkable (§12.3) and present the scope honestly. Abstaining on experiential needs is the intended behaviour, not a failure. |
 | "Post-launch labels are LLM-extracted and noisy." | They're used only for validation, never for the guarantee, and the claim is correlational. |
 
 ### 11.5 What changes in the plan
 - **Benchmark:** constructed variants (L1) become the core of the benchmark, which suits the NeurIPS evaluation angle well.
-- **Scope gets tighter:** only constraints whose support can be decided deterministically (dimensions, capacity, weight, material, colour from controlled vocabularies). That matches the proposal's in-scope list.
+- **Scope gets tighter:** only constraints whose support can be decided deterministically: skin type, hair type, scent / fragrance-free, item form, free-from claims and certifications (from controlled vocabularies), volume, SPF and count (numeric), and ingredient presence or absence when an ingredient list is present. See §12.1.
 - **Timeline:** no IRB wait. The time saved goes to the label-noise audit (§11.3) in the November pilot.
 - **Checklist:** crowdsourcing and IRB items are "N/A: no human subjects; all labels are derived automatically from public data". The licence item still applies (Amazon Reviews 2023 terms).
 - **Never-cut list:** replace "human gold set" with "L1 calibration set + ε audit".
+
+## 12. Beauty as the main category (decision 17 Oct 2026)
+
+yui chose Beauty ("let's do beauty"). NeurIPS 2027 main track and the no-annotator label design (§11) are unchanged. This section replaces the Appliances / Home & Kitchen / Tools scope everywhere in the plan.
+
+### 12.0 Why Beauty: the same dataset as BLaIR
+yui's reason for choosing Beauty (17 Oct): the thesis uses **the same dataset as BLaIR** (yui: "not a follow up but base on the same data set"). It is not a follow-up to BLaIR's method. BLaIR (Hou, Li, Fu, He, Yan, Chen & McAuley, *Bridging Language and Items for Retrieval and Recommendation*, ACL 2026; arXiv:2403.03952, 2024) is the paper that released Amazon Reviews 2023, and it also evaluates on All Beauty.
+
+**What BLaIR does.** It pretrains RoBERTa-based sentence encoders (BLaIR-base 123M, BLaIR-large 354M, released) with a contrastive loss that pairs each review with its item's metadata, so a user's language and an item's listing text land in one embedding space. It evaluates on sequential recommendation (the arXiv text names **All Beauty**, Video Games and Office Products as domains, though its tables report Beauty, Games and Baby, so check which split to reuse), conventional product search (ESCI), and a new task, *complex product search*, with **Amazon-C4**: 21,223 queries written by ChatGPT from 5-star reviews of at least 100 characters, each paired with the reviewed item as ground truth, over a 1.06M-item pool. The ACL 2026 version adds a benchmark of 11 LLMs as semantic encoders. It doesn't study new-item cold start, evidence support or abstention.
+
+**How the thesis differs.** BLaIR asks *"does the embedding retrieve the item this user liked?"* The thesis asks *"does this listing actually **support** this customer's need, and can the system abstain and bound the rate at which it doesn't?"* Three concrete differences:
+1. **From similarity to support.** BLaIR scores a need–listing pair by cosine similarity, which rises with topical overlap even when the deciding attribute (fragrance-free, oily skin) is missing or contradicted. That is the prior-licensing failure RQ1 measures.
+2. **From the reviewed item to the evidenced item.** Amazon-C4 treats the item the reviewer bought as the correct answer. The thesis labels support from the hidden `details` field instead (§11), so a match is correct only if the listing states the evidence.
+3. **From ranking to a decision with a guarantee.** BLaIR always returns a ranked list. The thesis adds recommend / reject / abstain and the URR ≤ α guarantee.
+
+**How BLaIR is used in the experiments.**
+- **Baseline:** BLaIR-base/large as a zero-shot dense retriever over listing text (it embeds new items from metadata alone, so it applies at launch), with a similarity threshold for a "recommend" decision. Add a conformal threshold on BLaIR similarity as a second baseline, so the comparison isolates *support* vs *confidence*.
+- **RQ1 probe:** run the evidence ablations (remove, blur, edit, brand-swap) on BLaIR scores as well as on LLMs. If BLaIR's similarity barely moves when the deciding attribute is removed, that is direct evidence for the diagnosis.
+- **Need source:** reuse Amazon-C4's review-to-query recipe for Beauty, keeping only queries with at least one checkable constraint (§12.1), and compare against C4's original "reviewed item" labels. Check at G0 whether C4's item pool already covers Beauty.
+- **Comparability:** use BLaIR's All_Beauty split and preprocessing where possible, so reviewers can match numbers to a published paper.
+
+**Does this strengthen the case for Beauty against the costs in §12.4?** Partly. It adds a published, well-known starting point (an ACL 2026 paper from the dataset's own lab), released models as ready baselines, and an existing Beauty split. Reviewers will recognise the data and the baselines. It doesn't fix sparse listing evidence or noisy labels, because BLaIR never needed checkable attributes. The G0 thresholds and the fallback (§12.5) stay. One caution: BLaIR is a representation-learning paper and this is a guarantee paper, so the paper should say "uses the Amazon Reviews 2023 data released with BLaIR, and BLaIR as a baseline", not "extends BLaIR". The novelty claim stays the support guarantee, which also keeps the paper a NeurIPS paper rather than a retrieval-venue follow-up.
+
+### 12.1 What a "checkable need" is in Beauty
+A need is still a conjunction of constraints, but every constraint must come from this list. Anything else is out of scope and the matcher should abstain on it.
+
+| Constraint type | Examples of a need | Where the listing states it | How support is decided |
+|---|---|---|---|
+| Skin type | "for oily skin", "safe for sensitive skin" | `details`: Skin Type; title, bullets | Controlled vocabulary (dry, oily, combination, normal, sensitive, all). "All skin types" entails any single skin type; record this rule in the dataset card |
+| Hair type | "for curly hair", "fine hair" | `details`: Hair Type | Controlled vocabulary |
+| Scent | "fragrance-free", "unscented", "lavender" | `details`: Scent; title | Vocabulary; "fragrance-free" is contradicted by any named scent |
+| Item form | "a gel, not a cream", "spray" | `details`: Item Form | Vocabulary |
+| Free-from and certifications | "paraben-free", "sulfate-free", "vegan", "cruelty-free" | `details`: Material Type Free; bullets | Vocabulary; absence of the claim is *unresolved*, never *contradicted* |
+| Size and count | "at least 3 fl oz", "travel size", "pack of 2" | `details`: Item Volume, Unit Count; title | Numeric with unit normalisation (fl oz ↔ ml) |
+| SPF | "SPF 30 or higher" | title, bullets | Numeric |
+| Ingredients | "contains niacinamide", "no alcohol" | `details`: Active Ingredients / ingredient list (when present) | String match on a normalised INCI list; *unresolved* if no list |
+
+The matcher sees only title, bullets and description; `details` stays hidden as the source of truth for L1 and L2 (§11.1).
+
+### 12.2 Data
+| Source | Role | Notes |
+|---|---|---|
+| Amazon Reviews 2023 **All_Beauty** (reviews + metadata) | Dev set and RQ1 pilot | Small category. The reviews file is already in the shared folder (`All_Beauty.jsonl`); the metadata file still has to be downloaded |
+| Amazon Reviews 2023 **Beauty_and_Personal_Care** (reviews + metadata) | Main benchmark (skin care), held-out split (hair care), RQ3 post-launch validation, Paper B (H1–H3) | Very large; stream it rather than load it. Use the raw (0-core) files, never 5-core, so new products are kept. Split by subcategory path |
+| **Hackathon cohort** `data/hackathon_beauty_gmv.csv` (see `data/README.md`) | Hackathon demo and a sanity check of the pipeline; not the thesis benchmark | 15,606 rows after dedup on (user_id, parent_asin). Too thin for H1: median product has one row, only 985 products have both a cold-start and a later row |
+| Amazon Reviews 2023 **Appliances** | Optional cross-domain transfer test | Already in the shared folder (`Appliances.jsonl.gz`) |
+
+Data rules carried over from `data/README.md`: dedup first; outcome metrics use `verified_purchase == True` only; `meta_rating_number` and `meta_average_rating` are 2023 snapshots and must never be launch-time features (usable only as popularity cues in RQ1 prompts); "GMV" in the cohort is rating-weighted list price, not observed sales.
+
+### 12.3 G0 feasibility count (by 31 Oct)
+On the full Beauty_and_Personal_Care metadata, count:
+1. Products whose **visible** text and hidden `details` both state at least one in-scope attribute and agree (the L2 pool). Proceed if there are **≥ 20,000** such products with at least two attributes, enough for a 2,000-product pilot, a frozen benchmark and a held-out split.
+2. The share of early verified reviews (first 10 per product) that state at least one **checkable** need or misfit. If it is under ~10%, RQ3 and H2 will be underpowered; report it either way, since reviewers will ask.
+3. Per-attribute coverage, to fix which attributes go into the benchmark. In the hackathon cohort, coverage was: skin type 16%, scent 17%, hair type 17%, item form 48%, product benefits 13%, free-from 4%, active ingredients 2.4%. These are shares of a large category, so the absolute counts in the full file should still be large; G0 checks that.
+
+### 12.4 What the switch costs
+| Cost | Effect on the paper | Mitigation |
+|---|---|---|
+| **Sparse listing evidence** (most listings state few checkable attributes) | Higher abstention and lower coverage at a given α; the risk–coverage curves will look worse than in Home & Kitchen | Report coverage honestly. The abstain → "add this attribute" fix becomes the stronger part of the story (H5). Build L1 variants only from listings that state the attribute |
+| **Experiential needs dominate real reviews** ("broke me out", "too greasy") | The in-scope share of real needs is smaller; RQ3 and H2 have fewer usable reviews | Measure the share at G0. Keep experiential needs as an explicit abstention class in the benchmark |
+| **Vaguer vocabulary** ("gentle", "clean", "suitable for most skin") | The L2 parser is harder to get right, so ε is likely higher than for centimetres and litres | Controlled vocabularies, a "vague" class that maps to *unresolved*, and the two-extractor ε estimate (§11.3) |
+| **Noisier misfit labels** (skin reactions have many causes) | L3 labels are noisier; post-launch validation is weaker | L3 is validation only; restrict to attribute-linked misfits (scent, size, skin type stated in the review) |
+| **Promotional seeding at launch** (26–30% of early reviews are unverified vs 5% later) | Early-review outcomes are biased | Verified purchases only; report the unverified share as a descriptive result |
+| **Health-adjacent claims** (SPF, acne, sensitive skin) | Ethics and broader-impact questions from reviewers | Treat SPF and "for sensitive skin" as listing claims being checked, not medical advice; say so in limitations |
+| **One more download and a large file** | More preprocessing time in October | Stream the files; subcategory splits reduce working size |
+
+**What the switch gains:** it puts the thesis directly on BLaIR's data, Beauty split and released models (§12.0). RQ1 should also show a bigger effect, because beauty is brand-driven, heavily marketed and well known to LLMs, so prior licensing has more room to show. The strategic-seller angle (§9A) fits better, since beauty listings are written to persuade. The thesis, the hackathon demo and Paper B now share one category and one data pipeline, and the entrepreneurship story (indie beauty brands against famous ones) is easy for readers to follow.
+
+### 12.5 Fallback
+If G0 fails (too few products with agreeing attributes, or almost no checkable needs in early reviews), keep Beauty for RQ1 (the diagnosis) and the hackathon, and move the benchmark and guarantee (RQ2) to Home & Kitchen, the previous main category. Decide this at G0, before the pilot, so the November go/no-go still tests the final setup.

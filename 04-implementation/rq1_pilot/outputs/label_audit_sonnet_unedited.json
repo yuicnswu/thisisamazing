@@ -1,0 +1,3611 @@
+{
+ "summary": {
+  "n": 400,
+  "disagreement_rate": 0.1175,
+  "parser_entailed_judge_no": 27,
+  "parser_unresolved_judge_quote": 20,
+  "judge_quotes_not_verbatim": 0
+ },
+ "rows": [
+  {
+   "item_id": "B07Z28VZJN:hair_type:fine:original",
+   "variant": "original",
+   "need": "I have fine hair, so it has to be made for fine hair.",
+   "parser": "entailed",
+   "judge_quote": "Ladies ponytail clip Bun Cover Cap for thick wavy curly long and fine hair.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09Y1JVP6Q:free_from:alcohol:original",
+   "variant": "original",
+   "need": "It must be alcohol-free.",
+   "parser": "entailed",
+   "judge_quote": "Alcohol Free*",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01IAELRK4:scent:unscented:original",
+   "variant": "original",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "entailed",
+   "judge_quote": "Unscented",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0876R1DP4:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07VDMZ1PW:free_from:sulfate:original",
+   "variant": "original",
+   "need": "It must be sulfate-free.",
+   "parser": "entailed",
+   "judge_quote": "Sulfate-Free Cleanser & Detangler Duo Set",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B017KVZSAS:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "The style works best for those who have naturally curly and non-straightened hair.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00XTCNL0W:item_form:gel:original",
+   "variant": "original",
+   "need": "I want it as a gel, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Fa Magic Oil Blue Lotus Shower Gel 250 ml / 8.3 fl oz",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01MCVBTN8:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "infused with aloe to help soothe sensitive skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08DD6BFFM:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "Face Toner for Oily Skin and Sensitive Skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07FXLQ65C:hair_type:straight:original",
+   "variant": "original",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "entailed",
+   "judge_quote": "Straight Hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B098YVDR76:item_form:cream:original",
+   "variant": "original",
+   "need": "I want it as a cream, not another form.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BN12F234:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "This is a vegan MOISTURIZING SHAMPOO bar perfectly formulated for wavy, curly and coily hair,providing deep cleanse and hydration.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07KBFQ588:free_from:alcohol:original",
+   "variant": "original",
+   "need": "It must be alcohol-free.",
+   "parser": "entailed",
+   "judge_quote": "The alcohol free mousse is available in travel size",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0B6DPNJHQ:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Daily face moisturizer for all skin types, especially for dry skin and sensitive skin.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B088X67C26:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "All Skin Type",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B079MHZPGD:hair_type:damaged:original",
+   "variant": "original",
+   "need": "I have damaged hair, so it has to be made for damaged hair.",
+   "parser": "entailed",
+   "judge_quote": "Perfect for styling dull, damaged, thin, flat, coarse, weakened and frizzy hair.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07MJLYJ5C:item_form:powder:original",
+   "variant": "original",
+   "need": "I want it as a powder, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Volumizing Super Powder",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00GX1RFEY:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "FOR ALL SKIN TYPES",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00ITX69CS:skin_type:normal:original",
+   "variant": "original",
+   "need": "I have normal skin, so it has to be made for normal skin.",
+   "parser": "entailed",
+   "judge_quote": "This is the best natural skin care cleanser for anti aging, normal to dry skin or skin regularly exposed to the elements.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01GZO5HG6:hair_type:straight:original",
+   "variant": "original",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "entailed",
+   "judge_quote": "Hair Texture:Straight,can restyle to other texture easily.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B073QXXV5T:free_from:sulfate:original",
+   "variant": "original",
+   "need": "It must be sulfate-free.",
+   "parser": "entailed",
+   "judge_quote": "Sulfate Free",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B075FSZZNX:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "Rica Milk Liposoluble Wax For Sensitive Skin 14 Ounces (396 g)",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00XYLBEH0:item_form:oil:original",
+   "variant": "original",
+   "need": "I want it as a oil, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Body Oil",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0921ZNLD8:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "for All Skin Types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09HSQCVQC:item_form:gel:original",
+   "variant": "original",
+   "need": "I want it as a gel, not another form.",
+   "parser": "entailed",
+   "judge_quote": "IN.HYPE Gel Polish - UV/LED Cured. French (French Pink #22)",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01BBRNLEC:hair_type:wavy:original",
+   "variant": "original",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0753JSKQZ:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "Its unique formulation defines curls and smooth edges while taming frizz.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0B6ZPFFZN:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "designed specifically for curly hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B093L49676:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "for all skin types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B008ONJDEO:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "For Sensitive Skin Care",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B005DT7YP2:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "It is suitable for sensitive skin.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08JQS9FVP:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Hydrating Conditioner Concentrate for Balanced to Dry Hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01EEGDTNA:item_form:gel:original",
+   "variant": "original",
+   "need": "I want it as a gel, not another form.",
+   "parser": "entailed",
+   "judge_quote": "HARD GEL LED/UV UV Builder Gel",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01N9I42I0:item_form:lotion:original",
+   "variant": "original",
+   "need": "I want it as a lotion, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Bath & Body Works Shea & Vitamin E Lotion",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07XZ14HCM:item_form:gel:original",
+   "variant": "original",
+   "need": "I want it as a gel, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Builder Gel for Quick Nail Extension Starter Kit",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01473GEBY:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "Excellent for Sensitive Skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07CPS4G4F:hair_type:straight:original",
+   "variant": "original",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "entailed",
+   "judge_quote": "Texture: natural straight",
+   "verbatim": true,
+   "contradict_quote": "Wavy with Baby Hair"
+  },
+  {
+   "item_id": "B07C2FC36Q:free_from:cruelty:original",
+   "variant": "original",
+   "need": "It must be cruelty-free.",
+   "parser": "entailed",
+   "judge_quote": "Natural Cruelty Free Vegan Foundation Makeup Powder",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07ZJWKN47:free_from:paraben:original",
+   "variant": "original",
+   "need": "It must be paraben-free.",
+   "parser": "entailed",
+   "judge_quote": "This shampoo and all products in The Pro Pure Collection are Silicone Free, Paraben Free & Dye Free",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0936DGZG5:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "Brazilian Virgin Human Hair Weave Curly Hair",
+   "verbatim": true,
+   "contradict_quote": "Hair type: Wavy"
+  },
+  {
+   "item_id": "B0BLWHK7T9:free_from:alcohol:original",
+   "variant": "original",
+   "need": "It must be alcohol-free.",
+   "parser": "entailed",
+   "judge_quote": "Alcohol-Free Perfume for Women",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B082ZPSCC2:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "Natural Care for Kid's Kinks, Coils, & Curls",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09DJB29N4:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "specifically formulated for dry hair types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07ZHQ4V6P:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Created for Dry, Curly, Coily Hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B008L2VBVG:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "L'Oreal Studio Mousse Springing Curls 6.9 oz. (Pack of 6)",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07DKRN2JP:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "Grandma's soaps are specifically designed to combat sensitive skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BBYDRKXP:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "This deep-conditioning balm is packaged in an artisan-carved stone and transforms dry skin.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01MCRHXO7:item_form:gel:original",
+   "variant": "original",
+   "need": "I want it as a gel, not another form.",
+   "parser": "entailed",
+   "judge_quote": "UV Gel Color",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08385XRLH:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "320\u00b0F~356\u00b0F for wavy/curly hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07H8VTC4D:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Suitable for All Hair Types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BNPLT1KF:hair_type:damaged:original",
+   "variant": "original",
+   "need": "I have damaged hair, so it has to be made for damaged hair.",
+   "parser": "entailed",
+   "judge_quote": "Hydrate & Treat Damaged Hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09BDDXCBX:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "Our products are specifically tailored and useful for hair types 3A, 4A, 3B, 4B, 3C and 4C.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B076YMVBLF:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Hair Treatment for Dry Damaged Hair with Avocado Oil & Creatine",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07VDV82CD:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "St. Ives Gentle Face Cleansing Wipes for Dry and Sensitive Skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B072R1KZY5:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0B67P9KDF:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07W5S82Y5:hair_type:damaged:original",
+   "variant": "original",
+   "need": "I have damaged hair, so it has to be made for damaged hair.",
+   "parser": "entailed",
+   "judge_quote": "Ideal for damaged hair.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08W4N4ZRV:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Safe for all skin types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B084QB5Q5G:item_form:balm:original",
+   "variant": "original",
+   "need": "I want it as a balm, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Hydrating Tinted Balm with Mango & Cocoa Butter",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08PY7X54J:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09691Y3N6:free_from:paraben:original",
+   "variant": "original",
+   "need": "It must be paraben-free.",
+   "parser": "entailed",
+   "judge_quote": "Paraben Free",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0B681G7GK:item_form:cream:original",
+   "variant": "original",
+   "need": "I want it as a cream, not another form.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": "Sun Stick"
+  },
+  {
+   "item_id": "B07YBW9KTX:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "extra gentle for sensitive skin of all ages",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08Q8LGN17:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "Makeup Remover and Facial Cleanser for Sensitive Skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07L9MRC6C:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "Great for my 2a/2b curls.. not too heavy on my coils, and will get refreshed with a few spritzes of water the next day.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07GCJJ4HT:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "Kinky Curly Hair Bundles",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B085J9K64C:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "Formulated for babies with sensitive skin,this baby powder won't irritate the skin.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08JCXXF5R:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B082G1MMRV:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Formulated for all skin types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B003OCVIRA:item_form:cream:original",
+   "variant": "original",
+   "need": "I want it as a cream, not another form.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B082TW3YFH:hair_type:damaged:original",
+   "variant": "original",
+   "need": "I have damaged hair, so it has to be made for damaged hair.",
+   "parser": "entailed",
+   "judge_quote": "MAJESTIC PURE Biotin Hair Mask for Dry Damaged Hair with Lingonberry Deep Conditioning Hair Treatment, Nourishing, and Strengthening, Sulfate Free, 16 fl oz",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08X7JHQG5:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "SAFE FOR ALL SKIN TYPES",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00NFUEZS0:hair_type:damaged:original",
+   "variant": "original",
+   "need": "I have damaged hair, so it has to be made for damaged hair.",
+   "parser": "entailed",
+   "judge_quote": "Strengthens Weak & Damaged Hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08JWQD4PB:free_from:paraben:original",
+   "variant": "original",
+   "need": "It must be paraben-free.",
+   "parser": "entailed",
+   "judge_quote": "paraben free",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0B34JGPR4:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "Gentle Botanical Cellulose Exfoliator for Sensitive Skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07PNM3QS1:free_from:alcohol:original",
+   "variant": "original",
+   "need": "It must be alcohol-free.",
+   "parser": "entailed",
+   "judge_quote": "Alcohol-Free,",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BFLNDCGH:free_from:sulfate:original",
+   "variant": "original",
+   "need": "It must be sulfate-free.",
+   "parser": "entailed",
+   "judge_quote": "Paraben & Sulfate Free",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BN113VWD:hair_type:oily:original",
+   "variant": "original",
+   "need": "I have oily hair, so it has to be made for oily hair.",
+   "parser": "entailed",
+   "judge_quote": "This is a MOISTURIZING vegan conditioner bar for oily and balanced hair.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0176Q4VAA:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09JZSYX6M:free_from:paraben:original",
+   "variant": "original",
+   "need": "It must be paraben-free.",
+   "parser": "entailed",
+   "judge_quote": "paraben-free",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08XWSQHVB:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "safeguard a woman's delicate, sensitive skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01MTKCU9L:hair_type:straight:original",
+   "variant": "original",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "entailed",
+   "judge_quote": "100% Unprocessed Indian Straight Hair Extensions",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00485JFP4:hair_type:damaged:original",
+   "variant": "original",
+   "need": "I have damaged hair, so it has to be made for damaged hair.",
+   "parser": "entailed",
+   "judge_quote": "SOFTEE IS THE BEST KEPT BEAUTY SECRET FOR GROWING HAIR QUICKLY, AND CORRECTING DAMAGED HAIR.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B001LY7FRK:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "could also be beneficial to delicate complexions and sensitive skins",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B078KNVW6W:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "for All Hair Types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0C5V83YMB:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "It is suitable for all skin types and whole body.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B06XRKM64X:item_form:cream:original",
+   "variant": "original",
+   "need": "I want it as a cream, not another form.",
+   "parser": "entailed",
+   "judge_quote": "ANTI CELLULITE CREAM",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00MWDLVM4:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Perfect for all skin types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00U11L6MY:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "for sensitive skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00GMPYR9M:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Hydrates dry hair and smooths split ends",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09TQ2SDKK:scent:unscented:original",
+   "variant": "original",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "entailed",
+   "judge_quote": "Fragrance Free Shampoo for Color Treated Hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BFJXY7K8:hair_type:damaged:original",
+   "variant": "original",
+   "need": "I have damaged hair, so it has to be made for damaged hair.",
+   "parser": "entailed",
+   "judge_quote": "Rich nourishment for dry, damaged hair.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09X33MWDT:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Suitable for all skin types.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08PMCPDXX:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Formulated for all skin types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01F1MP69Q:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "safe for all skin types and most skin conditions",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09H61PN51:scent:unscented:original",
+   "variant": "original",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "entailed",
+   "judge_quote": "Scent name: Unscented",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00IVZDCP6:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Dry Skin Moistuizer",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07VWCX681:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Lightweight for All Hair Types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00HA76AFK:scent:unscented:original",
+   "variant": "original",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "entailed",
+   "judge_quote": "Unscented",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09VSDTH7W:hair_type:thick:original",
+   "variant": "original",
+   "need": "I have thick hair, so it has to be made for thick hair.",
+   "parser": "entailed",
+   "judge_quote": "works great on wet, dry, Long, short, thick, curly, and detangler hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08PF914XC:hair_type:straight:original",
+   "variant": "original",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "entailed",
+   "judge_quote": "Straight Side Bangs with 2 Invisible Clips",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00KBYQDI8:item_form:spray:original",
+   "variant": "original",
+   "need": "I want it as a spray, not another form.",
+   "parser": "entailed",
+   "judge_quote": "WIND SONG BODY SPRAY",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BTBJ4W5F:hair_type:straight:original",
+   "variant": "original",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "entailed",
+   "judge_quote": "Colored Straight Hair Frontal Wig13X4",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08QF2883G:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "focusing on areas that are particularly dry, like the knees. elbows and hands.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B086JDB6VD:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Ideal for all hair types.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B074SGRFCW:hair_type:straight:original",
+   "variant": "original",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07V2K1CDD:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Our products are lightweight and suitable for all skin types without causing breakouts.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B004F0MPT0:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "great for combing wet hair or curly hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B014Q32GPS:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Works for all skin types to re-hydrate, rejuvenate and improve overall complexion.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00XYMMZPO:item_form:oil:original",
+   "variant": "original",
+   "need": "I want it as a oil, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Body Oil",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08TR1MKHD:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Face Wash for Dry & Sensitive Skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07KBD7T1X:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "perfect for blending with stretch 3B to 4C hair textures",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01D3QBF5G:free_from:alcohol:original",
+   "variant": "original",
+   "need": "It must be alcohol-free.",
+   "parser": "entailed",
+   "judge_quote": "Alcohol Free Hair Spray",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BJSKTYHL:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Whether you have straight, curly, textured, thick, wavy, or any type of hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07VPKHSBF:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Kaleidoscope Moisture Shampoo provides hydration and restoration with every wash.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0B8SFDJN9:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "PREMIUM QUALITY INGREDIENTS for ALL SKIN TYPES \u2013 This premium eye roller is great for men of all skin types.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B092HJ2TP9:hair_type:damaged:original",
+   "variant": "original",
+   "need": "I have damaged hair, so it has to be made for damaged hair.",
+   "parser": "entailed",
+   "judge_quote": "Hair dye that repairs damaged hair, moisturizes hair follicles, makes hair healthier.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07C64FR2F:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "Contains PHA ingredient that gently dissolves dead skin cells, so sensitive skin can safely care for dead skin cells.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08T5X8Z5W:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "For all skin types.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08C76XQCQ:hair_type:fine:original",
+   "variant": "original",
+   "need": "I have fine hair, so it has to be made for fine hair.",
+   "parser": "entailed",
+   "judge_quote": "Hair clips for baby, even with fine hair.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08Z5J8MZY:scent:unscented:original",
+   "variant": "original",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "entailed",
+   "judge_quote": "Barr Co Unscented Hand Salve",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07C9YRQRJ:scent:unscented:original",
+   "variant": "original",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "entailed",
+   "judge_quote": "Unscented",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00A9HA9CI:free_from:alcohol:original",
+   "variant": "original",
+   "need": "It must be alcohol-free.",
+   "parser": "entailed",
+   "judge_quote": "Parabens & alcohol Free",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09P4GSWTQ:skin_type:oily:original",
+   "variant": "original",
+   "need": "I have oily skin, so it has to be made for oily skin.",
+   "parser": "entailed",
+   "judge_quote": "For guys struggling with oily, acne-prone skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00OYP165K:item_form:lotion:original",
+   "variant": "original",
+   "need": "I want it as a lotion, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Thierry Mugler Alien Body Lotion for Women 7 oz.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09778FRVQ:scent:unscented:original",
+   "variant": "original",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "entailed",
+   "judge_quote": "UNSCENTED \u25cf Because that is what beard oil is for.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08PNXDY6F:hair_type:straight:original",
+   "variant": "original",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "entailed",
+   "judge_quote": "Goldfinch Straight Ombre Human Hair 3 Bundles Ombre Brazilian Straight Hair Bundls",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08R87GSCL:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "for All Skin Types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01BP5L8TA:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "HELPS SOOTHE, HYDRATE AND HEAL inflamed, irritated and sensitive skin.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00EP7NQEG:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07YD61894:hair_type:wavy:original",
+   "variant": "original",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B092YQX2LM:item_form:gel:original",
+   "variant": "original",
+   "need": "I want it as a gel, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Miracle Gel nail colour is a 2-step gel system manicure with no UV lamp needed.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01F0228KW:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "For All Skin Types.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07CDYN5W8:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Garnier Fructis Style Full Control Hairspray, All Hair Types, 8.25 oz. (Packaging May Vary), 3 Count",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0C5S81VFK:free_from:gluten:original",
+   "variant": "original",
+   "need": "It must be gluten-free.",
+   "parser": "entailed",
+   "judge_quote": "Vegan, Cruelty Free, Gluten Free, Phthalate Free, Paraben Free",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07C9D1FD7:free_from:sulfate:original",
+   "variant": "original",
+   "need": "It must be sulfate-free.",
+   "parser": "entailed",
+   "judge_quote": "NO Sulfates.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07XZNVLBS:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Safe For Daily Use On All Skin Types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07SS55LVW:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "is suitable for all hair types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0776YS8CX:item_form:foam:original",
+   "variant": "original",
+   "need": "I want it as a foam, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Gentle Foaming Hand Soap",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00BPHEZ8U:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Dry Skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00E78CFX6:scent:unscented:original",
+   "variant": "original",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "entailed",
+   "judge_quote": "Unscented",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B084JLBN7C:hair_type:straight:original",
+   "variant": "original",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "entailed",
+   "judge_quote": "Brazilian Virgin Hair Straight 1 Bundle",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00G2GCZ0Y:free_from:paraben:original",
+   "variant": "original",
+   "need": "It must be paraben-free.",
+   "parser": "entailed",
+   "judge_quote": "-Paraben Free.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01F6B0CQY:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B019GBG0IE:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "Curls should be dried with no (or low) heat.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B087J6PP9X:skin_type:combination:original",
+   "variant": "original",
+   "need": "I have combination skin, so it has to be made for combination skin.",
+   "parser": "entailed",
+   "judge_quote": "Perfect foundation for acne-prone, oily, and combination skin types.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08Q7QWYJH:item_form:gel:original",
+   "variant": "original",
+   "need": "I want it as a gel, not another form.",
+   "parser": "entailed",
+   "judge_quote": "GEL FACIAL EFECTO PEELING",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B007NJL2EE:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "will not cause damage or reactions, even on sensitive skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09V1TFKSK:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "for All Hair Types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08ZCPKQD6:item_form:liquid:original",
+   "variant": "original",
+   "need": "I want it as a liquid, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Create a flawless face with our long wearing liquid concealer makeup.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07QPQJGM7:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "designed for all skin types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08XDVBYBT:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "Styling Gel for Natural hair - Curls - Kinks - Waves",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08MSXLK3Y:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": "(Do not use massage mitt on dry skin.)"
+  },
+  {
+   "item_id": "B09RMHB4TZ:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "For all Skin Types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00ET50YY4:skin_type:acne_prone:original",
+   "variant": "original",
+   "need": "I have acne-prone skin, so it has to be made for acne-prone skin.",
+   "parser": "entailed",
+   "judge_quote": "Sea Salt Face Wash for Oily and Acne Prone Skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01F19TSPC:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "It Is Especially Enlivening On Winter Days When Dry Skin + Humor Need A Sunny Pick-Me-Up.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01DUXSKDW:hair_type:damaged:original",
+   "variant": "original",
+   "need": "I have damaged hair, so it has to be made for damaged hair.",
+   "parser": "entailed",
+   "judge_quote": "Restores Dry, Damaged Hair,",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00G6KAQIE:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "for All Skin Types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01N0927N8:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "It is ideal for dry, colored and bleached hair.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08HGQT46C:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B081JNSDYN:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "For all hair types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08R8XM54F:scent:unscented:original",
+   "variant": "original",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "entailed",
+   "judge_quote": "fragrance-free",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07D7VCPJV:free_from:oil:original",
+   "variant": "original",
+   "need": "It must be oil-free.",
+   "parser": "entailed",
+   "judge_quote": "The ideal oil free makeup to help absorb excess perspiration or skins oils and stay matte all day.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01BLQ5D1C:item_form:oil:original",
+   "variant": "original",
+   "need": "I want it as a oil, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Deep Cleansing Oil",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B086KY398C:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Perfect for normal to dry hair.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0B546Q6P8:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "Ideal for sensitive skin, this hair removal wax will lift hair cleanly from the root for salon-smooth skin.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BYBJWZWZ:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "NATURAL CURLS: Soft, springy, coiled\u2026choose the type of curls you like best in carefree synthetics and heat-stylable human hair.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08JMBH5W4:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Suitable for all skin types, including sensitive skin.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01JH0T0Q8:scent:unscented:original",
+   "variant": "original",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "entailed",
+   "judge_quote": "Scent:Unscented",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07NYMH2TF:scent:unscented:original",
+   "variant": "original",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "entailed",
+   "judge_quote": "All Natural Fragrance Free Olive, Sunflower & Jojoba Oils",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B096T1X9QJ:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Perfect for all hair types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08X8NN9DC:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "Safe for all skin types and suitable for sensitive complexions prone to irritation and clogged pores.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07VMJR4F8:hair_type:straight:original",
+   "variant": "original",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": "may not fit for straight or thin hair"
+  },
+  {
+   "item_id": "B07TJBBF8D:free_from:paraben:original",
+   "variant": "original",
+   "need": "It must be paraben-free.",
+   "parser": "entailed",
+   "judge_quote": "Our formulas are free of parabens, sulfates, phthalates, and mineral oil",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B081D87QCJ:free_from:paraben:original",
+   "variant": "original",
+   "need": "It must be paraben-free.",
+   "parser": "entailed",
+   "judge_quote": "Our facial skincare products contain no parabens, phthalates, and GMOs.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BTV2K819:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00Y14CKRW:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Used to treat chapped lips, diaper rash, dry skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08LZ2DXN5:free_from:gluten:original",
+   "variant": "original",
+   "need": "It must be gluten-free.",
+   "parser": "entailed",
+   "judge_quote": "Paraben & Gluten Free",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07DTMKTRN:free_from:paraben:original",
+   "variant": "original",
+   "need": "It must be paraben-free.",
+   "parser": "entailed",
+   "judge_quote": "Paraben Free no harsh preservatives",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00CBQUQBO:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Good on all skin types.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09YLMGML6:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07QPL6CL1:item_form:oil:original",
+   "variant": "original",
+   "need": "I want it as a oil, not another form.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": "Title: Systeme 41 Day Creme"
+  },
+  {
+   "item_id": "B076JNVWRW:scent:unscented:original",
+   "variant": "original",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "entailed",
+   "judge_quote": "Best Unscented Beard Oil",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0007CHJGY:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "A blend of organic botanicals including aloe, chamomile and ginko biloba, soothe dry, irritated skin and aid cell repair.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09CFRBBVK:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Specially formulated for all skin types: Normal, Dry, Combination and Oily.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0737WJD9D:item_form:gel:original",
+   "variant": "original",
+   "need": "I want it as a gel, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Shower Gel",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00MWDLCXW:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Great for all skin types, especially dry or sensitive skins.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B085ZQKG2Y:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "This mask is dermatologist tested, hypoallergenic and safe for sensitive skin.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B085Q2H9VZ:item_form:spray:original",
+   "variant": "original",
+   "need": "I want it as a spray, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Eau De Parfum Spray",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00IE4JMWG:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "Doctor D. Schwab Alphasomes C-8 Sensitive Skin Serum 0.50 Ounces",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B086V5QVMC:item_form:bar:original",
+   "variant": "original",
+   "need": "I want it as a bar, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Bode 1 Hair Soap Bar",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09GKV39YF:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "Matches your kinks and curls",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01LFUCWKO:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Argan Oil Hair Mask for Dry Damaged Hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B082KYG186:free_from:alcohol:original",
+   "variant": "original",
+   "need": "It must be alcohol-free.",
+   "parser": "entailed",
+   "judge_quote": "made without alcohol, parabens, and dyes",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01IX80M80:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "This is a luxurious facial oil suitable for all skin types.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08HMLXW65:hair_type:fine:original",
+   "variant": "original",
+   "need": "I have fine hair, so it has to be made for fine hair.",
+   "parser": "entailed",
+   "judge_quote": "for Thin Fine Hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07R3BMYBG:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "works well with sensitive skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09DQV8MK7:scent:unscented:original",
+   "variant": "original",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "entailed",
+   "judge_quote": "Unscented",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09ZVPMYPP:free_from:paraben:original",
+   "variant": "original",
+   "need": "It must be paraben-free.",
+   "parser": "entailed",
+   "judge_quote": "Our line of paraben free cosmetics are made in Canada with the highest quality standards.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B071S98JST:free_from:fragrance:original",
+   "variant": "original",
+   "need": "It must be fragrance-free.",
+   "parser": "entailed",
+   "judge_quote": "Fragrance Free Shampoo & Conditioner Set",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07HGBGVBC:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "1-8 sizes to choose for perming different curly hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B014GJH4PE:skin_type:oily:original",
+   "variant": "original",
+   "need": "I have oily skin, so it has to be made for oily skin.",
+   "parser": "entailed",
+   "judge_quote": "Revlon Colorstay Liquid Foundation Makeup with Pump 110 Ivory Combination/Oily Skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00XYM1MV2:item_form:oil:original",
+   "variant": "original",
+   "need": "I want it as a oil, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Love Chloe Body Oil For Women Scented Fragrance",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08GY96F87:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "Ideal for sensitive skin.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B071G4NNH7:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "Natural Cream Soft Wax for Sensitive Skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07S411KYQ:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Perfect for all skin types.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01N0OO5OJ:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "For all hair types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08KYLTK5H:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Ideal for mature, dry, sensitive, oily, and acne-prone skin.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01M7VA5EE:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "Eucalyptus Spearmint, Refreshing Mint Soap for Sensitive Skin.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B086HRN773:hair_type:thick:original",
+   "variant": "original",
+   "need": "I have thick hair, so it has to be made for thick hair.",
+   "parser": "entailed",
+   "judge_quote": "the conditioner improves the texture of medium/thick wavy and curly hair types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07QWBWKVW:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B081W53M6H:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "Wide Plate for All Hair Types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00J51Q1IA:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "great for relieving dry skin or rough patches",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00VIXFAQM:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09WCRM6G4:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Suitable for all skin types.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B087Q4F7XD:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Suitable for All Skin Types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B079C7X4ZQ:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0007XQ2W0:free_from:alcohol:original",
+   "variant": "original",
+   "need": "It must be alcohol-free.",
+   "parser": "entailed",
+   "judge_quote": "Alcohol Free Post Shave Skincare For All Skin Types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B077V7KZC2:skin_type:oily:original",
+   "variant": "original",
+   "need": "I have oily skin, so it has to be made for oily skin.",
+   "parser": "entailed",
+   "judge_quote": "Our face wash is perfect for people with oily skin or another skin type.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08KTKPJT5:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Suitable for all skin types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01F8PPOQ6:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0B3XJWXC3:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "Its a perfect protective style for all hair types.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07YBYB9VW:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "For all hair types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08621VWD6:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B072KBVZTJ:hair_type:damaged:original",
+   "variant": "original",
+   "need": "I have damaged hair, so it has to be made for damaged hair.",
+   "parser": "entailed",
+   "judge_quote": "help tackle hair breakage by helping nourish brittle and damaged hair strands",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0939T8MCG:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "for All Skin Types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B06XDXNV2Y:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Ideal for all hair types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00FAT8N46:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "will not cause damage or reactions, even on sensitive skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01ANJVN6M:free_from:gluten:original",
+   "variant": "original",
+   "need": "It must be gluten-free.",
+   "parser": "entailed",
+   "judge_quote": "Gluten Free",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BYDRR4ZR:hair_type:fine:original",
+   "variant": "original",
+   "need": "I have fine hair, so it has to be made for fine hair.",
+   "parser": "entailed",
+   "judge_quote": "DESIGNED FOR FINE LOCKS: If you have fine or color-treated hair that's prone to breakage",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0071OP9RC:item_form:oil:original",
+   "variant": "original",
+   "need": "I want it as a oil, not another form.",
+   "parser": "entailed",
+   "judge_quote": "Ayurvedic Herbal Hair (MultiPurpose) Oil 200ml",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01BNMR9BG:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Perfect for all skin types.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08MRRNL18:free_from:fragrance:original",
+   "variant": "original",
+   "need": "It must be fragrance-free.",
+   "parser": "entailed",
+   "judge_quote": "Hypoallergenic and Fragrance Free",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09K36STVZ:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "Whether you have fine, thick, curly, straight, long or wet hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0741HK33T:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0862GGCVW:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": "Normal sock buns dry out hair"
+  },
+  {
+   "item_id": "B0BP7ZHR9C:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Deep Conditioner Treatments for all hair types",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07F46QFS8:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "Pick your curl pattern and get an instant curly updo with timeless Ponytail's Pineapple Drawstring.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09BY2RQQS:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Find our best hair toner for every hair type and need.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00U43D5G4:scent:unscented:original",
+   "variant": "original",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "entailed",
+   "judge_quote": "Choose from six fragrances and unscented.",
+   "verbatim": true,
+   "contradict_quote": "The soaps are very high quality and very fragrant!"
+  },
+  {
+   "item_id": "B0BL82HHN5:skin_type:sensitive:original",
+   "variant": "original",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "entailed",
+   "judge_quote": "Dermatologically tested for sensitive skin.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01J64H5TY:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "Short Curly Hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BM5KW5HF:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Perfect for fine hair or flat hair requiring volume and all hair types.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07QGKK12K:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Ideal for dry and treat hair.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BXNQZW5C:item_form:gel:original",
+   "variant": "original",
+   "need": "I want it as a gel, not another form.",
+   "parser": "entailed",
+   "judge_quote": "This kit include 8 different colors,8ml/0.28fl.oz each bottle,packed in quality glass bottle.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BC9CJDQY:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Suitable for all hair types and lengths",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B018CEXHNW:hair_type:fine:original",
+   "variant": "original",
+   "need": "I have fine hair, so it has to be made for fine hair.",
+   "parser": "entailed",
+   "judge_quote": "this elegant big size hair claw holds fine hair in a chic up-do",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00WAOH7NW:hair_type:curly:original",
+   "variant": "original",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "entailed",
+   "judge_quote": "Made specifically to create the spring in your curls.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00QU5KLVC:hair_type:dry:original",
+   "variant": "original",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "entailed",
+   "judge_quote": "Conditioner for dry hair.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01BOPQRJ2:skin_type:dry:original",
+   "variant": "original",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "entailed",
+   "judge_quote": "Dry to Very Dry Skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01N66PH0K:hair_type:damaged:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have damaged hair, so it has to be made for damaged hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00279LKBK:hair_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B079KLZ7CF:hair_type:wavy:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BBSCFCBV:skin_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07CZSFHZM:skin_type:normal:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have normal skin, so it has to be made for normal skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07XRWQWD7:free_from:fragrance:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be fragrance-free.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09KKXB1SZ:skin_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0979C2GB1:skin_type:combination:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have combination skin, so it has to be made for combination skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09ND4614B:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B078XKLL93:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B095NYJL6C:hair_type:wavy:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09CYT7W58:skin_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07XYVPQQK:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B012BGWW74:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BF5FP1DL:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B091TCKYM6:hair_type:wavy:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "unresolved",
+   "judge_quote": "Hair type: Wavy",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07BSCD37Q:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00355GCS6:skin_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "unresolved",
+   "judge_quote": "Unlike regular soaps, which dry out the skin and make it feel tight and flaky, our glycerin soaps keep the skin hydrated after use.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08LYZY994:hair_type:wavy:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BY6BT7PH:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B082WPZR9B:skin_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0797CCMTM:scent:unscented:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08BHZFHCD:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01J2B0YXU:scent:unscented:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "unresolved",
+   "judge_quote": "Fragrance and Colorant Free.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00XYMULAA:free_from:alcohol:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be alcohol-free.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09GXMKV5H:hair_type:wavy:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08XYNKZ3Z:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B079LFDTKQ:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B076WQZGPM:skin_type:acne_prone:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have acne-prone skin, so it has to be made for acne-prone skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00GMPZA98:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09XDK71WN:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07MDBVNJR:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09RZPNBRL:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08NDQMDML:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "Body Cream for Dark Spot Corrector and Remover for Knees, Elbows, Sensitive, Nourishes, Moisturizing Cream for Armpit",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00XYLHS2A:free_from:alcohol:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be alcohol-free.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01LYQLV0X:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B074BDM67P:hair_type:damaged:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have damaged hair, so it has to be made for damaged hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0C5FZDPD3:free_from:paraben:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be paraben-free.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B019TAEA4S:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B008FHGBNU:hair_type:thick:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have thick hair, so it has to be made for thick hair.",
+   "parser": "unresolved",
+   "judge_quote": "steel extra wide spaced teeth for long thick tangled hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00946HGLW:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07GZ59WSQ:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08P2PQM5B:hair_type:wavy:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00XYLB64Q:free_from:alcohol:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be alcohol-free.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B073XDWYR1:hair_type:wavy:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09VCFSTN4:free_from:alcohol:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be alcohol-free.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B076M7C44N:skin_type:combination:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have combination skin, so it has to be made for combination skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B096TKRXN6:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "Kinky Curly Clip in Hair Extensions",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B073QR1BHH:skin_type:normal:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have normal skin, so it has to be made for normal skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08JKFHV5D:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "Long straight black and white mixed color women costume wig with widow peak design.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B075KLSX61:hair_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07C8XX5H4:scent:unscented:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0834LBJWD:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "Medium Straight Middle Synthetic Hair Wigs",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07SSJV5QG:scent:unscented:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00MWDLNLI:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0BXWYHVR1:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B078WTGZB1:hair_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "unresolved",
+   "judge_quote": "this breakthrough in-shower formula replenishes dry, lifeless hair without the weigh-down of traditional cream conditioners",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B095PB68Y1:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00KWSUVU4:hair_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07SGFQGKG:scent:unscented:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08N17HDWY:scent:unscented:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08XWP92XG:skin_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01H93WJQI:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07NHTZPTD:free_from:cruelty:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be cruelty-free.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07RFF6RNN:hair_type:wavy:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B078VWMFJW:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07DMQRTNP:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07MH4Z7J7:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B088M824P8:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07S3XPSN5:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B078XJZ22G:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B004SBLL2I:scent:unscented:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "unresolved",
+   "judge_quote": "Its natural formulation does not leave any scents behind.",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09J889KKD:hair_type:wavy:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "unresolved",
+   "judge_quote": "Brazilian Body Wave Bundles",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01HT395TC:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "Human Hair Long Curly Wigs",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07CZSFHZM:free_from:gluten:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be gluten-free.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00UXSTLMM:skin_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B089SQTVDW:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09QXSH5Y2:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "formulated to help neutralize odor and skin irritation for sensitive parts",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07DDDX59F:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00N33K0R4:skin_type:oily:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have oily skin, so it has to be made for oily skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07GT9FZGP:hair_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B076TT12C8:skin_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08XB1PSV5:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07T2L6JQR:hair_type:fine:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have fine hair, so it has to be made for fine hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0815Y4CFC:hair_type:damaged:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have damaged hair, so it has to be made for damaged hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01CTBOGO8:skin_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "unresolved",
+   "judge_quote": "Infused with goodness of natural ingredients like Coconut Oil which helps hydrate dry, damaged skin",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08S6XTRK7:scent:unscented:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00DD4KUAK:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07XYGF69R:free_from:cruelty:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be cruelty-free.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08THBXNWD:skin_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07Y2G133N:scent:unscented:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B06WRQXG4V:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "Natural Hair Long Straight",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07JP4P5HT:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00XYLFWQY:free_from:alcohol:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be alcohol-free.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B089NJG212:skin_type:normal:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have normal skin, so it has to be made for normal skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0B39SRVGQ:scent:unscented:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07Q4VWYK8:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00OJHGFJ0:hair_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08Z7NXKPC:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07RS4K97B:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B085DP826T:hair_type:wavy:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08GC18YRV:hair_type:wavy:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0716D18LN:hair_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07NNXQXJX:scent:unscented:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07VMGV3SK:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07NXSXK9P:hair_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00Q7PSGGW:hair_type:fine:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have fine hair, so it has to be made for fine hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07SFHZ9MH:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09JZXY4YR:skin_type:combination:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have combination skin, so it has to be made for combination skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08YJV9YL2:skin_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07NJ23KNF:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07BQZRMWL:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08CV2LYTG:hair_type:wavy:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B078VY3KLY:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07FPS2VFK:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01N0PT2ZO:skin_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07HJD7L8F:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08MV711SV:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B082S1T4KP:hair_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B071GQCPJN:free_from:alcohol:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be alcohol-free.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00HEU0EZK:skin_type:combination:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have combination skin, so it has to be made for combination skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01I0QW7QK:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07768WZQV:hair_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07MJ4K2J3:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08GKHF97N:skin_type:acne_prone:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have acne-prone skin, so it has to be made for acne-prone skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07MMB6T1B:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "Ideal for Curly, thick, long and Damage Hair",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08M57D1G1:skin_type:combination:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have combination skin, so it has to be made for combination skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07L45QMLH:hair_type:damaged:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have damaged hair, so it has to be made for damaged hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00Q7N2IWM:hair_type:wavy:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07RMH8RNQ:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B000NWD020:skin_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B07YYHPWCK:skin_type:acne_prone:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have acne-prone skin, so it has to be made for acne-prone skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08XK23JRZ:hair_type:wavy:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B098JX1V49:skin_type:combination:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have combination skin, so it has to be made for combination skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B017BGJLBE:scent:unscented:natural_missing",
+   "variant": "natural_missing",
+   "need": "It must be fragrance-free / unscented.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00GGU1LJM:skin_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01CF6F1A0:hair_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B078XMY9X4:hair_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01N096MYU:hair_type:damaged:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have damaged hair, so it has to be made for damaged hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B08V1257KB:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B06XKZXPFJ:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01GPS1OS2:skin_type:oily:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have oily skin, so it has to be made for oily skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B093ZNFPZZ:skin_type:sensitive:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have sensitive skin, so it has to be made for sensitive skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B01H6WJQ8G:hair_type:curly:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have curly hair, so it has to be made for curly hair.",
+   "parser": "unresolved",
+   "judge_quote": "Brazilian Curly Lace Frontal 13x4 Ear To Ear Lace Frontal Closure Kinky Curly Brazilian Virgin Hair(16 inch)",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B087CHXCGW:hair_type:damaged:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have damaged hair, so it has to be made for damaged hair.",
+   "parser": "unresolved",
+   "judge_quote": "Reviver Hair Repair Shampoo",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B079Q3T4C1:skin_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B0978NWY6R:hair_type:wavy:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have wavy hair, so it has to be made for wavy hair.",
+   "parser": "unresolved",
+   "judge_quote": "Body Wave Lace Frontal human hair Wigs",
+   "verbatim": true,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B087JW33W6:hair_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry hair, so it has to be made for dry hair.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B00HYP5PZE:skin_type:dry:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have dry skin, so it has to be made for dry skin.",
+   "parser": "unresolved",
+   "judge_quote": "",
+   "verbatim": false,
+   "contradict_quote": ""
+  },
+  {
+   "item_id": "B09JG19MXF:hair_type:straight:natural_missing",
+   "variant": "natural_missing",
+   "need": "I have straight hair, so it has to be made for straight hair.",
+   "parser": "unresolved",
+   "judge_quote": "Silky Long Straight Black with Brown Strips Wig",
+   "verbatim": true,
+   "contradict_quote": ""
+  }
+ ]
+}

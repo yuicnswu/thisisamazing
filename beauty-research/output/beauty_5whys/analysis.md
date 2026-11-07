@@ -65,6 +65,29 @@ This analysis distinguishes observations, verified implementation behavior, and 
 
 **Validation:** Joining compatible event and transaction data supplies missing measures but does not automatically identify causal campaign lift. That needs a suitable attribution or experimental design.
 
+## E. Why do low star ratings overstate product failure? (added 7 Nov 2026, review-text evidence)
+
+Evidence: aspect-based analysis of all 693,547 reviews joined to this metadata (`../../text_analysis/outputs/amazon/`). Shares are PPI++ estimates with 95% intervals of what the LLM annotator would label; not human-validated.
+
+| Level | Question | Answer | Evidence / status |
+|---|---|---|---|
+| 1 | Why can't the share of 1–2★ reviews be read as "the product doesn't work"? | Only 29.8% [25.4, 34.1] of 1–2★ reviews criticise efficacy. 27.1% [22.5, 31.6] criticise authenticity or quality (fake, not as described, cheap build), 11.7% [8.4, 15.0] packaging and 11.0% [7.8, 14.2] delivery or service. | Verified (text analysis, T3). |
+| 2 | Why do non-product experiences end up in product ratings? | The rating is attached to the product page, so it carries the whole purchase: listing accuracy, the unit received, packaging and delivery. Authenticity criticism is higher on listings with no price (9.3% [7.8, 10.8]) than on priced ones (4.2–6.1%), and higher in hair extensions, makeup and nails (about 11%) than in skin care (2.7% [0.5, 4.8]). | Verified association (metadata join). The mechanism, e.g. third-party sellers or unavailable listings, is a hypothesis. |
+| 3 | Why would listings invite "not as described" complaints? | Most listings say little: 84.6% have no feature bullets and 83.1% no description, so buyers infer the product from the title and images. | Verified (listing NLP). Whether thin listings cause the complaints is not established; complete listings show 5.3% [1.9, 8.7] vs 8.4% [7.2, 9.7] authenticity criticism, intervals overlapping. Stop here. |
+
+**Identified operational cause:** Treating a star rating as a product-performance measure ignores that roughly half of low-star reviews are about listing accuracy, the unit received, packaging or fulfilment. **Type:** Measurement design. **Confidence:** High for the composition of low-star reviews; low for why it happens.
+
+**Validation:** An aspect-level metric (efficacy criticism alone) should rank products differently from star rating. Test on held-out products before using it in a brief.
+
+## F. Why do listing claims attract criticism of the same aspect? (added 7 Nov 2026)
+
+| Level | Question | Answer | Evidence / status |
+|---|---|---|---|
+| 1 | Is criticism higher where the listing makes a claim about that aspect? | For scent, yes: 9.1% [3.4, 14.9] of reviews criticise the scent where the listing claims one, against 2.5% [1.8, 3.2] elsewhere (+6.6 points [+0.9, +12.4]). For hydration, +3.1 points [+0.1, +6.1]. Long-lasting, gentle/sensitive, natural, multipack and premium claims show no difference distinguishable from zero. | Verified association (listing NLP). |
+| 2 | Why? | Candidate explanations: a claim makes the aspect salient and raises expectations; scented products simply have more scent to dislike; claim-making products differ in category and price. | Hypotheses. The data cannot separate them. Stop here. |
+
+**Identified constraint:** The association is descriptive. A brief may report "reviews of products that claim X criticise X more often", not "claiming X causes complaints".
+
 ## Countermeasures (proposed, not assigned commitments)
 
 | Type | Action | Proposed owner | Timing |
@@ -75,10 +98,12 @@ This analysis distinguishes observations, verified implementation behavior, and 
 | Preventive | Audit historical source pages and extraction logs for a stratified sample of missing fields. | Dataset maintainer | When provenance is accessible |
 | Detection | Track field availability by verified product type, shortlist composition changes, low-count high-star selections and classification error. | Analyst / QA | Each catalog refresh |
 | Measurement | Join current stock, currency, package units, transactions, exposure, spend and margin where the use case requires them. | Marketing analytics / commerce owner | Before ROI claims |
+| Immediate | Report aspect-level criticism (efficacy separate from authenticity, packaging and delivery) instead of star share when judging product performance. | Analyst | Before the next brief |
+| Detection | Track scent and hydration criticism on products whose listings claim those aspects. | Analyst / merchandiser | Each catalog refresh |
 
 ## Best next action
 
-Use the existing filter audit to choose a diagnostic shortlist policy, then manually label a stratified set of products (including leather conditioners, beauty products and equipment) before interpreting differences by category. Investigate upstream missingness only with provenance evidence. No root cause for absent prices, low customer demand, review fraud or poor marketing performance has been established.
+Use the existing filter audit to choose a diagnostic shortlist policy, then manually label a stratified set of products (including leather conditioners, beauty products and equipment) before interpreting differences by category. Investigate upstream missingness only with provenance evidence. No root cause for absent prices, low customer demand, review fraud or poor marketing performance has been established. Sections E and F add review-text evidence: low stars mix product and purchase problems, and claimed aspects draw more criticism; neither mechanism is established.
 
 ## Reproducibility
 

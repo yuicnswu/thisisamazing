@@ -6,8 +6,16 @@ import os
 import re
 from collections import Counter, defaultdict
 
-input_csv = "/Users/cattleya.c/.gemini/antigravity/scratch/all_beauty/hackathon_beauty_gmv.csv"
-out_dir = "/Users/cattleya.c/.gemini/antigravity/scratch/all_beauty/eda_outputs"
+import argparse
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--input", default=os.path.join(REPO_ROOT, "data/hackathon_beauty_gmv.csv"), help="pre-dedup cohort CSV")
+parser.add_argument("--out-dir", default=os.path.join(REPO_ROOT, "eda_outputs"), help="output directory")
+args = parser.parse_args()
+
+input_csv = args.input
+out_dir = args.out_dir
 os.makedirs(out_dir, exist_ok=True)
 
 rows = []

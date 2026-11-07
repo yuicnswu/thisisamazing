@@ -2,7 +2,7 @@
 
 ## Proposed study
 
-Develop an agentic AI copilot that helps beauty merchants investigate customer needs, compare competitors and turn review evidence into product-development and go-to-market hypotheses. The practical demo will recommend an evidence-supported product-page clarification and a concrete positioning test, with supporting and conflicting evidence.
+Develop an evidence-grounded agentic AI copilot that helps beauty merchants investigate customer needs, compare competitors and turn review evidence into product-development and go-to-market hypotheses. The practical demo will recommend an evidence-supported product-page clarification and a concrete positioning test, with supporting and conflicting evidence.
 
 ## Evidence already available
 
@@ -15,7 +15,7 @@ These findings favor Sephora for customer-context experiments and Amazon as a se
 
 ## Research contribution
 
-When does adaptive investigation of customer context and contradictory evidence improve research conclusions beyond aggregate ratings, retrieval and fixed analytical workflows? Compare the same model/tools under matched budgets. Use executable analytical task oracles and held-out recommendation outcomes without creating new human review annotations.
+Can a self-evolving, budget-aware multi-agent orchestrator improve the accuracy-cost trade-off of evidence-backed beauty market research? Compare a strong fixed workflow, a single adaptive agent, a fixed-policy multi-agent orchestrator and the same orchestrator after bounded self-evolution on development templates only, with the same model and tools at matched budgets, on 120 held-out tasks including trap tasks with known confounds. The verbatim-quote evidence check is already tested on 2,182 real products (certified unsupported rate ≤ 10%, 88–90% recall). Use executable analytical task oracles and held-out recommendation outcomes without creating new human review annotations.
 
 ## Business value and limits
 
@@ -23,7 +23,7 @@ Target faster research, concept comparison, positioning and launch-test preparat
 
 ## Academic positioning
 
-Intended audience: ISMS Marketing Science Conference, subject to a verified literature contribution and empirical results. The study leads with a marketing problem and tests whether agentic control adds value; it does not claim to discover proven market demand, validate formulation safety, or guarantee launch success. If fixed workflows match the agent, that boundary condition is a valid outcome.
+Intended venue: ICIS 2027 or HICSS-61, framed as design science research (five design principles, a staged FEDS evaluation). The ISMS Marketing Science framing of the 24 October draft is retired. The study leads with a marketing problem and tests whether agentic control adds value; it does not claim to discover proven market demand, validate formulation safety, or guarantee launch success. If fixed workflows match the agent, that boundary condition is a valid outcome.
 
 ## Proposed deliverables
 
