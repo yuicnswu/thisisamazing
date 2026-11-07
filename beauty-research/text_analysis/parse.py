@@ -3,7 +3,7 @@
 Columns: review_id, source, product_id, author_id, rating, title, text, date, skin_type,
 is_recommended, category, incentivized, n_chars, n_tokens.
 Dropped, in order: exact duplicates (same author, product, rating, title, text and date); empty texts;
-test rows (text is only "test", "testing" or "review message autotest"); and, for Sephora, cross-posts: the same author and the same
+non-English texts with no Latin-letter tokens; test rows (text is only "test", "testing" or "review message autotest"); and, for Sephora, cross-posts: the same author and the same
 normalised text on another product variant (about 11% of Sephora reviews), keeping the earliest.
 incentivized flags reviews that disclose a free or gifted product (Sephora's disclosure text and common
 phrasings); it is kept as a robustness split, not dropped.
@@ -27,6 +27,7 @@ import pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__))
 _TAG = re.compile(r"<[^>]+>")
 _WS = re.compile(r"\s+")
+_QUOTES = str.maketrans({"\u2019": "'", "\u2018": "'", "\u201c": '"', "\u201d": '"'})
 _TOKEN = re.compile(r"[a-z]+(?:'[a-z]+)?")
 _TEST = re.compile(r"^\W*(?:test(?:ing)?|review message autotest)\W*$", re.I)
 _INCENTIVE = re.compile(
@@ -40,7 +41,7 @@ def clean_text(s) -> str:
     if not isinstance(s, str):
         return ""
     s = html.unescape(s)
-    s = _TAG.sub(" ", s)
+    s = _TAG.sub(" ", s).translate(_QUOTES)
     return _WS.sub(" ", s).strip()
 
 
@@ -105,9 +106,13 @@ def finalise(df: pd.DataFrame, source: str) -> tuple[pd.DataFrame, dict]:
     df.insert(0, "review_id", [f"{source[:2]}{i:07d}" for i in range(len(df))])
     df["n_chars"] = df["text"].str.len()
     df["n_tokens"] = df["text"].map(lambda s: len(tokens(s)))
+    no_latin = df["n_tokens"] == 0          # e.g. Chinese or Russian text; the pipeline is English-only
+    df = df[~no_latin].reset_index(drop=True)
+    df["review_id"] = [f"{source[:2]}{i:07d}" for i in range(len(df))]
     summary = {"source": source, "raw_rows": n_raw, "exact_duplicates_dropped": int(dup.sum()),
                "empty_text_dropped": int(empty.sum()), "test_rows_dropped": int(test.sum()),
-               "cross_posts_dropped": int(cross.sum()), "reviews": len(df),
+               "cross_posts_dropped": int(cross.sum()), "no_english_tokens_dropped": int(no_latin.sum()),
+               "reviews": len(df),
                "incentivized_share": round(float(df.incentivized.mean()), 4),
                "products": int(df.product_id.nunique()), "authors": int(df.author_id.nunique()),
                "date_min": str(df.date.min()), "date_max": str(df.date.max()),

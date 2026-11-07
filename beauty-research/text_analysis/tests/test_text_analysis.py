@@ -17,6 +17,7 @@ def test_quote_ok_is_case_and_space_insensitive():
 
 def test_clean_text_strips_tags_and_entities():
     assert clean_text("Nice<br />product &amp; scent") == "Nice product & scent"
+    assert clean_text("don\u2019t \u201cwow\u201d") == "don't \"wow\""
 
 
 def test_ppi_is_unbiased_with_a_biased_classifier():
