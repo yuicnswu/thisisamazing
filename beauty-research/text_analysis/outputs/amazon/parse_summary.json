@@ -1,0 +1,19 @@
+{
+  "source": "amazon",
+  "raw_rows": 701528,
+  "exact_duplicates_dropped": 7276,
+  "empty_text_dropped": 705,
+  "reviews": 693547,
+  "products": 112496,
+  "authors": 631352,
+  "date_min": "2000-11-01 04:24:18+00:00",
+  "date_max": "2023-09-09 00:39:36.666000+00:00",
+  "median_tokens": 19.0,
+  "rating_share": {
+    "1.0": 0.1453,
+    "2.0": 0.0614,
+    "3.0": 0.0803,
+    "4.0": 0.1133,
+    "5.0": 0.5998
+  }
+}

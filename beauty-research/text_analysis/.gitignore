@@ -1,0 +1,2 @@
+outputs/*/reviews.parquet
+outputs/*/predictions.parquet

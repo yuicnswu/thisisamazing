@@ -1,0 +1,488 @@
+{
+  "a": "rating<=2",
+  "b": "rating>=4",
+  "a_over_b": [
+    {
+      "term": "money",
+      "z": 91.2,
+      "count_a": 6136,
+      "count_b": 3072
+    },
+    {
+      "term": "disappointed",
+      "z": 72.8,
+      "count_a": 3612,
+      "count_b": 879
+    },
+    {
+      "term": "waste",
+      "z": 66.4,
+      "count_a": 4217,
+      "count_b": 288
+    },
+    {
+      "term": "don",
+      "z": 65.9,
+      "count_a": 6840,
+      "count_b": 8935
+    },
+    {
+      "term": "star",
+      "z": 63.7,
+      "count_a": 2750,
+      "count_b": 774
+    },
+    {
+      "term": "work",
+      "z": 60.8,
+      "count_a": 5925,
+      "count_b": 7817
+    },
+    {
+      "term": "cheap",
+      "z": 57.4,
+      "count_a": 2527,
+      "count_b": 1396
+    },
+    {
+      "term": "didn",
+      "z": 57.3,
+      "count_a": 4133,
+      "count_b": 4526
+    },
+    {
+      "term": "return",
+      "z": 51.7,
+      "count_a": 1896,
+      "count_b": 339
+    },
+    {
+      "term": "did",
+      "z": 51.2,
+      "count_a": 4326,
+      "count_b": 5806
+    },
+    {
+      "term": "broke",
+      "z": 50.1,
+      "count_a": 1708,
+      "count_b": 425
+    },
+    {
+      "term": "bad",
+      "z": 50.0,
+      "count_a": 2541,
+      "count_b": 2229
+    },
+    {
+      "term": "horrible",
+      "z": 49.7,
+      "count_a": 1916,
+      "count_b": 237
+    },
+    {
+      "term": "broken",
+      "z": 46.9,
+      "count_a": 1518,
+      "count_b": 556
+    },
+    {
+      "term": "terrible",
+      "z": 46.3,
+      "count_a": 1603,
+      "count_b": 226
+    },
+    {
+      "term": "doesn",
+      "z": 45.9,
+      "count_a": 4284,
+      "count_b": 6524
+    },
+    {
+      "term": "waste money",
+      "z": 42.6,
+      "count_a": 3418,
+      "count_b": 58
+    },
+    {
+      "term": "poor",
+      "z": 40.2,
+      "count_a": 1284,
+      "count_b": 147
+    },
+    {
+      "term": "doesn work",
+      "z": 38.9,
+      "count_a": 1155,
+      "count_b": 152
+    },
+    {
+      "term": "returned",
+      "z": 36.6,
+      "count_a": 1004,
+      "count_b": 141
+    },
+    {
+      "term": "worst",
+      "z": 36.1,
+      "count_a": 968,
+      "count_b": 141
+    },
+    {
+      "term": "didn work",
+      "z": 35.3,
+      "count_a": 853,
+      "count_b": 204
+    },
+    {
+      "term": "awful",
+      "z": 35.0,
+      "count_a": 918,
+      "count_b": 130
+    },
+    {
+      "term": "wouldn",
+      "z": 34.8,
+      "count_a": 1123,
+      "count_b": 877
+    },
+    {
+      "term": "does work",
+      "z": 34.7,
+      "count_a": 854,
+      "count_b": 362
+    },
+    {
+      "term": "dried",
+      "z": 34.3,
+      "count_a": 895,
+      "count_b": 484
+    },
+    {
+      "term": "apart",
+      "z": 34.2,
+      "count_a": 871,
+      "count_b": 440
+    },
+    {
+      "term": "don buy",
+      "z": 33.9,
+      "count_a": 1166,
+      "count_b": 70
+    },
+    {
+      "term": "picture",
+      "z": 32.5,
+      "count_a": 1311,
+      "count_b": 1415
+    },
+    {
+      "term": "opened",
+      "z": 32.0,
+      "count_a": 802,
+      "count_b": 463
+    },
+    {
+      "term": "buy",
+      "z": 31.8,
+      "count_a": 4814,
+      "count_b": 10390
+    },
+    {
+      "term": "don waste",
+      "z": 31.5,
+      "count_a": 1384,
+      "count_b": 42
+    },
+    {
+      "term": "received",
+      "z": 31.3,
+      "count_a": 1899,
+      "count_b": 2805
+    },
+    {
+      "term": "fell",
+      "z": 30.4,
+      "count_a": 722,
+      "count_b": 415
+    },
+    {
+      "term": "did work",
+      "z": 30.4,
+      "count_a": 700,
+      "count_b": 94
+    },
+    {
+      "term": "stick",
+      "z": 30.2,
+      "count_a": 1095,
+      "count_b": 1141
+    },
+    {
+      "term": "stay",
+      "z": 29.7,
+      "count_a": 1393,
+      "count_b": 1811
+    },
+    {
+      "term": "unfortunately",
+      "z": 29.6,
+      "count_a": 665,
+      "count_b": 353
+    },
+    {
+      "term": "stopped",
+      "z": 29.4,
+      "count_a": 692,
+      "count_b": 418
+    },
+    {
+      "term": "returning",
+      "z": 29.2,
+      "count_a": 658,
+      "count_b": 82
+    }
+  ],
+  "b_over_a": [
+    {
+      "term": "great",
+      "z": -90.5,
+      "count_a": 2380,
+      "count_b": 58079
+    },
+    {
+      "term": "love",
+      "z": -80.8,
+      "count_a": 1180,
+      "count_b": 46185
+    },
+    {
+      "term": "works",
+      "z": -48.2,
+      "count_a": 970,
+      "count_b": 17788
+    },
+    {
+      "term": "easy",
+      "z": -43.6,
+      "count_a": 935,
+      "count_b": 15219
+    },
+    {
+      "term": "perfect",
+      "z": -43.2,
+      "count_a": 255,
+      "count_b": 13890
+    },
+    {
+      "term": "nice",
+      "z": -41.6,
+      "count_a": 1463,
+      "count_b": 17082
+    },
+    {
+      "term": "stars",
+      "z": -38.5,
+      "count_a": 1906,
+      "count_b": 18099
+    },
+    {
+      "term": "best",
+      "z": -38.3,
+      "count_a": 544,
+      "count_b": 10944
+    },
+    {
+      "term": "good",
+      "z": -36.4,
+      "count_a": 4920,
+      "count_b": 32222
+    },
+    {
+      "term": "amazing",
+      "z": -34.3,
+      "count_a": 204,
+      "count_b": 8440
+    },
+    {
+      "term": "soft",
+      "z": -33.0,
+      "count_a": 917,
+      "count_b": 10758
+    },
+    {
+      "term": "price",
+      "z": -31.9,
+      "count_a": 1437,
+      "count_b": 13115
+    },
+    {
+      "term": "great product",
+      "z": -31.7,
+      "count_a": 124,
+      "count_b": 7679
+    },
+    {
+      "term": "beautiful",
+      "z": -30.9,
+      "count_a": 384,
+      "count_b": 7257
+    },
+    {
+      "term": "skin",
+      "z": -29.3,
+      "count_a": 2559,
+      "count_b": 17865
+    },
+    {
+      "term": "easy use",
+      "z": -27.7,
+      "count_a": 177,
+      "count_b": 5458
+    },
+    {
+      "term": "little",
+      "z": -27.3,
+      "count_a": 1490,
+      "count_b": 11872
+    },
+    {
+      "term": "awesome",
+      "z": -26.5,
+      "count_a": 118,
+      "count_b": 5073
+    },
+    {
+      "term": "works great",
+      "z": -24.9,
+      "count_a": 69,
+      "count_b": 4857
+    },
+    {
+      "term": "cute",
+      "z": -24.4,
+      "count_a": 706,
+      "count_b": 6982
+    },
+    {
+      "term": "excellent",
+      "z": -24.4,
+      "count_a": 77,
+      "count_b": 4500
+    },
+    {
+      "term": "highly",
+      "z": -23.3,
+      "count_a": 149,
+      "count_b": 3899
+    },
+    {
+      "term": "value",
+      "z": -22.4,
+      "count_a": 123,
+      "count_b": 3554
+    },
+    {
+      "term": "loved",
+      "z": -21.7,
+      "count_a": 430,
+      "count_b": 4838
+    },
+    {
+      "term": "favorite",
+      "z": -21.7,
+      "count_a": 133,
+      "count_b": 3381
+    },
+    {
+      "term": "wonderful",
+      "z": -21.5,
+      "count_a": 84,
+      "count_b": 3299
+    },
+    {
+      "term": "loves",
+      "z": -20.9,
+      "count_a": 48,
+      "count_b": 3454
+    },
+    {
+      "term": "smooth",
+      "z": -20.8,
+      "count_a": 325,
+      "count_b": 4065
+    },
+    {
+      "term": "exactly",
+      "z": -20.7,
+      "count_a": 220,
+      "count_b": 3494
+    },
+    {
+      "term": "love product",
+      "z": -20.3,
+      "count_a": 107,
+      "count_b": 2949
+    },
+    {
+      "term": "natural",
+      "z": -20.3,
+      "count_a": 652,
+      "count_b": 5679
+    },
+    {
+      "term": "definitely",
+      "z": -20.0,
+      "count_a": 980,
+      "count_b": 7281
+    },
+    {
+      "term": "love love",
+      "z": -19.5,
+      "count_a": 21,
+      "count_b": 3862
+    },
+    {
+      "term": "bit",
+      "z": -19.3,
+      "count_a": 586,
+      "count_b": 5125
+    },
+    {
+      "term": "clean",
+      "z": -19.2,
+      "count_a": 634,
+      "count_b": 5348
+    },
+    {
+      "term": "helps",
+      "z": -18.7,
+      "count_a": 68,
+      "count_b": 2502
+    },
+    {
+      "term": "fast",
+      "z": -18.6,
+      "count_a": 327,
+      "count_b": 3601
+    },
+    {
+      "term": "highly recommend",
+      "z": -18.5,
+      "count_a": 28,
+      "count_b": 2995
+    },
+    {
+      "term": "good quality",
+      "z": -18.5,
+      "count_a": 322,
+      "count_b": 3561
+    },
+    {
+      "term": "great quality",
+      "z": -18.4,
+      "count_a": 68,
+      "count_b": 2415
+    }
+  ]
+}
