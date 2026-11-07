@@ -27,7 +27,7 @@ from scipy.stats import norm
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import average_precision_score, f1_score, roc_auc_score
-from sklearn.model_selection import GridSearchCV, StratifiedKFold
+from sklearn.model_selection import GridSearchCV, StratifiedKFold, cross_val_predict
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -55,6 +55,15 @@ def load_labels(out: str, name: str, model: str = PRIMARY) -> pd.DataFrame:
                 y[f"ctx_{c}"] = int(c in r["ctx"])
             rows.append(y)
     return pd.DataFrame(rows)
+
+
+def gold_name(out: str) -> str:
+    """Gold labels for the calib sample: jury + entailment-filtered if available (codebook.py, entail.py),
+    else jury, else the primary model's labels (v0 pipeline)."""
+    for g in ("jury_entailed", "jury"):
+        if os.path.exists(os.path.join(out, f"labels_calib__{g}.jsonl")):
+            return g
+    return PRIMARY
 
 
 def targets() -> list[str]:
@@ -88,7 +97,7 @@ def main(source: str):
     # curly quotes -> straight, so contractions tokenise whole (already done by parse.py for new runs)
     text = (df.title.fillna("") + " . " + df.text).str.translate(_QUOTES).tolist()
     idx = {r: i for i, r in enumerate(df.review_id)}
-    tr, ca = load_labels(out, "train"), load_labels(out, "calib")
+    tr, ca = load_labels(out, "train"), load_labels(out, "calib", gold_name(out))
     rng = np.random.default_rng(0)
     fit_ids = rng.choice(len(text), size=min(200000, len(text)), replace=False)
     feat = features([text[i] for i in fit_ids], None)
@@ -96,6 +105,7 @@ def main(source: str):
     X_tr = X_all[[idx[r] for r in tr.review_id]]
     X_ca = X_all[[idx[r] for r in ca.review_id]]
     preds = {"review_id": df.review_id.values}
+    oof = {"review_id": tr.review_id.values}       # out-of-fold train predictions, for fair model selection in scale_embed.py
     evals = {}
     for t in targets():
         y = tr[t].values
@@ -105,6 +115,8 @@ def main(source: str):
         gs = GridSearchCV(LogisticRegression(max_iter=2000, solver="liblinear"), {"C": [0.5, 2, 8, 32]},
                           scoring="average_precision", cv=StratifiedKFold(5, shuffle=True, random_state=0), n_jobs=4)
         gs.fit(X_tr, y)
+        oof[t] = cross_val_predict(gs.best_estimator_, X_tr, y, cv=StratifiedKFold(5, shuffle=True, random_state=0),
+                                   method="predict_proba")[:, 1].astype(np.float32)
         p_all = gs.best_estimator_.predict_proba(X_all)[:, 1]
         preds[t] = p_all.astype(np.float32)
         yc, pc = ca[t].values, gs.best_estimator_.predict_proba(X_ca)[:, 1]
@@ -115,6 +127,7 @@ def main(source: str):
                      calib_f1_at_0_5=round(f1_score(yc, pc >= 0.5), 3))
         evals[t] = e
     pd.DataFrame(preds).to_parquet(os.path.join(out, "predictions.parquet"), index=False)
+    pd.DataFrame(oof).to_parquet(os.path.join(out, "predictions_train_oof.parquet"), index=False)
     with open(os.path.join(out, "classifier_eval.json"), "w") as f:
         json.dump(evals, f, indent=2)
     return evals

@@ -52,10 +52,14 @@ aspect only because a word appears; the reviewer must evaluate it. Quotes must b
 Answer with a JSON array only: [{{"id": "...", "labels": [{{"a": "...", "p": "...", "q": "..."}}], "ctx": ["..."]}}]"""
 
 
-def system_prompt() -> str:
+def system_prompt(rules: list[str] | None = None) -> str:
+    """The annotation guide. `rules` are the clarifications learned by codebook.py (self-refining loop)."""
     a = "\n".join(f"- {k}: {v}" for k, v in ASPECTS.items())
     c = "\n".join(f"- {k}: {v}" for k, v in CONTEXT.items())
-    return SYSTEM.format(aspects=a, context=c)
+    s = SYSTEM.format(aspects=a, context=c)
+    if rules:
+        s += "\n\nAdditional rules (from adjudicated disagreements):\n" + "\n".join(f"{i}. {r}" for i, r in enumerate(rules, 1))
+    return s
 
 
 _norm = lambda s: re.sub(r"\s+", " ", s.lower()).strip()
@@ -74,37 +78,38 @@ def draw_samples(df: pd.DataFrame, n_train: int, n_calib: int, seed: int = 0) ->
     return pd.concat([train.assign(sample="train"), calib.assign(sample="calib")])
 
 
-def label_batch(model: str, rows: list[dict]) -> list[dict]:
+def check_labels(x: dict | None, r: dict) -> dict:
+    """Keep only valid aspect/polarity labels whose quote is verbatim in the review."""
+    rec = {"review_id": r["review_id"], "parsed": x is not None, "labels": [], "ctx": [], "dropped_quotes": 0}
+    if x:
+        full = (r.get("title") or "") + " " + r["text"]
+        for lab in x.get("labels") or []:
+            if lab.get("a") not in ASPECTS or lab.get("p") not in ("pos", "neg", "mixed"):
+                continue
+            if quote_ok(str(lab.get("q", "")), full):
+                rec["labels"].append({"a": lab["a"], "p": lab["p"], "q": lab["q"]})
+            else:
+                rec["dropped_quotes"] += 1
+        rec["ctx"] = sorted({c for c in x.get("ctx") or [] if c in CONTEXT})
+    return rec
+
+
+def label_batch(model: str, rows: list[dict], rules: list[str] | None = None) -> list[dict]:
     payload = [{"id": r["review_id"], "title": r["title"], "review": r["text"][:3000]} for r in rows]
     prompt = "Annotate these reviews:\n" + json.dumps(payload, ensure_ascii=False)
-    raw = complete("claude", model, system_prompt(), prompt)
+    raw = complete("claude", model, system_prompt(rules), prompt)
     try:
         got = {str(x.get("id")): x for x in parse_json(raw) if isinstance(x, dict)}
     except ValueError:
         got = {}
-    out = []
-    for r in rows:
-        x = got.get(r["review_id"])
-        rec = {"review_id": r["review_id"], "parsed": x is not None, "labels": [], "ctx": [], "dropped_quotes": 0}
-        if x:
-            full = r["title"] + " " + r["text"]
-            for lab in x.get("labels") or []:
-                if lab.get("a") not in ASPECTS or lab.get("p") not in ("pos", "neg", "mixed"):
-                    continue
-                if quote_ok(str(lab.get("q", "")), full):
-                    rec["labels"].append({"a": lab["a"], "p": lab["p"], "q": lab["q"]})
-                else:
-                    rec["dropped_quotes"] += 1
-            rec["ctx"] = [c for c in x.get("ctx") or [] if c in CONTEXT]
-        out.append(rec)
-    return out
+    return [check_labels(got.get(r["review_id"]), r) for r in rows]
 
 
-def run(model: str, rows: list[dict], workers: int) -> list[dict]:
+def run(model: str, rows: list[dict], workers: int, rules: list[str] | None = None) -> list[dict]:
     batches = [rows[i:i + BATCH] for i in range(0, len(rows), BATCH)]
     res = []
     with ThreadPoolExecutor(workers) as ex:
-        for part in ex.map(lambda b: label_batch(model, b), batches):
+        for part in ex.map(lambda b: label_batch(model, b, rules), batches):
             res.extend(part)
     return res
 

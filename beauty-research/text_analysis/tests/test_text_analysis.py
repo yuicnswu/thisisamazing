@@ -42,3 +42,43 @@ def test_ppi_coverage_close_to_nominal():
         r = ppi_mean(y[lab].astype(float), f[lab], f)
         hits += r["lo"] <= y.mean() <= r["hi"]
     assert hits / 300 > 0.9
+
+
+def _toy_sephora(n=3000, seed=0):
+    import pandas as pd
+    rng = np.random.default_rng(seed)
+    days = pd.Timestamp("2020-01-01", tz="UTC") + pd.to_timedelta(rng.integers(0, 400, n), unit="D")
+    return pd.DataFrame({"review_id": [f"r{i}" for i in range(n)], "product_id": rng.integers(0, 40, n).astype(str),
+                         "author_id": rng.integers(0, 600, n).astype(str), "rating": rng.integers(1, 6, n).astype(float),
+                         "date": days, "skin_type": rng.choice(["dry", "oily", None], n), "category": rng.choice(["a", "b"], n),
+                         "is_recommended": (rng.random(n) < 0.8).astype(float)})
+
+
+def test_rq3_features_use_only_earlier_days():
+    from rq3_temporal import build_features
+    df = _toy_sephora()
+    f1 = build_features(df, "is_recommended").set_index("review_id")
+    last = df.date.max()
+    df2 = df.copy()
+    flip = df2.date == last                       # change every target on the last day
+    df2.loc[flip, "is_recommended"] = 1 - df2.loc[flip, "is_recommended"]
+    df2.loc[flip, "rating"] = 6 - df2.loc[flip, "rating"]
+    f2 = build_features(df2, "is_recommended").set_index("review_id")
+    cols = ["prod_rate", "prod_skin_rate", "auth_rate", "auth_cat_rate", "prod_mean_rating", "auth_mean_rating", "cat_rate"]
+    pd_ = __import__("pandas")
+    pd_.testing.assert_frame_equal(f1.loc[:, cols], f2.loc[f1.index, cols])   # no row sees the last day's outcomes
+    first = f1.sort_values("date").groupby("product_id").head(1)
+    assert (first.prod_n == 0).all()
+
+
+def test_entail_contrast_set_has_known_negatives():
+    from entail import contrast_set
+    recs = [{"review_id": "x", "labels": [{"a": "scent", "p": "pos", "q": "smells great"},
+                                          {"a": "texture", "p": "neg", "q": "too sticky"}]}]
+    items = contrast_set(recs, {"x": "smells great but too sticky"}, n=5)
+    kinds = sorted(i["kind"] for i in items)
+    assert kinds.count("orig") == 2 and kinds.count("flip") == 2 and kinds.count("wrong") == 2
+    flip = [i for i in items if i["kind"] == "flip" and i["a"] == "scent"][0]
+    assert flip["p"] == "neg"
+    swap = [i for i in items if i["kind"] == "swap"]
+    assert all(i["a"] not in ("scent", "texture", "overall") for i in swap)

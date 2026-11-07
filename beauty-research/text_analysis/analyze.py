@@ -25,7 +25,7 @@ import pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from aspects import ASPECTS, CONTEXT  # noqa: E402
-from scale import PRIMARY, load_labels, ppi_mean  # noqa: E402
+from scale import PRIMARY, gold_name, load_labels, ppi_mean  # noqa: E402
 
 SECOND = "claude-sonnet-5-5"
 MIN_CALIB = 40
@@ -53,7 +53,8 @@ def group_ppi(df, ca, target, group_col, values):
 
 
 def agreement(out):
-    a = load_labels(out, "agree", SECOND).set_index("review_id")
+    full = os.path.exists(os.path.join(out, f"labels_calib__{SECOND}.jsonl"))   # whole calib, written by codebook.py
+    a = load_labels(out, "calib" if full else "agree", SECOND).set_index("review_id")
     b = load_labels(out, "calib", PRIMARY).set_index("review_id").loc[lambda x: x.index.isin(a.index)]
     a = a.loc[b.index]
     res = {}
@@ -85,14 +86,16 @@ def quotes(out, k=2):
 def main(source):
     out = os.path.join(HERE, "outputs", source)
     df = pd.read_parquet(os.path.join(out, "reviews.parquet"))
-    pr = pd.read_parquet(os.path.join(out, "predictions.parquet"))
+    pfile = os.environ.get("PREDICTIONS", "predictions.parquet")   # predictions_emb.parquet from scale_embed.py
+    pr = pd.read_parquet(os.path.join(out, pfile))
     df = df.merge(pr, on="review_id")
     df["year"] = df["date"].dt.year
     df["low"] = (df.rating <= 2).astype(int)
-    ca = load_labels(out, "calib")
+    gold = gold_name(out)
+    ca = load_labels(out, "calib", gold)
     ca = ca.rename(columns={c: "y_" + c for c in ca.columns if c != "review_id"}).merge(df, on="review_id")
     have = [c for c in pr.columns if c != "review_id"]
-    R = {"source": source, "reviews": len(df), "calib_n": len(ca)}
+    R = {"source": source, "reviews": len(df), "calib_n": len(ca), "gold": gold, "predictions": pfile}
 
     def est(t, mask_all=None, mask_cal=None):
         ma = slice(None) if mask_all is None else mask_all
@@ -139,19 +142,23 @@ def main(source):
         R["T7"][a] = {"llm_only": float(y.mean()), "llm_only_halfwidth": float(1.96 * se),
                       "ppi_halfwidth": float(1.96 * R["T1"][a]["neg"]["se"])}
     R["agreement"] = agreement(out)
+    for fn, key in (("codebook/codebook_results.json", "codebook"), ("entail_results.json", "entail")):
+        if os.path.exists(os.path.join(out, fn)):
+            R[key] = json.load(open(os.path.join(out, fn)))
     R["quotes"] = quotes(out)
     R["classifier_eval"] = json.load(open(os.path.join(out, "classifier_eval.json")))
     R["labels"] = json.load(open(os.path.join(out, "labels_summary.json")))
     R["parse"] = json.load(open(os.path.join(out, "parse_summary.json")))
     R["logodds"] = json.load(open(os.path.join(out, "logodds.json")))
     R["topics"] = json.load(open(os.path.join(out, "topics.json")))
-    with open(os.path.join(out, "results.json"), "w") as f:
+    sfx = "" if pfile == "predictions.parquet" else "_emb"
+    with open(os.path.join(out, f"results{sfx}.json"), "w") as f:
         json.dump(R, f, indent=1, default=str)
-    write_md(R, out)
+    write_md(R, out, sfx)
     return R
 
 
-def write_md(R, out):
+def write_md(R, out, sfx=""):
     L = []
     w = L.append
     p = R["parse"]
@@ -162,6 +169,25 @@ def write_md(R, out):
       "They estimate what the LLM annotator would say about every review; they are not human-validated.\n")
     lab = R["labels"]
     w("## Label quality\n")
+    cb = R.get("codebook")
+    if cb:
+        h = cb["history"]
+        ho = cb["held_out"]
+        w(f"- Self-refining guide (no human coders): {len(h) - 1} refinement round(s), {len(cb['rules'])} learned rules. "
+          f"Dev macro kappa {cb['models']['A']} vs {cb['models']['B']}: " + " → ".join(f"{x['macro_kappa']:.3f}" for x in h) +
+          f". Held-out test ({ho['selected']['n']} reviews): {ho['guide_0']['macro_kappa']:.3f} with the original guide, "
+          f"{ho['selected']['macro_kappa']:.3f} with the selected guide.")
+        pr_ = cb["production"]
+        w(f"- Gold labels ({R['gold']}): calib reviews where the two coders disagreed ({pct(pr_['calib_adjudicated_share'])}) were "
+          f"adjudicated by {cb['models']['judge']}. Primary coder vs jury on calib: macro kappa {pr_['calib_haiku_vs_jury']['macro_kappa']:.3f}.")
+    en = R.get("entail")
+    if en:
+        cv = en["contrast_validation"]
+        w(f"- Semantic support check ({en['judge']}): {pct(en['verbatim_but_unsupported_rate'])} of verbatim gold labels were judged "
+          f"not supported by their quote and dropped. On a known-answer contrast set the judge accepted {pct(cv['orig']['supported_rate'])} "
+          f"of original labels and rejected {pct(cv['specificity_all_perturbations'])} of perturbed ones "
+          f"(flipped polarity {pct(1 - cv['flip']['supported_rate'])}, swapped aspect {pct(1 - cv['swap']['supported_rate'])}, "
+          f"wrong quote {pct(1 - cv['wrong']['supported_rate'])}).")
     w(f"- Verbatim quotes: {pct(lab['train']['verbatim_rate'])} of train labels and {pct(lab['calib']['verbatim_rate'])} of calib labels "
       "had a quote found word for word in the review. Labels without one were dropped.")
     ag = R["agreement"]
@@ -220,7 +246,7 @@ def write_md(R, out):
         for pol in ("neg", "pos"):
             for q in R["quotes"].get(f"{a}|{pol}", [])[:1]:
                 w(f"- **{a}, {pol}:** “{q}”")
-    w("\n## Classifier quality on the held-out calib sample (vs LLM labels)\n")
+    w("\n## Classifier quality on the held-out calib sample (vs gold labels)\n")
     w("| Target | AUROC | Avg precision | Calib positives |")
     w("|---|---|---|---|")
     for t, e in R["classifier_eval"].items():
@@ -229,7 +255,7 @@ def write_md(R, out):
     skipped = [t for t, e in R["classifier_eval"].items() if "skipped" in e]
     if skipped:
         w(f"\nNot modelled (too few training positives): {', '.join(skipped)}.")
-    with open(os.path.join(out, "results.md"), "w") as f:
+    with open(os.path.join(out, f"results{sfx}.md"), "w") as f:
         f.write("\n".join(L) + "\n")
 
 
