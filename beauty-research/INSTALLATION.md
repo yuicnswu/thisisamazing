@@ -28,3 +28,7 @@ git -C vendor/ai-data-science-team checkout 4ffeb7f38178aa250917f29b01355f8b89ba
 Published notebooks have cleared outputs. Runners generate full local HTML and Parquet outputs; source registries and aggregate reports are included in GitHub. Skills guide the authored analysis; installing them is not required to execute the deterministic scripts. No LLM API is called by the integration workflows. The upstream LLM example requires separately configured credentials.
 
 Original source hashes and source-record ordinals support auditability. Row-level review datasets, reviewer identifiers and raw downloads are deliberately excluded from this publication package. Local paths in published manifests use portable placeholders. Existing verification files describe the original local runs; code in this publication package additionally has portable source defaults. Temporal eligibility is not a frozen benchmark, and no model experiment has been run.
+
+## EDA volleying (optional)
+
+The `eda-volley` Claude Code skill (`.claude/skills/eda-volley/`) runs iterative read-only SQL over the local downloads with DuckDB and turns the session into a notebook on "punch it". Install its extras with `.venv/bin/python -m pip install -r requirements-volley.txt`. Query helper: `scripts/eda_query.py`; starter script: `notebooks/temp_code/01-initial_dataset_exploration.py`.

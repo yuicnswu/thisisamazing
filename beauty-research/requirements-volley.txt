@@ -1,0 +1,3 @@
+# Extra packages for the eda-volley skill (install on top of requirements-eda.lock.txt)
+duckdb==2.0.0
+jupytext==1.19.6
