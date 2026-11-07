@@ -61,7 +61,7 @@ def targets() -> list[str]:
 
 
 def features(texts_fit, texts_all):
-    w = TfidfVectorizer(ngram_range=(1, 2), min_df=3, max_features=300000, sublinear_tf=True)
+    w = TfidfVectorizer(token_pattern=r"(?u)\b[a-z]+(?:'[a-z]+)?\b", ngram_range=(1, 2), min_df=3, max_features=300000, sublinear_tf=True)
     c = TfidfVectorizer(analyzer="char_wb", ngram_range=(2, 5), min_df=5, max_features=300000, sublinear_tf=True)
     w.fit(texts_fit); c.fit(texts_fit)
     return lambda t: sparse.hstack([w.transform(t), c.transform(t)]).tocsr()

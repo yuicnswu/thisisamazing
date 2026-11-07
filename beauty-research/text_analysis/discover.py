@@ -28,11 +28,13 @@ GENERIC = {"great", "good", "love", "loved", "loves", "like", "nice", "really", 
            "stuff", "buy", "bought", "purchase", "purchased", "use", "used", "using", "work", "works", "worked",
            "don", "didn", "doesn", "did", "does", "ve", "got", "get", "would", "will", "one", "well", "much",
            "beautiful", "cute", "pretty", "happy", "disappointed", "definitely", "absolutely", "super", "lot"}
+GENERIC |= {"don't", "didn't", "doesn't", "isn't", "wasn't", "won't", "can't", "i'm", "it's", "i've", "i'd", "i'll", "you'll", "that's"}
 STOP = list(ENGLISH_STOP_WORDS | GENERIC)
+TOKEN = r"(?u)\b[a-z]+(?:'[a-z]+)?\b"   # same tokens as parse.tokens: keeps contractions such as "didn't" whole
 
 
 def nmf_topics(texts, k=30, seed=0, n_top=15):
-    vec = TfidfVectorizer(stop_words=STOP, ngram_range=(1, 2), min_df=20, max_df=0.4,
+    vec = TfidfVectorizer(stop_words=STOP, token_pattern=TOKEN, ngram_range=(1, 2), min_df=20, max_df=0.4,
                           max_features=40000, sublinear_tf=True)
     X = vec.fit_transform(texts)
     model = NMF(n_components=k, init="nndsvda", random_state=seed, max_iter=400)
@@ -45,7 +47,7 @@ def nmf_topics(texts, k=30, seed=0, n_top=15):
 
 def weighted_log_odds(texts_a, texts_b, prior_texts, min_count=50, n_top=40):
     """Monroe et al. (2008) eq. 16-22: delta_w with Dirichlet prior from the pooled corpus; z = delta / sd."""
-    vec = CountVectorizer(stop_words="english", ngram_range=(1, 2), min_df=min_count, max_features=50000)
+    vec = CountVectorizer(stop_words="english", token_pattern=TOKEN, ngram_range=(1, 2), min_df=min_count, max_features=50000)
     vec.fit(prior_texts)
     ya = np.asarray(vec.transform(texts_a).sum(0)).ravel().astype(float)
     yb = np.asarray(vec.transform(texts_b).sum(0)).ravel().astype(float)
