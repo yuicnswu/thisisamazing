@@ -1,8 +1,12 @@
 """Step 1. Parse review files into one clean table, the same for Amazon and Sephora.
 
 Columns: review_id, source, product_id, author_id, rating, title, text, date, skin_type,
-is_recommended, category, n_chars, n_tokens. Exact duplicates (same author, product, rating, title,
-text and date) are dropped, keeping the first. Reviews with no text after cleaning are dropped.
+is_recommended, category, incentivized, n_chars, n_tokens.
+Dropped, in order: exact duplicates (same author, product, rating, title, text and date); empty texts;
+test rows (text is only "test", "testing" or "review message autotest"); and, for Sephora, cross-posts: the same author and the same
+normalised text on another product variant (about 11% of Sephora reviews), keeping the earliest.
+incentivized flags reviews that disclose a free or gifted product (Sephora's disclosure text and common
+phrasings); it is kept as a robustness split, not dropped.
 
 Usage:
   python parse.py amazon /mnt/project-files/All_Beauty.jsonl
@@ -24,6 +28,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 _TAG = re.compile(r"<[^>]+>")
 _WS = re.compile(r"\s+")
 _TOKEN = re.compile(r"[a-z]+(?:'[a-z]+)?")
+_TEST = re.compile(r"^\W*(?:test(?:ing)?|review message autotest)\W*$", re.I)
+_INCENTIVE = re.compile(
+    r"received (?:this|the|it|a)?\s*(?:product|item|sample)?\s*(?:for )?(?:free|complimentary)"
+    r"|complimentary (?:from|in exchange)|in exchange for (?:my|an|a) (?:honest )?review|\bgifted\b"
+    r"|\binfluenster\b|free (?:sample|product|of charge)|got (?:this|it) (?:for )?free"
+    r"|(?:sent|provided|given) (?:to me )?(?:for free|free)|for testing purposes", re.I)
 
 
 def clean_text(s) -> str:
@@ -80,13 +90,25 @@ def finalise(df: pd.DataFrame, source: str) -> tuple[pd.DataFrame, dict]:
     dup = df.duplicated(key, keep="first")
     df = df[~dup]
     empty = df["text"].str.len() == 0
-    df = df[~empty].reset_index(drop=True)
+    df = df[~empty]
+    test = df["text"].str.match(_TEST) | df["title"].str.match(_TEST) & (df["text"].str.len() < 20)
+    df = df[~test]
+    cross = pd.Series(False, index=df.index)
+    if source == "sephora":
+        norm = df["text"].str.lower().str.replace(r"\W+", " ", regex=True).str.strip()
+        order = df.assign(_n=norm).sort_values("date", kind="stable")
+        cross = order.duplicated(["author_id", "_n"], keep="first").reindex(df.index)
+        df = df[~cross]
+    df = df.reset_index(drop=True)
+    df["incentivized"] = (df["title"] + " " + df["text"]).str.contains(_INCENTIVE)
     df.insert(0, "source", source)
     df.insert(0, "review_id", [f"{source[:2]}{i:07d}" for i in range(len(df))])
     df["n_chars"] = df["text"].str.len()
     df["n_tokens"] = df["text"].map(lambda s: len(tokens(s)))
     summary = {"source": source, "raw_rows": n_raw, "exact_duplicates_dropped": int(dup.sum()),
-               "empty_text_dropped": int(empty.sum()), "reviews": len(df),
+               "empty_text_dropped": int(empty.sum()), "test_rows_dropped": int(test.sum()),
+               "cross_posts_dropped": int(cross.sum()), "reviews": len(df),
+               "incentivized_share": round(float(df.incentivized.mean()), 4),
                "products": int(df.product_id.nunique()), "authors": int(df.author_id.nunique()),
                "date_min": str(df.date.min()), "date_max": str(df.date.max()),
                "median_tokens": float(df.n_tokens.median()),

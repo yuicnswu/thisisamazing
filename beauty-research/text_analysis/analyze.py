@@ -118,7 +118,8 @@ def main(source):
     R["T5"] = conc
     groups = {}
     if source == "sephora":
-        for col in ("category", "skin_type", "is_recommended"):
+        df["incentivized_s"] = df.incentivized.astype(str); ca["incentivized_s"] = ca.incentivized.astype(str)
+        for col in ("category", "skin_type", "is_recommended", "incentivized_s"):
             vals = df[col].value_counts().index[:8].tolist()
             groups[col] = {a: group_ppi(df, ca, f"neg_{a}", col, vals) for a in ASPECTS if f"neg_{a}" in have}
     else:
