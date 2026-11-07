@@ -32,6 +32,7 @@ from sklearn.model_selection import GridSearchCV, StratifiedKFold
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from aspects import ASPECTS, CONTEXT  # noqa: E402
+from parse import _QUOTES  # noqa: E402
 
 PRIMARY = "claude-haiku-5-5"
 MIN_POSITIVES = 15
@@ -84,7 +85,8 @@ def ppi_mean(y_lab, f_lab, f_unlab, alpha=0.05):
 def main(source: str):
     out = os.path.join(HERE, "outputs", source)
     df = pd.read_parquet(os.path.join(out, "reviews.parquet"))
-    text = (df.title.fillna("") + " . " + df.text).tolist()
+    # curly quotes -> straight, so contractions tokenise whole (already done by parse.py for new runs)
+    text = (df.title.fillna("") + " . " + df.text).str.translate(_QUOTES).tolist()
     idx = {r: i for i, r in enumerate(df.review_id)}
     tr, ca = load_labels(out, "train"), load_labels(out, "calib")
     rng = np.random.default_rng(0)

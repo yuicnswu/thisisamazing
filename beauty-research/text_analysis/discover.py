@@ -68,7 +68,9 @@ def main(source, sample=200000, k=30, seed=0):
     out = os.path.join(HERE, "outputs", source)
     df = pd.read_parquet(os.path.join(out, "reviews.parquet"), columns=["title", "text", "rating"])
     df = df.sample(n=min(sample, len(df)), random_state=seed)
-    full = (df.title + ". " + df.text).tolist()
+    from parse import _QUOTES
+    df["text"] = df.text.str.translate(_QUOTES)
+    full = (df.title + ". " + df.text).str.translate(_QUOTES).tolist()
     topics = nmf_topics(df.text.tolist(), k=k, seed=seed)
     with open(os.path.join(out, "topics.json"), "w") as f:
         json.dump(topics, f, indent=2)
