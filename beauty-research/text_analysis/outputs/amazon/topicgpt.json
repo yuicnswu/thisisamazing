@@ -1,0 +1,311 @@
+{
+  "generation_reviews": 400,
+  "raw_topics": 31,
+  "topics": [
+    {
+      "id": "t1",
+      "name": "Overall Satisfaction",
+      "description": "Reviewer expresses general approval or disapproval of the product without citing a specific aspect.",
+      "aspect": "overall",
+      "n": 829,
+      "share": 0.5526666666666666,
+      "lo": 0.5274012010725789,
+      "hi": 0.5776630556948891
+    },
+    {
+      "id": "t2",
+      "name": "Product Effectiveness",
+      "description": "How well the product performs its intended function or delivers the promised results.",
+      "aspect": "efficacy",
+      "n": 533,
+      "share": 0.35533333333333333,
+      "lo": 0.3315098012564732,
+      "hi": 0.3798959744582031
+    },
+    {
+      "id": "t15",
+      "name": "Value and Gifting",
+      "description": "Whether the product is worth the price and suitable as a gift.",
+      "aspect": "price_value",
+      "n": 232,
+      "share": 0.15466666666666667,
+      "lo": 0.13725212953857266,
+      "hi": 0.17384552861904182
+    },
+    {
+      "id": "t9",
+      "name": "Ease of Application and Instructions",
+      "description": "How easy or difficult the product is to put on, install, apply, or use, including the clarity, language, and usefulness of included instructions.",
+      "aspect": "ease_of_use",
+      "n": 216,
+      "share": 0.144,
+      "lo": 0.12714123917299136,
+      "hi": 0.16267758217095868
+    },
+    {
+      "id": "t5",
+      "name": "Durability and Build Quality",
+      "description": "Whether the product is well made, holds up over time, or breaks, falls apart, or sheds with use.",
+      "aspect": "authenticity_quality",
+      "n": 187,
+      "share": 0.12466666666666666,
+      "lo": 0.10890178456955067,
+      "hi": 0.14234914504963259
+    },
+    {
+      "id": "t10",
+      "name": "Hair Quality",
+      "description": "Softness, thickness, tangling, volume, and styling or dyeing behavior of hair products and extensions.",
+      "aspect": "hair_result",
+      "n": 143,
+      "share": 0.09533333333333334,
+      "lo": 0.08148811029501346,
+      "hi": 0.11124601808659271
+    },
+    {
+      "id": "t7",
+      "name": "Fit and Size",
+      "description": "Whether the product is the right size, stretches enough, or fits comfortably on the head or body.",
+      "aspect": "new",
+      "n": 140,
+      "share": 0.09333333333333334,
+      "lo": 0.07963281381074355,
+      "hi": 0.10911153266830054
+    },
+    {
+      "id": "t25",
+      "name": "Style and Aesthetic Appeal",
+      "description": "How cute, attractive, or stylish the product's design looks, apart from color accuracy.",
+      "aspect": "new",
+      "n": 135,
+      "share": 0.09,
+      "lo": 0.07654520006092688,
+      "hi": 0.10554950991384704
+    },
+    {
+      "id": "t16",
+      "name": "Shipping, Order Accuracy and Customer Service",
+      "description": "Speed of delivery, whether the correct, complete, and undamaged items arrived, and how the seller handles replacements, refunds, and returns.",
+      "aspect": "delivery_service",
+      "n": 133,
+      "share": 0.08866666666666667,
+      "lo": 0.07531179837877117,
+      "hi": 0.10412305699429472
+    },
+    {
+      "id": "t8",
+      "name": "Scent",
+      "description": "How the product smells, including whether the fragrance is pleasant, strong, or changes over time.",
+      "aspect": "scent",
+      "n": 132,
+      "share": 0.088,
+      "lo": 0.07469545921122143,
+      "hi": 0.10340946886099041
+    },
+    {
+      "id": "t6",
+      "name": "Color and Appearance Accuracy",
+      "description": "Whether colors, brightness, and look match the photo or description, including receiving wrong colors.",
+      "aspect": "colour_shade",
+      "n": 116,
+      "share": 0.07733333333333334,
+      "lo": 0.06486909969657115,
+      "hi": 0.09195699156197631
+    },
+    {
+      "id": "t12",
+      "name": "Texture and Consistency",
+      "description": "Feel of the product itself, such as thick, gooey, smooth, thin, or sudsy.",
+      "aspect": "texture",
+      "n": 92,
+      "share": 0.06133333333333333,
+      "lo": 0.050275098243790436,
+      "hi": 0.07463273779426036
+    },
+    {
+      "id": "t14",
+      "name": "Accuracy of Claims",
+      "description": "Whether marketing claims and the product description are truthful and match what is delivered.",
+      "aspect": "authenticity_quality",
+      "n": 89,
+      "share": 0.059333333333333335,
+      "lo": 0.048465588418910896,
+      "hi": 0.07245246571657785
+    },
+    {
+      "id": "t13",
+      "name": "Comfort During Use",
+      "description": "How comfortable or uncomfortable the product feels while being worn or used.",
+      "aspect": "new",
+      "n": 87,
+      "share": 0.058,
+      "lo": 0.04726133421527265,
+      "hi": 0.07099686531850805
+    },
+    {
+      "id": "t11",
+      "name": "Longevity and Wear Time",
+      "description": "How long the product's effect, color, or hold lasts after application.",
+      "aspect": "longevity",
+      "n": 83,
+      "share": 0.05533333333333333,
+      "lo": 0.044858075643366885,
+      "hi": 0.06808041468699769
+    },
+    {
+      "id": "t24",
+      "name": "Portability and Storage",
+      "description": "Whether the product is compact, travel-friendly, roomy enough, or helps organize and store items.",
+      "aspect": "new",
+      "n": 64,
+      "share": 0.042666666666666665,
+      "lo": 0.03355351944336538,
+      "hi": 0.0541163521707727
+    },
+    {
+      "id": "t27",
+      "name": "Product Quantity and Fill",
+      "description": "Whether the amount of product in the container or package is sufficient and how quickly it runs out.",
+      "aspect": "size_quantity",
+      "n": 62,
+      "share": 0.04133333333333333,
+      "lo": 0.032376061541247794,
+      "hi": 0.05263395547118224
+    },
+    {
+      "id": "t4",
+      "name": "Packaging and Container Quality",
+      "description": "Quality of the bottle, lid, seal, dispenser, or outer packaging and whether it leaks, is defective, or is cheap.",
+      "aspect": "packaging",
+      "n": 61,
+      "share": 0.04066666666666666,
+      "lo": 0.031788368807731386,
+      "hi": 0.05189172090384462
+    },
+    {
+      "id": "t22",
+      "name": "Compatibility with Other Products",
+      "description": "Whether the product works well or poorly when layered, mixed, or used alongside other products.",
+      "aspect": "new",
+      "n": 59,
+      "share": 0.03933333333333333,
+      "lo": 0.030615136694739496,
+      "hi": 0.05040509841512845
+    },
+    {
+      "id": "t3",
+      "name": "Skin Irritation or Harm",
+      "description": "Whether the product causes redness, irritation, or physical damage to skin.",
+      "aspect": "skin_reaction",
+      "n": 47,
+      "share": 0.03133333333333333,
+      "lo": 0.023644208902775243,
+      "hi": 0.04141689859684439
+    },
+    {
+      "id": "t17",
+      "name": "Power Source and Features",
+      "description": "Whether power type, included parts, and built-in features meet the reviewer's needs.",
+      "aspect": "new",
+      "n": 46,
+      "share": 0.030666666666666665,
+      "lo": 0.02306935362123429,
+      "hi": 0.04066182657753131
+    },
+    {
+      "id": "t21",
+      "name": "Residue and Mess",
+      "description": "Whether the product leaves behind sticky, waxy, or staining residue on skin, clothing, or the device.",
+      "aspect": "new",
+      "n": 43,
+      "share": 0.028666666666666667,
+      "lo": 0.021351301213385784,
+      "hi": 0.03839009708281775
+    },
+    {
+      "id": "t23",
+      "name": "Ease of Removal",
+      "description": "How easy or difficult it is to take off, wash out, or extract the product from skin, lashes, or hair.",
+      "aspect": "new",
+      "n": 34,
+      "share": 0.02266666666666667,
+      "lo": 0.016265204015729194,
+      "hi": 0.03150684857278811
+    },
+    {
+      "id": "t18",
+      "name": "Safety and Trustworthiness",
+      "description": "Whether the product is recommended by professionals, safe to use, and trusted by the reviewer.",
+      "aspect": "new",
+      "n": 32,
+      "share": 0.021333333333333333,
+      "lo": 0.01515143268702987,
+      "hi": 0.029960765299779375
+    },
+    {
+      "id": "t28",
+      "name": "Ingredients and Eco-Friendliness",
+      "description": "Whether the ingredients, formulation, or environmental friendliness of the product meet the reviewer's expectations.",
+      "aspect": "ingredients",
+      "n": 29,
+      "share": 0.019333333333333334,
+      "lo": 0.013494361304569729,
+      "hi": 0.027628054779677447
+    },
+    {
+      "id": "t26",
+      "name": "Product Freshness and Condition",
+      "description": "Whether the product arrived fresh and usable rather than dried out, stale, old, or faded.",
+      "aspect": "authenticity_quality",
+      "n": 22,
+      "share": 0.014666666666666666,
+      "lo": 0.009705338044289039,
+      "hi": 0.022107586933979947
+    },
+    {
+      "id": "t19",
+      "name": "Climate and Wearing Conditions",
+      "description": "How the product performs in heat or other conditions, including side effects like fogging glasses.",
+      "aspect": "new",
+      "n": 13,
+      "share": 0.008666666666666666,
+      "lo": 0.005071771942657127,
+      "hi": 0.014771807327925624
+    },
+    {
+      "id": "t20",
+      "name": "Flavor and Taste",
+      "description": "How strong, weak, or pleasant the taste or flavor of an ingestible or oral-contact product is.",
+      "aspect": "new",
+      "n": 13,
+      "share": 0.008666666666666666,
+      "lo": 0.005071771942657127,
+      "hi": 0.014771807327925624
+    },
+    {
+      "id": "t29",
+      "name": "Billing and Subscription Practices",
+      "description": "Whether the seller charges the advertised price and discloses recurring charges or automatic subscriptions.",
+      "aspect": "new",
+      "n": 3,
+      "share": 0.002,
+      "lo": 0.0006803961574046876,
+      "hi": 0.005863910104637805
+    }
+  ],
+  "calib_reviews": 1500,
+  "reviews_with_topic": 1495,
+  "coverage_all_topics_mapped": [
+    0.6381270903010033,
+    0.6134422967292238,
+    0.6621038316942199
+  ],
+  "share_with_new_topic": [
+    0.36187290969899666,
+    0.33789616830577995,
+    0.3865577032707762
+  ],
+  "aspects_without_topic": [
+    "hydration_skin_feel"
+  ]
+}
