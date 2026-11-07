@@ -4,7 +4,7 @@
 **Target venues:** ICIS 2027 (short or completed research paper) or HICSS-61. Check the calls for exact deadlines and track names.  
 **Status:** The datasets are integrated and audited, a root-cause analysis has identified the failure modes the artifact must handle, and the evidence checker has been tested on real data. The agent itself, its baselines and the task suite have not run yet. Every number in this draft is either an observed count from the audited files or is labelled as a target or an illustration.
 
-> **What changed from the 24 October version.** (1) The venue moved from the ISMS Marketing Science Conference to ICIS / HICSS, so the paper is now framed as design science research with meta-requirements, design principles and a staged evaluation. (2) It adds a related-work section built on the 87-paper review and a gap table. (3) The fixed baseline is now strong by design, and a router arm is added, because the literature shows fixed pipelines often match agents once cost is counted. (4) The task suite grows from 40 held-out tasks to 120 held-out instances, and "trap" tasks with known confounds make open-ended findings scorable without human annotation. (5) The verbatim-quote checker becomes a design principle backed by real pilot evidence (§5.3). (6) The 5 Whys root-cause analysis is now the problem evidence behind the meta-requirements (§6.2). (7) The illustrative cost scenario moved to an appendix, and a duplicated paragraph was removed.
+> **What changed from the 24 October version.** (1) The venue moved from the ISMS Marketing Science Conference to ICIS / HICSS, so the paper is now framed as design science research with meta-requirements, design principles and a staged evaluation. (2) It adds a related-work section built on the 87-paper review and a gap table. (3) The fixed baseline is now strong by design, and a router arm is added, because the literature shows fixed pipelines often match agents once cost is counted. (4) The task suite grows from 40 held-out tasks to 120 held-out instances, and "trap" tasks with known confounds make open-ended findings scorable without human annotation. (5) The verbatim-quote checker becomes a design principle backed by real pilot evidence (§5.3). (6) The 5 Whys root-cause analysis is now the problem evidence behind the meta-requirements (§6.3). (7) A full aspect-based text analysis of the Amazon reviews is reported in §6.2. (8) The illustrative cost scenario moved to an appendix, and a duplicated paragraph was removed.
 
 ## Abstract
 
@@ -72,17 +72,17 @@ Meta-requirements (MR) come from the merchant problem in §1 and the failure mod
 |---|---|---|
 | MR1 | Every number in the brief must be reproducible from the data | Goli & Singh (2024); Majumder et al. (2025) |
 | MR2 | Every quotation must exist in the cited review | Liu et al. (2023); Rashkin et al. (2023) |
-| MR3 | Findings must state their scope: cohort, denominators, missing data, and how products were assigned to segments | Li & Hitt (2008); Berger et al. (2020); RCA causes A and C (§6.2) |
-| MR4 | The brief must expose evidence against its own findings, and rival explanations | Klayman & Ha (1987); RCA cause B (§6.2) |
+| MR3 | Findings must state their scope: cohort, denominators, missing data, and how products were assigned to segments | Li & Hitt (2008); Berger et al. (2020); RCA causes A and C (§6.3) |
+| MR4 | The brief must expose evidence against its own findings, and rival explanations | Klayman & Ha (1987); RCA cause B (§6.3) |
 | MR5 | The cost of producing the brief must be justified by what it adds over simpler automation | Kapoor et al. (2025); Xia et al. (2025) |
-| MR6 | The brief must not claim outcomes the data cannot measure, such as ROI, sales or demand | RCA constraint D (§6.2) |
+| MR6 | The brief must not claim outcomes the data cannot measure, such as ROI, sales or demand | RCA constraint D (§6.3) |
 
 | | Design principle | Addresses | Justification |
 |---|---|---|---|
 | DP1 | **Compute, don't generate.** Counts, proportions and comparisons come from parameterised SQL/Python. The LLM writes queries and prose, never numbers. | MR1 | LLM priors differ from customer data (Goli & Singh, 2024); code execution is checkable |
 | DP2 | **Quote verbatim or don't claim.** A finding cites review or listing text that a deterministic check finds word for word in the source. | MR2 | Pilot evidence in §5.3: the verbatim requirement is what made a certified error bound reachable |
-| DP3 | **Seek disconfirming evidence.** Before a finding is kept, the agent retrieves opposing reviews, checks whether one product dominates, and runs a sensitivity cut. | MR4 | Positive-test bias in hypothesis testing (Klayman & Ha, 1987); averages hide thin evidence and disagreement (Finding D; RCA cause B, §6.2) |
-| DP4 | **Disclose the cohort.** Each finding records its filters, numerator, denominator, the share of records excluded for missing fields, and the rule that assigned products to its segment. Claims are typed, and the schema has no field for ROI, sales or demand. | MR3, MR6 | Only 3.85% of Amazon products have complete listings, and a keyword rule put a leather conditioner in Hair care (§6.2) |
+| DP3 | **Seek disconfirming evidence.** Before a finding is kept, the agent retrieves opposing reviews, checks whether one product dominates, and runs a sensitivity cut. | MR4 | Positive-test bias in hypothesis testing (Klayman & Ha, 1987); averages hide thin evidence and disagreement (Finding D; RCA cause B, §6.3) |
+| DP4 | **Disclose the cohort.** Each finding records its filters, numerator, denominator, the share of records excluded for missing fields, and the rule that assigned products to its segment. Claims are typed, and the schema has no field for ROI, sales or demand. | MR3, MR6 | Only 3.85% of Amazon products have complete listings, and a keyword rule put a leather conditioner in Hair care (§6.3) |
 | DP5 | **Escalate only when needed.** The fixed workflow runs first; adaptive investigation is triggered when checks fail or a finding is fragile. | MR5 | Adaptive routing (Jeong et al., 2024); cascades (Chen, Zaharia & Zou, 2024) |
 
 DP5 is itself a hypothesis: if the router (§5.2) matches the full agent at lower cost, DP5 is supported.
@@ -150,7 +150,19 @@ All counts come from the supplied files and full-file integration scripts. Revie
 
 **Finding E: no cross-source linkage.** All reviews match a product within their own source. No Amazon–Sephora product or customer link exists, so the sources are analysed separately. Amazon is the robustness domain.
 
-### 6.2 Root-cause analysis: why review-based marketing decisions go wrong
+### 6.2 Review text analysis (Amazon All_Beauty)
+
+An aspect-based sentiment analysis of all 693,547 cleaned Amazon reviews ([method and code](../text_analysis/README.md), [full results](../text_analysis/outputs/amazon/results.md)) gives the baseline the artifact's analysis layer must reproduce. An LLM (Claude Haiku) labelled 3,500 reviews with 16 aspects, a polarity and a verbatim quote; 99.7% of its quotes were found word for word, and a second model agreed with a median Cohen's kappa of 0.80. A TF-IDF classifier trained on those labels was applied to every review, and shares were estimated by prediction-powered inference (PPI++; Angelopoulos et al., 2023) on a separate 1,500-review random sample, which keeps them unbiased with valid 95% intervals. The shares describe what the annotator would say about every review; they are not human-validated.
+
+- **Most reviews are generic.** 61.7% [59.6, 63.9] give an overall verdict. Efficacy is the most discussed specific aspect (30.3% [28.5, 32.2]).
+- **Low ratings are often not about the product's effect.** Among 1–2★ reviews, 29.8% [25.5, 34.2] criticise efficacy, but 27.0% [22.5, 31.6] criticise authenticity or quality (not as described, fake, cheap build), 11.7% [8.4, 14.9] packaging and 11.1% [7.8, 14.3] delivery or service. A brief that reads low stars as product-experience problems would be wrong for a large share of them, which is RCA cause B in text form.
+- **Customer context is rarely stated.** Repeat purchase 4.9% [3.9, 6.0], gift 3.0% [2.2, 3.8], and any skin or hair type at most 1.3%. This is why Sephora, with structured skin-type fields, is the main context environment.
+- **Criticism is not concentrated in a few products.** No product accounts for more than 3% of any aspect's predicted criticism (products with ≥ 20 reviews), so most complaint patterns are category-wide, not one-product artefacts. Concentration is a classifier estimate without an interval.
+- **Criticism has risen over time.** The share of reviews with a negative overall verdict rose from 4.2% [1.4, 7.1] in reviews up to 2015 to 16.7% [13.7, 19.7] in 2021–23, and price criticism from 1.5% [0.0, 3.1] to 7.8% [5.6, 10.1]. Time windows therefore belong in the cohort definition (DP4).
+
+These figures feed the task suite: the oracle for "what are low ratings about" tasks, and the dominance check, use the same labels and the same PPI estimator. The Sephora run uses the same code; its results will be added when it finishes.
+
+### 6.3 Root-cause analysis: why review-based marketing decisions go wrong
 
 A 5 Whys analysis of the Amazon catalogue ([analysis](../output/beauty_5whys/analysis.md), [evidence](../output/beauty_5whys/evidence.json)) asked why marketing decisions drawn from it can be unreliable. Each chain stops where the evidence runs out instead of inventing five answers. It found four operational causes. Each one becomes a requirement for the artifact and a trap task in the evaluation.
 
@@ -185,7 +197,7 @@ H1 and H2 are rival hypotheses, so either outcome answers RQ1.
 1. **Cohort and count**, e.g. "For moisturisers with at least 50 reviews, compare the recommendation rate by reported skin type, give the denominators, and say which groups fail the minimum-sample rule."
 2. **Comparison**, e.g. price bands and complaint rates across a focal product and its competitors.
 3. **Evidence retrieval**, e.g. find reviews that state a named aspect, with verbatim quotes.
-4. **Trap tasks.** Each contains a confound that is known by construction, so the correct finding is known without labelling any review. Examples: (a) a complaint whose cohort-wide rate is driven above half by one product, which a correct brief must flag; (b) a subgroup below the sample-size rule; (c) a premise in the question that contradicts the data, such as "why do oily-skin reviewers rate this lower?" when they don't; (d) a pattern that reverses when products with missing listing fields are included; (e) a segment that contains products a keyword rule misassigned, such as the leather conditioner in Hair care. Each trap type comes from a verified cause in the RCA (§6.2). Traps are selected from real cohorts where the confound occurs naturally, and their oracle is a query. They test DP3 and DP4 and are where H5 predicts adaptivity matters.
+4. **Trap tasks.** Each contains a confound that is known by construction, so the correct finding is known without labelling any review. Examples: (a) a complaint whose cohort-wide rate is driven above half by one product, which a correct brief must flag; (b) a subgroup below the sample-size rule; (c) a premise in the question that contradicts the data, such as "why do oily-skin reviewers rate this lower?" when they don't; (d) a pattern that reverses when products with missing listing fields are included; (e) a segment that contains products a keyword rule misassigned, such as the leather conditioner in Hair care. Each trap type comes from a verified cause in the RCA (§6.3). Traps are selected from real cohorts where the confound occurs naturally, and their oracle is a query. They test DP3 and DP4 and are where H5 predicts adaptivity matters.
 
 Oracle queries are written and checked against the full data before any arm runs, and are never visible to the arms.
 
@@ -244,7 +256,8 @@ Executable checks establish mechanical correctness and bounded task performance.
 | Part | Status |
 |---|---|
 | Amazon and Sephora integration, deduplication, EDA (Findings A–E) | Done, reproducible from `beauty-research/scripts/` |
-| 5 Whys root-cause analysis (§6.2) | Done, `beauty-research/output/beauty_5whys/` |
+| 5 Whys root-cause analysis (§6.3) | Done, `beauty-research/output/beauty_5whys/` |
+| Review text analysis, aspect-based sentiment (§6.2) | Done for Amazon (693,547 reviews); Sephora running |
 | Verbatim evidence checker | Tested on 2,182 real products in the earlier study (§5.3) |
 | Related work (87 papers) | Done, in PR #10 |
 | Task templates and oracle queries | To build |
@@ -269,6 +282,7 @@ Assume 10 briefs a month, 12 staff hours per brief without the artifact and 6 wi
 
 ## References
 
+- Angelopoulos, A. N., Bates, S., Fannjiang, C., Jordan, M. I., & Zrnic, T. (2023). Prediction-powered inference. *Science, 382*(6671), 669–674.
 - Angelopoulos, A. N., Bates, S., Fisch, A., Lei, L., & Schuster, T. (2024). Conformal risk control. *ICLR*.
 - Archak, N., Ghose, A., & Ipeirotis, P. G. (2011). Deriving the pricing power of product features by mining consumer reviews. *Management Science, 57*(8), 1485–1509.
 - Arora, N., Chakraborty, I., & Nishimura, Y. (2025). AI-human hybrids for marketing research. *Journal of Marketing, 89*(2), 43–70.

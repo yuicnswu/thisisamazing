@@ -28,9 +28,10 @@ tasks to 120 held-out instances, and “trap” tasks with known confounds
 make open-ended findings scorable without human annotation. (5) The
 verbatim-quote checker becomes a design principle backed by real pilot
 evidence (§5.3). (6) The 5 Whys root-cause analysis is now the problem
-evidence behind the meta-requirements (§6.2). (7) The illustrative cost
-scenario moved to an appendix, and a duplicated paragraph was
-removed.</p>
+evidence behind the meta-requirements (§6.3). (7) A full aspect-based
+text analysis of the Amazon reviews is reported in §6.2. (8) The
+illustrative cost scenario moved to an appendix, and a duplicated
+paragraph was removed.</p>
 </blockquote>
 <h2 id="abstract">Abstract</h2>
 <p>Beauty brands turn customer reviews into product and go-to-market
@@ -290,13 +291,13 @@ them and names its justification.</p>
 <td>Findings must state their scope: cohort, denominators, missing data,
 and how products were assigned to segments</td>
 <td>Li &amp; Hitt (2008); Berger et al. (2020); RCA causes A and C
-(§6.2)</td>
+(§6.3)</td>
 </tr>
 <tr class="even">
 <td>MR4</td>
 <td>The brief must expose evidence against its own findings, and rival
 explanations</td>
-<td>Klayman &amp; Ha (1987); RCA cause B (§6.2)</td>
+<td>Klayman &amp; Ha (1987); RCA cause B (§6.3)</td>
 </tr>
 <tr class="odd">
 <td>MR5</td>
@@ -308,7 +309,7 @@ over simpler automation</td>
 <td>MR6</td>
 <td>The brief must not claim outcomes the data cannot measure, such as
 ROI, sales or demand</td>
-<td>RCA constraint D (§6.2)</td>
+<td>RCA constraint D (§6.3)</td>
 </tr>
 </tbody>
 </table>
@@ -354,7 +355,7 @@ dominates, and runs a sensitivity cut.</td>
 <td>MR4</td>
 <td>Positive-test bias in hypothesis testing (Klayman &amp; Ha, 1987);
 averages hide thin evidence and disagreement (Finding D; RCA cause B,
-§6.2)</td>
+§6.3)</td>
 </tr>
 <tr class="even">
 <td>DP4</td>
@@ -365,7 +366,7 @@ Claims are typed, and the schema has no field for ROI, sales or
 demand.</td>
 <td>MR3, MR6</td>
 <td>Only 3.85% of Amazon products have complete listings, and a keyword
-rule put a leather conditioner in Hair care (§6.2)</td>
+rule put a leather conditioner in Hair care (§6.3)</td>
 </tr>
 <tr class="odd">
 <td>DP5</td>
@@ -588,8 +589,53 @@ shipping, defects and variants as rival explanations.</p>
 match a product within their own source. No Amazon–Sephora product or
 customer link exists, so the sources are analysed separately. Amazon is
 the robustness domain.</p>
+<h3 id="review-text-analysis-amazon-all_beauty">6.2 Review text analysis
+(Amazon All_Beauty)</h3>
+<p>An aspect-based sentiment analysis of all 693,547 cleaned Amazon
+reviews (<a href="../text_analysis/README.md">method and code</a>, <a
+href="../text_analysis/outputs/amazon/results.md">full results</a>)
+gives the baseline the artifact’s analysis layer must reproduce. An LLM
+(Claude Haiku) labelled 3,500 reviews with 16 aspects, a polarity and a
+verbatim quote; 99.7% of its quotes were found word for word, and a
+second model agreed with a median Cohen’s kappa of 0.80. A TF-IDF
+classifier trained on those labels was applied to every review, and
+shares were estimated by prediction-powered inference (PPI++;
+Angelopoulos et al., 2023) on a separate 1,500-review random sample,
+which keeps them unbiased with valid 95% intervals. The shares describe
+what the annotator would say about every review; they are not
+human-validated.</p>
+<ul>
+<li><strong>Most reviews are generic.</strong> 61.7% [59.6, 63.9] give
+an overall verdict. Efficacy is the most discussed specific aspect
+(30.3% [28.5, 32.2]).</li>
+<li><strong>Low ratings are often not about the product’s
+effect.</strong> Among 1–2★ reviews, 29.8% [25.5, 34.2] criticise
+efficacy, but 27.0% [22.5, 31.6] criticise authenticity or quality (not
+as described, fake, cheap build), 11.7% [8.4, 14.9] packaging and 11.1%
+[7.8, 14.3] delivery or service. A brief that reads low stars as
+product-experience problems would be wrong for a large share of them,
+which is RCA cause B in text form.</li>
+<li><strong>Customer context is rarely stated.</strong> Repeat purchase
+4.9% [3.9, 6.0], gift 3.0% [2.2, 3.8], and any skin or hair type at most
+1.3%. This is why Sephora, with structured skin-type fields, is the main
+context environment.</li>
+<li><strong>Criticism is not concentrated in a few products.</strong> No
+product accounts for more than 3% of any aspect’s predicted criticism
+(products with ≥ 20 reviews), so most complaint patterns are
+category-wide, not one-product artefacts. Concentration is a classifier
+estimate without an interval.</li>
+<li><strong>Criticism has risen over time.</strong> The share of reviews
+with a negative overall verdict rose from 4.2% [1.4, 7.1] in reviews up
+to 2015 to 16.7% [13.7, 19.7] in 2021–23, and price criticism from 1.5%
+[0.0, 3.1] to 7.8% [5.6, 10.1]. Time windows therefore belong in the
+cohort definition (DP4).</li>
+</ul>
+<p>These figures feed the task suite: the oracle for “what are low
+ratings about” tasks, and the dominance check, use the same labels and
+the same PPI estimator. The Sephora run uses the same code; its results
+will be added when it finishes.</p>
 <h3
-id="root-cause-analysis-why-review-based-marketing-decisions-go-wrong">6.2
+id="root-cause-analysis-why-review-based-marketing-decisions-go-wrong">6.3
 Root-cause analysis: why review-based marketing decisions go wrong</h3>
 <p>A 5 Whys analysis of the Amazon catalogue (<a
 href="../output/beauty_5whys/analysis.md">analysis</a>, <a
@@ -718,7 +764,7 @@ contradicts the data, such as “why do oily-skin reviewers rate this
 lower?” when they don’t; (d) a pattern that reverses when products with
 missing listing fields are included; (e) a segment that contains
 products a keyword rule misassigned, such as the leather conditioner in
-Hair care. Each trap type comes from a verified cause in the RCA (§6.2).
+Hair care. Each trap type comes from a verified cause in the RCA (§6.3).
 Traps are selected from real cohorts where the confound occurs
 naturally, and their oracle is a query. They test DP3 and DP4 and are
 where H5 predicts adaptivity matters.</li>
@@ -892,26 +938,30 @@ A–E)</td>
 <td>Done, reproducible from <code>beauty-research/scripts/</code></td>
 </tr>
 <tr class="even">
-<td>5 Whys root-cause analysis (§6.2)</td>
+<td>5 Whys root-cause analysis (§6.3)</td>
 <td>Done, <code>beauty-research/output/beauty_5whys/</code></td>
 </tr>
 <tr class="odd">
+<td>Review text analysis, aspect-based sentiment (§6.2)</td>
+<td>Done for Amazon (693,547 reviews); Sephora running</td>
+</tr>
+<tr class="even">
 <td>Verbatim evidence checker</td>
 <td>Tested on 2,182 real products in the earlier study (§5.3)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Related work (87 papers)</td>
 <td>Done, in PR #10</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Task templates and oracle queries</td>
 <td>To build</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Arms F, A, R, B, S</td>
 <td>To build; no LLM run yet</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Experiments 1 and 2</td>
 <td>Not run; no results exist</td>
 </tr>
@@ -981,6 +1031,9 @@ later workflow pilot, not an estimate.</p>
 </table>
 <h2 id="references">References</h2>
 <ul>
+<li>Angelopoulos, A. N., Bates, S., Fannjiang, C., Jordan, M. I., &amp;
+Zrnic, T. (2023). Prediction-powered inference. <em>Science,
+382</em>(6671), 669–674.</li>
 <li>Angelopoulos, A. N., Bates, S., Fisch, A., Lei, L., &amp; Schuster,
 T. (2024). Conformal risk control. <em>ICLR</em>.</li>
 <li>Archak, N., Ghose, A., &amp; Ipeirotis, P. G. (2011). Deriving the

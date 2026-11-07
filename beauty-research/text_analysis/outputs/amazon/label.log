@@ -1,0 +1,20 @@
+{
+  "train": {
+    "reviews": 2000,
+    "parsed": 1999,
+    "labels_kept": 4694,
+    "labels_dropped_nonverbatim": 17,
+    "verbatim_rate": 0.9964
+  },
+  "calib": {
+    "reviews": 1500,
+    "parsed": 1499,
+    "labels_kept": 3463,
+    "labels_dropped_nonverbatim": 8,
+    "verbatim_rate": 0.9977
+  },
+  "agree": {
+    "reviews": 400,
+    "model": "claude-sonnet-5-5"
+  }
+}
