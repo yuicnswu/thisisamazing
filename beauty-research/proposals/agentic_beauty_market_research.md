@@ -2,9 +2,9 @@
 
 **Paper draft (research in progress)** · revised 7 November 2026, replacing the 24 October proposal  
 **Target venues:** ICIS 2027 (short or completed research paper) or HICSS-61. Check the calls for exact deadlines and track names.  
-**Status:** The datasets are integrated and audited, and the evidence checker has been tested on real data. The agent itself, its baselines and the task suite have not run yet. Every number in this draft is either an observed count from the audited files or is labelled as a target or an illustration.
+**Status:** The datasets are integrated and audited, a root-cause analysis has identified the failure modes the artifact must handle, and the evidence checker has been tested on real data. The agent itself, its baselines and the task suite have not run yet. Every number in this draft is either an observed count from the audited files or is labelled as a target or an illustration.
 
-> **What changed from the 24 October version.** (1) The venue moved from the ISMS Marketing Science Conference to ICIS / HICSS, so the paper is now framed as design science research with meta-requirements, design principles and a staged evaluation. (2) It adds a related-work section built on the 87-paper review and a gap table. (3) The fixed baseline is now strong by design, and a router arm is added, because the literature shows fixed pipelines often match agents once cost is counted. (4) The task suite grows from 40 held-out tasks to 120 held-out instances, and "trap" tasks with known confounds make open-ended findings scorable without human annotation. (5) The verbatim-quote checker becomes a design principle backed by real pilot evidence (§5.3). (6) The illustrative cost scenario moved to an appendix, and a duplicated paragraph was removed.
+> **What changed from the 24 October version.** (1) The venue moved from the ISMS Marketing Science Conference to ICIS / HICSS, so the paper is now framed as design science research with meta-requirements, design principles and a staged evaluation. (2) It adds a related-work section built on the 87-paper review and a gap table. (3) The fixed baseline is now strong by design, and a router arm is added, because the literature shows fixed pipelines often match agents once cost is counted. (4) The task suite grows from 40 held-out tasks to 120 held-out instances, and "trap" tasks with known confounds make open-ended findings scorable without human annotation. (5) The verbatim-quote checker becomes a design principle backed by real pilot evidence (§5.3). (6) The 5 Whys root-cause analysis is now the problem evidence behind the meta-requirements (§6.2). (7) The illustrative cost scenario moved to an appendix, and a duplicated paragraph was removed.
 
 ## Abstract
 
@@ -62,7 +62,7 @@ No paper we found compares adaptive and fixed investigation for review-based mar
 
 ## 3. Research approach
 
-We follow the design science research methodology of Peffers et al. (2007): problem identification (§1), objectives as meta-requirements (§4), design and development (§5), and demonstration and evaluation (§6–§7). Evaluation follows the FEDS framework (Venable et al., 2016) with a *technical risk and efficacy* strategy. We start with artificial, formative evaluation (component tests and a development pilot), then move to artificial, summative evaluation (the held-out comparison). A naturalistic evaluation with practitioners is an optional extension (§7.4). This order fits the main risk: the artifact is only useful if its findings are correct, so correctness has to be established before usefulness.
+We follow the design science research methodology of Peffers et al. (2007): problem identification (§1, with the EDA and root-cause analysis in §6), objectives as meta-requirements (§4), design and development (§5), and demonstration and evaluation (§6–§7). Evaluation follows the FEDS framework (Venable et al., 2016) with a *technical risk and efficacy* strategy. We start with artificial, formative evaluation (component tests and a development pilot), then move to artificial, summative evaluation (the held-out comparison). A naturalistic evaluation with practitioners is an optional extension (§7.4). This order fits the main risk: the artifact is only useful if its findings are correct, so correctness has to be established before usefulness.
 
 ## 4. Meta-requirements and design principles
 
@@ -72,16 +72,17 @@ Meta-requirements (MR) come from the merchant problem in §1 and the failure mod
 |---|---|---|
 | MR1 | Every number in the brief must be reproducible from the data | Goli & Singh (2024); Majumder et al. (2025) |
 | MR2 | Every quotation must exist in the cited review | Liu et al. (2023); Rashkin et al. (2023) |
-| MR3 | Findings must state their scope: cohort, denominators, missing data | Li & Hitt (2008); Berger et al. (2020); EDA Finding A |
-| MR4 | The brief must expose evidence against its own findings, and rival explanations | Klayman & Ha (1987); EDA Finding D |
+| MR3 | Findings must state their scope: cohort, denominators, missing data, and how products were assigned to segments | Li & Hitt (2008); Berger et al. (2020); RCA causes A and C (§6.2) |
+| MR4 | The brief must expose evidence against its own findings, and rival explanations | Klayman & Ha (1987); RCA cause B (§6.2) |
 | MR5 | The cost of producing the brief must be justified by what it adds over simpler automation | Kapoor et al. (2025); Xia et al. (2025) |
+| MR6 | The brief must not claim outcomes the data cannot measure, such as ROI, sales or demand | RCA constraint D (§6.2) |
 
 | | Design principle | Addresses | Justification |
 |---|---|---|---|
 | DP1 | **Compute, don't generate.** Counts, proportions and comparisons come from parameterised SQL/Python. The LLM writes queries and prose, never numbers. | MR1 | LLM priors differ from customer data (Goli & Singh, 2024); code execution is checkable |
 | DP2 | **Quote verbatim or don't claim.** A finding cites review or listing text that a deterministic check finds word for word in the source. | MR2 | Pilot evidence in §5.3: the verbatim requirement is what made a certified error bound reachable |
-| DP3 | **Seek disconfirming evidence.** Before a finding is kept, the agent retrieves opposing reviews, checks whether one product dominates, and runs a sensitivity cut. | MR4 | Positive-test bias in hypothesis testing (Klayman & Ha, 1987); one-product dominance is common in the data (Finding D) |
-| DP4 | **Disclose the cohort.** Each finding records its filters, numerator, denominator and the share of records excluded for missing fields. | MR3 | Only 3.85% of Amazon products have complete listings (Finding A) |
+| DP3 | **Seek disconfirming evidence.** Before a finding is kept, the agent retrieves opposing reviews, checks whether one product dominates, and runs a sensitivity cut. | MR4 | Positive-test bias in hypothesis testing (Klayman & Ha, 1987); averages hide thin evidence and disagreement (Finding D; RCA cause B, §6.2) |
+| DP4 | **Disclose the cohort.** Each finding records its filters, numerator, denominator, the share of records excluded for missing fields, and the rule that assigned products to its segment. Claims are typed, and the schema has no field for ROI, sales or demand. | MR3, MR6 | Only 3.85% of Amazon products have complete listings, and a keyword rule put a leather conditioner in Hair care (§6.2) |
 | DP5 | **Escalate only when needed.** The fixed workflow runs first; adaptive investigation is triggered when checks fail or a finding is fragile. | MR5 | Adaptive routing (Jeong et al., 2024); cascades (Chen, Zaharia & Zou, 2024) |
 
 DP5 is itself a hypothesis: if the router (§5.2) matches the full agent at lower cost, DP5 is supported.
@@ -149,6 +150,19 @@ All counts come from the supplied files and full-file integration scripts. Revie
 
 **Finding E: no cross-source linkage.** All reviews match a product within their own source. No Amazon–Sephora product or customer link exists, so the sources are analysed separately. Amazon is the robustness domain.
 
+### 6.2 Root-cause analysis: why review-based marketing decisions go wrong
+
+A 5 Whys analysis of the Amazon catalogue ([analysis](../output/beauty_5whys/analysis.md), [evidence](../output/beauty_5whys/evidence.json)) asked why marketing decisions drawn from it can be unreliable. Each chain stops where the evidence runs out instead of inventing five answers. It found four operational causes. Each one becomes a requirement for the artifact and a trap task in the evaluation.
+
+| | Symptom | Verified operational cause | Unverified (stopped) | Requirement | Trap (§7.2) |
+|---|---|---|---|---|---|
+| A | A complete-record shortlist keeps 4,332 of 112,590 products (3.85%); 80,031 lack price, description and features | Using completeness as an eligibility rule; the population shifts (median rating count 9 overall, 20 in the complete subset) | Why the fields are missing upstream | MR3, DP4 | (d) |
+| B | 12,189 of 14,519 five-star products have fewer than five ratings, and 5,931 have one | Ranking on average stars ignores evidence volume. A ≥ 4.5 rule selects 31,004 products (median 5 ratings); adding ≥ 20 ratings keeps 7,472 (median 64) | Why those products have few ratings | MR4, DP3 | (b) |
+| C | A leather conditioner is classed as Hair care | A context-free keyword rule assigns segments, and the file's category paths are all empty, so it cannot be checked | Why category paths are empty upstream | MR3, DP4 | (e) |
+| D | The file cannot show marketing ROI | The data unit is a product with aggregate feedback, not an exposure, click or purchase | – | MR6, DP4 | – (enforced by the schema) |
+
+The RCA establishes no root cause for missing prices, low demand, review fraud or poor marketing performance, and the paper claims none. Its role is problem identification in the design science sense (Peffers et al., 2007): it shows, on the real data, the failure modes that an unaided analyst or a summarising LLM would carry into a brief. An earlier 5 Whys in this project (`FIVE_WHYS_ANALYSIS.md`) studied cold-start mismatch for the EvidenceGuard study and is not used here.
+
 Evidence: [Amazon summary](../output/beauty_reviews/summary.json), [Amazon evidence ledger](../output/beauty_research_workflow/evidence_ledger.json), [Sephora summary](../output/sephora/summary.json), [Sephora provenance](../data/sephora_sources.json).
 
 ## 7. Evaluation design
@@ -171,7 +185,7 @@ H1 and H2 are rival hypotheses, so either outcome answers RQ1.
 1. **Cohort and count**, e.g. "For moisturisers with at least 50 reviews, compare the recommendation rate by reported skin type, give the denominators, and say which groups fail the minimum-sample rule."
 2. **Comparison**, e.g. price bands and complaint rates across a focal product and its competitors.
 3. **Evidence retrieval**, e.g. find reviews that state a named aspect, with verbatim quotes.
-4. **Trap tasks.** Each contains a confound that is known by construction, so the correct finding is known without labelling any review. Examples: (a) a complaint whose cohort-wide rate is driven above half by one product, which a correct brief must flag; (b) a subgroup below the sample-size rule; (c) a premise in the question that contradicts the data, such as "why do oily-skin reviewers rate this lower?" when they don't; (d) a pattern that reverses when products with missing listing fields are included. Traps are selected from real cohorts where the confound occurs naturally, and their oracle is a query. They test DP3 and DP4 and are where H5 predicts adaptivity matters.
+4. **Trap tasks.** Each contains a confound that is known by construction, so the correct finding is known without labelling any review. Examples: (a) a complaint whose cohort-wide rate is driven above half by one product, which a correct brief must flag; (b) a subgroup below the sample-size rule; (c) a premise in the question that contradicts the data, such as "why do oily-skin reviewers rate this lower?" when they don't; (d) a pattern that reverses when products with missing listing fields are included; (e) a segment that contains products a keyword rule misassigned, such as the leather conditioner in Hair care. Each trap type comes from a verified cause in the RCA (§6.2). Traps are selected from real cohorts where the confound occurs naturally, and their oracle is a query. They test DP3 and DP4 and are where H5 predicts adaptivity matters.
 
 Oracle queries are written and checked against the full data before any arm runs, and are never visible to the arms.
 
@@ -219,7 +233,7 @@ Executable checks establish mechanical correctness and bounded task performance.
 
 ## 9. Threats to validity
 
-- **Construct.** Task success measures correct execution, not strategic value. Trap tasks cover four confound types, not all of them.
+- **Construct.** Task success measures correct execution, not strategic value. Trap tasks cover five confound types taken from the RCA, not all possible confounds.
 - **Internal.** Prompt tuning effort could favour one arm. Both F and A get the same development budget and the same development tasks, and the tuning log is published.
 - **External.** Two retailers, one category family, old snapshots and self-selected reviewers. No population-demand or causal claim follows.
 - **Statistical.** Templates, not instances, are the unit of generalisation. Clustering by template addresses this, and 30 held-out templates is the main limit on power.
@@ -230,13 +244,14 @@ Executable checks establish mechanical correctness and bounded task performance.
 | Part | Status |
 |---|---|
 | Amazon and Sephora integration, deduplication, EDA (Findings A–E) | Done, reproducible from `beauty-research/scripts/` |
+| 5 Whys root-cause analysis (§6.2) | Done, `beauty-research/output/beauty_5whys/` |
 | Verbatim evidence checker | Tested on 2,182 real products in the earlier study (§5.3) |
 | Related work (87 papers) | Done, in PR #10 |
 | Task templates and oracle queries | To build |
 | Arms F, A, R, B, S | To build; no LLM run yet |
 | Experiments 1 and 2 | Not run; no results exist |
 
-**Eight-week plan.** Week 1: write 40 templates and oracle queries; select trap cohorts. Week 2: development pilot of F and A on 10 templates; freeze the record schema. Weeks 3–4: build R, B and S; freeze budgets, margins and the analysis plan. Weeks 5–6: held-out runs and ablations. Week 7: Experiment 2. Week 8: analysis and writing. Model choice and an API budget must be agreed before paid runs.
+**Eight-week plan.** Week 1: write 40 templates and oracle queries; select trap cohorts for the five RCA-derived trap types. Week 2: development pilot of F and A on 10 templates; freeze the record schema. Weeks 3–4: build R, B and S; freeze budgets, margins and the analysis plan. Weeks 5–6: held-out runs and ablations. Week 7: Experiment 2. Week 8: analysis and writing. Model choice and an API budget must be agreed before paid runs.
 
 **Venue choice.** HICSS takes research in progress and suits a first submission with Experiment 1 alone. ICIS completed research needs both experiments and ideally §7.4. A short paper to ICIS with the design principles and pilot results is the middle option.
 

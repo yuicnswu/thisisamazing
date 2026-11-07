@@ -9,11 +9,12 @@ November 2026, replacing the 24 October proposal<br />
 <strong>Target venues:</strong> ICIS 2027 (short or completed research
 paper) or HICSS-61. Check the calls for exact deadlines and track
 names.<br />
-<strong>Status:</strong> The datasets are integrated and audited, and
-the evidence checker has been tested on real data. The agent itself, its
-baselines and the task suite have not run yet. Every number in this
-draft is either an observed count from the audited files or is labelled
-as a target or an illustration.</p>
+<strong>Status:</strong> The datasets are integrated and audited, a
+root-cause analysis has identified the failure modes the artifact must
+handle, and the evidence checker has been tested on real data. The agent
+itself, its baselines and the task suite have not run yet. Every number
+in this draft is either an observed count from the audited files or is
+labelled as a target or an illustration.</p>
 <blockquote>
 <p><strong>What changed from the 24 October version.</strong> (1) The
 venue moved from the ISMS Marketing Science Conference to ICIS / HICSS,
@@ -26,8 +27,10 @@ agents once cost is counted. (4) The task suite grows from 40 held-out
 tasks to 120 held-out instances, and “trap” tasks with known confounds
 make open-ended findings scorable without human annotation. (5) The
 verbatim-quote checker becomes a design principle backed by real pilot
-evidence (§5.3). (6) The illustrative cost scenario moved to an
-appendix, and a duplicated paragraph was removed.</p>
+evidence (§5.3). (6) The 5 Whys root-cause analysis is now the problem
+evidence behind the meta-requirements (§6.2). (7) The illustrative cost
+scenario moved to an appendix, and a duplicated paragraph was
+removed.</p>
 </blockquote>
 <h2 id="abstract">Abstract</h2>
 <p>Beauty brands turn customer reviews into product and go-to-market
@@ -242,16 +245,17 @@ together, or scores a merchant brief at the level of atomic findings
 backed by computed counts and quoted reviews.</p>
 <h2 id="research-approach">3. Research approach</h2>
 <p>We follow the design science research methodology of Peffers et
-al. (2007): problem identification (§1), objectives as meta-requirements
-(§4), design and development (§5), and demonstration and evaluation
-(§6–§7). Evaluation follows the FEDS framework (Venable et al., 2016)
-with a <em>technical risk and efficacy</em> strategy. We start with
-artificial, formative evaluation (component tests and a development
-pilot), then move to artificial, summative evaluation (the held-out
-comparison). A naturalistic evaluation with practitioners is an optional
-extension (§7.4). This order fits the main risk: the artifact is only
-useful if its findings are correct, so correctness has to be established
-before usefulness.</p>
+al. (2007): problem identification (§1, with the EDA and root-cause
+analysis in §6), objectives as meta-requirements (§4), design and
+development (§5), and demonstration and evaluation (§6–§7). Evaluation
+follows the FEDS framework (Venable et al., 2016) with a <em>technical
+risk and efficacy</em> strategy. We start with artificial, formative
+evaluation (component tests and a development pilot), then move to
+artificial, summative evaluation (the held-out comparison). A
+naturalistic evaluation with practitioners is an optional extension
+(§7.4). This order fits the main risk: the artifact is only useful if
+its findings are correct, so correctness has to be established before
+usefulness.</p>
 <h2 id="meta-requirements-and-design-principles">4. Meta-requirements
 and design principles</h2>
 <p>Meta-requirements (MR) come from the merchant problem in §1 and the
@@ -283,21 +287,28 @@ them and names its justification.</p>
 </tr>
 <tr class="odd">
 <td>MR3</td>
-<td>Findings must state their scope: cohort, denominators, missing
-data</td>
-<td>Li &amp; Hitt (2008); Berger et al. (2020); EDA Finding A</td>
+<td>Findings must state their scope: cohort, denominators, missing data,
+and how products were assigned to segments</td>
+<td>Li &amp; Hitt (2008); Berger et al. (2020); RCA causes A and C
+(§6.2)</td>
 </tr>
 <tr class="even">
 <td>MR4</td>
 <td>The brief must expose evidence against its own findings, and rival
 explanations</td>
-<td>Klayman &amp; Ha (1987); EDA Finding D</td>
+<td>Klayman &amp; Ha (1987); RCA cause B (§6.2)</td>
 </tr>
 <tr class="odd">
 <td>MR5</td>
 <td>The cost of producing the brief must be justified by what it adds
 over simpler automation</td>
 <td>Kapoor et al. (2025); Xia et al. (2025)</td>
+</tr>
+<tr class="even">
+<td>MR6</td>
+<td>The brief must not claim outcomes the data cannot measure, such as
+ROI, sales or demand</td>
+<td>RCA constraint D (§6.2)</td>
 </tr>
 </tbody>
 </table>
@@ -342,16 +353,19 @@ kept, the agent retrieves opposing reviews, checks whether one product
 dominates, and runs a sensitivity cut.</td>
 <td>MR4</td>
 <td>Positive-test bias in hypothesis testing (Klayman &amp; Ha, 1987);
-one-product dominance is common in the data (Finding D)</td>
+averages hide thin evidence and disagreement (Finding D; RCA cause B,
+§6.2)</td>
 </tr>
 <tr class="even">
 <td>DP4</td>
 <td><strong>Disclose the cohort.</strong> Each finding records its
-filters, numerator, denominator and the share of records excluded for
-missing fields.</td>
-<td>MR3</td>
-<td>Only 3.85% of Amazon products have complete listings (Finding
-A)</td>
+filters, numerator, denominator, the share of records excluded for
+missing fields, and the rule that assigned products to its segment.
+Claims are typed, and the schema has no field for ROI, sales or
+demand.</td>
+<td>MR3, MR6</td>
+<td>Only 3.85% of Amazon products have complete listings, and a keyword
+rule put a leather conditioner in Hair care (§6.2)</td>
 </tr>
 <tr class="odd">
 <td>DP5</td>
@@ -574,6 +588,85 @@ shipping, defects and variants as rival explanations.</p>
 match a product within their own source. No Amazon–Sephora product or
 customer link exists, so the sources are analysed separately. Amazon is
 the robustness domain.</p>
+<h3
+id="root-cause-analysis-why-review-based-marketing-decisions-go-wrong">6.2
+Root-cause analysis: why review-based marketing decisions go wrong</h3>
+<p>A 5 Whys analysis of the Amazon catalogue (<a
+href="../output/beauty_5whys/analysis.md">analysis</a>, <a
+href="../output/beauty_5whys/evidence.json">evidence</a>) asked why
+marketing decisions drawn from it can be unreliable. Each chain stops
+where the evidence runs out instead of inventing five answers. It found
+four operational causes. Each one becomes a requirement for the artifact
+and a trap task in the evaluation.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Symptom</th>
+<th>Verified operational cause</th>
+<th>Unverified (stopped)</th>
+<th>Requirement</th>
+<th>Trap (§7.2)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>A complete-record shortlist keeps 4,332 of 112,590 products (3.85%);
+80,031 lack price, description and features</td>
+<td>Using completeness as an eligibility rule; the population shifts
+(median rating count 9 overall, 20 in the complete subset)</td>
+<td>Why the fields are missing upstream</td>
+<td>MR3, DP4</td>
+<td>(d)</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>12,189 of 14,519 five-star products have fewer than five ratings,
+and 5,931 have one</td>
+<td>Ranking on average stars ignores evidence volume. A ≥ 4.5 rule
+selects 31,004 products (median 5 ratings); adding ≥ 20 ratings keeps
+7,472 (median 64)</td>
+<td>Why those products have few ratings</td>
+<td>MR4, DP3</td>
+<td>(b)</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>A leather conditioner is classed as Hair care</td>
+<td>A context-free keyword rule assigns segments, and the file’s
+category paths are all empty, so it cannot be checked</td>
+<td>Why category paths are empty upstream</td>
+<td>MR3, DP4</td>
+<td>(e)</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>The file cannot show marketing ROI</td>
+<td>The data unit is a product with aggregate feedback, not an exposure,
+click or purchase</td>
+<td>–</td>
+<td>MR6, DP4</td>
+<td>– (enforced by the schema)</td>
+</tr>
+</tbody>
+</table>
+<p>The RCA establishes no root cause for missing prices, low demand,
+review fraud or poor marketing performance, and the paper claims none.
+Its role is problem identification in the design science sense (Peffers
+et al., 2007): it shows, on the real data, the failure modes that an
+unaided analyst or a summarising LLM would carry into a brief. An
+earlier 5 Whys in this project (<code>FIVE_WHYS_ANALYSIS.md</code>)
+studied cold-start mismatch for the EvidenceGuard study and is not used
+here.</p>
 <p>Evidence: <a href="../output/beauty_reviews/summary.json">Amazon
 summary</a>, <a
 href="../output/beauty_research_workflow/evidence_ledger.json">Amazon
@@ -623,10 +716,12 @@ half by one product, which a correct brief must flag; (b) a subgroup
 below the sample-size rule; (c) a premise in the question that
 contradicts the data, such as “why do oily-skin reviewers rate this
 lower?” when they don’t; (d) a pattern that reverses when products with
-missing listing fields are included. Traps are selected from real
-cohorts where the confound occurs naturally, and their oracle is a
-query. They test DP3 and DP4 and are where H5 predicts adaptivity
-matters.</li>
+missing listing fields are included; (e) a segment that contains
+products a keyword rule misassigned, such as the leather conditioner in
+Hair care. Each trap type comes from a verified cause in the RCA (§6.2).
+Traps are selected from real cohorts where the confound occurs
+naturally, and their oracle is a query. They test DP3 and DP4 and are
+where H5 predicts adaptivity matters.</li>
 </ol>
 <p>Oracle queries are written and checked against the full data before
 any arm runs, and are never visible to the arms.</p>
@@ -763,8 +858,8 @@ claim.</p>
 <h2 id="threats-to-validity">9. Threats to validity</h2>
 <ul>
 <li><strong>Construct.</strong> Task success measures correct execution,
-not strategic value. Trap tasks cover four confound types, not all of
-them.</li>
+not strategic value. Trap tasks cover five confound types taken from the
+RCA, not all possible confounds.</li>
 <li><strong>Internal.</strong> Prompt tuning effort could favour one
 arm. Both F and A get the same development budget and the same
 development tasks, and the tuning log is published.</li>
@@ -797,33 +892,38 @@ A–E)</td>
 <td>Done, reproducible from <code>beauty-research/scripts/</code></td>
 </tr>
 <tr class="even">
+<td>5 Whys root-cause analysis (§6.2)</td>
+<td>Done, <code>beauty-research/output/beauty_5whys/</code></td>
+</tr>
+<tr class="odd">
 <td>Verbatim evidence checker</td>
 <td>Tested on 2,182 real products in the earlier study (§5.3)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Related work (87 papers)</td>
 <td>Done, in PR #10</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Task templates and oracle queries</td>
 <td>To build</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Arms F, A, R, B, S</td>
 <td>To build; no LLM run yet</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Experiments 1 and 2</td>
 <td>Not run; no results exist</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Eight-week plan.</strong> Week 1: write 40 templates and
-oracle queries; select trap cohorts. Week 2: development pilot of F and
-A on 10 templates; freeze the record schema. Weeks 3–4: build R, B and
-S; freeze budgets, margins and the analysis plan. Weeks 5–6: held-out
-runs and ablations. Week 7: Experiment 2. Week 8: analysis and writing.
-Model choice and an API budget must be agreed before paid runs.</p>
+oracle queries; select trap cohorts for the five RCA-derived trap types.
+Week 2: development pilot of F and A on 10 templates; freeze the record
+schema. Weeks 3–4: build R, B and S; freeze budgets, margins and the
+analysis plan. Weeks 5–6: held-out runs and ablations. Week 7:
+Experiment 2. Week 8: analysis and writing. Model choice and an API
+budget must be agreed before paid runs.</p>
 <p><strong>Venue choice.</strong> HICSS takes research in progress and
 suits a first submission with Experiment 1 alone. ICIS completed
 research needs both experiments and ideally §7.4. A short paper to ICIS
